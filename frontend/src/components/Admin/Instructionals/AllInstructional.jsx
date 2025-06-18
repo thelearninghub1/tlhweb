@@ -1,13 +1,13 @@
 import React, { Fragment, useEffect } from 'react';
 import {useSelector , useDispatch} from 'react-redux';
-import { deleteInstrutionalAction , clearErrors , allInstructionalAction } from '../../../actions/affilationAction.jsx';
+import { deleteInstrutionalAction , clearErrors , allInstructionalAction } from '../../../actions/affilationAction';
 import { DataGrid } from '@mui/x-data-grid';
 import Sidebar from '../Dashboard/Sidebar.jsx';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link , useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
-import { DELETE_AFFILIATION_RESET } from '../../../constants/afilationConstants.jsx';
+import { DELETE_AFFILIATION_RESET } from '../../../constants/afilationConstants';
 import { toast } from 'react-toastify';
 import Loader from '../../layout/Loader/Loader.jsx';
 

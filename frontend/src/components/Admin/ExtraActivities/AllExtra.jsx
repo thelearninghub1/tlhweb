@@ -1,22 +1,22 @@
 import React, { Fragment, useEffect } from 'react';
 import {useSelector , useDispatch} from 'react-redux';
-import { deleteCalenderAction , clearErrors , allCalenderAction } from '../../../actions/calenderAction.jsx';
+import { deleteExtraAction , clearErrors , allExtraAction } from '../../../actions/affilationAction';
 import { DataGrid } from '@mui/x-data-grid';
 import Sidebar from '../Dashboard/Sidebar.jsx';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link , useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
-import { DELETE_CALENDER_RESET } from '../../../constants/calenderConstants.jsx';
+import { DELETE_AFFILIATION_RESET } from '../../../constants/afilationConstants';
 import { toast } from 'react-toastify';
 import Loader from '../../layout/Loader/Loader.jsx';
 
 
 
-const AllCalenders = () => {
+const AllExtra = () => {
 
-  const {loading,error,calenders} = useSelector((state)=>state.allCalenders);
-  const {error:deleteUser,success , message} = useSelector((state)=>state.createCalender);
+  const {loading,error,afiliations} = useSelector((state)=>state.allAffiliation);
+  const {error:deleteUser,success , message} = useSelector((state)=>state.createAffilation);
 
 
 
@@ -27,7 +27,7 @@ const AllCalenders = () => {
   const dispatch = useDispatch();
 
   const deleteSubmitHandler = (id) => {
-    dispatch(deleteCalenderAction(id))
+    dispatch(deleteExtraAction(id))
 
   }
 
@@ -35,7 +35,7 @@ const AllCalenders = () => {
   const columns = [
     {
      field:"id",
-     headerName:"Academic Calendar ID's",
+     headerName:"Curricular ID's",
      minWidth:200,
      flex:2.5
     },
@@ -46,14 +46,14 @@ const AllCalenders = () => {
     flex:1
   },
   {
-    field:"date",
-    headerName:"Academic Calendar Date",
+    field:"title",
+    headerName:"Curricular Title",
     minWidth:200,
     flex:1
   },
     {
-    field:"details",
-    headerName:"Academic Calendar Description",
+    field:"description",
+    headerName:"Curricular Description",
     minWidth:300,
     flex:1
   },
@@ -82,11 +82,11 @@ const AllCalenders = () => {
 
 const rows = [];
 
-calenders && calenders.map((user) =>(
+afiliations && afiliations.map((user) =>(
     rows.push({
         id: user._id,
-        date: user.date,
-        details: user.details,
+        title: user.title,
+        description: user.description,
         createdAt: String(user.createdAt).substr(0,10),
     })
 ))
@@ -106,12 +106,12 @@ calenders && calenders.map((user) =>(
         history(`/dashboard`)
 
         dispatch({
-            type:DELETE_CALENDER_RESET
+            type:DELETE_AFFILIATION_RESET
         })
     }
   
 
-    dispatch(allCalenderAction())
+    dispatch(allExtraAction())
  
   },[dispatch,error,success,message,history,deleteUser])
   return (
@@ -129,7 +129,7 @@ calenders && calenders.map((user) =>(
                       </div>
                       <div className='mainDiv'>
                       <div className="productListContainer" style={{ width: '100%', overflowX: 'auto' }}>
-                        <h1 id='productListHeading'>All Academic Calendar Data Management</h1>
+                        <h1 id='productListHeading'>All Extra Curricular Activities Data Management</h1>
                         <DataGrid
                           rows={rows}
                           columns={columns}
@@ -153,4 +153,4 @@ calenders && calenders.map((user) =>(
         }
        
 
-export default AllCalenders
+export default AllExtra

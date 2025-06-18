@@ -14,7 +14,7 @@ import { PiStudentFill } from "react-icons/pi";
 import { Link } from 'react-router-dom';
 import { useDispatch , useSelector } from 'react-redux';
 import {toast } from 'react-toastify';
-import { allSupportAction , clearErrors } from '../../../actions/affilationAction.jsx';
+import { allSupportAction , clearErrors } from '../../../actions/affilationAction';
 import Loader from '../../layout/Loader/Loader.jsx';
 import video from '../../../assets/academic.mp4';
 import Metadata from '../../layout/Metadata/Metadata.jsx';

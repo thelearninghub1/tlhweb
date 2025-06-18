@@ -1,22 +1,22 @@
 import React, { Fragment, useEffect } from 'react';
 import {useSelector , useDispatch} from 'react-redux';
-import { deleteSupportAction , clearErrors , allSupportAction } from '../../../actions/affilationAction.jsx';
+import { deleteCalenderAction , clearErrors , allCalenderAction } from '../../../actions/calenderAction';
 import { DataGrid } from '@mui/x-data-grid';
 import Sidebar from '../Dashboard/Sidebar.jsx';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link , useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
-import { DELETE_AFFILIATION_RESET } from '../../../constants/afilationConstants.jsx';
+import { DELETE_CALENDER_RESET } from '../../../constants/calenderConstants';
 import { toast } from 'react-toastify';
 import Loader from '../../layout/Loader/Loader.jsx';
 
 
 
-const AllSupports = () => {
+const AllCalenders = () => {
 
-  const {loading,error,afiliations} = useSelector((state)=>state.allAffiliation);
-  const {error:deleteUser,success , message} = useSelector((state)=>state.createAffilation);
+  const {loading,error,calenders} = useSelector((state)=>state.allCalenders);
+  const {error:deleteUser,success , message} = useSelector((state)=>state.createCalender);
 
 
 
@@ -27,7 +27,7 @@ const AllSupports = () => {
   const dispatch = useDispatch();
 
   const deleteSubmitHandler = (id) => {
-    dispatch(deleteSupportAction(id))
+    dispatch(deleteCalenderAction(id))
 
   }
 
@@ -35,7 +35,7 @@ const AllSupports = () => {
   const columns = [
     {
      field:"id",
-     headerName:"Academic Support ID's",
+     headerName:"Academic Calendar ID's",
      minWidth:200,
      flex:2.5
     },
@@ -46,14 +46,14 @@ const AllSupports = () => {
     flex:1
   },
   {
-    field:"title",
-    headerName:"Academic Support Title",
+    field:"date",
+    headerName:"Academic Calendar Date",
     minWidth:200,
     flex:1
   },
     {
-    field:"description",
-    headerName:"Academic Support Description",
+    field:"details",
+    headerName:"Academic Calendar Description",
     minWidth:300,
     flex:1
   },
@@ -82,11 +82,11 @@ const AllSupports = () => {
 
 const rows = [];
 
-afiliations && afiliations.map((user) =>(
+calenders && calenders.map((user) =>(
     rows.push({
         id: user._id,
-        title: user.title,
-        description: user.description,
+        date: user.date,
+        details: user.details,
         createdAt: String(user.createdAt).substr(0,10),
     })
 ))
@@ -106,12 +106,12 @@ afiliations && afiliations.map((user) =>(
         history(`/dashboard`)
 
         dispatch({
-            type:DELETE_AFFILIATION_RESET
+            type:DELETE_CALENDER_RESET
         })
     }
   
 
-    dispatch(allSupportAction())
+    dispatch(allCalenderAction())
  
   },[dispatch,error,success,message,history,deleteUser])
   return (
@@ -129,7 +129,7 @@ afiliations && afiliations.map((user) =>(
                       </div>
                       <div className='mainDiv'>
                       <div className="productListContainer" style={{ width: '100%', overflowX: 'auto' }}>
-                        <h1 id='productListHeading'>All Academic Support Data Management</h1>
+                        <h1 id='productListHeading'>All Academic Calendar Data Management</h1>
                         <DataGrid
                           rows={rows}
                           columns={columns}
@@ -153,4 +153,4 @@ afiliations && afiliations.map((user) =>(
         }
        
 
-export default AllSupports
+export default AllCalenders

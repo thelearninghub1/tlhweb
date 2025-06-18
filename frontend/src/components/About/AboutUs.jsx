@@ -9,7 +9,6 @@ import TeamMembersCard from './TeamMembersCard.jsx';
 import logo from '../../assets/logo.png';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import SkillBarBhai from './SkillBarBhai.jsx';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import { allFeedbackAction, clearErrors  } from "../../actions/feedbackActions";

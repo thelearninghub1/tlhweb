@@ -19,9 +19,9 @@ import { allCardAction } from "../../actions/cardActions";
 import {toast} from 'react-toastify';
 import { allPartnerAction } from "../../actions/techActions";
 import Loader from '../layout/Loader/Loader.jsx';
-import { allFeatureAction } from '../../actions/affilationAction.jsx';
-import { createCallBackAction } from '../../actions/contactUsAction.jsx';
-import { CONTACT_US_RESET } from '../../constants/contactUsContants.jsx';
+import { allFeatureAction } from '../../actions/affilationAction';
+import { createCallBackAction } from '../../actions/contactUsAction';
+import { CONTACT_US_RESET } from '../../constants/contactUsContants';
 import Metadata from '../layout/Metadata/Metadata.jsx';
 import gif from '../../assets/location.gif';
  

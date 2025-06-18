@@ -5,7 +5,7 @@ import SubjectCard from './SubjectCard.jsx';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useSelector , useDispatch } from 'react-redux';
-import { allProjectsAction , clearErrors } from '../../actions/subjectActions.jsx';
+import { allProjectsAction , clearErrors } from '../../actions/subjectActions';
 import { toast } from 'react-toastify';
 import Loader from '../layout/Loader/Loader.jsx';
 import video from '../../assets/subject.mp4';

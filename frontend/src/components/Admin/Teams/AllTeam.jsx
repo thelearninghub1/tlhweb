@@ -1,13 +1,13 @@
 import React, { Fragment, useEffect } from 'react';
 import {useSelector , useDispatch} from 'react-redux';
-import { deleteTeamAction , clearErrors , allTeamAction } from '../../../actions/teamActions.jsx';
+import { deleteTeamAction , clearErrors , allTeamAction } from '../../../actions/teamActions';
 import { DataGrid } from '@mui/x-data-grid';
 import Sidebar from '../Dashboard/Sidebar.jsx';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link , useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
-import { DELETE_TEAM_RESET } from '../../../constants/TeamConstants.jsx';
+import { DELETE_TEAM_RESET } from '../../../constants/TeamConstants';
 import { toast } from 'react-toastify';
 import Loader from '../../layout/Loader/Loader.jsx';
 

@@ -1,22 +1,22 @@
 import React, { Fragment, useEffect } from 'react';
 import {useSelector , useDispatch} from 'react-redux';
-import { deleteExtraAction , clearErrors , allExtraAction } from '../../../actions/affilationAction.jsx';
+import {  deleteStudentAction, clearErrors , allStudentAction } from '../../../actions/studentAction';
 import { DataGrid } from '@mui/x-data-grid';
 import Sidebar from '../Dashboard/Sidebar.jsx';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link , useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
-import { DELETE_AFFILIATION_RESET } from '../../../constants/afilationConstants.jsx';
+import { DELETE_STUDENT_RESET } from '../../../constants/studentFeedbackConstants';
 import { toast } from 'react-toastify';
 import Loader from '../../layout/Loader/Loader.jsx';
 
 
 
-const AllExtra = () => {
+const AllStudents = () => {
 
-  const {loading,error,afiliations} = useSelector((state)=>state.allAffiliation);
-  const {error:deleteUser,success , message} = useSelector((state)=>state.createAffilation);
+  const {loading,error,feedbacks} = useSelector((state)=>state.allStudent);
+  const {error:deleteUser,success , message} = useSelector((state)=>state.createStudent);
 
 
 
@@ -27,7 +27,7 @@ const AllExtra = () => {
   const dispatch = useDispatch();
 
   const deleteSubmitHandler = (id) => {
-    dispatch(deleteExtraAction(id))
+    dispatch(deleteStudentAction(id))
 
   }
 
@@ -35,26 +35,20 @@ const AllExtra = () => {
   const columns = [
     {
      field:"id",
-     headerName:"Curricular ID's",
+     headerName:"Feedback ID's",
      minWidth:200,
      flex:2.5
     },
+   {
+    field:"ytLink",
+    headerName:"Feedback Link",
+    minWidth:200,
+    flex:1
+  },
   {
     field:"createdAt",
     headerName:"Created At",
     minWidth:200,
-    flex:1
-  },
-  {
-    field:"title",
-    headerName:"Curricular Title",
-    minWidth:200,
-    flex:1
-  },
-    {
-    field:"description",
-    headerName:"Curricular Description",
-    minWidth:300,
     flex:1
   },
 
@@ -82,11 +76,10 @@ const AllExtra = () => {
 
 const rows = [];
 
-afiliations && afiliations.map((user) =>(
+feedbacks && feedbacks.map((user) =>(
     rows.push({
         id: user._id,
-        title: user.title,
-        description: user.description,
+        ytLink: user.ytLink,
         createdAt: String(user.createdAt).substr(0,10),
     })
 ))
@@ -106,12 +99,12 @@ afiliations && afiliations.map((user) =>(
         history(`/dashboard`)
 
         dispatch({
-            type:DELETE_AFFILIATION_RESET
+            type:DELETE_STUDENT_RESET
         })
     }
   
 
-    dispatch(allExtraAction())
+    dispatch(allStudentAction())
  
   },[dispatch,error,success,message,history,deleteUser])
   return (
@@ -129,13 +122,14 @@ afiliations && afiliations.map((user) =>(
                       </div>
                       <div className='mainDiv'>
                       <div className="productListContainer" style={{ width: '100%', overflowX: 'auto' }}>
-                        <h1 id='productListHeading'>All Extra Curricular Activities Data Management</h1>
+                        <h1 id='productListHeading'>All Student Feedback Data Management</h1>
                         <DataGrid
                           rows={rows}
                           columns={columns}
                           pageSize={10}
                           disableSelectionOnClick
                           className='productListTable'
+                          autoHeight
                         />
                       </div>
               
@@ -153,4 +147,4 @@ afiliations && afiliations.map((user) =>(
         }
        
 
-export default AllExtra
+export default AllStudents

@@ -1,13 +1,13 @@
 import React, { Fragment, useEffect } from 'react';
 import {useSelector , useDispatch} from 'react-redux';
-import { deleteFeedbackAction , clearErrors , allFeedbackAction } from '../../../actions/feedbackActions.jsx';
+import { deleteFeedbackAction , clearErrors , allFeedbackAction } from '../../../actions/feedbackActions';
 import { DataGrid } from '@mui/x-data-grid';
 import Sidebar from '../Dashboard/Sidebar.jsx';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link , useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
-import { DELETE_FEEDBACK_RESET } from '../../../constants/feedbackConstants.jsx';
+import { DELETE_FEEDBACK_RESET } from '../../../constants/feedbackConstants';
 import { toast } from 'react-toastify';
 import Loader from '../../layout/Loader/Loader.jsx';
 
