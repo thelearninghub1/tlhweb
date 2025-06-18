@@ -24,7 +24,7 @@ export const allPartnerAction = () => async (dispatch) => {
     try {
         dispatch({ type: ALL_PARTNER_REQUEST });
 
-        const { data } = await axios.get(`http://localhost:4000/api/v1/partners`);
+        const { data } = await axios.get(`/api/v1/partners`);
 
         dispatch({
             type: ALL_PARTNER_SUCCESS,
@@ -44,7 +44,7 @@ export const partnerDetailsAction = (id) => async (dispatch) => {
     try {
         dispatch({ type: PARTNER_DETAILS_REQUEST });
 
-        const { data } = await axios.get(`http://localhost:4000/api/v1/admin/partner/${id}`);
+        const { data } = await axios.get(`/api/v1/admin/partner/${id}`);
 
         dispatch({
             type: PARTNER_DETAILS_SUCCESS,
@@ -69,7 +69,7 @@ export const createPartnerAction = (newPartnerData) => async (dispatch) => {
             withCredentials: true
         };
 
-        const { data } = await axios.post(`http://localhost:4000/api/v1/admin/partner/create`, newPartnerData, config);
+        const { data } = await axios.post(`/api/v1/admin/partner/create`, newPartnerData, config);
 
         dispatch({
             type: CREATE_PARTNER_SUCCESS,
@@ -94,7 +94,7 @@ export const deletePartnerAction = (id) => async (dispatch) => {
             withCredentials: true
         };
 
-        const { data } = await axios.delete(`http://localhost:4000/api/v1/admin/partner/${id}`, config);
+        const { data } = await axios.delete(`/api/v1/admin/partner/${id}`, config);
 
         dispatch({
             type: DELETE_PARTNER_SUCCESS,
@@ -119,7 +119,7 @@ export const updatePartnerAction = (id, updatedPartnerData) => async (dispatch) 
             withCredentials: true
         };
 
-        const { data } = await axios.put(`http://localhost:4000/api/v1/admin/partner/${id}`, updatedPartnerData, config);
+        const { data } = await axios.put(`/api/v1/admin/partner/${id}`, updatedPartnerData, config);
 
         dispatch({
             type: UPDATE_PARTNER_SUCCESS,

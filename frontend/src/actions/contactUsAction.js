@@ -11,7 +11,7 @@ export const createContactUsAction = (newDashboardData) => async (dispatch) => {
         const config = {headers: {"Content-Type":"application/json"},
     }
 
-        const {data} = await axios.post(`http://localhost:4000/api/v1/contactUs`,newDashboardData,config);
+        const {data} = await axios.post(`/api/v1/contactUs`,newDashboardData,config);
 
         dispatch({
             type:CONTACT_US_SUCCESS,
@@ -38,7 +38,7 @@ export const createPartnerContactUsAction = (newDashboardData) => async (dispatc
         const config = {headers: {"Content-Type":"application/json"},
     }
 
-        const {data} = await axios.post(`http://localhost:4000/api/v1/partner-with-us`,newDashboardData,config);
+        const {data} = await axios.post(`/api/v1/partner-with-us`,newDashboardData,config);
 
         dispatch({
             type:CONTACT_US_SUCCESS,
@@ -63,7 +63,7 @@ export const createCallBackAction = (newDashboardData) => async (dispatch) => {
         const config = {headers: {"Content-Type":"application/json"},
     }
 
-        const {data} = await axios.post(`http://localhost:4000/api/v1/call-back`,newDashboardData,config);
+        const {data} = await axios.post(`/api/v1/call-back`,newDashboardData,config);
 
         dispatch({
             type:CONTACT_US_SUCCESS,

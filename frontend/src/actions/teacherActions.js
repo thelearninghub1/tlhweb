@@ -8,7 +8,7 @@ export const allTeacherAction = () => async (dispatch) => {
     try {
         dispatch({type:ALL_TEACHER_REQUEST});
 
-        const {data} = await axios.get(`http://localhost:4000/api/v1/admin/teachers`);
+        const {data} = await axios.get(`/api/v1/admin/teachers`);
 
         dispatch({
             type:ALL_TEACHER_SUCCESS,
@@ -29,7 +29,7 @@ export const teacherDetailsAction = (id) => async (dispatch) => {
     try {
         dispatch({type:TEACHER_DETAILS_REQUEST});
 
-        const {data} = await axios.get(`http://localhost:4000/api/v1/admin/teacher/${id}`)
+        const {data} = await axios.get(`/api/v1/admin/teacher/${id}`)
 
         dispatch({
             type:TEACHER_DETAILS_SUCCESS,
@@ -55,7 +55,7 @@ export const createTeacherAction = (newDashboardData) => async (dispatch) => {
         withCredentials: true
     }
 
-        const {data} = await axios.post(`http://localhost:4000/api/v1/admin/teacher/create`,newDashboardData,config);
+        const {data} = await axios.post(`/api/v1/admin/teacher/create`,newDashboardData,config);
 
         dispatch({
             type:CREATE_TEACHER_SUCCESS,
@@ -84,7 +84,7 @@ export const deleteTeacherAction = (id) => async (dispatch) => {
         withCredentials: true
     };
 
-        const {data} = await axios.delete(`http://localhost:4000/api/v1/admin/teacher/${id}`,config);
+        const {data} = await axios.delete(`/api/v1/admin/teacher/${id}`,config);
 
         dispatch({
             type:DELETE_TEACHER_SUCCESS,
@@ -110,7 +110,7 @@ export const updateTeacherAction = (id,newdashboardData) => async (dispatch) => 
         withCredentials: true
 
      } 
-        const {data} = await axios.put(`http://localhost:4000/api/v1/admin/teacher/${id}`,newdashboardData,config);
+        const {data} = await axios.put(`/api/v1/admin/teacher/${id}`,newdashboardData,config);
 
         dispatch({
             type:UPDATE_TEACHER_SUCCESS,

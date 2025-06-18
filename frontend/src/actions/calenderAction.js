@@ -7,7 +7,7 @@ export const allCalenderAction = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_CALENDER_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:4000/api/v1/calenders`);
+    const { data } = await axios.get(`/api/v1/calenders`);
 
     dispatch({
       type: ALL_CALENDER_SUCCESS,

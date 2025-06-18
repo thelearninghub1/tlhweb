@@ -26,7 +26,7 @@ import {
     try {
       dispatch({ type: ALL_STUDENT_REQUEST });
   
-      const { data } = await axios.get(`http://localhost:4000/api/v1/students`);
+      const { data } = await axios.get(`/api/v1/students`);
   
       dispatch({
         type: ALL_STUDENT_SUCCESS,
@@ -49,7 +49,7 @@ import {
     try {
       dispatch({ type: STUDENT_DETAILS_REQUEST });
   
-      const { data } = await axios.get(`http://localhost:4000/api/v1/admin/student/${id}`);
+      const { data } = await axios.get(`/api/v1/admin/student/${id}`);
   
       dispatch({
         type: STUDENT_DETAILS_SUCCESS,
@@ -76,7 +76,7 @@ import {
         withCredentials: true,
       };
   
-      const { data } = await axios.post(`http://localhost:4000/api/v1/admin/student/create`, newStudentData, config);
+      const { data } = await axios.post(`/api/v1/admin/student/create`, newStudentData, config);
   
       dispatch({
         type: CREATE_STUDENT_SUCCESS,
@@ -101,7 +101,7 @@ import {
         withCredentials: true,
       };
   
-      const { data } = await axios.delete(`http://localhost:4000/api/v1/admin/student/${id}`, config);
+      const { data } = await axios.delete(`/api/v1/admin/student/${id}`, config);
   
       dispatch({
         type: DELETE_STUDENT_SUCCESS,
@@ -127,7 +127,7 @@ import {
         withCredentials: true,
       };
   
-      const { data } = await axios.put(`http://localhost:4000/api/v1/admin/student/${id}`, newStudentData, config);
+      const { data } = await axios.put(`/api/v1/admin/student/${id}`, newStudentData, config);
   
       dispatch({
         type: UPDATE_STUDENT_SUCCESS,

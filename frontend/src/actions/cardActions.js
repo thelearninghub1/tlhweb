@@ -23,7 +23,7 @@ export const allCardAction = () => async (dispatch) => {
     try {
       dispatch({ type: ALL_CARD_REQUEST });
   
-      const { data } = await axios.get("http://localhost:4000/api/v1/cards");
+      const { data } = await axios.get("/api/v1/cards");
   
       dispatch({
         type: ALL_CARD_SUCCESS,
@@ -42,7 +42,7 @@ export const allCardAction = () => async (dispatch) => {
     try {
       dispatch({ type: CARD_DETAILS_REQUEST });
   
-      const { data } = await axios.get(`http://localhost:4000/api/v1/admin/card/${id}`);
+      const { data } = await axios.get(`/api/v1/admin/card/${id}`);
   
       dispatch({
         type: CARD_DETAILS_SUCCESS,
@@ -67,7 +67,7 @@ export const allCardAction = () => async (dispatch) => {
       };
   
       const { data } = await axios.post(
-        "http://localhost:4000/api/v1/admin/card/create",
+        "/api/v1/admin/card/create",
         newCardData,
         config
       );
@@ -95,7 +95,7 @@ export const allCardAction = () => async (dispatch) => {
       };
   
       const { data } = await axios.delete(
-        `http://localhost:4000/api/v1/admin/card/${id}`,
+        `/api/v1/admin/card/${id}`,
         config
       );
   
@@ -122,7 +122,7 @@ export const allCardAction = () => async (dispatch) => {
       };
   
       const { data } = await axios.put(
-        `http://localhost:4000/api/v1/admin/card/${id}`,
+        `/api/v1/admin/card/${id}`,
         newCardData,
         config
       );

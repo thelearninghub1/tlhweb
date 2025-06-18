@@ -8,7 +8,7 @@ export const allTeamAction = () => async (dispatch) => {
     try {
         dispatch({type:ALL_TEAM_REQUEST});
 
-        const {data} = await axios.get(`http://localhost:4000/api/v1/admin/teams`);
+        const {data} = await axios.get(`/api/v1/admin/teams`);
 
         dispatch({
             type:ALL_TEAM_SUCCESS,
@@ -30,7 +30,7 @@ export const teamsDetailsAction = (id) => async (dispatch) => {
     try {
         dispatch({type:TEAM_DETAILS_REQUEST});
 
-        const {data} = await axios.get(`http://localhost:4000/api/v1/admin/team/${id}`)
+        const {data} = await axios.get(`/api/v1/admin/team/${id}`)
 
         dispatch({
             type:TEAM_DETAILS_SUCCESS,
@@ -56,7 +56,7 @@ export const createTeamAction = (newDashboardData) => async (dispatch) => {
         withCredentials: true
     }
 
-        const {data} = await axios.post(`http://localhost:4000/api/v1/admin/team/create`,newDashboardData,config);
+        const {data} = await axios.post(`/api/v1/admin/team/create`,newDashboardData,config);
 
         dispatch({
             type:CREATE_TEAM_SUCCESS,
@@ -84,7 +84,7 @@ export const deleteTeamAction = (id) => async (dispatch) => {
         withCredentials: true
     };
 
-        const {data} = await axios.delete(`http://localhost:4000/api/v1/admin/team/${id}`,config);
+        const {data} = await axios.delete(`/api/v1/admin/team/${id}`,config);
 
         dispatch({
             type:DELETE_TEAM_SUCCESS,
@@ -109,7 +109,7 @@ export const updateTeamAction = (id,newdashboardData) => async (dispatch) => {
         withCredentials: true
 
      } 
-        const {data} = await axios.put(`http://localhost:4000/api/v1/admin/teaM/${id}`,newdashboardData,config);
+        const {data} = await axios.put(`/api/v1/admin/teaM/${id}`,newdashboardData,config);
 
         dispatch({
             type:UPDATE_TEAM_SUCCESS,

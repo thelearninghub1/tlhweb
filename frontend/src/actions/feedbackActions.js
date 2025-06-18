@@ -23,7 +23,7 @@ export const allFeedbackAction = () => async (dispatch) => {
     try {
         dispatch({ type: ALL_FEEDBACK_REQUEST });
 
-        const { data } = await axios.get(`http://localhost:4000/api/v1/feedbacks`);
+        const { data } = await axios.get(`/api/v1/feedbacks`);
 
         dispatch({
             type: ALL_FEEDBACK_SUCCESS,
@@ -43,7 +43,7 @@ export const feedbackDetailsAction = (id) => async (dispatch) => {
     try {
         dispatch({ type: FEEDBACK_DETAILS_REQUEST });
 
-        const { data } = await axios.get(`http://localhost:4000/api/v1/admin/feedback/${id}`);
+        const { data } = await axios.get(`/api/v1/admin/feedback/${id}`);
 
         dispatch({
             type: FEEDBACK_DETAILS_SUCCESS,
@@ -68,7 +68,7 @@ export const createFeedbackAction = (newFeedbackData) => async (dispatch) => {
             withCredentials: true,
         };
 
-        const { data } = await axios.post(`http://localhost:4000/api/v1/admin/feedback/create`, newFeedbackData, config);
+        const { data } = await axios.post(`/api/v1/admin/feedback/create`, newFeedbackData, config);
 
         dispatch({
             type: CREATE_FEEDBACK_SUCCESS,
@@ -93,7 +93,7 @@ export const deleteFeedbackAction = (id) => async (dispatch) => {
             withCredentials: true,
         };
 
-        const { data } = await axios.delete(`http://localhost:4000/api/v1/admin/feedback/${id}`, config);
+        const { data } = await axios.delete(`/api/v1/admin/feedback/${id}`, config);
 
         dispatch({
             type: DELETE_FEEDBACK_SUCCESS,
@@ -118,7 +118,7 @@ export const updateFeedbackAction = (id, updatedFeedbackData) => async (dispatch
             withCredentials: true,
         };
 
-        const { data } = await axios.put(`http://localhost:4000/api/v1/admin/feedback/${id}`, updatedFeedbackData, config);
+        const { data } = await axios.put(`/api/v1/admin/feedback/${id}`, updatedFeedbackData, config);
 
         dispatch({
             type: UPDATE_FEEDBACK_SUCCESS,

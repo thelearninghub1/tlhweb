@@ -10,7 +10,7 @@ export const createCareerAction = (newDashboardData) => async (dispatch) => {
         const config = {headers: {"Content-Type":"multipart/form-data"},
     }
 
-        const {data} = await axios.post(`http://localhost:4000/api/v1/submit-form`,newDashboardData,config);
+        const {data} = await axios.post(`/api/v1/submit-form`,newDashboardData,config);
 
         dispatch({
             type:CAREER_SUBMIT_SUCCESS,

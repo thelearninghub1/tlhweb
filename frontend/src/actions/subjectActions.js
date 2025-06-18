@@ -10,11 +10,11 @@ export const allProjectsAction = (currentPage=1, grade = "" ) => async (dispatch
         dispatch({type:ALL_SUBJECT_REQUEST});
 
 
-        let link = `http://localhost:4000/api/v1//subjects?page=${currentPage}`
+        let link = `/api/v1//subjects?page=${currentPage}`
 
 
         if (grade) {
-            link = `http://localhost:4000/api/v1//subjects?page=${currentPage}&grade=${grade}`
+            link = `/api/v1//subjects?page=${currentPage}&grade=${grade}`
         }
 
 
@@ -37,7 +37,7 @@ export const allSubjectsAction = () => async (dispatch) => {
     try {
         dispatch({type:ALL_SUBJECT_REQUEST});
 
-        const {data} = await axios.get(`http://localhost:4000/api/v1/admin/subjects`);
+        const {data} = await axios.get(`/api/v1/admin/subjects`);
 
         dispatch({
             type:ALL_SUBJECT_SUCCESS,
@@ -58,7 +58,7 @@ export const subjectDetailsAction = (id) => async (dispatch) => {
     try {
         dispatch({type:SUBJECT_DETAILS_REQUEST});
 
-        const {data} = await axios.get(`http://localhost:4000/api/v1/admin/subject/${id}`)
+        const {data} = await axios.get(`/api/v1/admin/subject/${id}`)
 
         dispatch({
             type:SUBJECT_DETAILS_SUCCESS,
@@ -84,7 +84,7 @@ export const createSubjectAction = (newDashboardData) => async (dispatch) => {
         withCredentials: true
     }
 
-        const {data} = await axios.post(`http://localhost:4000/api/v1/admin/subject/create`,newDashboardData,config);
+        const {data} = await axios.post(`/api/v1/admin/subject/create`,newDashboardData,config);
 
         dispatch({
             type:CREATE_SUBJECT_SUCCESS,
@@ -113,7 +113,7 @@ export const deleteSubjectAction = (id) => async (dispatch) => {
         withCredentials: true
     };
 
-        const {data} = await axios.delete(`http://localhost:4000/api/v1/admin/subject/${id}`,config);
+        const {data} = await axios.delete(`/api/v1/admin/subject/${id}`,config);
 
         dispatch({
             type:DELETE_SUBJECT_SUCCESS,
@@ -139,7 +139,7 @@ export const updateSubjectAction = (id,newdashboardData) => async (dispatch) => 
         withCredentials: true
 
      } 
-        const {data} = await axios.put(`http://localhost:4000/api/v1/admin/subject/${id}`,newdashboardData,config);
+        const {data} = await axios.put(`/api/v1/admin/subject/${id}`,newdashboardData,config);
 
         dispatch({
             type:UPDATE_SUBJECT_SUCCESS,

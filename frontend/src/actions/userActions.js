@@ -9,7 +9,7 @@ export const loginUserAction = (email,password) => async (dispatch) => {
 
         const config = {headers:{'Content-Type':'application/json'}, withCredentials: true}
 
-        const {data} = await axios.post(`http://localhost:4000/api/v1/user/login`,{email,password},config  );
+        const {data} = await axios.post(`/api/v1/user/login`,{email,password},config  );
 
         dispatch({
             type:LOGIN_USER_SUCCESS,
@@ -31,7 +31,7 @@ export const registerUserAction = (newUserData) => async (dispatch) => {
 
         const config = {headers: {"Content-Type":"multipart/form-data"}, withCredentials: true};
 
-        const {data} = await axios.post(`http://localhost:4000/api/v1/user/create`,newUserData,config);
+        const {data} = await axios.post(`/api/v1/user/create`,newUserData,config);
 
         dispatch({
             type:REGISTER_USER_SUCCESS,
@@ -54,7 +54,7 @@ export const forgotPasswordAction = (email) => async (dispatch) => {
 
         const config = {headers: {"Content-Type":"application/json"}}
 
-        const {data} = await axios.post(`http://localhost:4000/api/v1/forgot/password`,{email},config);
+        const {data} = await axios.post(`/api/v1/forgot/password`,{email},config);
 
 
         dispatch({
@@ -78,7 +78,7 @@ export const loadUserAction = () => async (dispatch) => {
         dispatch({type:LOAD_USER_REQUEST});
 
    
-        const {data} = await axios.get(`http://localhost:4000/api/v1/me` , {
+        const {data} = await axios.get(`/api/v1/me` , {
             withCredentials: true,
           });
 
@@ -99,7 +99,7 @@ export const loadUserAction = () => async (dispatch) => {
 export const logoutUser = () => async (dispatch) => {
     try {
 
-        await axios.get(`http://localhost:4000/api/v1/user/logout`, {
+        await axios.get(`/api/v1/user/logout`, {
             withCredentials: true
           })
 
@@ -122,7 +122,7 @@ export const userDetailsAction = () => async (dispatch) => {
         dispatch({type:USER_DETAILS_REQUEST});
 
   
-        const {data} = await axios.get(`http://localhost:4000/api/v1/me`, {
+        const {data} = await axios.get(`/api/v1/me`, {
             withCredentials: true
           });
 
@@ -147,7 +147,7 @@ export const resetPasswordAction = (token,passwords) => async (dispatch) => {
 
         const config = {headers: {"Content-Type":"application/json"}}
 
-        const {data} = await axios.put(`http://localhost:4000/api/v1/password/reset/${token}`,passwords,config);
+        const {data} = await axios.put(`/api/v1/password/reset/${token}`,passwords,config);
 
 
         dispatch({
@@ -172,7 +172,7 @@ export const updatePasswordAction = (passwords) => async (dispatch) => {
             withCredentials: true
           };
 
-        const {data} = await axios.put(`http://localhost:4000/api/v1/password/update`,passwords,config);
+        const {data} = await axios.put(`/api/v1/password/update`,passwords,config);
 
         dispatch({
             type:UPDATE_PASSWORD_SUCCESS,
@@ -197,7 +197,7 @@ export const updateProfileAction = (newUserData) => async (dispatch) => {
         withCredentials: true
     };
 
-        const {data} = await axios.put(`http://localhost:4000/api/v1/profile/update`,newUserData,config);
+        const {data} = await axios.put(`/api/v1/profile/update`,newUserData,config);
 
         dispatch({
             type:UPDATE_USER_SUCCESS,
