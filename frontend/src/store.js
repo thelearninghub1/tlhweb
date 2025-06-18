@@ -2,7 +2,7 @@ import { configureStore} from '@reduxjs/toolkit';
 import {  forgotPasswordReducer, getLoginDetailsReducer, loginUserReducer, updateUserPasswordReducer } from './reducers/userReducer';
 import { createDasboardReducer, getAllprojectsReducer, getDashboardDetailsReducer, getDashboardReducer } from './reducers/subjectReducer';
 import { createTeacherReducer, getTeacherDetailsReducer, getTeacherReducer } from './reducers/teacherReducer';
-import { createTeamReducer, getAllTeamReducer, getTeamDetailsReducer } from './reducers/TeamReducer';
+import { createTeamReducer, getAllTeamReducer, getTeamDetailsReducer } from './reducers/teamReducer';
 import { createPartnerReducer, getAllPartnerReducer, getPartnerDetailsReducer } from './reducers/techReducer';
 import { createFeedbackReducer, getFeedbackDetailsReducer, getFeedbackReducer } from './reducers/feedbackReducer';
 import { createCardReducer, getAllCardReducer, getCardDetailsReducer } from './reducers/rankCardReducer';
