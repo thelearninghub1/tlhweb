@@ -75,7 +75,7 @@ import UpdateInstructional from './components/Admin/Instructionals/UpdateInstruc
 import CreateSupport from './components/Admin/AcamedicSupport/CreateSupport';
 import AllSupports from './components/Admin/AcamedicSupport/AllSupports';
 import UpdateSupport from './components/Admin/AcamedicSupport/UpdateSupport';
-import CreateCalender from './components/Admin/AcademicCalender/createCalender';
+import CreateCalender from './components/Admin/AcademicCalender/CreateCalender';
 import UpdateCalender from './components/Admin/AcademicCalender/UpdateCalender';
 import AllCalenders from './components/Admin/AcademicCalender/AllCalenders';
 import CreateFeature from './components/Admin/Features/CreateFeature';
