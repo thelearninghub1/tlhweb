@@ -443,7 +443,7 @@ padding: 1vmax;
     position: fixed;
     flex-direction: column;
     z-index: 100;
-    top: 170px;
+    top: 155px;
     box-sizing: border-box;
     background-color: black;
     right: -1000px;

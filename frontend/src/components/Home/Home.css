@@ -11,7 +11,7 @@
   
   .hero-content {
     max-width: 50%;
-  }
+  } 
   
   .subheading {
     font: 800 23px ;
@@ -75,7 +75,7 @@
     }
   }
   
-  @media (max-width: 768px) {
+ @media (max-width: 768px) {
     .heading {
       font-size: 32px;
     }
@@ -87,8 +87,14 @@
     .btn {
       padding: 8px 16px;
     }
+      .hero-content {
+      margin-top: 25vmax ;
   }
+    .heading {
+      line-height: 6.5vmax;
+    }
 
+  }
  
 
   .homeCenterContainer {
