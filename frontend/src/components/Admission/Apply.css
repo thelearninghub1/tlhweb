@@ -731,3 +731,234 @@ min-height: 100vmin !important;
       grid-template-columns: 1fr;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Main breakpoint: up to 768px */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 150px 10px;
+  }
+
+  .left-section {
+    display: none;
+  }
+
+  .right-section {
+    width: 100%;
+    padding: 20px 0px;
+    padding-left: -20px ;
+  }
+
+  .typing-text,
+  .cursor {
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+  }
+
+  .topServiceDetailsContainer {
+    padding: 5vmax 3vmax;
+    background-position: center;
+  }
+
+  .right-section  input,
+  .right-section  select,
+  .country-select,
+  .right-section .request-btn {
+    width: 100%;
+    font-size: 1rem;
+    padding: 12px;
+    margin-bottom: 10px;
+  }
+
+  .country-option img {
+    width: 16px;
+    margin-right: 8px;
+  }
+
+  .learn-content-section {
+    flex-direction: column;
+    padding: 2vmax 1vmax;
+    text-align: center;
+  }
+
+  .learn-text-content,
+  .learn-image-container {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .edu-cards-container,
+  .why-choose-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .student-video {
+    width: 100% !important;
+    height: auto;
+  }
+
+  .apply-btn,
+  .request-btn,
+  .edu-enroll-btn,
+  .learn-apply-btn {
+    width: 100%;
+    font-size: 1rem;
+    padding: 12px;
+  }
+
+  .affiliation-list {
+    text-align: left;
+    padding: 1vmax;
+  }
+
+  .affiliation-list p {
+    padding: 0.5rem 0;
+  }
+
+  .iframeTag {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* 👇 Tiny screens: up to 440px */
+@media screen and (max-width: 440px) {
+  .topServiceDetailsContainer {
+    padding: 4vmax 2vmax;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .typing-text,
+  .cursor {
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+  }
+
+  .right-section {
+    padding: 10px;
+  }
+
+  .right-section input,
+  .right-section select,
+  .country-select {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  .learn-text-content h1,
+  .affiliation-title,
+  .happy-students-title {
+    font-size: 1.3rem;
+  }
+
+  .learn-description,
+  .affiliation-text,
+  .affiliation-details,
+  .learn-main-heading,
+  .edu-card-description {
+    font-size: 0.95rem;
+  }
+
+  .edu-enroll-btn,
+  .learn-apply-btn {
+    font-size: 1rem;
+    padding: 10px 15px;
+  }
+
+  .feedback-carousel img {
+    max-width: 80px;
+    height: auto;
+    margin: auto;
+  }
+
+  .carouselFeedContainer i {
+    font-size: 0.9rem;
+  }
+}
+
+/* 👇 Ultra tiny screens: 360px and below */
+@media screen and (max-width: 360px) {
+  .typing-text,
+  .cursor {
+    font-size: 1.2rem;
+  }
+
+  .right-section input,
+  .right-section select,
+  .country-select {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
+
+  .learn-apply-btn,
+  .request-btn {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+}
+
+
+/* Full container control to prevent overflow */
+.right-section {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Fix form fields from overflowing */
+.right-section form {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* Fix native inputs */
+.right-section input,
+.right-section select {
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+}
+
+/* Fix react-select */
+.country-select {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+}
+
+/* Prevent entire page from horizontal scroll */
+body {
+  overflow-x: hidden;
+}
