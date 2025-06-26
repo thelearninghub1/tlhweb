@@ -18,8 +18,12 @@ const TechPartners = () => {
 
 
       useEffect(()=>{
-                       AOS.init()
+   AOS.init({
+    once: true,
+    offset: 120,
+  });
 
+  AOS.refresh();
                        if (error) {
                          toast.error(error);
                          dispatch(clearErrors());

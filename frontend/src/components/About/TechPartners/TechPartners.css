@@ -26,6 +26,13 @@
     filter: brightness(0.99) contrast(105%);
 }
 
+.topTechContainer {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+}
+
 .topTechContainer > h1 {
     font: 600 2.6vmax "Roboto";
     text-shadow:  0 0 7px rgba(255, 255, 255, 0.68);
@@ -64,6 +71,21 @@ flex-wrap: wrap;
 
 
 @media screen and (max-width: 740px) {
+
+    .partner-card {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+  
+  }
+
+
+
+
+    .ourProjectsContainer > div {
+    flex-direction: column;
+   
+  }
+ 
 .topTechContainer > h1 {
     font-size: 3.7vmax;
     padding-top: 14vmax;
@@ -83,6 +105,7 @@ flex-wrap: wrap;
 @media screen and (max-width: 550px) {
 .topTechContainer {
     min-height: 100vmin;
+   
 }
 }
 
@@ -160,7 +183,18 @@ flex-wrap: wrap;
   }
   
 
+
+
+
+
   .partnerlogo {
-    width: 400px;
-    height: 180px;
-  }
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
+
+
+
+
+
+
