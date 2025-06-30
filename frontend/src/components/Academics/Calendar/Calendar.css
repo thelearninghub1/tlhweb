@@ -1,179 +1,129 @@
-.servicesContainer {
-    min-height: 100vmin;
-    box-sizing: border-box;
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+/* ===============================
+   🎯 Global Wrappers & Layout
+   =============================== */
+.calendar-wrapper {
+  width: 100%;
+  min-height: 100vmin;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
 }
 
-.servicesContainer > div {
-    max-width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    min-height: 60vmin;
+/* ✅ Mobile: Add top margin to avoid navbar overlay */
+@media screen and (max-width: 615px) {
+  .calendar-wrapper {
+    margin-top: 150px; /* Adjust this if your navbar height is different */
+  }
+}
+@media screen and (max-width: 722px) {
+  .calendar-wrapper {
+    margin-top: 150px; /* Adjust this if your navbar height is different */
+  }
 }
 
-.topCalendarContainer  {
-    background-image: url('../../../assets/calendar.avif');
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: white;
-    filter: brightness(0.8) contrast(110%);
-    flex-direction: column;
-    
-}
-.topCalendarContainer > h1 {
-    font: 600 46px "Roboto";
-    padding: 1vmax;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    text-shadow:  0 0 7px rgba(255, 255, 255, 0.68);
-    padding-top: 5vmax;
-
-}
-    .topCalendarContainer > p {
-    font: 200 21px "Roboto";
-    padding: 0vmax 6vmax;
-    text-shadow:  0 0 7px rgba(255, 255, 255, 0.68);
-    letter-spacing: 0.1vmax;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+.calendar-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@media screen and (max-width: 730px) {
-    .topCalendarContainer {
-        min-height: 100vmin !important;
-    }
-    .topCalendarContainer > h1 {
-        padding-top: 200px;
-    }
-    .topCalendarContainer > p {
-        padding-bottom: 40px;
-    }
+.calendar-video-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.calendar-video-container video {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===============================
+   📅 Calendar Table Section
+   =============================== */
+.calendar-body {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.calendar-table-wrapper {
+  width: 100%;
+  max-width: 1300px;
+  box-sizing: border-box;
+
+  padding:  20px;
+  overflow-x: hidden; /* No horizontal scroll */
+}
+
+/* ===============================
+   🧾 Table Styling
+   =============================== */
+.calendar-table {
+
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* Makes columns shrink properly */
+  text-align: center;
+}
+
+.calendar-table th,
+.calendar-table td {
+  border: 1px solid #ddd;
+  padding: 20px;
+  font-size: 16px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
 
 }
 
-
-
-
-
-
-
-
-
-
-.registration-age-container {
-    display: flex;
-    gap: 20px;
-    padding: 20px;
-    width: 90%;
-    margin: auto;
-  }
-  
-  /* Registration Steps */
-  .registration-steps {
-    width: 50%;
-    padding: 20px;
-  }
-  
-  .steps-container {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-  }
-  
-  .step-box {
-    background: #f5f5f5;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: all 0.5s;
-  }
-  .step-box:hover {
-    color:white ;
-    border: 2px solid white;
-    background-color:rgba(0, 0, 0, 0.627) ;
-  }
-  
-  .step-number {
-    font-weight: bold;
-    color: #2a7fba;
-    display: block;
-    margin-bottom: 5px;
-  }
- 
-  
-  h3 {
-    margin: 5px 0;
-  }
-  
-
-  
-  /* Age Criteria */
-  .calendar-criteria {
-    width: 100%;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .calendar-criteria table {
-    width: 100%;
-    border-collapse: collapse;
-
-  }
-  
-  .calendar-criteria table th,.calendar-criteria table td {
-    border: 1px solid #ddd;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  th {
-    background-color: #2a7fba;
-    color: white;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .registration-age-container {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .registration-steps, .calendar-criteria {
-      width: 100%;
-    }
-  }
-  
-  .AdmissionBtn {
-    padding: 1vmax 4vmax;
-    cursor: pointer;
-    box-shadow:  0 0 7px rgba(0, 0, 0, 0.364);
-    border: none;
-    color: white;
-    background-color: #2C7EAD;
-    font: 100 16px "Lato";
-    letter-spacing: 0.1vmax;
-    transition: all 0.5s;
-  }
-  .admissionBtnContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 2vmax;
-  }
-
-  .AdmissionBtn:hover {
-    color: #2C7EAD;
-    border: 2px solid #2C7EAD;
-    background-color: white;
+.calendar-table th {
+  background-color: #2a7fba;
+  color: white;
 }
 
+.calendar-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Optional: Set column widths manually */
+.calendar-table th:nth-child(1),
+.calendar-table td:nth-child(1) {
+  width: 30%;
+}
+
+.calendar-table th:nth-child(2),
+.calendar-table td:nth-child(2) {
+  width: 70%;
+}
+
+/* ===============================
+   📱 Mobile Shrink (≤ 615px)
+   =============================== */
+@media screen and (max-width: 615px) {
+  .calendar-body {
+    padding: 10px;
+  }
+
+  .calendar-table-wrapper {
+    padding: 0 10px;
+  }
+
+  .calendar-table {
+    font-size: 12px;
+    table-layout: fixed;
+  }
+
+  .calendar-table th,
+  .calendar-table td {
+    padding: 6px 4px;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+}
