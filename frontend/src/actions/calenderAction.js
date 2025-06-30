@@ -26,7 +26,7 @@ export const calenderDetailsAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: CALENDER_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:4000/api/v1/admin/calender/${id}`);
+    const { data } = await axios.get(`/api/v1/admin/calender/${id}`);
 
     dispatch({
       type: CALENDER_DETAILS_SUCCESS,
@@ -51,7 +51,7 @@ export const createCalenderAction = (newCalenderData) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `http://localhost:4000/api/v1/admin/calender/create`,
+      `/api/v1/admin/calender/create`,
       newCalenderData,
       config
     );
@@ -79,7 +79,7 @@ export const deleteCalenderAction = (id) => async (dispatch) => {
     };
 
     const { data } = await axios.delete(
-      `http://localhost:4000/api/v1/admin/calender/${id}`,
+      `/api/v1/admin/calender/${id}`,
       config
     );
 
@@ -106,7 +106,7 @@ export const updateCalenderAction = (id, newCalenderData) => async (dispatch) =>
     };
 
     const { data } = await axios.put(
-      `http://localhost:4000/api/v1/admin/calender/${id}`,
+      `/api/v1/admin/calender/${id}`,
       newCalenderData,
       config
     );
