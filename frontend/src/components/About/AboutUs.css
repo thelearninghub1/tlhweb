@@ -412,9 +412,7 @@
    .aboutUpperContainer {
        min-height: 100vmin !important;
    }
-   .aboutUpperContainer > h1 {
-       padding-top: 200px;
-   }
+
    .aboutUpperContainer > p {
        padding-bottom: 40px;
    }
@@ -422,9 +420,7 @@
    .firstMidContainer > h1 {
       font-size: 25px;
    }
-     .firstMidContainer > div {
-      flex-direction: column-reverse;
-     }
+   
      .firstMidContainer > div > div {
       width: 100%;
 

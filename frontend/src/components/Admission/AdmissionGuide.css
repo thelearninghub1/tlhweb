@@ -18,7 +18,6 @@
 }
 
 .topServicesContainer  {
-  background-image: url('../../assets/services.jpeg');
   background-image: url('../../assets/registration.jpeg');
 
     background-repeat: no-repeat;
@@ -46,14 +45,9 @@
 
 @media screen and (max-width: 730px) {
     .topServicesContainer {
-        min-height: 100vmin !important;
+      background-size: contain;
     }
-    .topServicesContainer > h1 {
-        padding-top: 200px;
-    }
-    .topServicesContainer > p {
-        padding-bottom: 40px;
-    }
+
 
 }
 
@@ -262,9 +256,9 @@
 
 
 @media screen and (max-width: 730px) {
-  .topServicesContainer {
-    height: 100vmin;
-  }
+ 
+
+
 
   .video-overlay-content h1 {
     padding-top: 200px;
@@ -273,4 +267,30 @@
   .video-overlay-content p {
     padding-bottom: 40px;
   }
+}
+
+@media screen and (max-width: 500px) {
+    .topServicesContainer > h1 {
+        padding-top: 20vmax;
+    }
+     .servicesContainer > div:first-child  {
+        min-height: 90vmin;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .servicesContainer > div:first-child  {
+        min-height: 100vmin;
+    }
+    .topServicesContainer > h1 {
+        padding-top: 25vmax;
+    }
+    .lowerContactContainer > div:last-child  {
+        flex-direction: column;
+    }
+    .topServicesContainer > p {
+    padding-bottom: 2vmax;
+
+    }
+  
 }

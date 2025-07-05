@@ -271,7 +271,7 @@
 }
 @media screen and (max-width: 730px) {
     .contactPartnerContainer > div:first-child  {
-        min-height: 100vmin;
+        background-size: contain;
     }
     .uppercontactPartnerContainer > h1 {
         padding-top: 20vmax;

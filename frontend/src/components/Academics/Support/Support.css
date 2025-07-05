@@ -12,7 +12,6 @@
     width: 100%;
 }
 .topSupportContainer {
-    background-image: url("../../../assets/support.jpg");
     align-items: center;
     color: white;
     justify-content: center;
@@ -65,18 +64,25 @@ flex-wrap: wrap;
 
 
 @media screen and (max-width: 740px) {
-.topSupportContainer > h1 {
-    font-size: 3.7vmax;
-    padding-top: 14vmax;
-    padding-bottom: 1vmax;
-
+.topSupportContainer {
+  background-image: cover;
+}
+  .video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  z-index: 0;
 }
 
-.topSupportContainer > p {
-    font-size: 2.6vmax;
-
+.video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit:contain;
+  margin-top: -11vmax;
 }
-
 
 }
 
@@ -84,6 +90,12 @@ flex-wrap: wrap;
 @media screen and (max-width: 550px) {
 .topSupportContainer {
     min-height: 100vmin;
+}
+.video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit:contain;
+  margin-top: -4vmax;
 }
 }
 
@@ -157,5 +169,14 @@ flex-wrap: wrap;
     .partner-card {
       width: 90%;
     }
+  }
+
+    @media (max-width: 420px) {
+  .video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit:contain;
+  margin-top: 0vmax;
+}
   }
   

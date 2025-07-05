@@ -177,6 +177,8 @@ color: white;
 }
 
 @media screen and (max-width: 740px) {
+
+ 
 .topTeacherContainer > h1 {
     font-size: 3.7vmax;
     padding-top: 14vmax;
@@ -298,8 +300,8 @@ color: white;
 
 .video-banner video {
   width: 100%;
-  height: 100%;
   object-fit: cover;
+  height: 100%;
 }
 
 .overlay-content {
@@ -333,4 +335,31 @@ color: white;
   .overlay-content p {
     font-size: 2.6vmax;
   }
+  .video-banner video {
+  width: 100%;
+  margin-top: -13vmax;
+  height: 100%;
+  object-fit: contain;
+}
+}
+
+@media screen and (max-width: 550px) {
+  .video-banner video {
+  width: 100%;
+    margin-top: -6vmax;
+  height: 100%;
+  object-fit: contain;
+}
+    
+}
+
+@media screen and (max-width: 450px) {
+  .video-banner video {
+  width: 100%;
+  height: 100%;
+    margin-top: 1vmax;
+
+  object-fit: contain;
+}
+    
 }

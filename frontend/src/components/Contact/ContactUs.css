@@ -285,7 +285,7 @@
 }
 @media screen and (max-width: 730px) {
     .contactContainer > div:first-child  {
-        min-height: 100vmin;
+        background-size: contain;
     }
     .upperContactContainer > h1 {
         padding-top: 20vmax;

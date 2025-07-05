@@ -71,6 +71,10 @@ flex-wrap: wrap;
 
 
 @media screen and (max-width: 740px) {
+  .topTechContainer {
+    background-size: contain;
+   
+}
 
     .partner-card {
     opacity: 1 !important;
@@ -83,6 +87,7 @@ flex-wrap: wrap;
 
     .ourProjectsContainer > div {
     flex-direction: column;
+    background-size: contain;
    
   }
  

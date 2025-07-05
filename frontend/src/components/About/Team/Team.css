@@ -185,6 +185,10 @@ color: white;
 
 }
 
+.topTeamContainer {
+    background-size: contain;
+
+}
 .topTeamContainer > p {
     font-size: 2.6vmax;
 
@@ -207,8 +211,12 @@ color: white;
 
 
 @media screen and (max-width: 550px) {
+    .topTeamContainer {
+    background-size: contain;
+
+}
 .topTeamContainer {
-    min-height: 100vmin;
+    margin-top: 7vmax;
 }
 }
 
