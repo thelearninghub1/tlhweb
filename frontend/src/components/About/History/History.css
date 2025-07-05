@@ -271,9 +271,7 @@
 }
 @media screen and (max-width: 730px) {
 
-    .learn-portal-container {
-        margin-top: -20vmax;
-    }
+  
  
    .contactPartnerContainer > div:first-child  {
         min-height: 1vmin;
