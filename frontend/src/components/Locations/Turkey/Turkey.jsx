@@ -250,9 +250,10 @@ myForm.set("country", country?.label ?? "");
 
           <div className="servicesDetailsContainer">
             <div className='topTurkeyContainer'>
-               <div className="video-background">
-                                <video src={video} autoPlay loop muted playsInline />
-                              </div>
+                <video autoPlay loop muted playsInline className="back-background-video">
+                <source src={video} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             <div className="container">
       <div className="left-section">
     

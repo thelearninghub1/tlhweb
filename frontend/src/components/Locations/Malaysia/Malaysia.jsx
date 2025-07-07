@@ -247,9 +247,10 @@ useEffect(()=>{
                 <Metadata title={`Malaysia - The Learning Hub`} />
           <div className="servicesDetailsContainer">
             <div className='topMalaysiaContainer'>
-                   <div className="video-background">
-                                              <video src={video} autoPlay loop muted playsInline />
-                                            </div>
+                      <video autoPlay loop muted playsInline className="back-background-video">
+                <source src={video} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
                           <div className="container"></div>
             <div className="container">
       <div className="left-section">
