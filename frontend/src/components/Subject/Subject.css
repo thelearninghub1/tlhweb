@@ -255,3 +255,182 @@ color: white;
         padding: 2vmax 0vmax;
     }
     }
+
+
+
+    .ourProjectsContainer {
+    min-height: 100vmin;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.ourProjectsContainer > div {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* ─────────────── TOP SECTION ─────────────── */
+.topProjectContainer {
+    background-image: url("../../assets/FIL.jpg");
+    align-items: center;
+    color: white;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    flex-direction: column;
+    min-height: 60vmin;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    filter: brightness(0.99) contrast(105%);
+    padding: 4vmax 2vmax;
+}
+
+.topProjectContainer > h1 {
+    font: 600 clamp(18px, 2.6vmax, 36px) "Roboto";
+    text-shadow: 0 0 7px rgba(255, 255, 255, 0.68);
+    padding-top: clamp(2vmax, 5vmax, 8vmax);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.topProjectContainer > p {
+    font: 200 clamp(14px, 1.4vmax, 24px) "Roboto";
+    padding: 0 6vmax;
+    letter-spacing: 0.1vmax;
+    text-shadow: 0 0 7px rgba(255, 255, 255, 0.68);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* ─────────────── FILTER SECTION ─────────────── */
+.categoryFilter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 2vmax;
+    list-style: none;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+.categoryFilter > li,
+.removeFilter {
+    padding: clamp(1rem, 1.5vmax, 2.5rem) clamp(2rem, 3vmax, 4rem);
+    box-shadow: 0 0 7px #2C7EAD;
+    background-color: #2C7EAD;
+    color: white;
+    cursor: pointer;
+    font: 400 clamp(14px, 1.2vmax, 20px) "Roboto";
+    transition: all 0.5s;
+    transform: translateY(100vmax);
+    animation: categoryFilter forwards ease-in-out 1.5s;
+    border: none;
+    text-align: center;
+}
+
+.removeFilter:hover,
+.categoryFilter > li:hover {
+    background-color: black;
+}
+
+.categoryFilter:nth-child(even) {
+    transform: translateX(-100vmax);
+    animation: categoryFilter forwards ease-in-out 1.5s;
+}
+
+@keyframes categoryFilter {
+    to {
+        transform: translateY(0vmax);
+    }
+}
+
+/* ─────────────── MID / CARDS ─────────────── */
+.midProjectContainer {
+    display: flex;
+    box-sizing: border-box;
+    padding: clamp(1rem, 2vmax, 3rem);
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+/* ─────────────── BOTTOM / GRID / CARDS ─────────────── */
+.bottomProjectContainer {
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: clamp(1rem, 2vmax, 3rem);
+    padding-top: 0;
+    min-height: 50vmin;
+    max-width: 100%;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+/* ─────────────── PAGINATION ─────────────── */
+.paginationContainer {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 5vmax;
+    width: 100%;
+    overflow-x: auto;
+    box-sizing: border-box;
+}
+
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    padding: 2vmax;
+    gap: 0.5vmax;
+    min-width: fit-content;
+}
+
+.item-class {
+    border: 1px solid rgba(0, 0, 0, 0.42);
+    padding: clamp(1rem, 1.5vmax, 2.5rem) 0;
+    transition: all 0.5s;
+    border-radius: 6px;
+    min-width: 60px;
+    text-align: center;
+}
+
+.item-class:first-child {
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.item-class:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.item-class:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.item-link {
+    padding: clamp(1rem, 2vmax, 3rem);
+    text-decoration: none;
+    font: 100 clamp(10px, 1vmax, 18px) "Roboto";
+    color: rgba(0, 0, 0, 0.571);
+    transition: all 0.5s;
+}
+
+.item-link:hover {
+    color: #2C7EAD;
+}
+
+.active-item {
+    background-color: #2C7EAD;
+}
+
+.active-link {
+    color: white;
+}
