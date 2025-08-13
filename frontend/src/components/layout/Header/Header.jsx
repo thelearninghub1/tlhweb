@@ -32,8 +32,7 @@ const contactUs = [
 
 const aboutUs = [
   { name: "Our History", nameLink: "our-history" },
-  { name: "Our Team", nameLink: "our-team" },
-  { name: "Our Teachers", nameLink: "our-teachers" },
+  { name: "Our Team & Teachers", nameLink: "our-teachers" },
   { name: "Affiliation Accreditation", nameLink: "affiliation-accreditation" },
   { name: "Technology Partners", nameLink: "technology-partners" },
   { name: "Career", nameLink: "career" },
@@ -178,7 +177,7 @@ const Header = () => {
         <div><MdOutlinePhoneInTalk /></div>
         <div>
           <p>Call anytime</p>
-          <p className='ikbhai'>+352 621 508 645</p>
+          <p className='ikbhai'>+971 55 292 0583</p>
           <div className='socialMedia'>
             <a href={media.facebook} target='blank'><RiFacebookCircleLine /></a>
             <a href={media.linkedin} target='blank'><TbBrandLinkedin /></a>

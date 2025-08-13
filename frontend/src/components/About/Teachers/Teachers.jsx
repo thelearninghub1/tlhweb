@@ -46,13 +46,15 @@ const Teachers = () => {
 </div>
 
                    
-                        <div className='bottomProjectContainer' >
+                     <div>
+                         <div className='bottomProjectContainer' >
+
                         {teachers && teachers.map((member) => (
         <TeacherCard member={member} key={member._id} />
       ))}                        </div>
-            
+            </div>
+            </div>
                         
-                    </div>
                    
                 </Fragment>
                   )

@@ -94,7 +94,7 @@ const Career = () => {
         <Metadata title="Career At TLH - The Learning Hub" />
 
           <div className="ourProjectsContainer">
-            <div className='topCareerContainer'></div>
+            <div className='upperCareerContainer'></div>
 
             <div className='middlecontactPartnerContainer'>
               <h1 data-aos="fade-down">Join Our Team</h1>

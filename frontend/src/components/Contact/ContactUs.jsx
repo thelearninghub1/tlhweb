@@ -63,16 +63,11 @@ const ContactUs = () => {
 
         <div className="contactContainer">
           <div className='upperContactContainer'>
-          {/*  
-          
-            <h1 data-aos="fade-down">Speak To Us</h1>
-            <p data-aos="fade-down">Get In Touch</p>
-           */}
+        
           </div>
-          <div className='middleContactContainer'>
-            <div>
+          <div className='middlecontactPartnerContainer'>
               <h1 data-aos="fade-down">Contact Us</h1>
-              <form className='contactUsForm' data-aos="fade-down" onSubmit={contactSubmitHandler}>
+              <form className='contactUsPartnerForm' data-aos="fade-down" onSubmit={contactSubmitHandler}>
                 <div>
                   <input type="text" placeholder='Full Name' required value={name} onChange={(e)=>setName(e.target.value)}/>
                 </div>
@@ -85,12 +80,10 @@ const ContactUs = () => {
                 <div>
                   <textarea placeholder='Message ...' required rows={6} value={message} onChange={(e)=>setMessage(e.target.value)} />
                 </div>
-                <input type="submit" value="Send" className='contactBtn' />
+                <input type="submit" value="Send" className='contactPartnerBtn' />
               </form>
             </div>
-            <div>
-            
-            </div>
+          
           </div>
           <div className='lowerContactContainer'>
             <div>
@@ -110,7 +103,7 @@ const ContactUs = () => {
                 <h1>Call Us</h1>
                 <p>Reach out to us</p>
                 <h3>for more details</h3>
-                <p className='bhai'>+352 621 508 645</p>
+                <p className='bhai'>+92 345 3324826</p>
                 <p>ithelearninghub@gmail.com</p>
   
               </div>
@@ -123,7 +116,6 @@ const ContactUs = () => {
               </div>
             </div>
           </div>
-        </div>
       </Fragment>
       )
     }

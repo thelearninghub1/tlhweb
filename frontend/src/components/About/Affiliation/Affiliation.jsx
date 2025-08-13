@@ -43,7 +43,8 @@ const Affiliation = () => {
   </div>
                     </div>
 
-                    <div className="introduction-container" data-aos="fade-down">
+                  <div className="mainAffliationContainer">
+                      <div className="introduction-container" data-aos="fade-down">
       <h1 className="title" data-aos="fade-down">Affiliation & Accreditation</h1>
    <p className="affiliation-intro" >
         The Learning Hub is a certified educational institution recognized by the <strong>Federal Board of Intermediate and Secondary Education (FBISE), Islamabad</strong>. Our programs are aligned with international standards and offer globally accepted certifications.
@@ -72,7 +73,7 @@ const Affiliation = () => {
         Our certifications, partnerships, and educational model ensure students receive a future-ready, credible, and globally accepted education.
       </p>
     </div>
-    <div className='bottomProjectContainer' >
+    <div className='bottomAffliationContainer' >
              
     <div className="education-container">
       {afiliations && afiliations.map((program) => (
@@ -91,7 +92,7 @@ const Affiliation = () => {
       ))}
     </div>
     </div >
-                   
+                 </div>  
                 </div>
                
             </Fragment>

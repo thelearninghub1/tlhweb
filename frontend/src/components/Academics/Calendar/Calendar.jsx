@@ -28,12 +28,13 @@ const Calendar = () => {
         <Loader />
       ) : (
         <Fragment>
-          <div className="calendar-wrapper">
-            <div className="calendar-header">
-              <div className="calendar-video-container">
+          <div className="servicesDetailsContainer">
+            <div className="topAffiliationContainer">
+              <div className="video-background">
                 <video src={video} autoPlay loop muted playsInline />
               </div>
-            </div>
+            </div> 
+            <div className="homesMainContainer">
 
             <div className="calendar-body">
               <div className="calendar-table-wrapper">
@@ -59,13 +60,9 @@ const Calendar = () => {
               </div>
             </div>
           </div>
-
-          <div className="secondAboutContainer">
-            <div className="aboutBottomContainer">
-              <h1>We have the solutions you are seeking.</h1>
-              <Link to="/contact-us">Discover more</Link>
-            </div>
           </div>
+
+       
         </Fragment>
       )}
     </Fragment>

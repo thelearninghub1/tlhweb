@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import HandshakeIcon from '@mui/icons-material/Handshake';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
 import CastForEducationIcon from '@mui/icons-material/CastForEducation';
 import PagesIcon from '@mui/icons-material/Pages';
@@ -53,14 +52,14 @@ const Sidebar = () => {
 
        
 
-        <SidebarItem title="Teachers" icon={<PersonAddIcon />}>
+        <SidebarItem title="Team & Teachers" icon={<PersonAddIcon />}>
           <div className="sidebarLink" onClick={() => navigate('/admin/teachers')}>
             <SpaceDashboardIcon />
-            <span className="sidebarText">All Teachers</span>
+            <span className="sidebarText">All Team & Teachers</span>
           </div>
           <div className="sidebarLink" onClick={() => navigate('/admin/teacher/create')}>
             <AddIcon />
-            <span className="sidebarText">Create Teacher</span>
+            <span className="sidebarText">Create Team & Teacher</span>
           </div>
         </SidebarItem>
 
@@ -78,16 +77,7 @@ const Sidebar = () => {
 
      
 
-        <SidebarItem title="Teams" icon={<PeopleAltIcon />}>
-          <div className="sidebarLink" onClick={() => navigate('/admin/teams')}>
-            <SpaceDashboardIcon />
-            <span className="sidebarText">All Members</span>
-          </div>
-          <div className="sidebarLink" onClick={() => navigate('/admin/team/create')}>
-            <AddIcon />
-            <span className="sidebarText">Create Member</span>
-          </div>
-        </SidebarItem>
+    
 
          <SidebarItem title="Features" icon={<AlignHorizontalCenterIcon />}>
           <div className="sidebarLink" onClick={() => navigate('/admin/features')}>

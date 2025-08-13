@@ -1,39 +1,8 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .navbarContainer {
-    background-color: rgb(0, 0, 0);
-    background-color: #0d3b6660;
+        background-color: #0f1643;
+
+
     display: flex;
     color: white;
     justify-content: space-around;
@@ -44,10 +13,9 @@
     overflow: hidden;
     z-index: 1000;
     top: 0%;
-
-    position: fixed;
- 
+    position: sticky; 
 }
+
 
  
 .leftNavbar {
@@ -60,7 +28,7 @@
 }
 
 .leftNavbar > a > img {
-    filter: contrast(200%);
+    filter: contrast(100%);
     width: 5vmax;
 }
 
@@ -102,7 +70,7 @@
 #midNavbar > ul > li > a {
     color: white;
     align-items: center;
-    font: 200 1vmax "Roboto";
+    font: 600 1.1vmax "Parkinsans";
     text-decoration: none;
     justify-content: center;
     transition: all 0.5s;
@@ -142,20 +110,20 @@
 }
 
 .rightNavbar > div > p:first-child {
-    font: 200 0.9vmax "Roboto";
+    font: 200 0.9vmax "Parkinsans";
     padding-bottom: 0.2vmax;
 }
 
 .rightNavbar > div > p{
-    font:600 1vmax "Lato";
+    font:600 1vmax "Parkinsans";
     letter-spacing: 0.1vmax;
 }
 
 .minilistContainer {
     position: fixed;
-    background-color: black;
-    top: 6vmax;
-    left: 46vmax;
+        background-color: #0f1643;
+
+    top: 6.5vmax;    left: 46vmax;
     display: none; 
     width: 18vmax;
     flex-direction: column;
@@ -173,8 +141,9 @@
 .minilistAboutContainer  {
     position: fixed;
     background-color: black;
-    top: 6vmax;
-    left: 28.5vmax;
+        background-color: #0f1643;
+
+    top: 6.5vmax;    left: 28.5vmax;
     display: none; 
     width: 15.5vmax;
     flex-direction: column;
@@ -192,8 +161,9 @@
 .minilistAdmissionContainer  {
     position: fixed;
     background-color: black;
-    top: 6vmax;
-    left: 37vmax;
+        background-color: #0f1643;
+
+    top: 6.5vmax;    left: 37vmax;
     display: none; 
     width: 15vmax;
     flex-direction: column;
@@ -211,9 +181,9 @@
 
 .minilistContactContainer {
     position: fixed;
-    background-color: black;
-    top: 6.5vmax;
-    left: 63.5vmax;
+        background-color: #0f1643;
+
+    top: 6.5vmax;    left: 63.5vmax;
     display: none; 
     width: 15vmax;
     flex-direction: column;
@@ -230,9 +200,9 @@
 }
 .minilistLocationContainer {
     position: fixed;
-    background-color: black;
-    top: 6.5vmax;
-    left: 55vmax;
+        background-color: #0f1643;
+
+    top: 6.5vmax;    left: 55vmax;
     display: none; 
     width: 15vmax;
     flex-direction: column;
@@ -273,7 +243,7 @@
     color: white;
     transition: all 0.5s;
 
-    font: 800 1vmax "Roboto";
+    font: 800 0.9vmax "Parkinsans";
     padding: 1vmax ;
     padding-right: 4vmax ;
 
@@ -349,7 +319,8 @@
 
 @media screen and (max-width: 900px) {
     .navbarContainer {
-        background-color: black !important;
+        background-color: #0f1643;
+
     }
     .leftNavbar {
         width: 25%;
@@ -443,9 +414,10 @@ padding: 1vmax;
     position: fixed;
     flex-direction: column;
     z-index: 100;
-    top: 155px;
+    top: 170px;
     box-sizing: border-box;
-    background-color: black;
+        background-color: #0f1643;
+
     right: -1000px;
 
 
@@ -462,7 +434,9 @@ padding: 1vmax;
 
 }
 .navbarContainer {
-    background-color: black;
+        background-color: #0f1643;
+
+
 }
 #midNavbar > ul > li{
     width: 100%;
@@ -563,12 +537,14 @@ padding: 1vmax;
 }
 
 .navbarContainer {
-    background-color: transparent;
+  /*  background-color: transparent; */
+  background-color: #0f1643;
     transition: background-color 0.3s ease-in-out;
 }
 
 .navbarContainer.scrolled {
-    background-color: black; /* or any solid/dark color you prefer */
+        background-color: #0f1643;
+     /* or any solid/dark color you prefer */
 }
 
 
@@ -599,3 +575,8 @@ padding: 1vmax;
 
 
 
+@media screen and (max-width: 900px) {
+  .navbarContainer {
+    background-color: #0f1643;
+  }
+}

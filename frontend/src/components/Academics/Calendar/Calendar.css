@@ -47,14 +47,13 @@
 .calendar-body {
   display: flex;
   justify-content: center;
-  padding: 20px;
+  padding: 20px 0vmax;
   width: 100%;
   box-sizing: border-box;
 }
 
 .calendar-table-wrapper {
   width: 100%;
-  max-width: 1300px;
   box-sizing: border-box;
 
   padding:  20px;
@@ -71,12 +70,20 @@
   table-layout: fixed; /* Makes columns shrink properly */
   text-align: center;
 }
+.calendar-table th {
+  font-family: "Sour Gummy";
+  font-size: 29px;
 
+}
+.calendar-table td {
+  font-family: "Parkinsans";
+  font-size: 16px;
+
+}
 .calendar-table th,
 .calendar-table td {
   border: 1px solid #ddd;
   padding: 20px;
-  font-size: 16px;
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: normal;
@@ -125,5 +132,11 @@
     padding: 6px 4px;
     font-size: 12px;
     line-height: 1.2;
+  }
+}
+
+@media  screen and (max-width:730px) {
+  .calendar-video-container , .calendar-header  {
+    background-color: #2a7fba;
   }
 }

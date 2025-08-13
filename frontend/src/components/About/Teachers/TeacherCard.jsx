@@ -19,14 +19,14 @@ const TeacherCard = ({member}) => {
   },[])
   return (
     <Fragment>
-    <div className="teamMembersCardContainer"  data-aos = "fade-down" key={member._id}>
+    <div className="teacherCardContainer"   key={member._id}>
             <div>
                 <img src={member.avatar.url} alt={member.name} />
             </div>
             <div>
                 <h3>{member.name}</h3>
                 <p>{member.title}</p>
-                <button className='learn-apply-btn' onClick={submitReviewToggle}>About me</button>
+                <button  className='learn-apply-btn' onClick={submitReviewToggle}>About me</button>
                 
                                            <Dialog
                   open={open}

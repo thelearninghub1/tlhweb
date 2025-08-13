@@ -44,6 +44,8 @@ const Instrumental = () => {
         <video src={video} autoPlay loop muted playsInline />
       </div>
                         </div>
+            <div className="homesMainContainer">
+
       <div className="bottomServiceDetailsContainer">
       
            {afiliations && afiliations.map((service) => (
@@ -64,6 +66,8 @@ const Instrumental = () => {
         ))}
       </div>
     </div>
+            </div>
+
         </Fragment>
       )}
     </Fragment>

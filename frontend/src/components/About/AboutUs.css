@@ -1,13 +1,13 @@
 .aboutUsContainer {
-   max-width: 100%;
+   width: 100%;
    min-height: 100vmin;
    box-sizing: border-box;
    display: flex;
    flex-direction: column;
-   overflow: hidden;
-   
+overflow:hidden;   
    justify-content: center;
    align-items: center;
+   
 }
 
 .aboutUpperContainer {
@@ -18,6 +18,7 @@
    justify-content: center;
    text-align: center;
    min-height: 60vmin;
+   width:100%;
    background-image: url('../../assets/aboutUs.jpg');
    background-repeat: no-repeat;
    background-size: cover;
@@ -28,84 +29,41 @@
 
 }
 
-.aboutUpperContainer > h1 {
-   font: 600 46px "Roboto";
-   padding: 1vmax;
-   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-   text-shadow:  0 0 7px rgba(255, 255, 255, 0.68);
-   padding-top: 5vmax;
-}
-
-.aboutUpperContainer > p {
-   
-   font: 200 21px "Roboto";
-   padding: 0vmax 6vmax;
-   text-shadow:  0 0 7px rgba(255, 255, 255, 0.68);
-   letter-spacing: 0.1vmax;
-   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
 
 .firstMidContainer {
    display: flex;
    flex-direction: column;
    box-sizing: border-box;
-   width: 85vw;
-   max-width: 100%;
    align-items: center;
    justify-content: center;
-   padding-bottom: 8vmax;
+
 }
 
-.firstMidContainer > h1 {
-   font: 400 32px "Roboto";
-   padding: 4vmax 1vmax ;
-   text-shadow:  0 0 7px rgba(0, 0, 0, 0.313);
-   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-   text-align: center;
-   color: rgba(0, 0, 0, 0.703);
-}
+
 .firstMidContainer > div {
    display: flex;
    box-sizing: border-box;
    width: 100%;
-}
 
-.firstMidContainer > div > div {
-   width: 50%;
-   display: flex;
-   flex-direction: column;
-   box-sizing: border-box;
-   justify-content: center;
-}
-
-
-.firstMidContainer > div > div > p {
-   font: 300 19px "Roboto";
-   padding: 1.3vmax 1vmax;
-   color: rgba(0, 0, 0, 0.594);
-}
-.firstMidContainer > div > div:last-child {
-   justify-content: space-around;
-   width: 45%;
-   box-sizing: border-box;
 }
 
 
 
-.firstMidContainer > div > div:last-child > img {
-   width: 200px;
-   box-shadow: 0 0  7px rgba(0, 0, 0, 0.408);
-   margin: 1vmax auto;
-}
+
+
+
+
+
 
 .secondMidContainer {
-   width: 95vw;
-   max-width: 100%;
    box-sizing: border-box;
    display: flex;
    background-repeat: no-repeat;
    background: url('../../assets/aboutUs3.jpeg');
    flex-direction: column;
+   width: 100%;
+
+
 }
 
 
@@ -115,7 +73,7 @@
    display: flex;
    align-items: center;
    text-align: center;
-   min-height: 70vmin;
+   min-height: 80vmin;
    background-image: url('../../assets/aboutUs2.jpeg');
    background-repeat: no-repeat;
    background-size: cover;
@@ -126,12 +84,17 @@
    
 
 }
+.secondMidContainer1 > iframe {
+   width: 100%;
+   min-height: 80vmin;
+   box-sizing: border-box;
+}
 .secondMidContainer1 > h1 {
-   font: 400 40px "Roboto";
+   font: 400 40px "Sour Gummy";
    padding: 1vmax;
-   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
    padding-top: 5vmax;
    color: white;
+
    padding-bottom: 5vmax;
 }
 
@@ -228,9 +191,9 @@
    box-sizing: border-box;
    display: flex;
    min-height: 90vmin;
+   background-image: url('../../assets/feedback.jpeg');
    color: white;
    background-color: #2c7ead5b;
-
 }
 
 .secondMidContainer2 > div {
@@ -238,21 +201,27 @@
    flex-direction: column;
    box-sizing: border-box;
    align-items: center;
+
    justify-content: center;
 }
 .secondMidContainer2 > div:first-child {
    width: 60%;
+   max-width: 100%;
+
 }
 .secondMidContainer2 > div:last-child {
    width: 40%;
+   max-width: 100%;
 
 }
 
 .feedback-carousel {
-   width: 80%; /* Adjust the width as needed */
+   width: 50%; /* Adjust the width as needed */
    text-align: center; /* Center text content */
    align-items: center;
    justify-content: center;
+   height: auto;
+
 }
 .carouselFeedContainer {
    display: flex;
@@ -261,18 +230,21 @@
    text-align: center;
    justify-content: center;
    align-items: center;
-
+   width: 80%;
    padding: 20px;
    border-radius: 10px;
    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-   min-height: 300px; 
+   height: auto;
+   border: 10px solid #ffc600;
+
    
+   background-color: #2C7EAD;
 
 }
 .carouselFeedContainer > i {
-   
-   font-weight: 200  ;
-   font-size: 25px;
+   font-family: "Sour Gummy";
+   font-weight: 600  ;
+   font-size: 23px;
    padding: 1vmax 6vmax;
    letter-spacing: 0.1vmax;
    word-spacing: 0.4vmax;
@@ -288,59 +260,51 @@
    margin: 18px auto;
 }
 .carouselFeedContainer > b {
-   font: 900 21px "Roboto";
+   font: 900 21px "Sour Gummy";
    padding: 0.5vmax;
 }
 
 .carouselFeedContainer > p {
-   font: 200 17px "Roboto";
+   font: 200 17px "Parkinsans";
    padding: 0.2vmax;
 }
 
 
 
 .thirdMidContainer {
-   width: 86vw;
-   max-width: 100%;
+   width: 89vw;
    box-sizing: border-box;
-   padding: 4vmax ;
+   padding: 4vmax 0vmax;
    display: flex;
    flex-direction: column;
    justify-content: center;
    background-color: white;
-   transition: all 0.5s !important;
+   transition: all 0.5s ;
 }
 .thirdMidContainer > div:first-child {
    display: flex;
    flex-direction: column;
-   align-items: center;
+   align-items: flex-start;
    justify-content: center;
-   text-align: center;
+   width: 100%;
+   text-align: left;
    box-sizing: border-box;
 }
 
 .thirdMidContainer > div:first-child > p {
-   font: 500 17px "Roboto";
+   font: 500 17px "Parkinsans";
    color: rgba(0, 0, 0, 0.612);
    border-left: 4px solid #2C7EAD;
    padding: 0px 11px ;
 }
 
-.thirdMidContainer > div:first-child > h1 {
-   font: 800 48px "Roboto";
-   padding: 1vmax;
-   color: rgba(0, 0, 0, 0.706);
-   letter-spacing: 0.07vmax;
-   word-spacing: 0.2vmax;
-   text-shadow: 0 0 7px rgba(0, 0, 0, 0.292);
-}
 
 
 .thirdMidContainer > div:first-child > h3 {
    color: rgba(0, 0, 0, 0.706);
    letter-spacing: 0.07vmax;
    word-spacing: 0.05vmax;
-   font: 500 18px "Roboto";
+   font: 500 18px "Sour Gummy";
    padding-bottom: 2vmax ;
 }
 .bhai {
@@ -348,54 +312,10 @@
    flex-direction: row ;
    align-items: center;
    justify-content: center;
-
-}
-
-.secondAboutContainer {
-   display: flex;
+   width: 100% ;
    box-sizing: border-box;
-   align-items:flex-start;
-   min-height: 60vmin;
-   justify-content: flex-end;
-   overflow: hidden;
-   background-color: white;
 }
 
-.aboutBottomContainer {
-   display: flex;
-   align-items: center;
-   justify-content: space-around;
-   min-height: 40vmin;
-   width: 80vw;
-   max-width: 100%;
-   background-color: whitesmoke;
-   box-sizing: border-box;
-   text-align: center;
-   border-left: 17px solid #2C7EAD;
-}
-
-.aboutBottomContainer > h1 {
-   width: 40vmax;
-   font: 700 40px "Roboto";
-   color: rgba(0, 0, 0, 0.8);
-}
-.aboutBottomContainer > a {
-   border: 1px solid black;
-   padding: 25px 50px;
-   text-decoration: none;
-   border-left: 5px solid black;
-   font: 800 18px "Roboto";
-   transition: all 0.5s;
-   color: rgba(0, 0, 0, 0.842);
-
-}
-.aboutBottomContainer > a:hover {
-   color: #2C7EAD;
-   border: 1px solid #2C7EAD;
-   border-left: 5px solid #2C7EAD;
-   transform: translateY(-0.5vmax);
-
-}
 
 /*---------------Media Queries ---------------*/
 @media screen and (max-width: 900px) {
@@ -409,10 +329,6 @@
 }
 }
 @media screen and (max-width: 730px) {
-   .aboutUpperContainer {
-       min-height: 100vmin !important;
-   }
-
    .aboutUpperContainer > p {
        padding-bottom: 40px;
    }
@@ -538,20 +454,97 @@
 
 
 
-.skillbar-bar {
-   background-color: #2C7EAD ;
-}
-.skillbar-title {
-   background-color: #2C7EAD ;
-   font-family: "Roboto" ;
-   font-size: 17px ;
+
+
+
+.aboutUsMainContainer {
+   width: 90%;
+     overflow: visible; /* ✅ if overflow issues happen */
 }
 
-.skillbar-percent {
-   font-family: "Roboto" ;
-   font-size: 13px ;
-   left:120px ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.carousel-slide {
+
+
+  display: none;
+  opacity: 0;
+  transition: opacity 1s ease;
 }
+
+.carousel-slide.active {
+
+    display: flex;
+  opacity: 1;
+}
+
+
+
+
+
+.teacher-carousel-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.teacher-carousel-wrapper button {
+  background: #2C7EAD;
+  color: white;
+  border: none;
+  font-size: 24px;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.teacher-carousel {
+  display: flex;
+  overflow-x: hidden; /* 🚫 No manual scroll */
+  scroll-behavior: smooth;
+  gap: 1rem;
+  padding: 2rem 0;
+}
+
+.teacher-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+
 
 
 

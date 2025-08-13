@@ -6,13 +6,6 @@
     width: 100%;
     overflow: hidden ;
 }
-.contactContainer > div {
-    width: 100%;
-    display: flex;
-    box-sizing: border-box;
-    min-height: 60vmin;
-
-}
 
 .upperContactContainer {
     flex-direction: column;
@@ -33,22 +26,7 @@
     box-sizing: border-box;
 }
 
-.upperContactContainer > h1 {
-    font: 600 2.6vmax "Roboto";
-    padding: 1vmax;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    text-shadow:  0 0 7px rgba(255, 255, 255, 0.68);
-    padding-top: 5vmax;
-        
-}
-.upperContactContainer > p {
-    text-shadow:  0 0 7px rgba(255, 255, 255, 0.68);
-    
-    font: 200 1.4vmax "Poppins";
-    padding: 0vmax 6vmax;
-    letter-spacing: 0.1vmax;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
+
 .middleContactContainer > div{
     width: 50%;
     display: flex;
@@ -58,15 +36,7 @@
     padding: 3vmax ;
 
 }
-.middleContactContainer > div:last-child {
-    align-items: flex-start;
-}
-.middleContactContainer > div > h1 {
-    font: 600 2.2vmax "Roboto";
-    width: 90%;
 
-    
-}
 .contactUsForm {
     width: 90%;
     display: flex;
@@ -87,7 +57,7 @@
     padding: 1vmax;
     width: 80%;
     border: none;
-    font: 200 1.1vmax "Lato";
+    font: 200 1.1vmax "Parkinsans";
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.313);
     color: rgba(0, 0, 0, 0.699);
     outline: none;
@@ -101,7 +71,7 @@
     border: none;
     color: white;
     background-color: #2C7EAD;
-    font: 100 1vmax "Lato";
+    font: 100 1vmax "Parkinsans";
     letter-spacing: 0.1vmax;
     transition: all 0.5s;
 }
@@ -119,11 +89,11 @@
     padding: 1vmax 0vmax;
 }
 .middleContactContainer> div > div > p {
-    font: 100 19px "Roboto";
+    font: 100 19px "Parkinsans";
     padding: 0.5vmax 0vmax;
 }
 .middleContactContainer> div > div > h1 {
-    font: 800 28px "Roboto";
+    font: 800 28px "Sour Gummy";
     padding: 0.5vmax 0vmax;
 }
 .linkBtn {
@@ -138,7 +108,7 @@
 }
 
 .lowerContactContainer {
-    background-color: rgba(0, 0, 0, 0.753);
+    background-color: #2C7EAD;
     color: white;
     flex-direction: column;
     box-sizing: border-box;
@@ -155,13 +125,12 @@
 }
 
 .lowerContactContainer > div:first-child > h1 {
-    font: 600 2.6vmax "Roboto";
+    font: 600 2.6vmax "Sour Gummy";
     padding: 1vmax;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .lowerContactContainer > div:first-child > p {
-    font: 200 1.3vmax "Roboto";
+    font: 200 1.3vmax "Parkinsans";
     padding: 0vmax 6vmax;
     letter-spacing: 0.1vmax;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -187,19 +156,17 @@
     font-size: 4vmax;
 }
 .lowerContactContainer > div:last-child  > div > h1 {
-    font: 600 1.6vmax "Roboto";
+    font: 600 1.6vmax "Sour Gummy";
     padding: 1vmax;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 .lowerContactContainer > div:last-child  > div > h3 {
     
-    font: 600 1.1vmax "Roboto";
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font: 600 1.1vmax "Sour Gummy";
 }
 
 .lowerContactContainer > div:last-child  > div > p {
     color: rgba(255, 255, 255, 0.874);
-    font: 600 1vmax "Roboto";
+    font: 600 1vmax "Parkinsans";
     letter-spacing: 0.1vmax;
 }
 
@@ -208,8 +175,7 @@
 }
 .lowerContactContainer > div:last-child  > div > a {
     
-    font: 600 1.1vmax "Roboto";
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font: 600 1.1vmax "Parkinsans";
     color: rgba(255, 255, 255, 0.797);
     padding-top: 0.5vmax;
     text-decoration: none;
@@ -218,31 +184,11 @@
     text-decoration: underline;
 }
 
-@media screen and (max-width: 1000px) {
-    .upperContactContainer > h1 {
-        font-size: 4vmax;
-    }
-    .upperContactContainer > p {
-        font-size: 2vmax;
-        letter-spacing: 0.4vmax;
-    
-    }
 
-
-   
-}
 
 @media screen and (max-width: 900px) {
 
-.upperContactContainer > h1 {
-    font-size: 5vmax;
-}
-.upperContactContainer > p {
-    font-size: 2.6vmax;
-    letter-spacing: 0.4vmax;
-    line-height: 4vh;
 
-}
 .middleContactContainer > div > div > h1 {
     font-size: 2.9vmax;
 }
@@ -287,10 +233,23 @@
     .contactContainer > div:first-child  {
         background-size: contain;
     }
-    .upperContactContainer > h1 {
-        padding-top: 20vmax;
-        font-size: 5vmax;
+
+       .upperContactContainer {
+        height: auto ; /* Remove fixed height */
+        aspect-ratio: 16/5; /* Match your image's aspect ratio */
+        background-size: contain;
+        background-repeat:no-repeat ;
+        background-position: center;
+        background-color: #131d58;
+        padding: 0; /* Remove extra padding that can add space */
     }
+
+}
+@media screen and (max-width: 500px) {
+    .contactContainer > div:first-child  {
+        background-size: contain;
+    }
+
 }
 @media screen and (max-width: 600px) {
 .middleContactContainer {
@@ -302,25 +261,13 @@
 
 }
 
-@media screen and (max-width: 500px) {
-    .upperContactContainer > h1 {
-        padding-top: 20vmax;
-    }
-}
+
 
 @media screen and (max-width: 450px) {
-    .contactContainer > div:first-child  {
-        min-height: 100vmin;
-    }
-    .upperContactContainer > h1 {
-        padding-top: 25vmax;
-    }
+  
+  
     .lowerContactContainer > div:last-child  {
         flex-direction: column;
     }
-    .upperContactContainer > p {
-    padding-bottom: 2vmax;
-
-    }
-  
+ 
 }

@@ -1,205 +1,175 @@
 .ourProjectsContainer {
-    min-height: 100vmin;
-    max-width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+  min-height: 100vmin;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
+
 .ourProjectsContainer > div {
-    display: flex;
-    box-sizing: border-box;
-    width: 100%;
-}
-.topTechContainer {
-    background-image: url("../../../assets/techPartner.jpeg");
-    align-items: center;
-    color: white;
-    justify-content: center;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    flex-direction: column;
-    min-height: 70vmin;
-    box-sizing: border-box;
-    text-align: center;
-    filter: brightness(0.99) contrast(105%);
-}
-
-.topTechContainer {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-}
-
-.topTechContainer > h1 {
-    font: 600 2.6vmax "Roboto";
-    text-shadow:  0 0 7px rgba(255, 255, 255, 0.68);
-    padding: 1vmax;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    padding-top: 5vmax;
-}
-
-.topTechContainer > p {
-    text-shadow:  0 0 7px rgba(255, 255, 255, 0.68);
-    
-    font: 200 1.4vmax "Roboto";
-    padding: 0vmax 6vmax;
-    letter-spacing: 0.1vmax;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-.midProjectContainer {
-display: flex;
-box-sizing: border-box;
-padding: 2vmax;
-align-items: center;
-justify-content: center;
-flex-wrap: wrap;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-@media screen and (max-width: 740px) {
-  .topTechContainer {
-    background-size: contain;
-   
-}
-
-    .partner-card {
-    opacity: 1 !important;
-    transform: translateX(0) !important;
-  
-  }
-
-
-
-
-    .ourProjectsContainer > div {
-    flex-direction: column;
-    background-size: contain;
-   
-  }
- 
-.topTechContainer > h1 {
-    font-size: 3.7vmax;
-    padding-top: 14vmax;
-    padding-bottom: 1vmax;
-
-}
-
-.topTechContainer > p {
-    font-size: 2.6vmax;
-
-}
-
-
-}
-
-
-@media screen and (max-width: 550px) {
-.topTechContainer {
-    min-height: 100vmin;
-   
-}
-}
-
-
-
-  
-  .header-title {
-    text-align: center;
-    margin: 40px 0;
-    font-size: 2.5rem;
-    color: #333;
-  }
-  
-  .partners-section {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: center;
-  }
-  
-  .partner-card {
-    width: 80%;
-    max-width: 600px;
-    background: rgb(255, 255, 255);
-    padding: 20px;
-    margin: 20px ;
-    border-radius: 10px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    transition: all 0.5s;
-  }
-  .partner-card:hover {
-    background-color: #C1E3F8;
-  }
-  .partner-card h2 {
-    margin: 10px 0;
-    color: #2C7EAD;
-  }
-  
-  .partner-card p {
-    color: #555;
-  }
-  
-  .partner-card .logo {
-    font-size: 50px;
-    margin-bottom: 10px;
-  }
-  
-  /* Animations */
-  .left {
-    transform: translateX(-100%);
-  }
-  
-  .right {
-    transform: translateX(100%);
-  }
-  
-  .show {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .partner-card {
-      width: 90%;
-    }
-  }
-  
-
-
-
-
-
-  .partnerlogo {
+  display: flex;
+  box-sizing: border-box;
   width: 100%;
-  max-width: 300px;
+  flex-direction: column;
+}
+
+/* Top Section */
+.topTechContainer {
+  background-image: url("../../../assets/techPartner.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: scroll;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-direction: column;
+  min-height: 70vmin;
+  box-sizing: border-box;
+  text-align: center;
+  filter: brightness(0.99) contrast(105%);
+}
+
+/* Middle Section */
+.midProjectContainer {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 3vmax;
+}
+
+/* Section Title */
+.header-title {
+  text-align: center;
+  margin: 40px 0;
+  font-size: 2.5rem;
+  color: #333;
+}
+
+/* Partners section as grid */
+.partners-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 20px;
+  justify-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Partner card with uniform size and smooth animation */
+.partner-card {
+  width: 100%;
+  max-width: 350px;
+  height: 440px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  /* Animation start state */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Animate in when visible */
+.partner-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Optional: stagger animation */
+.partner-card:nth-child(odd) {
+  transition-delay: 0.1s;
+}
+.partner-card:nth-child(even) {
+  transition-delay: 0.2s;
+}
+
+/* Hover effect */
+.partner-card:hover {
+  background-color: #C1E3F8;
+}
+
+/* Logo inside card */
+.partner-card .logo {
+  font-size: 40px;
+  margin-bottom: 5px;
+}
+
+/* Title */
+.partner-card h2 {
+  margin: 10px 0;
+  color: #2C7EAD;
+  font-size: 2.1rem;
+  font-family: "Sour Gummy";
+}
+
+/* Description - fits content inside fixed box */
+.partner-card p {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.3rem;
+  margin: 0;
+  padding: 0 5px;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  font-family: "Parkinsans";
+  text-overflow: ellipsis;
+}
+
+/* Partner logo image */
+.partnerlogo {
+  width: 100%;
+  max-width: 250px;
   height: auto;
 }
 
+/* Responsive Tweaks */
+@media screen and (max-width: 768px) {
+  .partner-card {
+    max-width: 90%;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 740px) {
+  .topTechContainer {
+    background-size: contain ;
+        background-color: #131d58;
+            height: auto ; /* Remove fixed height */
+         
+      
+  }
+
+  .partner-card {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  
+
+
+}
 
 
 
+.Bhailogo {
+  width: 11vmax;
+}
 
 

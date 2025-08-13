@@ -9,7 +9,6 @@
 .ourProjectsContainer > div {
     display: flex;
     box-sizing: border-box;
-    width: 100%;
 }
 .topProjectContainer {
     background-image: url("../../assets/FIL.jpg");
@@ -26,66 +25,57 @@
     filter: brightness(0.99) contrast(105%);
 }
 
-.topProjectContainer > h1 {
-    font: 600 2.6vmax "Roboto";
-    text-shadow:  0 0 7px rgba(255, 255, 255, 0.68);
-    padding: 1vmax;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    padding-top: 5vmax;
-}
 
-.topProjectContainer > p {
-    text-shadow:  0 0 7px rgba(255, 255, 255, 0.68);
-    
-    font: 200 1.4vmax "Roboto";
-    padding: 0vmax 6vmax;
-    letter-spacing: 0.1vmax;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
 .midProjectContainer {
 display: flex;
 box-sizing: border-box;
+width: 100%;
 padding: 2vmax;
 align-items: center;
 justify-content: center;
 flex-wrap: wrap;
+    border: 2px solid black;
+
 }
 
 .categoryFilter {
     display: flex;
-    padding: 1.5vmax 2vmax;
     list-style: none;
     box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    flex-shrink: 1;
+    
+
 }
 
 .categoryFilter > li {
     padding: 1.4vmax 3vmax;
     box-shadow: 0 0 7px #2C7EAD;
+    width: 100%;
     background-color: #2C7EAD;
     color: white;
     cursor: pointer;
-    font: 400 1.1vmax "Roboto";
+    margin: 1vmax;
+    font: 400 1.1vmax "Sour Gummy";
     transition: all 0.5s;
     transform: translateY(100vmax);
     animation: categoryFilter  forwards ease-in-out 1.5s ;
+    box-sizing: border-box;
 }
 
-.removeFilter {
-    padding: 1.4vmax 3vmax;
-    box-shadow: 0 0 7px #2C7EAD;
-    background-color: #2C7EAD;
-    color: white;
-    cursor: pointer;
-    font: 400 1.1vmax "Roboto";
-    transition: all 0.5s;
-    transform: translateY(100vmax);
-    animation: categoryFilter  forwards ease-in-out 1.5s ;  
-    border: none;
+
+
+.subjectBottomContainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90% !important;
+    margin: 1vmax auto;
+    box-sizing: border-box;
 }
 
-.removeFilter:hover {
-    background-color: black;
-}
 
 .categoryFilter:nth-child(even){
     transform: translateX(-100vmax);
@@ -104,17 +94,6 @@ flex-wrap: wrap;
     background-color: black;
 }
 
-.bottomProjectContainer {
-    display: flex;
-    justify-content: center;
-    box-sizing: border-box;
-    padding: 2vmax ;
-    padding-top: 0vmax;
-    min-height: 50vmin;
-    max-width: 100%;
-    width: 100vw;
-    flex-wrap: wrap;
-}
 
 .paginationContainer {
     display: flex;
@@ -154,7 +133,7 @@ flex-wrap: wrap;
 .item-link {
 padding: 1vmax 2vmax;
 text-decoration: none;
-font: 100 0.9vmax "Roboto";
+font: 100 0.9vmax "Sour Gummy";
 color: rgba(0, 0, 0, 0.571);
 transition: all 0.5s;
 
@@ -178,17 +157,7 @@ color: white;
 }
 
 @media screen and (max-width: 740px) {
-.topProjectContainer > h1 {
-    font-size: 3.7vmax;
-    padding-top: 14vmax;
-    padding-bottom: 1vmax;
 
-}
-
-.topProjectContainer > p {
-    font-size: 2.6vmax;
-
-}
 .categoryFilter > li {
     font-size: 2.2vmax;
 }
@@ -205,12 +174,6 @@ color: white;
 }
 }
 
-
-@media screen and (max-width: 550px) {
-.topProjectContainer {
-    min-height: 100vmin;
-}
-}
 
 
 @media screen and (max-width: 470px) {
@@ -258,20 +221,8 @@ color: white;
 
 
 
-    .ourProjectsContainer {
-    min-height: 100vmin;
-    max-width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-}
 
-.ourProjectsContainer > div {
-    display: flex;
-    box-sizing: border-box;
-    width: 100%;
-}
+
 
 /* ─────────────── TOP SECTION ─────────────── */
 .topProjectContainer {
@@ -291,27 +242,11 @@ color: white;
     padding: 4vmax 2vmax;
 }
 
-.topProjectContainer > h1 {
-    font: 600 clamp(18px, 2.6vmax, 36px) "Roboto";
-    text-shadow: 0 0 7px rgba(255, 255, 255, 0.68);
-    padding-top: clamp(2vmax, 5vmax, 8vmax);
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-.topProjectContainer > p {
-    font: 200 clamp(14px, 1.4vmax, 24px) "Roboto";
-    padding: 0 6vmax;
-    letter-spacing: 0.1vmax;
-    text-shadow: 0 0 7px rgba(255, 255, 255, 0.68);
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
 /* ─────────────── FILTER SECTION ─────────────── */
 .categoryFilter {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    padding: 2vmax;
+    gap: 0.5rem;
     list-style: none;
     box-sizing: border-box;
     justify-content: center;
@@ -324,7 +259,7 @@ color: white;
     background-color: #2C7EAD;
     color: white;
     cursor: pointer;
-    font: 400 clamp(14px, 1.2vmax, 20px) "Roboto";
+    font: 400 clamp(14px, 1.2vmax, 20px) "Sour Gummy";
     transition: all 0.5s;
     transform: translateY(100vmax);
     animation: categoryFilter forwards ease-in-out 1.5s;
@@ -360,17 +295,7 @@ color: white;
 }
 
 /* ─────────────── BOTTOM / GRID / CARDS ─────────────── */
-.bottomProjectContainer {
-    display: flex;
-    justify-content: center;
-    box-sizing: border-box;
-    padding: clamp(1rem, 2vmax, 3rem);
-    padding-top: 0;
-    min-height: 50vmin;
-    max-width: 100%;
-    width: 100%;
-    flex-wrap: wrap;
-}
+
 
 /* ─────────────── PAGINATION ─────────────── */
 .paginationContainer {
@@ -418,7 +343,7 @@ color: white;
 .item-link {
     padding: clamp(1rem, 2vmax, 3rem);
     text-decoration: none;
-    font: 100 clamp(10px, 1vmax, 18px) "Roboto";
+    font: 100 clamp(10px, 1vmax, 18px) "Sour Gummy";
     color: rgba(0, 0, 0, 0.571);
     transition: all 0.5s;
 }
@@ -434,3 +359,161 @@ color: white;
 .active-link {
     color: white;
 }
+
+
+
+
+
+.midProjectContainer {
+display: flex ;
+flex-direction: row;
+box-sizing: border-box;
+padding: 2vmax;
+align-items: center;
+justify-content: center;
+flex-wrap: wrap;
+
+border: 3px solid red;
+
+}
+
+
+
+
+
+@keyframes categoryFilter {
+    to {
+          transform: translateY(0vmax);
+      }
+  }
+
+
+.categoryFilter > li:hover {
+    background-color: black;
+}
+
+
+
+
+
+
+
+
+
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 2vmax;
+}
+
+.item-class {
+    border: 1px solid rgba(0, 0, 0, 0.42);
+    padding: 1.1vmax 0vmax;
+    transition: all 0.5s;
+}
+.item-class:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.item-class:first-child {
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.item-class:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.active-item {
+    background-color: #2C7EAD;
+
+}
+
+.item-link {
+padding: 1vmax 2vmax;
+text-decoration: none;
+font: 400 1 "Sour Gummy";
+color: rgba(0, 0, 0, 0.81);
+transition: all 0.5s;
+
+}
+.item-link:hover {
+    color: #2C7EAD;
+}
+
+.active-link {
+color: white;
+}
+
+
+.paginationContainer {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 7vmax;
+    box-sizing: border-box;
+}
+
+
+
+
+
+.subjectbottomContainer {
+    border: 1px solid black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

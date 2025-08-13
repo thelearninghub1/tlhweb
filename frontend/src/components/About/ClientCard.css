@@ -1,13 +1,14 @@
 .clientCardContainer {
-    width: 70%;
+    width: 80%;
     display: flex;
     justify-content: space-around;
-    height: 18%;
+    min-height:18% ;
     box-sizing: border-box;
     flex: none;
     transition: all 0.5s !important;
     margin: 0.3vmax auto;
     background-color: #2C7EAD;
+    max-width: 100%;
 }
 
 .clientCardContainer > div {
@@ -15,18 +16,21 @@
     flex-direction: column;
     width: 50%;
     align-items: center;
+
     justify-content: center;
+    text-align: center;
 }
 
 .clientCardContainer > div:first-child > img {
     width: 75px;
+    height: 75px;
 }
 .clientCardContainer > div:last-child > h2 {
-    font: 300 40px "Roboto";
+    font: 300 40px "Sour Gummy";
 }
 
 .clientCardContainer > div:last-child > h3 {
-    font: 200 17px "Roboto";
+    font: 200 17px "Sour Gummy";
     padding-top: 0.5vmax;
 
 }

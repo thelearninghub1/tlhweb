@@ -2,6 +2,7 @@ footer {
     display: flex;
     flex-direction: column;
     background-color: black;
+    background-color: #0f1643;
     color: white;
     box-sizing: border-box;
     max-width: 100%;
@@ -28,12 +29,12 @@ footer > div > div {
 
 .leftFooter > img {
     width: 8vmax;
-    filter: contrast(200%);
+    filter: contrast(100%);
     padding: 1vmax;
 }
 
 .leftFooter > p {
-    font: 300 1.1vmax "Roboto";
+    font:500 1.1vmax "Parkinsans";
     letter-spacing: 0.1vmax;
     padding: 1vmax;
     padding-top: 0vmax;
@@ -48,13 +49,13 @@ footer > div > div {
 }
 
 .midFooter1 > h1 {
-    font: 800 1.8vmax "Roboto";
+    font: 800 1.8vmax "Sour Gummy";
     padding: 1vmax;
 
 }
 
 .midFooter1 > a {
-    font: 800 1vmax "Roboto";
+    font: 800 1.1vmax "Parkinsans";
     padding: 0.5vmax 1vmax;
     color: rgba(245, 245, 245, 0.904);
     text-decoration: none;
@@ -75,13 +76,13 @@ footer > div > div {
 }
 .midFooter2 > h1 {
     
-    font: 800 1.8vmax "Roboto";
+    font: 800 1.8vmax "Sour Gummy";
     padding: 1vmax;
 }
 
 .midFooter2 > a {
     
-    font: 800 1vmax "Roboto";
+    font: 800 1.1vmax "Parkinsans";
     padding: 0.5vmax 1vmax;
     color: rgba(245, 245, 245, 0.904);
     text-decoration: none;
@@ -100,45 +101,51 @@ footer > div > div {
 }
 
 .rightFooter > h1 {
-    font: 800 1.8vmax "Roboto";
+    font: 800 1.8vmax "Sour Gummy";
     padding: 1vmax;
 }
 .rightFooter > p {
     
-    font: 800 0.9vmax "Roboto";
+    font: 800 1vmax "Parkinsans";
     padding: 0.5vmax 1vmax;
     color: rgba(245, 245, 245, 0.904);
     word-spacing: 0.3vmax;
     letter-spacing: 0.1vmax;
 }
 .miniFooter {
-    background-color: #2C7EAD;
     color: white;
     padding: 0.5vmax;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    flex-direction: column-reverse;
 }
 
+.miniFooter > div {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.miniFooter > div:last-child {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    box-sizing: border-box;
+}
 .miniFooter > div:first-child {
-    width: 60%;
     box-sizing: border-box;
 }
 .miniFooter > div > p {
 
-    font: 800 1vmax "Roboto";
+    font: 800 1vmax "Parkinsans";
     padding: 0.5vmax 1vmax;
     color: white;
     letter-spacing: 0.2vmax;
     word-spacing: 0.1vmax;
 }
 
-.miniFooter > div:last-child {
-    width: 40%;
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    justify-content: flex-end;
-    box-sizing: border-box;
-}
+
 
 .miniFooter > div:last-child > a {
     color: white;
@@ -148,7 +155,7 @@ footer > div > div {
 
 }
 .miniFooter > div:last-child > a:hover {
-    color: black;
+    color: #2C7EAD;
     transform: scale(1.2);
 }
 
@@ -207,6 +214,7 @@ footer > div > div {
 }
 .miniFooter > div > p {
     font-size: 1.9vmax;
+    
 }
 .miniFooter > div:last-child > a {
     font-size: 3vmax;

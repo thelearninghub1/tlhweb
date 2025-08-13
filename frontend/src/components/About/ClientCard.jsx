@@ -11,7 +11,7 @@ const ClientCard = ({card}) => {
       },[]) 
   return (
     <Fragment>
-         <div className='clientCardContainer' data-aos = "fade-down">
+         <div className='clientCardContainer' >
                
                <div>
                    <img src={card.avatar && card.avatar.url} alt={card.title} />

@@ -59,7 +59,7 @@ const AdmissionGuide = () => {
               <h3>{item.title}</h3>
               <p>{item.desc}</p>
             </div>
-          ))}
+          ))} 
         </div>
       </div>
 
@@ -98,4 +98,3 @@ const AdmissionGuide = () => {
             )}
 
 export default AdmissionGuide;
-

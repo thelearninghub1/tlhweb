@@ -48,6 +48,8 @@ const Activities = () => {
         <video src={video} autoPlay loop muted playsInline />
       </div>
                         </div>
+            <div className="homesMainContainer">
+
       <div className="bottomServiceDetailsContainer">
     
            {afiliations && afiliations.map((service) => (
@@ -69,20 +71,20 @@ const Activities = () => {
      
       </div>
       <section className="happy-students-section">
-     <h2 className="happy-students-title" data-aos="fade-down">Happy Students</h2>
-     <div className="video-container" data-aos="fade-down">
-     { allStudentFeedbacks && allStudentFeedbacks.map((video) => (
-            <iframe
-              key={video._id}
-              className="student-video"
-              src={video.ytLink}
-              title={video._id}
-              allowFullScreen
-            ></iframe>
-          ))}
-     </div>
-   </section>
-     
+                <h2 className="title" data-aos="fade-down">School Insights</h2>
+                <div className="video-container" data-aos="fade-down">
+                  {allStudentFeedbacks && allStudentFeedbacks.map((video) => (
+                    <iframe
+                      key={video._id}
+                      className="student-video"
+                      src={video.ytLink}
+                      title={video._id}
+                      allowFullScreen
+                    ></iframe>
+                  ))}
+                </div>
+              </section>
+    </div>
     </div>
   </Fragment>
     )

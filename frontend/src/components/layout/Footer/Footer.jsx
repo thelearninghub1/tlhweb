@@ -62,12 +62,12 @@ const Footer = () => {
                         <h1>Get In Touch</h1>
                         <p>Phone: +352 621 508 645</p>
                         <p>Email: ithelearninghub@gmail.com</p>
-                        <p>Address: 123 Main Street, City, Country</p>
+                        <p>Address: C-56D phase 5 DHA Karachi</p>
                     </div>
                 </div>
                 <div className="miniFooter">
                     <div>
-                        <p>&copy; 2018 - {new Date().getFullYear()} The Learning Hub</p>
+                        <p>&copy; {new Date().getFullYear()} The Learning Hub</p>
                     </div>
                     <div className='FooterSocial'>
                         <a href={media.facebook} target="_blank" rel="noopener noreferrer"><RiFacebookCircleLine /></a>

@@ -133,25 +133,7 @@ onChange={(e)=>setName(e.target.value)}
           
           
                      
-                         <div className='highlightsInput'>
-                         <div className="inputBox" id='avatarPreview'> 
-          
-          <img 
-          alt="Avatar Preview" 
-          className='avatarImage' 
-          src= {avatarPreview}
-          />
-          <input 
-          type="file"
-         name="avatar" 
-         accept='image/*'
-         onChange={newDataChange}
-          />
-    
-     </div>    
-          
-                          </div>
-                     
+                       
                       
                     
                    

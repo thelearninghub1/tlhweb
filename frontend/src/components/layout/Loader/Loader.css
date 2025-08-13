@@ -1,7 +1,7 @@
 .loaderContainer {
     width: 100%;
     max-width: 100%;
-    background-color:rgb(111, 111, 10);
+    background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -22,26 +22,18 @@ const History = () => {
      
         <div className="contactPartnerContainer">
           <div className='upperHistoryContainer'>
-            {
-              /* 
-              
-            <h1 data-aos="fade-down">OUR LEGACY</h1>
-            <p data-aos="fade-down">"The Story Behind The Learning Hub"</p>
-             */
-            }
+     
           </div>
          
                {/* Content Section */}
-               <div className="learn-portal-container" data-aos="fade-down">
-
-               <section className="learn-content-section" >
-                 <div className="learn-text-content">
-                   <h2 className="learn-highlight-title">
+            <div className="mainHistoryContainer">
+                 <div className="introduction-container" data-aos="fade-down">
+                   <h1 className="title"  >
 A Global Movement
-</h2>
-                   <h3 className="learn-main-heading" style={{fontFamily:"cursive"}} data-aos="fade-down">A Passion Turned Purpose</h3>
+</h1>
+                   <h2 className="section-heading" style={{fontFamily:"cursive"}} data-aos="fade-down">A Passion Turned Purpose</h2>
                    <section className="history-section">
-        <p>
+        <p className='affiliation-intro'>
           <strong style={{fontFamily:"cursive"}}>The Learning Hub (TLH)</strong> was founded in <strong style={{fontFamily:"cursive"}}>2018</strong> by <strong style={{fontFamily:"cursive"}}>Nida Iqbal Shah</strong>. 
           An engineer by profession, a certified STEM teacher trainer, and a UK-licensed educator. 
           What began as a passion for meaningful, hands-on learning soon grew into a trusted platform 
@@ -49,7 +41,7 @@ A Global Movement
           <strong style={{fontFamily:"cursive"}}> UAE, Saudi Arabia, Qatar, Bahrain, Pakistan, India, Bangladesh,</strong> and beyond.
         </p>
         <br />
-        <p>
+        <p className='affiliation-intro'>
           In the early days, TLH began by teaching science and technology on a small scale. 
           A team of dedicated educators and engineers was brought together, all sharing the same vision. 
           Together, they transformed a small idea into a powerful learning platform.
@@ -58,18 +50,18 @@ A Global Movement
 
       <section className="history-section">
         <h2 className="section-heading" style={{fontFamily:"cursive"}}>A Community of Future-Ready Learners</h2>
-        <p>
+        <p className='affiliation-intro'>
           We are preparing students for a world led by innovation. A world where we need scientists, 
           engineers, coders, and creators. We believe every child can succeed at their own pace, 
           with the right guidance and tools.
         </p>
         <br />
-        <p>
+        <p className='affiliation-intro'>
           Today, <strong style={{fontFamily:"cursive"}}>TLH is more than a school.</strong> It’s a growing community of learners, families, and 
           educators who believe in meaningful, modern education.
         </p>
         <br />
-        <p>
+        <p  className='affiliation-intro'>
           Our story began with a single decision. Now, it’s a mission that reaches across borders 
           and into the future.
         </p>
@@ -88,30 +80,27 @@ A Global Movement
     preload="auto"
   />
 </div>
-                 </div>
-               </section>
 
 
         
         </div>
         <section className="why-choose-section" data-aos="fade-down">
-        <h2 className="section-title" >Why The Learning Hub ?</h2>
+
+        <h1 className="title chooseContainer" >Why The Learning Hub ?</h1>
         <div className="why-choose-grid" >
+
           {featured.map((feature) => (
             <div key={feature.id} className="why-choose-card">
               <h3 className="feature-title">{feature.title}</h3>
               <p className="feature-description">{feature.description}</p>
             </div>
           ))}
-        </div>
-      </section>
-    </div>
-          <div className="secondAboutContainer">
-            <div className='aboutBottomContainer'>
-                    <h1>We have the solutions you are seeking.</h1>
-                    <Link to={`/contact-us`}>Discover more</Link>
-                </div>
             </div>
+
+      </section>
+            </div>
+    </div>
+          
       </Fragment>
   )
 }

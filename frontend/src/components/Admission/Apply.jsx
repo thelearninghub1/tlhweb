@@ -1,15 +1,9 @@
-import React, { Fragment , useState , useEffect} from 'react';
+import React, { Fragment , useState , useEffect, useRef} from 'react';
 import './Apply.css';
 import Select from "react-select";
 import countries from "world-countries";
 import ClientCard from '../About/ClientCard';
-import { IoLogoYoutube } from "react-icons/io";
-import { Dialog, DialogContent } from '@mui/material';
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
 import PartnerCard from './PartnerCard.jsx';
-import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import {useDispatch , useSelector} from 'react-redux';
@@ -23,7 +17,6 @@ import { allFeatureAction } from '../../actions/affilationAction';
 import { createCallBackAction } from '../../actions/contactUsAction';
 import { CONTACT_US_RESET } from '../../constants/contactUsContants';
 import Metadata from '../layout/Metadata/Metadata.jsx';
-import gif from '../../assets/location.gif';
  
 
 
@@ -67,90 +60,8 @@ const [WhatsAppNo,setWhatsAppNo] = useState("")
   const {  error:cardError, cards } = useSelector((state) => state.allCards);
   const {  error:partnerError,partners  } = useSelector((state) => state.allPartners);
   const {error:featureError,afiliations} = useSelector((state)=>state.allAffiliation);
-  const [text, setText] = useState("");
-  const [index, setIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const typingSpeed = isDeleting ? 50 : 150; // Typing & deleting speed
 
-  useEffect(() => {
-
-                            AOS.init()
-    
-    const currentWord = textOptions[index];
-    let timeout;
-
-    if (!isDeleting && text === currentWord) {
-      timeout = setTimeout(() => setIsDeleting(true), 1000); // Pause before deleting
-    } else if (isDeleting && text === "") {
-      setIsDeleting(false);
-      setIndex((prevIndex) => (prevIndex + 1) % textOptions.length); // Move to next word
-    } else {
-      timeout = setTimeout(() => {
-        setText((prev) =>
-          isDeleting
-            ? prev.slice(0, -1) // Remove last character
-            : currentWord.slice(0, prev.length + 1) // Add next character
-        );
-      }, typingSpeed);
-    }
-
-    return () => clearTimeout(timeout);
-  }, [text, isDeleting, index]);
-
-  var settings = {
-    dots: false,
-    infinite: true, // Enables looping
-    slidesToShow: 4, // Number of slides visible
-    slidesToScroll: 1,
-    autoplay: true, 
-    autoplaySpeed: 2000, // Speed between transitions
-    speed: 1000, // Transition speed
-    cssEase: "linear", // Ensures smooth transition without pause
-    pauseOnHover: true,
-    variableWidth: false, // Prevents slide flickering
-    fade: false, // Ensures smooth movement
-    responsive: [
-      {
-        breakpoint: 1400,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: true
-        }
-      },
-      {
-        breakpoint: 1100,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          initialSlide: 2
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  };
-
-  
-  const feedbackSettings = {
-    dots: true,
-    infinite: true,
-    slidesToShow: 1, // Show one feedback at a time
-    slidesToScroll: 1,
-    autoplay: true, 
-    autoplaySpeed: 3000, // Adjust speed between transitions
-    speed: 1000, // Transition speed
-    cssEase: "ease-in-out", // Smooth transition
-    fade: true, // Ensures smooth fade effect
-    arrows: false, // Hide arrows if not needed
-    pauseOnHover: true
-  };
+ 
 
 
 
@@ -171,14 +82,7 @@ myForm.set("country", country?.label ?? "");
     dispatch(createCallBackAction(myForm))
   };
 
-  const [open , setOpen] = useState(false);
-  
-  
-     
-  
-      const submitReviewToggle = () => {
-        open ? setOpen(false) : setOpen(true);
-    }
+
 
     const featured = [
       { id: 1, title: "No Physical Barriers", description: " Learn from anywhere with fully online classes — quality education delivered right to your home." },
@@ -187,6 +91,52 @@ myForm.set("country", country?.label ?? "");
       { id: 4, title: "Parent-Teacher Collaboration", description: "Parents stay informed through regular updates, progress tracking, and direct communication with instructors." }
     ];
 
+    const [feedbackIndex, setFeedbackIndex] = useState(0);
+    const [isPartnerHovering, setIsPartnerHovering] = useState(false);
+  
+    // Refs
+    const partnerScrollRef = useRef();
+    
+   // Auto change feedback carousel
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setFeedbackIndex((prevIndex) =>
+          allFeedbacks && allFeedbacks.length > 0
+            ? (prevIndex + 1) % allFeedbacks.length
+            : 0
+        );
+      }, 3000);
+      return () => clearInterval(interval);
+    }, [allFeedbacks]);
+  
+    // Partner auto scroll
+    useEffect(() => {
+                                  AOS.init()
+
+      const container = partnerScrollRef.current;
+      let intervalId;
+      const startScroll = () => {
+        intervalId = setInterval(() => {
+          if (!isPartnerHovering && container) {
+            container.scrollBy({ left: 6, behavior: 'smooth' });
+            const atEnd = container.scrollLeft + container.offsetWidth >= container.scrollWidth - 1;
+            if (atEnd) {
+              clearInterval(intervalId);
+              setTimeout(() => {
+                container.scrollTo({ left: 0, behavior: 'auto' });
+                setTimeout(startScroll, 500);
+              }, 1000);
+            }
+          }
+        }, 20);
+      };
+      startScroll();
+      return () => clearInterval(intervalId);
+    }, [isPartnerHovering]);
+  
+    const scrollPartnerLeft = () => partnerScrollRef.current?.scrollBy({ left: -300, behavior: 'smooth' });
+    const scrollPartnerRight = () => partnerScrollRef.current?.scrollBy({ left: 300, behavior: 'smooth' });
+  
   
 
       useEffect(() => {
@@ -249,14 +199,13 @@ myForm.set("country", country?.label ?? "");
       <div className="servicesDetailsContainer">
         <div className='topServiceDetailsContainer'>
         <div className="container">
-  <div className="left-section">
- 
-  </div>
+      <div className="left-section">
+      </div>
 
-  <div className="right-section">
-    <h3>We are here to help</h3>
-    <p>Speak with an Admission Counselor</p>
-    <form onSubmit={handleSubmit}>
+      <div className="right-section">
+        <h3>We are here to help</h3>
+        <p>Speak with an Admission Counselor</p>
+       <form onSubmit={handleSubmit}>
       <input
         type="text"
         name="name"
@@ -314,23 +263,25 @@ myForm.set("country", country?.label ?? "");
      
       <button type="submit" className="request-btn">REQUEST A CALL BACK</button>
     </form>
-  </div>
-</div>
+      </div>
+    </div>
         </div>
         
-        <div className="thirdApplyBottomContainer">
-        <div className="learn-portal-container">
+      
+                        <div className="homesMainContainer">
 
+            <div className="learn-portal-container">
+    
 
-  {/* Enrollment Button */}
-  <section className="learn-enrollment" data-aos="fade-down">
-    <button className="learn-enroll-btn">
-    ENROLL YOUR CHILD FOR SESSION 2025-26 AND BECOME PART OF THE LEARNING HUB.
-    </button>
-  </section>
+      {/* Enrollment Button */}
+      <section className="learn-enrollment" data-aos="fade-down">
+        <button className="learn-enroll-btn">
+          ENROLL YOUR CHILD FOR SESSION 2025-26 AND BECOME PART OF THE LEARNING HUB COMMUNITY.
+        </button>
+      </section>
 
-  {/* Content Section */}
-  <section className="learn-content-section" data-aos="fade-down">
+      {/* Content Section */}
+      <section className="learn-content-section" data-aos="fade-down">
     <div className="learn-text-content">
     
     
@@ -365,169 +316,120 @@ Whether you are a school looking to add VR/AR learning, a parent seeking a stron
 
     </div>
     <div className="learn-image-container">
-      <img src={gif} alt="Learn Academy Platform" />
+                    <iframe
+    src="https://youtube.com/embed/MqJJiP_x1IE"
+    title="YouTube video player"
+    className="responsive-iframe"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerPolicy="strict-origin-when-cross-origin"
+    allowFullScreen
+  ></iframe>
+                  </div> 
+  </section>
     </div>
-  </section>
-</div>
-        </div>
-        <div className="thirdApplyBottomContainer2">
-        <div className="edu-portal-container">
-  <div className="edu-cards-container" data-aos="fade-down">
-    {afiliations && afiliations.map((feature) => (
-      <div key={feature.id} className="edu-feature-card">
-        <img src={feature.avatar.url} alt={feature.title} className="edu-card-image" />
-        <h3 className="edu-card-title">{feature.title}</h3>
-        <p className="edu-card-description">{feature.description}</p>
-      </div>
-    ))}
-  </div>
-  <button className="edu-enroll-btn" data-aos="fade-down">ENROLL NOW</button>
-</div>
-        </div>
-        <div> 
-        <div className="affiliation-container">
-  {/* Affiliations & Accreditations Section */}
-  <section className="affiliation-section">
-    <h2 className="affiliation-title" data-aos="fade-down">Accreditation & Affiliation</h2>
-   <p className="affiliation-list" >
-        <p data-aos="fade-down">
-          <strong>FBISE Islamabad; Institution Code: 3124</strong> – Ensuring academic integrity and nationwide recognition.
-        </p>
-        <p data-aos="fade-down">
-          <strong>Private Cambridge Setup</strong> – Offering customized Cambridge programs for families seeking flexibility with global standards.
-        </p>
-        <p data-aos="fade-down">
-          <strong>The Education Consultancy (TEC)</strong> – Our academic partner committed to excellence in education across borders.
-        </p>
-        <p data-aos="fade-down">
-          <strong>EDAP School Management System</strong> – A digital platform to manage and streamline academic, administrative, and communication processes.
-        </p>
-      </p>
-  </section>
-
-  {/* Happy Students Section */}
-  <section className="happy-students-section">
-    <h2 className="happy-students-title" data-aos="fade-down">Happy Students</h2>
-    <div className="video-container" data-aos="fade-down">
-    { allStudentFeedbacks && allStudentFeedbacks.map((video) => (
-            <iframe
-              key={video._id}
-              className="student-video"
-              src={video.ytLink}
-              title={video._id}
-              allowFullScreen
-            ></iframe>
-          ))}
-    </div>
-  </section>
-        </div>
-        <div className='secondMidContainer'>
-                <div className='secondMidContainer1' data-aos="fade-down">
-                        <h1>Behind the Vision. </h1>
-   
-      
-
-       
-                     <button className="button">
-                     <IoLogoYoutube onClick={submitReviewToggle} /> 
-                       </button>
-
-                     
-                 
-                       <Dialog
-open={open}
-onClose={submitReviewToggle}
-className="dialogBox"
->
-<DialogContent>
-<iframe
-  width="520"
-  height="315"
-  src="https://www.youtube.com/embed/q8NjbC4uGW4?si=IXLXpGdfxXw6Tfa4"
-  title="YouTube video player"
-  style={{ border: 0 }}
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  referrerPolicy="strict-origin-when-cross-origin"
-  allowFullScreen
-  className='iframeTag'
-></iframe>
-</DialogContent>
-</Dialog>
-
-
-</div>
-
-          <div className='secondMidContainer2' data-aos="fade-down">
-          <div >
-
-          <Slider {...feedbackSettings} className="feedback-carousel">
-          {allFeedbacks  && allFeedbacks.map((feedback, index) => (
-      <div className="carouselFeedContainer" key={feedback._id}>
-        <i>{feedback.description}</i>
-        <img src={feedback.avatar.url} alt={feedback.name} />
-        <b>{feedback.name}</b>
-        <p>{feedback.title}</p>
-      </div>
-    ))}
-</Slider>
-</div>
-          <div>
-          {
-                  cards && cards.map((card)=>(
-                    <ClientCard card={card} key={card._id}  />
-
-                  ) )
-                }
-       
+            <div className="edu-portal-container">
+      <div className="edu-cards-container" data-aos="fade-down">
+        {afiliations && afiliations.map((feature) => (
+          <div key={feature.id} className="edu-feature-card">
+            <img src={feature.avatar.url} alt={feature.title} className="edu-card-image" />
+            <h3 className="edu-card-title">{feature.title}</h3>
+            <p className="edu-card-description">{feature.description}</p>
           </div>
+        ))}
       </div>
-        
-
-     </div>
-        </div>
-        <div className="thirdApplyBottomContainer5">
-        <div className="homepage-container">
-  {/* Our Partners Section */}
-  <div className='thirdMidContainer'>
-                <div>
-                <p data-aos = "fade-down">Our team Partners</p>
-                <h1 data-aos = "fade-down">Our  Partners</h1>
-                <h3 data-aos = "fade-down">Teamwork is the ability to work together toward a common vision. The ability is to directly involve the individual accomplishments toward organizational objectives. It is the fuel that allows common people to attain uncommon results.</h3>
-                </div>
-               
-              
-                   <Slider {...settings} className='bhai' data-aos="fade-down">
-                   {partners && partners.map((member) => (
-    <PartnerCard member={member} key={member._id} />
-  ))}
-</Slider>
-
-
-            
-              
-         
-            </div>
-
-  {/* Why Choose Learn Section */}
-  <section className="why-choose-section">
-    <h2 className="section-title" data-aos="fade-down">Why Choose Learn</h2>
-    <div className="why-choose-grid" data-aos="fade-down">
-      {featured.map((feature) => (
-        <div key={feature.id} className="why-choose-card">
-          <h3 className="feature-title">{feature.title}</h3>
-          <p className="feature-description">{feature.description}</p>
-        </div>
-      ))}
+      <button className="edu-enroll-btn" data-aos="fade-down">ENROLL NOW</button>
     </div>
-  </section>
-</div>
-        </div>
-      </div>
-      <div className="secondAboutContainer">
-        <div className='aboutBottomContainer'>
-                <h1>We have the solutions you are seeking.</h1>
-                <Link to={`/contact-us`}>Discover more</Link>
+            <div> 
+   
+      {/* Happy Students Section */}
+     <section className="happy-students-section">
+                <h2 className="title" data-aos="fade-down">School Insights</h2>
+                <div className="video-container" data-aos="fade-down">
+                  {allStudentFeedbacks && allStudentFeedbacks.map((video) => (
+                    <iframe
+                      key={video._id}
+                      className="student-video"
+                      src={video.ytLink}
+                      title={video._id}
+                      allowFullScreen
+                    ></iframe>
+                  ))}
+                </div>
+              </section>
+         <div className="secondMidContainer">
+                <div className="secondMidContainer1">
+                      <iframe
+                        width="520"
+                        height="315"
+                        src="https://www.youtube.com/embed/q8NjbC4uGW4?si=IXLXpGdfxXw6Tfa4"
+                        title="YouTube video player"
+                        style={{ border: 0 }}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allowFullScreen
+                        className='iframeTag'
+                      ></iframe>
+                </div>
+
+                <div className="secondMidContainer2">
+                  <div className="custom-carousel">
+                    {allFeedbacks && allFeedbacks.map((feedback, i) => (
+                      <div
+                        key={feedback._id}
+                        className={`carouselFeedContainer carousel-slide ${i === feedbackIndex ? 'active' : ''}`}
+                      >
+                        <i>{feedback.description}</i>
+                        <b>{feedback.name}</b>
+                        <p>{feedback.title}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="client-card-container">
+                    {cards && cards.map((card) => (
+                      <ClientCard card={card} key={card._id} />
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
+      {/* Our Partners Section */}
+          <div className='thirdMidContainer'>
+                <div>
+                  <p data-aos="fade-down">Our team Partners</p>
+                  <h1 data-aos="fade-down" className='title'>Technology Partners</h1>
+                  <h3 data-aos="fade-down">Teamwork is the ability to work together toward a common vision. The ability is to directly involve the individual accomplishments toward organizational objectives. It is the fuel that allows common people to attain uncommon results.</h3>
+                </div>
+
+                <div className="teacher-carousel-wrapper">
+                  <button onClick={scrollPartnerLeft}>◀</button>
+                  <div
+                    className="teacher-carousel"
+                    ref={partnerScrollRef}
+                    onMouseEnter={() => setIsPartnerHovering(true)}
+                    onMouseLeave={() => setIsPartnerHovering(false)}
+                  >
+                    {partners && partners.map((member) => (
+                      <PartnerCard member={member} key={member._id} />
+                    ))}
+                  </div>
+                  <button onClick={scrollPartnerRight}>▶</button>
+                </div>
+              </div>
+
+
+      {/* Why Choose Learn Section */}
+    <section className="why-choose-section" data-aos="fade-down">
+                <h1 className="title chooseContainer">Why The Learning Hub ?</h1>
+                <div className="why-choose-grid">
+                  {featured.map((feature) => (
+                    <div key={feature.id} className="why-choose-card">
+                      <h3 className="feature-title">{feature.title}</h3>
+                      <p className="feature-description">{feature.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+    </div>
         </div>
   </Fragment>
     )

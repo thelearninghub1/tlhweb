@@ -25,7 +25,7 @@
 .topServiceDetailsContainer {
   background-image: url('../../assets/apply.jpeg');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size:cover;
   color: white;
   filter: brightness(0.8) contrast(110%);
   flex-direction: column;
@@ -33,8 +33,7 @@
   text-align: center;
   flex-wrap: wrap;
   box-sizing: border-box;
-  padding: 10vmax 7vmax;
-
+  min-height: 120vmin !important;
 
 }
 
@@ -68,23 +67,17 @@ animation: blink 0.7s infinite;
 /* Page Layout */
 .container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-end;
   box-sizing: border-box;
-  height: auto;
+  height: auto ;
   flex-wrap: wrap;
 
 
 }
 
 /* Left Section */
-.left-section {
-  flex: 1;
-  color: white;
-  padding: 40px;
-  animation: form1 2s  forwards ease-out;
 
-}
 
 @keyframes form1 {
   0% {
@@ -96,15 +89,7 @@ animation: blink 0.7s infinite;
 }
 
 
-.left-section h2 {
-  font-size: 2.2rem;
-  margin: 15px 0;
-}
 
-.left-section p {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-}
 
 .apply-btn {
   background-color: #2C7EAD;
@@ -127,13 +112,14 @@ animation: blink 0.7s infinite;
 .right-section {
   animation: form 2s  forwards ease-out;
   flex: 1;
-  max-width: 400px;
+  max-width: 422px;
   background:#2C7EAD;
   color: white;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.102);
   text-align: center;
+  margin-right: 4vmax;
 }
   
 @keyframes form {
@@ -200,12 +186,9 @@ input, select {
 
   }
 
-  .left-section {
-    margin-bottom: 20px;
-  }
 
  
-  .left-section, .right-section {
+   .right-section {
     width: 90%;
 }
 
@@ -246,63 +229,6 @@ input, select {
 /* General Styles */
 
 
-.learn-portal-container {
-width: 100%;
-text-align: center;
-padding: 20px;
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-box-sizing: border-box;
-
-}
-
-
-
-
-/* Enrollment Button */
-.learn-enrollment {
-margin: 20px 0;
-display: flex;
-align-items: center;
-justify-content: center;
-text-align: center;
-}
-
-.learn-enroll-btn {
-background-color: #2C7EAD;
-color: white;
-border: none;
-padding: 25px 30px;
-font-size: 1.2rem;
-font-weight: bold;
-border-radius: 10px;
-transition: all 0.5s;
-cursor: pointer;
-}
-
-.learn-enroll-btn:hover {
-background-color: #124e71;
-}
-
-/* Content Section */
-.learn-content-section {
-display: flex;
-align-items: center;
-justify-content: space-between;
-flex-wrap: wrap;
-width: 90%;
-padding: 3vmax 0vmax;
-box-sizing: border-box;
-}
-
-/* Text Section */
-.learn-text-content {
-flex: 1;
-text-align: left;
-max-width: 600px;
-}
 
 .learn-highlight-title {
 color: #2C7EAD;
@@ -322,26 +248,6 @@ font-size: 1rem;
 line-height: 1.6;
 color: #333;
 margin-bottom: 20px;
-}
-
-/* Apply Button */
-.learn-apply-btn {
-background-color: #2C7EAD;
-color: white;
-border: none;
-padding: 12px 20px;
-font-size: 1.1rem;
-font-weight: bold;
-border-radius: 5px;
-cursor: pointer;
-margin-bottom: 1vmax ;
-transition: all 0.5s;
-}
-
-.learn-apply-btn:hover {
-background-color: rgba(0, 0, 0, 0.055);
-border: 2px solid #2C7EAD;
-color: #2C7EAD;
 }
 
 /* Image Section */
@@ -373,84 +279,6 @@ max-width: 600px ;
 
 /* Fifth Page */
 
-.edu-portal-container {
-width: 100%;
-padding: 50px 20px;
-text-align: center;
-background-color: hsl(0, 0%, 100%);
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-flex-wrap: wrap;
-
-}
-
-/* Cards Layout */
-.edu-cards-container {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-gap: 50px;
-align-items: center;
-justify-content: center;
-max-width: 1200px;
-}
-/* Feature Cards */
-.edu-feature-card {
-background-color: #C1E3F8;
-padding: 20px;
-border-radius: 10px;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-text-align: center;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: space-between;
-height: 100%;
-
-}
-
-.edu-card-image {
-width: 100%;
-max-width: 250px;
-height: 150px;
-border-radius: 8px;
-object-fit: cover;
-}
-
-.edu-card-title {
-font-size: 1.4rem;
-font-weight: bold;
-margin: 15px 0;
-color: #2C7EAD;
-}
-
-.edu-card-description {
-font-size: 1rem;
-color: #333;
-line-height: 1.5;
-}
-
-/* Enroll Button */
-.edu-enroll-btn {
-background-color: #2C7EAD;
-color: white;
-border: none;
-padding: 12px 20px;
-font-size: 1.2rem;
-font-weight: bold;
-border-radius: 5px;
-cursor: pointer;
-margin-top: 30px;
-transition: all 0.5s;
-}
-
-.edu-enroll-btn:hover {
-background-color: rgba(255, 255, 255, 0.204);
-color: #2C7EAD;
-border: 1px solid #2C7EAD;
-}
-
 /* Responsive Design */
 @media screen and (max-width: 768px) {
 .edu-cards-container {
@@ -458,7 +286,12 @@ border: 1px solid #2C7EAD;
 }
 }
 
+  .learn-main-heading {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 10px;
 
+  }
 
 /* thirdApplyBottomContainer3  */
 
@@ -520,6 +353,8 @@ color: #2C7EAD;
 margin-bottom: 15px;
 position: relative;
 }
+
+
 
 .happy-students-title::after {
 content: "";
@@ -601,73 +436,7 @@ width: 150px;
 height: auto;
 }
 
-/* ===== Why Choose Learn Section ===== */
-.why-choose-section {
-background-color: #f9f9f9;
-padding: 50px 20px;
-display: flex;
-flex-direction: column;
-flex-wrap: wrap;
-align-items: center;
-justify-content: center;
-}
 
-.why-choose-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-gap: 20px;
-max-width: 900px;
-margin: auto;
-}
-
-.why-choose-card {
-background: linear-gradient(135deg, #2C7EAD, #124e71);
-color: white;
-padding: 20px;
-border-radius: 10px;
-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.feature-title {
-font-size: 1.2rem;
-font-weight: bold;
-margin-bottom: 10px;
-}
-
-.feature-description {
-font-size: 1rem;
-}
-
-
-.chooseUsContainer {
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-padding: 2vmax;
-box-sizing: border-box;
-box-shadow: 0  0 6px #2C7EAD;
-}
-
-.chooseUsContainer > h1 {
-text-align: center;
-text-shadow: 0 0 7px rgba(0, 0, 0, 0.361);
-font: 700 42px "Roboto";
-color: rgba(0, 0, 0, 0.785);
-padding: 1vmax 0vmax;
-text-transform: capitalize;
-}
-.chooseUsContainer > ul {
-padding: 0vmax 2vmax;
-padding-bottom: 1vmax;
-
-}
-.chooseUsContainer > ul > li {
-font:300 19px "Roboto" ;
-padding: 1vmax 0.5vmax;
-color: rgba(0, 0, 0, 0.776);
-
-}
 @media screen and (max-width: 740px) {
 .topServiceDetailsContainer {
 min-height: 100vmin !important;

@@ -73,7 +73,7 @@ const ContactPartnerWithUs = () => {
             <h1 data-aos="fade-down">Become a TLH Partner Today</h1>
             <p data-aos="fade-down">Together, let’s expand access to quality STEAM education worldwide
             </p>
-            */}
+            */} 
           </div>
           <div className='middlecontactPartnerContainer'>
             <h1 data-aos="fade-down">Partner with Us</h1>
@@ -96,7 +96,7 @@ const ContactPartnerWithUs = () => {
               <input type="submit" value="Send" className='contactPartnerBtn'  />
             </form>
           </div>
-          <div className='lowercontactPartnerContainer'>
+          <div className='lowerContactContainer'>
             <div>
               <h1>GET IN TOUCH</h1>
               <p>For all enquiries, please email us using the form above. We will respond within 24 hours!</p>
@@ -114,7 +114,7 @@ const ContactPartnerWithUs = () => {
                 <h1>Contact Us</h1>
                 <p>Reach out to us</p>
                 <h3>for more details</h3>
-                <p className='bhai'>+352 621 508 645 </p>
+                <p className='bhai'>+92 345 3324826</p>
                 <p>ithelearninghub@gmail.com</p>
               </div>
               <div>

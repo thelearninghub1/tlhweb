@@ -28,20 +28,6 @@
     flex-direction: column;
     
 }
-.topServicesContainer > h1 {
-    font: 600 46px "Roboto";
-    padding: 1vmax;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    text-shadow:  0 0 7px rgba(255, 255, 255, 0.68);
-
-}
-    .topServicesContainer > p {
-    font: 200 21px "Roboto";
-    padding: 0vmax 6vmax;
-    text-shadow:  0 0 7px rgba(255, 255, 255, 0.68);
-    letter-spacing: 0.1vmax;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
 
 @media screen and (max-width: 730px) {
     .topServicesContainer {
@@ -87,7 +73,7 @@
     transition: all 0.5s;
   }
   .step-box:hover {
-    color:white ;
+    color:white  ;
     border: 2px solid white;
     background-color:rgba(0, 0, 0, 0.627) ;
   }
@@ -95,14 +81,27 @@
   .step-number {
     font-weight: bold;
     color: #2a7fba;
+    font-family: "Sour Gummy";
     display: block;
     margin-bottom: 5px;
+    font-size: 32px;
   }
  
   
-  h3 {
+.step-box h3 {
     margin: 5px 0;
+    font-family: "Sour Gummy";
+    font-size: 22px;
+    color: rgba(0, 0, 0, 0.738);
+
+
   }
+  
+.step-box  p {
+  
+    font-family: "Parkinsans";
+    color: rgba(0, 0, 0, 0.738);
+ }
   
 
   
@@ -111,10 +110,30 @@
     width: 50%;
     padding: 20px;
   }
+
+    .age-criteria > h2 , .registration-steps > h2{
+      font-family: "Sour Gummy";
+      font-size: 35px;
+      color: rgba(0, 0, 0, 0.709);
+      text-transform: uppercase;
+
+    }
   
   table {
     width: 100%;
     border-collapse: collapse;
+
+  }
+
+  table > thead > tr > th {
+      font-family: "Sour Gummy";
+      font-size: 24px;
+
+  }
+  table > tbody > tr > td {
+font-family: "Parkinsans";
+      font-size: 18px;
+      font-weight: 400;
 
   }
   
@@ -152,7 +171,7 @@
     border: none;
     color: white;
     background-color: #2C7EAD;
-    font: 100 16px "Lato";
+    font: 800 16px "Sour Gummy";
     letter-spacing: 0.1vmax;
     transition: all 0.5s;
   }
@@ -176,7 +195,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
 }
 
 .videoContainer > video {
@@ -223,7 +241,6 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
   width: 100%;
   overflow: hidden;
   z-index: 0;
@@ -231,7 +248,6 @@
 
 .video-background video {
   width: 100%;
-  height: 100%;
   object-fit: cover;
 }
 
@@ -258,7 +274,14 @@
 @media screen and (max-width: 730px) {
  
 
-
+.topServicesContainer {
+   height: auto ; /* Remove fixed height */
+        background-size: contain;
+        background-repeat:no-repeat ;
+        background-position: center;
+        background-color: #131d58;
+        padding: 0; 
+}
 
   .video-overlay-content h1 {
     padding-top: 200px;
@@ -269,28 +292,13 @@
   }
 }
 
-@media screen and (max-width: 500px) {
-    .topServicesContainer > h1 {
-        padding-top: 20vmax;
-    }
-     .servicesContainer > div:first-child  {
-        min-height: 90vmin;
-    }
-}
+
 
 @media screen and (max-width: 450px) {
-    .servicesContainer > div:first-child  {
-        min-height: 100vmin;
-    }
-    .topServicesContainer > h1 {
-        padding-top: 25vmax;
-    }
+ 
     .lowerContactContainer > div:last-child  {
         flex-direction: column;
     }
-    .topServicesContainer > p {
-    padding-bottom: 2vmax;
 
-    }
   
 }

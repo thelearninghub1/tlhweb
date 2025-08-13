@@ -11,37 +11,8 @@
     box-sizing: border-box;
     width: 100%;
 }
-.topCareerContainer {
-    background-image: url("../../../assets/career.jpeg");
-    align-items: center;
-    color: white;
-    justify-content: center;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    flex-direction: column;
-    min-height: 70vmin;
-    box-sizing: border-box;
-    text-align: center;
-    filter: brightness(0.99) contrast(105%);
-}
 
-.topCareerContainer > h1 {
-    font: 600 2.6vmax "Roboto";
-    text-shadow:  0 0 7px rgba(255, 255, 255, 0.68);
-    padding: 1vmax;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    padding-top: 5vmax;
-}
 
-.topCareerContainer > p {
-    text-shadow:  0 0 7px rgba(255, 255, 255, 0.68);
-    
-    font: 200 1.4vmax "Roboto";
-    padding: 0vmax 6vmax;
-    letter-spacing: 0.1vmax;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
 .midProjectContainer {
 display: flex;
 box-sizing: border-box;
@@ -64,27 +35,21 @@ flex-wrap: wrap;
 
 
 @media screen and (max-width: 740px) {
-.topCareerContainer > h1 {
-    font-size: 3.7vmax;
-    padding-top: 14vmax;
-    padding-bottom: 1vmax;
-
-}
-
-.topCareerContainer > p {
-    font-size: 2.6vmax;
-
-}
-
-
-}
-
-
-@media screen and (max-width: 550px) {
 .topCareerContainer {
-    min-height: 100vmin;
+         height: auto ; /* Remove fixed height */
+        aspect-ratio: 16/9; /* Match your image's aspect ratio */
+        background-size: contain;
+        background-repeat:no-repeat ;
+        background-position: center;
+        background-color: #131d58;
+        padding: 0; 
 }
+
+
 }
+
+
+
 
 
 .cvContainer {
@@ -93,9 +58,8 @@ flex-wrap: wrap;
     text-align: left;
 }
 .cvContainer > label {
-    font: 300 20px cursive;
+    font: 300 20px "Sour Gummy";
     padding: 1vmax;
-    text-decoration:overline;
     color: rgba(0, 0, 0, 0.797);
 }
 
@@ -119,3 +83,281 @@ flex-wrap: wrap;
     color: #2C7EAD;
     cursor: pointer;
   }
+
+
+
+
+
+  .contactContainer {
+    min-height: 100vmin;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden ;
+}
+
+.upperCareerContainer {
+    flex-direction: column;
+    text-align: center;
+    background-image: url("../../../assets/career.jpeg");
+    height: 70vmin;
+
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    
+    -webkit-filter: brightness(0.6);
+    filter: brightness(0.8) contrast(120%);
+
+    box-sizing: border-box;
+}
+
+
+.middleContactContainer > div{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 3vmax ;
+
+}
+
+.contactUsForm {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    min-height: 40vmin;
+    box-sizing: border-box;
+    align-items: flex-start;
+}
+
+.contactUsForm > div {
+    width: 100%;
+    padding: 1vmax 0vmax;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.contactUsForm > div > input , .contactUsForm > div > textarea{
+    padding: 1vmax;
+    width: 80%;
+    border: none;
+    font: 200 1.1vmax "Parkinsans";
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.313);
+    color: rgba(0, 0, 0, 0.699);
+    outline: none;
+    resize: none;
+    box-sizing: border-box;
+}
+.contactBtn {
+    padding: 1vmax 4vmax;
+    cursor: pointer;
+    box-shadow:  0 0 7px rgba(0, 0, 0, 0.364);
+    border: none;
+    color: white;
+    background-color: #2C7EAD;
+    font: 100 1vmax "Parkinsans";
+    letter-spacing: 0.1vmax;
+    transition: all 0.5s;
+}
+
+.contactBtn:hover {
+    color: #2C7EAD;
+    border: 2px solid #2C7EAD;
+    background-color: white;
+}
+.middleContactContainer > div {
+    display: flex;
+    flex-direction: column;
+}
+.middleContactContainer > div > div {
+    padding: 1vmax 0vmax;
+}
+.middleContactContainer> div > div > p {
+    font: 100 19px "Parkinsans";
+    padding: 0.5vmax 0vmax;
+}
+.middleContactContainer> div > div > h1 {
+    font: 800 28px "Sour Gummy";
+    padding: 0.5vmax 0vmax;
+}
+.linkBtn {
+    color: #2C7EAD;
+    transition: all 0.5s;
+    text-decoration: none;
+
+
+}
+.linkBtn:hover {
+    text-decoration: underline;
+}
+
+.lowerContactContainer {
+    background-color: #2C7EAD;
+    color: white;
+    flex-direction: column;
+    box-sizing: border-box;
+
+}
+
+.lowerContactContainer > div {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    display: flex;
+    padding: 2vmax;
+    flex-direction: column;
+}
+
+.lowerContactContainer > div:first-child > h1 {
+    font: 600 2.6vmax "Sour Gummy";
+    padding: 1vmax;
+}
+
+.lowerContactContainer > div:first-child > p {
+    font: 200 1.3vmax "Parkinsans";
+    padding: 0vmax 6vmax;
+    letter-spacing: 0.1vmax;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+.lowerContactContainer > div:last-child  {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+}
+
+.lowerContactContainer > div:last-child  > div {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    padding-bottom: 8vmax;
+}
+
+.lowerContactContainer > div:last-child  > div > svg {
+    font-size: 4vmax;
+}
+.lowerContactContainer > div:last-child  > div > h1 {
+    font: 600 1.6vmax "Sour Gummy";
+    padding: 1vmax;
+}
+.lowerContactContainer > div:last-child  > div > h3 {
+    
+    font: 600 1.1vmax "Sour Gummy";
+}
+
+.lowerContactContainer > div:last-child  > div > p {
+    color: rgba(255, 255, 255, 0.874);
+    font: 600 1vmax "Parkinsans";
+    letter-spacing: 0.1vmax;
+}
+
+.bhai {
+    padding-top: 0.5vmax;
+}
+.lowerContactContainer > div:last-child  > div > a {
+    
+    font: 600 1.1vmax "Parkinsans";
+    color: rgba(255, 255, 255, 0.797);
+    padding-top: 0.5vmax;
+    text-decoration: none;
+}
+.lowerContactContainer > div:last-child  > div > a:hover {
+    text-decoration: underline;
+}
+
+
+
+@media screen and (max-width: 900px) {
+
+
+.middleContactContainer > div > div > h1 {
+    font-size: 2.9vmax;
+}
+.contactUsForm > div > input , .contactUsForm > div > textarea{
+    width: 100%;
+    font-size: 1.8vmax;
+    padding: 1.5vmax 1vmax;
+
+}
+.contactBtn {
+    font-size: 1.8vmax;
+    margin-top: 2vmax;
+    padding: 1.5vmax 5vmax;
+}
+.middleContactContainer > div > div > p {
+    font-size: 2vmax;
+}
+.lowerContactContainer > div:first-child > h1 {
+    font-size: 3.6vmax;
+}
+.lowerContactContainer > div:first-child > p {
+    font-size: 2.2vmax;
+}
+.lowerContactContainer > div:last-child  > div > svg {
+    font-size: 6.5vmax;
+}
+.lowerContactContainer > div:last-child  > div > h1 {
+    font-size: 2.8vmax;
+}
+.lowerContactContainer > div:last-child  > div > h3 {
+    font-size: 2vmax;
+}
+.lowerContactContainer > div:last-child  > div > p {
+    font-size: 1.6vmax;
+}
+.lowerContactContainer > div:last-child  > div > a {
+    font-size: 2vmax;
+}
+
+}
+@media screen and (max-width: 730px) {
+    .contactContainer > div:first-child  {
+        background-size: contain;
+    }
+
+       .upperCareerContainer {
+        height: auto ; /* Remove fixed height */
+        aspect-ratio: 16/9; /* Match your image's aspect ratio */
+        background-size: contain;
+        background-repeat:no-repeat ;
+        background-position: center;
+        background-color: #131d58;
+        padding: 0; /* Remove extra padding that can add space */
+    }
+
+}
+@media screen and (max-width: 500px) {
+    .contactContainer > div:first-child  {
+        background-size: contain;
+    }
+
+}
+@media screen and (max-width: 600px) {
+.middleContactContainer {
+    flex-direction: column;
+}
+.middleContactContainer > div {
+    width: 90%;
+}
+
+}
+
+
+
+@media screen and (max-width: 450px) {
+  
+  
+    .lowerContactContainer > div:last-child  {
+        flex-direction: column;
+    }
+ 
+}

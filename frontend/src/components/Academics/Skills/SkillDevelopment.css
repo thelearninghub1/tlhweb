@@ -61,47 +61,7 @@
   }
   
   
-  /* Page Layout */
-  .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-sizing: border-box;
-    height: auto;
-    flex-wrap: wrap;
-  
-  
-  }
-  
-  /* Left Section */
-  .left-section {
-    flex: 1;
-    color: white;
-    padding: 40px;
-    animation: form1 2s  forwards ease-out;
-  
-  }
-  
-  @keyframes form1 {
-    0% {
-      transform: translateX(400%);
-    }
-    100% {
-      transform: translateX(0%);
-    }
-  }
-  
-  
-  .left-section h2 {
-    font-size: 2.2rem;
-    margin: 15px 0;
-  }
-  
-  .left-section p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-  }
-  
+ 
   .apply-btn {
     background-color: #2C7EAD;
     color: white;
@@ -242,114 +202,14 @@
   /* General Styles */
   
   
-  .learn-portal-container {
-  width: 100%;
-  text-align: center;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  box-sizing: border-box;
-  
-  }
   
   
   
-  
-  /* Enrollment Button */
-  .learn-enrollment {
-  margin: 20px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  }
-  
-  .learn-enroll-btn {
-  background-color: #2C7EAD;
-  color: white;
-  border: none;
-  padding: 25px 30px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  border-radius: 10px;
-  transition: all 0.5s;
-  cursor: pointer;
-  }
-  
-  .learn-enroll-btn:hover {
-  background-color: #124e71;
-  }
-  
-  /* Content Section */
-  .learn-content-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 90%;
-  padding: 3vmax 0vmax;
-  box-sizing: border-box;
-  }
-  
-  /* Text Section */
-  .learn-text-content {
-  flex: 1;
-  text-align: left;
-  max-width: 600px;
-  }
-  
-  .learn-highlight-title {
-  color: #2C7EAD;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  text-decoration: underline;
-  }
-  
-  .learn-main-heading {
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-  }
-  
-  .learn-description {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #333;
-  margin-bottom: 20px;
-  }
   
   /* Apply Button */
-  .learn-apply-btn {
-  background-color: #2C7EAD;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.5s;
-  }
+ 
   
-  .learn-apply-btn:hover {
-  background-color: rgba(0, 0, 0, 0.055);
-  border: 2px solid #2C7EAD;
-  color: #2C7EAD;
-  }
-  
-  /* Image Section */
-  .learn-image-container {
-  flex: 1;
-  text-align: center;
-  }
-  
-  .learn-image-container img {
-  width: 100%;
-  max-width: 600px ;
-  }
-  
+
   /* Responsive Design */
   @media screen and (max-width: 1024px) {
   .learn-content-section {
@@ -364,84 +224,6 @@
   
   
   /* Fifth Page */
-  
-  .edu-portal-container {
-  width: 100%;
-  padding: 50px 20px;
-  text-align: center;
-  background-color: hsl(0, 0%, 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  
-  }
-  
-  /* Cards Layout */
-  .edu-cards-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 50px;
-  align-items: center;
-  justify-content: center;
-  max-width: 1200px;
-  }
-  /* Feature Cards */
-  .edu-feature-card {
-  background-color: #C1E3F8;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
-  
-  }
-  
-  .edu-card-image {
-  width: 100%;
-  max-width: 250px;
-  height: 150px;
-  border-radius: 8px;
-  object-fit: cover;
-  }
-  
-  .edu-card-title {
-  font-size: 1.4rem;
-  font-weight: bold;
-  margin: 15px 0;
-  color: #2C7EAD;
-  }
-  
-  .edu-card-description {
-  font-size: 1rem;
-  color: #333;
-  line-height: 1.5;
-  }
-  
-  /* Enroll Button */
-  .edu-enroll-btn {
-  background-color: #2C7EAD;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 30px;
-  transition: all 0.5s;
-  }
-  
-  .edu-enroll-btn:hover {
-  background-color: rgba(255, 255, 255, 0.204);
-  color: #2C7EAD;
-  border: 1px solid #2C7EAD;
-  }
   
   /* Responsive Design */
   @media screen and (max-width: 768px) {
@@ -553,23 +335,7 @@
   padding: 50px 20px;
   }
   
-  /* Section Titles */
-  .section-title {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #2C7EAD;
-  margin-bottom: 20px;
-  position: relative;
-  }
-  
-  .section-title::after {
-  content: "";
-  display: block;
-  width: 80px;
-  height: 3px;
-  background-color: #2C7EAD;
-  margin: 5px auto;
-  }
+ 
   
   /* ===== Our Partners Section ===== */
   .partners-section {
@@ -593,73 +359,7 @@
   height: auto;
   }
   
-  /* ===== Why Choose Learn Section ===== */
-  .why-choose-section {
-  background-color: #f9f9f9;
-  padding: 50px 20px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  }
   
-  .why-choose-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  max-width: 900px;
-  margin: auto;
-  }
-  
-  .why-choose-card {
-  background: linear-gradient(135deg, #2C7EAD, #124e71);
-  color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .feature-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-  }
-  
-  .feature-description {
-  font-size: 1rem;
-  }
-  
-  
-  .chooseUsContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 2vmax;
-  box-sizing: border-box;
-  box-shadow: 0  0 6px #2C7EAD;
-  }
-  
-  .chooseUsContainer > h1 {
-  text-align: center;
-  text-shadow: 0 0 7px rgba(0, 0, 0, 0.361);
-  font: 700 42px "Roboto";
-  color: rgba(0, 0, 0, 0.785);
-  padding: 1vmax 0vmax;
-  text-transform: capitalize;
-  }
-  .chooseUsContainer > ul {
-  padding: 0vmax 2vmax;
-  padding-bottom: 1vmax;
-  
-  }
-  .chooseUsContainer > ul > li {
-  font:300 19px "Roboto" ;
-  padding: 1vmax 0.5vmax;
-  color: rgba(0, 0, 0, 0.776);
-  
-  }
   @media screen and (max-width: 740px) {
   .topDevelopmentContainer {
   min-height: 100vmin !important;

@@ -1,17 +1,12 @@
 const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
 const Feedback = require("../models/feedbackModel");
 const ErrorHandler = require("../utils/errorhandler");
-const cloudinary = require("cloudinary");
 
 
 // Create Feedback  -- Admin
 exports.createFeedback = catchAsyncErrors(async (req,res,next) =>{
 
-    const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar,{
-        folder:"feedback-avatars",
-        quality:80,
-        progressive:true
-    })
+
 
     const {name,title,description} = req.body;
 
@@ -19,10 +14,7 @@ exports.createFeedback = catchAsyncErrors(async (req,res,next) =>{
         name,
         title,
         description,
-        avatar:{
-            public_id:myCloud.public_id,
-            url:myCloud.secure_url
-        }
+      
     });
 
 
@@ -74,22 +66,6 @@ exports.updateFeedback = catchAsyncErrors(async (req,res,next)=>{
         description:req.body.description,
     }
 
-      if ( req.body.avatar ) {
-            let dashboard = await Feedback.findById(req.params.id);
-            const imageId = dashboard.avatar.public_id;
-            await cloudinary.v2.uploader.destroy(imageId);
-                
-            const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar,{
-                folder:"feedback-avatars",
-                quality:80,
-                progressive:true
-            })
-        
-            newdashboardData.avatar = {
-                public_id: myCloud.public_id,
-                url: myCloud.secure_url,
-              };
-            }
     
     
         feedback = await Feedback.findByIdAndUpdate(req.params.id,newdashboardData,{
@@ -115,10 +91,7 @@ exports.deleteFeedback   = catchAsyncErrors(async (req,res,next)=>{
     };
 
 
-    await cloudinary.v2.uploader.destroy(feedback.avatar.public_id)
-
-    await feedback.deleteOne()
-
+   
 
     res.status(200).json({
         success:true,

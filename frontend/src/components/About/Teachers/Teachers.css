@@ -25,146 +25,24 @@
     filter: brightness(0.99) contrast(105%);
 }
 
-.topTeacherContainer > h1 {
-    font: 600 2.6vmax "Roboto";
-    text-shadow:  0 0 7px rgba(255, 255, 255, 0.68);
-    padding: 1vmax;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    padding-top: 5vmax;
-}
 
-.topTeacherContainer > p {
-    text-shadow:  0 0 7px rgba(255, 255, 255, 0.68);
-    
-    font: 200 1.4vmax "Roboto";
-    padding: 0vmax 6vmax;
-    letter-spacing: 0.1vmax;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-.midProjectContainer {
-display: flex;
-box-sizing: border-box;
-padding: 2vmax;
-align-items: center;
-justify-content: center;
-flex-wrap: wrap;
-}
-
-.categoryFilter {
-    display: flex;
-    padding: 1.5vmax 2vmax;
-    list-style: none;
-    box-sizing: border-box;
-}
-
-.categoryFilter > li {
-    padding: 1.4vmax 3vmax;
-    box-shadow: 0 0 7px #2C7EAD;
-    background-color: #2C7EAD;
-    color: white;
-    cursor: pointer;
-    font: 400 1.1vmax "Roboto";
-    transition: all 0.5s;
-    transform: translateY(100vmax);
-    animation: categoryFilter  forwards ease-in-out 1.5s ;
-}
-
-.removeFilter {
-    padding: 1.4vmax 3vmax;
-    box-shadow: 0 0 7px #2C7EAD;
-    background-color: #2C7EAD;
-    color: white;
-    cursor: pointer;
-    font: 400 1.1vmax "Roboto";
-    transition: all 0.5s;
-    transform: translateY(100vmax);
-    animation: categoryFilter  forwards ease-in-out 1.5s ;  
-    border: none;
-}
-
-.removeFilter:hover {
-    background-color: black;
-}
-
-.categoryFilter:nth-child(even){
-    transform: translateX(-100vmax);
-    animation: categoryFilter  forwards ease-in-out 1.5s;
-
-}
-
-@keyframes categoryFilter {
-    to {
-          transform: translateY(0vmax);
-      }
-  }
-
-
-.categoryFilter > li:hover {
-    background-color: black;
-}
 
 .bottomProjectContainer {
-    display: flex;
-    justify-content: center;
-    box-sizing: border-box;
-    padding: 2vmax ;
-    padding-top: 0vmax;
-    min-height: 50vmin;
-    max-width: 100%;
-    width: 100vw;
-    flex-wrap: wrap;
+ width: 95% !important;
+ margin: 1vmax auto;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ box-sizing: border-box;
+ flex-wrap: wrap;
+ flex: none;
+ flex-direction: row !important;
 }
 
-.paginationContainer {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 7vmax;
-    box-sizing: border-box;
-}
 
-.pagination {
-    display: flex;
-    list-style: none;
-    padding: 2vmax;
-}
 
-.item-class {
-    border: 1px solid rgba(0, 0, 0, 0.42);
-    padding: 1.1vmax 0vmax;
-    transition: all 0.5s;
-}
-.item-class:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-}
-.item-class:first-child {
-    border-bottom-left-radius: 10px;
-    border-top-left-radius: 10px;
-}
-.item-class:last-child {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
 
-.active-item {
-    background-color: #2C7EAD;
 
-}
-
-.item-link {
-padding: 1vmax 2vmax;
-text-decoration: none;
-font: 100 0.9vmax "Roboto";
-color: rgba(0, 0, 0, 0.571);
-transition: all 0.5s;
-
-}
-.item-link:hover {
-    color: #2C7EAD;
-}
-
-.active-link {
-color: white;
-}
 
 @media screen and (max-width: 1100px) {
     .item-link {
@@ -263,13 +141,32 @@ color: white;
         flex-direction: column;
         flex-wrap: wrap;
         padding: 1vmax;
+        font-family: "Parkinsans";
     }
     .TeacherDescription > h2 {
         font-size: 2.2vmax;
         margin-bottom: 1vmax;
+        font-family: "Sour Gummy";
     }
 
-
+ .learn-apply-btn {
+  background-color: #2C7EAD;
+  color: white;
+  border: none;
+  font-family: "Sour Gummy";
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.5s;
+  }
+  
+  .learn-apply-btn:hover {
+  background-color: rgba(0, 0, 0, 0.055);
+  border: 2px solid #2C7EAD;
+  color: #2C7EAD;
+  }
 
 
 
@@ -301,7 +198,6 @@ color: white;
 .video-banner video {
   width: 100%;
   object-fit: cover;
-  height: 100%;
 }
 
 .overlay-content {
@@ -311,13 +207,13 @@ color: white;
 }
 
 .overlay-content h1 {
-  font: 600 2.6vmax "Roboto";
+  font: 600 2.6vmax "Sour Gummy";
   text-shadow: 0 0 7px rgba(255, 255, 255, 0.68);
   padding-top: 5vmax;
 }
 
 .overlay-content p {
-  font: 200 1.4vmax "Roboto";
+  font: 200 1.4vmax "Parkinsans";
   padding: 0vmax 6vmax;
   text-shadow: 0 0 7px rgba(255, 255, 255, 0.68);
   letter-spacing: 0.1vmax;
@@ -325,9 +221,7 @@ color: white;
 
 
 @media screen and (max-width: 740px) {
-  .topTeacherContainer {
-    height: 100vmin;
-  }
+
   .overlay-content h1 {
     font-size: 3.7vmax;
     padding-top: 14vmax;
@@ -337,8 +231,6 @@ color: white;
   }
   .video-banner video {
   width: 100%;
-  margin-top: -13vmax;
-  height: 100%;
   object-fit: contain;
 }
 }
@@ -346,8 +238,6 @@ color: white;
 @media screen and (max-width: 550px) {
   .video-banner video {
   width: 100%;
-    margin-top: -6vmax;
-  height: 100%;
   object-fit: contain;
 }
     
@@ -356,10 +246,223 @@ color: white;
 @media screen and (max-width: 450px) {
   .video-banner video {
   width: 100%;
-  height: 100%;
-    margin-top: 1vmax;
 
   object-fit: contain;
 }
     
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.teacherCardContainer {
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+    flex: none;
+    transition: all 0.5s;
+    background-color: whitesmoke;
+    margin: 12px  ;
+    align-items: center;
+    justify-content: center;
+    width: 265px;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.38);  
+    transition: all 0.5s !important;
+    border: 5vmax !important;
+   
+}
+
+.teacherCardContainer:nth-last-child {
+    align-items: flex-start;
+}
+
+.teacherCardContainer > div {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    flex-direction: column;
+}
+
+.teacherCardContainer > div:first-child {
+    width: 100%;
+    height: 90%;
+}
+
+.teacherCardContainer > div:first-child > img {
+    width: 265px;
+    height: 270px;
+}
+
+.teacherCardContainer > div:last-child {
+    height: 10% ;
+    padding: 15px 0vmax;
+    text-align: center;
+}
+.teacherCardContainer > div:last-child > p {
+    font: 300 17px "Parkinsans";
+    color: rgba(0, 0, 0, 0.735);
+    padding-bottom: 1vmax;
+    transition: all 0.5s;
+
+}
+.teacherCardContainer > div:last-child > h3 {
+    font: 500 27px "Sour Gummy";
+    color: rgba(0, 0, 0, 0.735);
+    transition: all 0.5s;   
+    padding: 0.1vmax 0vmax;
+}
+
+.teacherCardContainer:hover {
+    border-bottom:5px solid #2C7EAD ;
+
+}
+
+@media screen and (max-width:350px) {
+    .teacherCardContainer {
+        width: 200px;
+    }
+    .teacherCardContainer > div:first-child > img {
+        width: 200px;
+    }
+.teacherCardContainer > div:last-child > p {
+    font-size: 14px;
+}
+.teacherCardContainer > div:last-child > h3 {
+    font-size: 24px;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Each card takes fixed space for consistency */
+.teacherCardContainer {
+  display: flex;
+  flex-direction: column;
+  height: 460px; /* ✅ Fixed height */
+  width: 270px;  /* ✅ Fixed width */
+  background-color: whitesmoke;
+  margin: 12px;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.38);
+  transition: all 0.5s !important;
+  box-sizing: border-box;
+}
+
+/* Image Section */
+.teacherCardContainer > div:first-child {
+  width: 100%;
+  height: 60%;
+}
+.teacherCardContainer > div:first-child > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+/* Text + Button Section */
+.teacherCardContainer > div:last-child {
+  height: 40%;
+  padding: 1vmax;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.teacherCardContainer > div:last-child > h3 {
+  font: 500 22px "Sour Gummy";
+  color: rgba(0, 0, 0, 0.9);
+  margin-bottom: 0.5vmax;
+}
+
+.teacherCardContainer > div:last-child > p {
+  font: 300 16px "Parkinsans";
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 1vmax;
+}
+
+.teacherCardContainer:hover {
+  border-bottom: 5px solid #2C7EAD;
+}
+
+/* Button styling already present */
+.learn-apply-btn {
+  margin-top: auto;
+}
+
+/* Responsive media query: adjust card width on small screens */
+@media screen and (max-width: 768px) {
+  .teacherCardContainer {
+    width: 100%;
+    height: fit-content;
+
+  }
+  .bottomProjectContainer {
+    width: 100%;
+  }
 }

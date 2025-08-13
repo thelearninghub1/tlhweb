@@ -26,22 +26,8 @@
     filter: brightness(0.99) contrast(105%);
 }
 
-.topTeamContainer > h1 {
-    font: 600 2.6vmax "Roboto";
-    text-shadow:  0 0 7px rgba(255, 255, 255, 0.68);
-    padding: 1vmax;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    padding-top: 5vmax;
-}
 
-.topTeamContainer > p {
-    text-shadow:  0 0 7px rgba(255, 255, 255, 0.68);
-    
-    font: 200 1.4vmax "Roboto";
-    padding: 0vmax 6vmax;
-    letter-spacing: 0.1vmax;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
+
 .midProjectContainer {
 display: flex;
 box-sizing: border-box;
@@ -64,7 +50,7 @@ flex-wrap: wrap;
     background-color: #2C7EAD;
     color: white;
     cursor: pointer;
-    font: 400 1.1vmax "Roboto";
+    font: 400 1.1vmax "Sour Gummy";
     transition: all 0.5s;
     transform: translateY(100vmax);
     animation: categoryFilter  forwards ease-in-out 1.5s ;
@@ -104,17 +90,6 @@ flex-wrap: wrap;
     background-color: black;
 }
 
-.bottomProjectContainer {
-    display: flex;
-    justify-content: center;
-    box-sizing: border-box;
-    padding: 2vmax ;
-    padding-top: 0vmax;
-    min-height: 50vmin;
-    max-width: 100%;
-    width: 100vw;
-    flex-wrap: wrap;
-}
 
 .paginationContainer {
     display: flex;

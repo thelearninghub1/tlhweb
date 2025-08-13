@@ -19,7 +19,6 @@ import Turkey from './components/Locations/Turkey/Turkey';
 import Qatar from './components/Locations/Qatar/Qatar';
 import Bahrain from './components/Locations/Bahrain/Bahrain';
 import History from './components/About/History/History';
-import Team from './components/About/Team/Team';
 import Teachers from './components/About/Teachers/Teachers';
 import TechPartners from './components/About/TechPartners/TechPartners';
 import Career from './components/About/Career/Career';
@@ -82,6 +81,7 @@ import CreateFeature from './components/Admin/Features/CreateFeature';
 import AllFeature from './components/Admin/Features/AllFeature';
 import UpdateFeature from './components/Admin/Features/UpdateFeature';
 import PageNotFound from './components/layout/PageNotFound/PageNotFound';
+import MiniFooter from './components/layout/Footer/MiniFooter';
 
 function App() {
  
@@ -94,7 +94,7 @@ const {isAuthenticatedUser , user} = useSelector((state)=>state.loginUser)
 
     WebFont.load({
      google:{
-       families:["Roboto","Poppins","Inter","Lato"]
+       families:["Parkinsans","Sour Gummy","Inter","Lato"]
      }
     })
 
@@ -104,6 +104,7 @@ const {isAuthenticatedUser , user} = useSelector((state)=>state.loginUser)
   return (
     <>
     <Router>
+
       <Header />
       {isAuthenticatedUser && <UserOptions user={user} /> }  
       <ContactOptions />
@@ -126,7 +127,6 @@ const {isAuthenticatedUser , user} = useSelector((state)=>state.loginUser)
         <Route path='/qatar' element={<Qatar />} />
         <Route path='/bahrain' element={<Bahrain />} />
         <Route path='/our-history' element={<History />} />
-        <Route path='/our-team' element={<Team />} />
         <Route path='/our-teachers' element={<Teachers />} />
         <Route path='/technology-partners' element={<TechPartners />} />
         <Route path='/career' element={<Career />} />
@@ -187,7 +187,7 @@ const {isAuthenticatedUser , user} = useSelector((state)=>state.loginUser)
 
       </Routes>
       <Footer />
-      
+      <MiniFooter />
     </Router>
 
     </>

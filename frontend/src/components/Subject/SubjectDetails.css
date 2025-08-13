@@ -14,8 +14,11 @@
     justify-content: center;
     box-sizing: border-box;
     align-items: center;
-}
 
+}
+.projectDetailsContainer > div:first-child {
+    padding: 4vmax ;
+}
 .projectDetailsContainer > div:last-child {
     align-items: flex-start;
     justify-content: space-evenly;
@@ -24,7 +27,7 @@
 
 .carouselImage {
     width: 100%;
-    max-width: 1200px;
+
     height: 400px;
     object-fit: contain;
     display: block;
@@ -45,12 +48,12 @@
 }
 
 .projectDetailsContainer > div:last-child > div > h3 {
-    font: 550 20px "Roboto";
+    font: 550 20px "Sour Gummy";
     color: rgba(0, 0, 0, 0.74);
 }
 
 .projectDetailsContainer > div:last-child > div > p {
-    font: 100 14px "Lato";
+    font: 100 14px "Parkinsans";
     padding: 0.5vmax 0vmax;
     color: rgba(0, 0, 0, 0.64);
     letter-spacing: 0.1vmax;

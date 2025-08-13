@@ -11,7 +11,7 @@
   justify-content: center;
   align-items: center;
   color: #fff;
-  font-family: 'Varela Round', sans-serif;
+  font-family: 'Parkinsans', "Sour Gummy";
   text-shadow: 0 30px 10px rgba(0, 0, 0, 0.15);
   position: relative;
 }
@@ -50,6 +50,7 @@
 .main h1 {
   font-size: 10vw;
   margin: 0;
+  font-family: "Sour Gummy";
 }
 
 .main p {
@@ -71,7 +72,7 @@
   box-shadow: 0 30px 15px rgba(0, 0, 0, 0.15);
   outline: none;
   color: #fff;
-  font: 400 16px/2.5 Nunito, 'Varela Round', sans-serif;
+  font: 400 16px/2.5 "Sour Gummy";
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.5s;
