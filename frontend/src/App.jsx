@@ -82,6 +82,7 @@ import AllFeature from './components/Admin/Features/AllFeature';
 import UpdateFeature from './components/Admin/Features/UpdateFeature';
 import PageNotFound from './components/layout/PageNotFound/PageNotFound';
 import MiniFooter from './components/layout/Footer/MiniFooter';
+import ScrollToTop from './components/layout/Scroll/Scroll';
 
 function App() {
  
@@ -106,6 +107,8 @@ const {isAuthenticatedUser , user} = useSelector((state)=>state.loginUser)
     <Router>
 
       <Header />
+    <ScrollToTop/>
+
       {isAuthenticatedUser && <UserOptions user={user} /> }  
       <ContactOptions />
       <Routes>

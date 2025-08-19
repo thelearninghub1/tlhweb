@@ -203,7 +203,7 @@ const Home = () => {
               </div>
 
               <section className="happy-students-section">
-                <h2 className="title" data-aos="fade-down">School Sights</h2>
+                <h2 className="title" data-aos="fade-down">School Insights</h2>
                 <div className="video-container" data-aos="fade-down">
                   {allStudentFeedbacks && allStudentFeedbacks.map((video) => (
                     <iframe
