@@ -5,6 +5,7 @@
     overflow: hidden;
     flex-direction: column;
     min-height: auto;
+
   
   }
   
@@ -66,7 +67,7 @@
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    height: auto;
+    height: 90vmin;
     flex-wrap: wrap;
   
   
@@ -129,8 +130,7 @@
     border-radius: 10px;
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.102);
     text-align: center;
-  }
-    
+  }    
   @keyframes form {
     0% {
       transform: translateX(-400%);

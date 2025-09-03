@@ -83,6 +83,7 @@ import UpdateFeature from './components/Admin/Features/UpdateFeature';
 import PageNotFound from './components/layout/PageNotFound/PageNotFound';
 import MiniFooter from './components/layout/Footer/MiniFooter';
 import ScrollToTop from './components/layout/Scroll/Scroll';
+import Pakistan from './components/Locations/Pakistan/Pakistan';
 
 function App() {
  
@@ -111,6 +112,7 @@ const {isAuthenticatedUser , user} = useSelector((state)=>state.loginUser)
 
       {isAuthenticatedUser && <UserOptions user={user} /> }  
       <ContactOptions />
+
       <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/*' element={<PageNotFound />} />
@@ -123,6 +125,7 @@ const {isAuthenticatedUser , user} = useSelector((state)=>state.loginUser)
         <Route path='/registeration-guide' element={<AdmissionGuide />} />
         <Route path='/apply-now' element={<Apply />} />
         <Route path='/ksa' element={<Ksa />} />
+        <Route path='/pakistan' element={<Pakistan />} />
         <Route path='/uae' element={<Uae />} />
         <Route path='/oman' element={<Oman />} />
         <Route path='/malaysia' element={<Malaysia />} />
@@ -187,8 +190,8 @@ const {isAuthenticatedUser , user} = useSelector((state)=>state.loginUser)
         <Route path='/admin/features' element={isAuthenticatedUser ? <AllFeature />:<Login/>   } />
         <Route path='/admin/features/edit/:id' element={isAuthenticatedUser ? <UpdateFeature />:<Login/>   } />
 
-
       </Routes>
+
       <Footer />
       <MiniFooter />
     </Router>

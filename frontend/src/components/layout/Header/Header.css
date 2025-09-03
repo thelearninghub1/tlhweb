@@ -357,6 +357,18 @@
 }
 
 @media screen and (max-width: 730px) {
+    /* Limit submenu height & make it scrollable */
+.minilistContainer,
+.minilistAdmissionContainer,
+.minilistContactContainer,
+.minilistLocationContainer,
+.minilistAboutContainer {
+  max-height: 100px;   /* adjust as you like */
+  overflow-y: auto;
+  scrollbar-width: thin;           /* Firefox */
+  scrollbar-color: #2C7EAD #0f1643; /* scrollbar thumb & track */
+}
+
     .navbarContainer {
         flex-direction: column-reverse;
         padding: 0%;
@@ -580,3 +592,41 @@ padding: 1vmax;
     background-color: #0f1643;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/* For Webkit browsers (Chrome, Edge, Safari) */
+.minilistContainer::-webkit-scrollbar,
+.minilistAdmissionContainer::-webkit-scrollbar,
+.minilistContactContainer::-webkit-scrollbar,
+.minilistLocationContainer::-webkit-scrollbar,
+.minilistAboutContainer::-webkit-scrollbar {
+  width: 6px;
+}
+
+.minilistContainer::-webkit-scrollbar-thumb,
+.minilistAdmissionContainer::-webkit-scrollbar-thumb,
+.minilistContactContainer::-webkit-scrollbar-thumb,
+.minilistLocationContainer::-webkit-scrollbar-thumb,
+.minilistAboutContainer::-webkit-scrollbar-thumb {
+  background-color: #2C7EAD;
+  border-radius: 10px;
+}
+
+.minilistContainer::-webkit-scrollbar-track,
+.minilistAdmissionContainer::-webkit-scrollbar-track,
+.minilistContactContainer::-webkit-scrollbar-track,
+.minilistLocationContainer::-webkit-scrollbar-track,
+.minilistAboutContainer::-webkit-scrollbar-track {
+  background: #0f1643;
+}
+

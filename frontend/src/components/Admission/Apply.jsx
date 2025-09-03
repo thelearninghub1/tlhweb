@@ -50,6 +50,8 @@ const [country, setCountry] = useState(""); // safe to use null
 const [program,setProgram] = useState("")
 const [phoneNo,setPhoneNo] = useState("")
 const [WhatsAppNo,setWhatsAppNo] = useState("")
+const [companyName,setCompanyName] = useState("")
+const [message,setMessage] = useState("")
 
   
   const dispatch = useDispatch();
@@ -75,6 +77,8 @@ const [WhatsAppNo,setWhatsAppNo] = useState("")
     myForm.set("program",program);
     myForm.set("phoneNo",phoneNo);
     myForm.set("WhatsAppNo",WhatsAppNo);
+    myForm.set("message",message);
+    myForm.set("companyName",companyName);
 
 myForm.set("country", country?.label ?? "");
 
@@ -237,6 +241,20 @@ myForm.set("country", country?.label ?? "");
         value={WhatsAppNo}
         onChange={(e)=>setWhatsAppNo(e.target.value)}
       />
+         <input
+        type="text"
+        name="comapnyName"
+        placeholder="Student Age"
+        value={companyName}
+        onChange={(e)=>setCompanyName(e.target.value)}
+      />
+        <input
+        type="text"
+        name="message"
+        placeholder="Student Grade"
+        value={message}
+        onChange={(e)=>setMessage(e.target.value)}
+      />
       <select name="program" required value={program} onChange={(e)=>setProgram(e.target.value)}>
         <option value="">-- Choose Program --</option>
         {programs && programs.map((program, index) => (
@@ -309,7 +327,12 @@ At TLH, we believe that learning should feel like an adventure. It should spark 
 
       <p className="affiliation-text" data-aos="fade-down">
 Whether you are a school looking to add VR/AR learning, a parent seeking a strong STEAM foundation, or a student ready to dive into coding, robotics, or design, we have something for you.      </p>
-      <button className="learn-apply-btn">APPLY NOW</button>
+<button
+  className="learn-apply-btn"
+  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+>
+  APPLY NOW
+</button>
   
     </div>
 

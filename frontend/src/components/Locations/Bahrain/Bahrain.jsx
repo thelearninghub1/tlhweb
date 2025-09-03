@@ -76,6 +76,9 @@ const [program,setProgram] = useState("")
 const [phoneNo,setPhoneNo] = useState("")
 const [WhatsAppNo,setWhatsAppNo] = useState("")
 
+const [companyName,setCompanyName] = useState("")
+const [message,setMessage] = useState("")
+
     const dispatch = useDispatch();
       const {  error:FormError, success } = useSelector((state) => state.createContactUs);
   
@@ -140,6 +143,9 @@ const [WhatsAppNo,setWhatsAppNo] = useState("")
      myForm.set("phoneNo",phoneNo);
      myForm.set("WhatsAppNo",WhatsAppNo);
  
+    myForm.set("message",message);
+    myForm.set("companyName",companyName);
+
  myForm.set("country", country?.label ?? "");
  
  
@@ -230,64 +236,78 @@ const [WhatsAppNo,setWhatsAppNo] = useState("")
       <div className="right-section">
         <h3>We are here to help</h3>
         <p>Speak with an Admission Counselor</p>
-       <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="name"
-        placeholder="Full Name*"
-        required
-        value={name}
-        onChange={(e)=>setName(e.target.value)}
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="Email*"
-        required
-        value={email}
-        onChange={(e)=>setEmail(e.target.value)}
-      />
-      <input
-        type="tel"
-        name="phone"
-        placeholder="Phone*"
-        required
-        value={phoneNo}
-        onChange={(e)=>setPhoneNo(e.target.value)}
-      />
-      <input
-        type="text"
-        name="whatsapp"
-        placeholder="Whatsapp"
-        value={WhatsAppNo}
-        onChange={(e)=>setWhatsAppNo(e.target.value)}
-      />
-      <select name="program" required value={program} onChange={(e)=>setProgram(e.target.value)}>
-        <option value="">-- Choose Program --</option>
-        {programs && programs.map((program, index) => (
-      <option key={index} value={program}>
-        {program}
-      </option>
-    ))}
-      </select>
-  <Select
-  options={formattedCountries}
-  value={country || ""}
-  onChange={(selectedOption) => setCountry(selectedOption)}
-  placeholder="Select Country"
-  className="country-select"
-  getOptionLabel={(e) => (
-    <div className="country-option">
-      <img src={e.flag} alt="" width="20px" style={{ marginRight: 10 }} />
-      {e.label}
-    </div>
-  )}
-/>
-
-
+         <form onSubmit={handleSubmit}>
+           <input
+             type="text"
+             name="name"
+             placeholder="Full Name*"
+             required
+             value={name}
+             onChange={(e)=>setName(e.target.value)}
+           />
+           <input
+             type="email"
+             name="email"
+             placeholder="Email*"
+             required
+             value={email}
+             onChange={(e)=>setEmail(e.target.value)}
+           />
+           <input
+             type="tel"
+             name="phone"
+             placeholder="Phone*"
+             required
+             value={phoneNo}
+             onChange={(e)=>setPhoneNo(e.target.value)}
+           />
+           <input
+             type="text"
+             name="whatsapp"
+             placeholder="Whatsapp"
+             value={WhatsAppNo}
+             onChange={(e)=>setWhatsAppNo(e.target.value)}
+           />
+              <input
+             type="text"
+             name="comapnyName"
+             placeholder="Student Age"
+             value={companyName}
+             onChange={(e)=>setCompanyName(e.target.value)}
+           />
+             <input
+             type="text"
+             name="message"
+             placeholder="Student Grade"
+             value={message}
+             onChange={(e)=>setMessage(e.target.value)}
+           />
+           <select name="program" required value={program} onChange={(e)=>setProgram(e.target.value)}>
+             <option value="">-- Choose Program --</option>
+             {programs && programs.map((program, index) => (
+           <option key={index} value={program}>
+             {program}
+           </option>
+         ))}
+           </select>
+       <Select
+       options={formattedCountries}
+       value={country || ""}
+       onChange={(selectedOption) => setCountry(selectedOption)}
+       placeholder="Select Country"
+       className="country-select"
+       getOptionLabel={(e) => (
+         <div className="country-option">
+           <img src={e.flag} alt="" width="20px" style={{ marginRight: 10 }} />
+           {e.label}
+         </div>
+       )}
+     />
      
-      <button type="submit" className="request-btn">REQUEST A CALL BACK</button>
-    </form>
+     
+          
+           <button type="submit" className="request-btn">REQUEST A CALL BACK</button>
+         </form>
       </div>
     </div>
             </div>
@@ -332,8 +352,12 @@ At TLH, we believe that learning should feel like an adventure. It should spark 
 
       <p className="affiliation-text" data-aos="fade-down">
 Whether you are a school looking to add VR/AR learning, a parent seeking a strong STEAM foundation, or a student ready to dive into coding, robotics, or design, we have something for you.      </p>
-      <button className="learn-apply-btn">APPLY NOW</button>
-  
+<button
+  className="learn-apply-btn"
+  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+>
+  APPLY NOW
+</button>  
     </div>
 
 

@@ -53,7 +53,7 @@
     display: flex;
 }
 
-.contactUsForm > div > input , .contactUsForm > div > textarea{
+.contactUsForm > div > input , .contactUsForm > div > textarea  {
     padding: 1vmax;
     width: 80%;
     border: none;
@@ -64,6 +64,7 @@
     resize: none;
     box-sizing: border-box;
 }
+
 .contactBtn {
     padding: 1vmax 4vmax;
     cursor: pointer;
@@ -192,7 +193,7 @@
 .middleContactContainer > div > div > h1 {
     font-size: 2.9vmax;
 }
-.contactUsForm > div > input , .contactUsForm > div > textarea{
+.contactUsForm > div > input , .contactUsForm > div > textarea ,   .bro{
     width: 100%;
     font-size: 1.8vmax;
     padding: 1.5vmax 1vmax;
@@ -270,4 +271,68 @@
         flex-direction: column;
     }
  
+}
+
+
+/* === Fix Phone Input Alignment === */
+.contactUsPartnerForm .react-tel-input {
+  width: 80%;
+  position: relative;
+}
+
+.contactUsPartnerForm .react-tel-input .form-control {
+  width: 100% !important;
+  height: 45px; /* match your other input height */
+  padding-left: 60px; /* make space for flag */
+  border: none;
+  font: 200 1.1vmax "Parkinsans";
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.313);
+  color: rgba(0, 0, 0, 0.699);
+  outline: none;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.contactUsPartnerForm .react-tel-input .flag-dropdown {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.contactUsPartnerForm .react-tel-input .selected-flag {
+  height: 100%;
+  padding: 0 10px;
+  border-right: 1px solid #ccc;
+  background: #fff;
+  border-radius: 5px 0 0 5px;
+}
+
+
+
+
+@media screen and (max-width: 900px) {
+  .contactUsForm > div > input,
+  .contactUsForm > div > textarea,
+  .contactUsPartnerForm .react-tel-input {
+    width: 100% !important;
+    font-size: 1.8vmax;
+    padding: 1.5vmax 1vmax;
+  }
+
+  .contactUsPartnerForm .react-tel-input .form-control {
+    width: 100% !important;
+    font-size: 1.8vmax;
+    padding-left: 60px;
+    height: auto; /* makes it scale with padding */
+  }
+
+  .contactBtn {
+    font-size: 1.8vmax;
+    margin-top: 2vmax;
+    padding: 1.5vmax 5vmax;
+  }
 }

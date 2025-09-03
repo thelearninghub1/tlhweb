@@ -45,6 +45,7 @@ const locations = [
   { name: "Turkey", nameLink: "turkey" },
   { name: "Qatar", nameLink: "qatar" },
   { name: "Bahrain", nameLink: "bahrain" },
+  { name: "Pakistan", nameLink: "pakistan" },
   { name: "Malaysia", nameLink: "malaysia" },
 ];
 

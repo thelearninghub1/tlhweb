@@ -9,18 +9,19 @@ const sendEmail = require('../utils/sendEmail');
 // Create a new contact us message  
 exports.createContactUsMessage = catchAsyncErrors(async (req, res, next) => {
 
-    const { name, email, message, country } = req.body;
+    const { name, email, message, country , phoneNo } = req.body;
 
     
     const contactUsMessage = await ContactUs.create({
         name,
         email,
         message,
-        country
+        country,
+        phoneNo
     });
 
 
-    const sendMessage = `Dear Admin, My name is ${name} and I am from ${country}. My email is ${email}. I would like to say: ${message} \n Regards,
+    const sendMessage = `Dear Admin, My name is ${name} and I am from ${country}. My email is ${email} & my Phone Number is ${phoneNo}. I would like to say: ${message} \nBest Regards,
 ${name}.`; 
 
 
@@ -105,7 +106,7 @@ try {
 // Request a call back
 exports.createCallBack = catchAsyncErrors(async (req, res, next) => {
 
-    const { name, email, country , WhatsAppNo , program , phoneNo } = req.body;
+    const { name, email, country , WhatsAppNo , program , phoneNo , companyName , message } = req.body;
 
     
     const contactUsMessage = await ContactUs.create({
@@ -114,11 +115,13 @@ exports.createCallBack = catchAsyncErrors(async (req, res, next) => {
         program, 
         phoneNo,
         WhatsAppNo,
-        country
+        country,
+        companyName,
+        message
     });
 
 
-    const sendMessage = `Dear Admin,\nMy name is ${name} and I am from ${country}. My email is ${email} And my Phone Number is : ${phoneNo} And here is my whatsApp Number : ${WhatsAppNo}. I am interested to  take admission in ${program} \nWaiting for your response. \nRegards,
+    const sendMessage = `Dear Admin,\nMy name is ${name} and I am from ${country}. My email is ${email} And my Phone Number is : ${phoneNo} And here is my whatsApp Number : ${WhatsAppNo}. My child age is ${companyName} & currently studying in ${message} Grade. I am interested to  take admission in ${program} \nWaiting for your response. \nRegards,
 ${name}.`; 
 
 

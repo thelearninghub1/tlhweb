@@ -16,7 +16,7 @@ import { allFeatureAction } from '../../../actions/affilationAction';
 import { createCallBackAction } from '../../../actions/contactUsAction';
 import { CONTACT_US_RESET } from '../../../constants/contactUsContants';
 import Metadata from '../../layout/Metadata/Metadata';
-import video from '../../../assets/turkey.mp4';
+import video from '../../../assets/pakistan.mp4';
 
 
 
@@ -28,7 +28,7 @@ const formattedCountries = countries.map((country) => ({
 }));
 
 
-const Turkey = () => {
+const Pakistan = () => {
 
 
 
@@ -141,17 +141,18 @@ const [message,setMessage] = useState("")
      myForm.set("program",program);
      myForm.set("phoneNo",phoneNo);
      myForm.set("WhatsAppNo",WhatsAppNo);
- 
+     
     myForm.set("message",message);
     myForm.set("companyName",companyName);
 
+ 
  myForm.set("country", country?.label ?? "");
  
  
      dispatch(createCallBackAction(myForm))
    };
 
-  
+ 
   const featured = [
     { id: 1, title: "No Physical Barriers", description: " Learn from anywhere with fully online classes — quality education delivered right to your home." },
     { id: 2, title: "Modern STEAM Curriculum", description: "Cutting-edge syllabus integrating Science, Technology, Engineering, Arts, and Mathematics to equip students for the future." },
@@ -220,7 +221,7 @@ const [message,setMessage] = useState("")
       <Fragment>
         {
           loading ? (<Loader/>):(  <Fragment>
-        <Metadata title="Turkey - The Learning Hub" />
+        <Metadata title="Pakistan - The Learning Hub" />
 
           <div className="servicesDetailsContainer">
             <div className='topBahrianContainer'>
@@ -235,78 +236,78 @@ const [message,setMessage] = useState("")
       <div className="right-section">
         <h3>We are here to help</h3>
         <p>Speak with an Admission Counselor</p>
-         <form onSubmit={handleSubmit}>
-           <input
-             type="text"
-             name="name"
-             placeholder="Full Name*"
-             required
-             value={name}
-             onChange={(e)=>setName(e.target.value)}
-           />
-           <input
-             type="email"
-             name="email"
-             placeholder="Email*"
-             required
-             value={email}
-             onChange={(e)=>setEmail(e.target.value)}
-           />
-           <input
-             type="tel"
-             name="phone"
-             placeholder="Phone*"
-             required
-             value={phoneNo}
-             onChange={(e)=>setPhoneNo(e.target.value)}
-           />
-           <input
-             type="text"
-             name="whatsapp"
-             placeholder="Whatsapp"
-             value={WhatsAppNo}
-             onChange={(e)=>setWhatsAppNo(e.target.value)}
-           />
-              <input
-             type="text"
-             name="comapnyName"
-             placeholder="Student Age"
-             value={companyName}
-             onChange={(e)=>setCompanyName(e.target.value)}
-           />
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Full Name*"
+            required
+            value={name}
+            onChange={(e)=>setName(e.target.value)}
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email*"
+            required
+            value={email}
+            onChange={(e)=>setEmail(e.target.value)}
+          />
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Phone*"
+            required
+            value={phoneNo}
+            onChange={(e)=>setPhoneNo(e.target.value)}
+          />
+          <input
+            type="text"
+            name="whatsapp"
+            placeholder="Whatsapp"
+            value={WhatsAppNo}
+            onChange={(e)=>setWhatsAppNo(e.target.value)}
+          />
              <input
-             type="text"
-             name="message"
-             placeholder="Student Grade"
-             value={message}
-             onChange={(e)=>setMessage(e.target.value)}
-           />
-           <select name="program" required value={program} onChange={(e)=>setProgram(e.target.value)}>
-             <option value="">-- Choose Program --</option>
-             {programs && programs.map((program, index) => (
-           <option key={index} value={program}>
-             {program}
-           </option>
-         ))}
-           </select>
-       <Select
-       options={formattedCountries}
-       value={country || ""}
-       onChange={(selectedOption) => setCountry(selectedOption)}
-       placeholder="Select Country"
-       className="country-select"
-       getOptionLabel={(e) => (
-         <div className="country-option">
-           <img src={e.flag} alt="" width="20px" style={{ marginRight: 10 }} />
-           {e.label}
-         </div>
-       )}
-     />
-     
-     
-          
-           <button type="submit" className="request-btn">REQUEST A CALL BACK</button>
-         </form>
+            type="text"
+            name="comapnyName"
+            placeholder="Student Age"
+            value={companyName}
+            onChange={(e)=>setCompanyName(e.target.value)}
+          />
+            <input
+            type="text"
+            name="message"
+            placeholder="Student Grade"
+            value={message}
+            onChange={(e)=>setMessage(e.target.value)}
+          />
+          <select name="program" required value={program} onChange={(e)=>setProgram(e.target.value)}>
+            <option value="">-- Choose Program --</option>
+            {programs && programs.map((program, index) => (
+          <option key={index} value={program}>
+            {program}
+          </option>
+        ))}
+          </select>
+      <Select
+      options={formattedCountries}
+      value={country || ""}
+      onChange={(selectedOption) => setCountry(selectedOption)}
+      placeholder="Select Country"
+      className="country-select"
+      getOptionLabel={(e) => (
+        <div className="country-option">
+          <img src={e.flag} alt="" width="20px" style={{ marginRight: 10 }} />
+          {e.label}
+        </div>
+      )}
+    />
+    
+    
+         
+          <button type="submit" className="request-btn">REQUEST A CALL BACK</button>
+        </form>
       </div>
     </div>
             </div>
@@ -361,7 +362,7 @@ Whether you are a school looking to add VR/AR learning, a parent seeking a stron
 
 
     </div>
-  <div className="learn-image-container">
+    <div className="learn-image-container">
                     <iframe
     src="https://youtube.com/embed/MqJJiP_x1IE"
     title="YouTube video player"
@@ -484,4 +485,4 @@ Whether you are a school looking to add VR/AR learning, a parent seeking a stron
       )
     }
 
-export default Turkey
+export default Pakistan

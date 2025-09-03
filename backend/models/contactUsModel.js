@@ -17,7 +17,7 @@ const contactUsSchema = new mongoose.Schema({
     country:{
         type: String,
     },
-    companyName:{
+    companyName:{ 
         type: String,
     },
     phoneNo:{
