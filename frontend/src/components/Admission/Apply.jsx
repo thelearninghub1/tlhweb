@@ -52,6 +52,7 @@ const [phoneNo,setPhoneNo] = useState("")
 const [WhatsAppNo,setWhatsAppNo] = useState("")
 const [companyName,setCompanyName] = useState("")
 const [message,setMessage] = useState("")
+const [parentName,setParentName] = useState("")
 
   
   const dispatch = useDispatch();
@@ -79,6 +80,7 @@ const [message,setMessage] = useState("")
     myForm.set("WhatsAppNo",WhatsAppNo);
     myForm.set("message",message);
     myForm.set("companyName",companyName);
+    myForm.set("parentName",parentName);
 
 myForm.set("country", country?.label ?? "");
 
@@ -181,6 +183,9 @@ myForm.set("country", country?.label ?? "");
     setPhoneNo("");
     setProgram("");
     setWhatsAppNo("");
+    setParentName("");
+    setCompanyName("");
+    setMessage("");
 
           
         }
@@ -213,11 +218,12 @@ myForm.set("country", country?.label ?? "");
       <input
         type="text"
         name="name"
-        placeholder="Full Name*"
+        placeholder="Parent Name*"
         required
         value={name}
         onChange={(e)=>setName(e.target.value)}
       />
+       
       <input
         type="email"
         name="email"
@@ -240,6 +246,14 @@ myForm.set("country", country?.label ?? "");
         placeholder="Whatsapp"
         value={WhatsAppNo}
         onChange={(e)=>setWhatsAppNo(e.target.value)}
+      />
+       <input
+        type="text"
+        name="name"
+        placeholder="Student Name*"
+        required
+        value={parentName}
+        onChange={(e)=>setParentName(e.target.value)}
       />
          <input
         type="text"

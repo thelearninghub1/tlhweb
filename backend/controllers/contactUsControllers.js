@@ -106,7 +106,7 @@ try {
 // Request a call back
 exports.createCallBack = catchAsyncErrors(async (req, res, next) => {
 
-    const { name, email, country , WhatsAppNo , program , phoneNo , companyName , message } = req.body;
+    const { name, email, country , WhatsAppNo , program , phoneNo , companyName , message , parentName } = req.body;
 
     
     const contactUsMessage = await ContactUs.create({
@@ -117,11 +117,12 @@ exports.createCallBack = catchAsyncErrors(async (req, res, next) => {
         WhatsAppNo,
         country,
         companyName,
-        message
+        message,
+        parentName
     });
 
 
-    const sendMessage = `Dear Admin,\nMy name is ${name} and I am from ${country}. My email is ${email} And my Phone Number is : ${phoneNo} And here is my whatsApp Number : ${WhatsAppNo}. My child age is ${companyName} & currently studying in ${message} Grade. I am interested to  take admission in ${program} \nWaiting for your response. \nRegards,
+    const sendMessage = `Dear Admin,\nMy name is ${name} and My children name is ${parentName}. and I am from ${country}. My email is ${email} And my Phone Number is : ${phoneNo} And here is my whatsApp Number : ${WhatsAppNo}. My child age is ${companyName} & currently studying in ${message} Grade. I am interested to  take admission in ${program} \nWaiting for your response. \nRegards,
 ${name}.`; 
 
 

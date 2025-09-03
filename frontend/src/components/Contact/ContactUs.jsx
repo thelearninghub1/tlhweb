@@ -159,7 +159,7 @@ const ContactUs = () => {
                   <p>Reach out to us</p>
                   <h3>for more details</h3>
                   <p className="bhai">+92 345 3324826</p>
-                  <p>ithelearninghub@gmail.com</p>
+                  <p>support@thelearninghubedu.com</p>
                 </div>
                 <div>
                   <FaRegClock />

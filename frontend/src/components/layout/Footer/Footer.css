@@ -102,12 +102,12 @@ footer > div > div {
 
 .rightFooter > h1 {
     font: 800 1.8vmax "Sour Gummy";
-    padding: 1vmax;
+    padding: 1vmax 0vmax;
 }
 .rightFooter > p {
     
     font: 800 1vmax "Parkinsans";
-    padding: 0.5vmax 1vmax;
+    padding: 0.5vmax 0vmax;
     color: rgba(245, 245, 245, 0.904);
     word-spacing: 0.3vmax;
     letter-spacing: 0.1vmax;

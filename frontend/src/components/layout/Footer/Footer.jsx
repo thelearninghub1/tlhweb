@@ -60,9 +60,11 @@ const Footer = () => {
                     </div>
                     <div className="rightFooter">
                         <h1>Get In Touch</h1>
-                        <p>Phone: +352 621 508 645</p>
-                        <p>Email: ithelearninghub@gmail.com</p>
+                        <p>Phone: +971 55 292 0583</p>
+                        <p>Email: support@thelearninghubedu.com  </p>
+
                         <p>Address: C-56D phase 5 DHA Karachi</p>
+
                     </div>
                 </div>
                 <div className="miniFooter">

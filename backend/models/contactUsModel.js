@@ -29,6 +29,9 @@ const contactUsSchema = new mongoose.Schema({
     program:{
         type: String,
     },
+    parentName:{
+        type:String
+    },
     createdAt: {
         type: Date,
         default: Date.now
