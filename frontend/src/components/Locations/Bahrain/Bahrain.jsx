@@ -18,6 +18,7 @@ import { createCallBackAction } from '../../../actions/contactUsAction';
 import { CONTACT_US_RESET } from '../../../constants/contactUsContants';
 import Metadata from '../../layout/Metadata/Metadata';
 import video from '../../../assets/bahrian.mp4';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -76,6 +77,7 @@ const [program,setProgram] = useState("")
 const [phoneNo,setPhoneNo] = useState("")
 const [WhatsAppNo,setWhatsAppNo] = useState("")
 const [parentName,setParentName] = useState("")
+  const navigate = useNavigate(); // ⬅️ Add this
 
 const [companyName,setCompanyName] = useState("")
 const [message,setMessage] = useState("")
@@ -207,6 +209,7 @@ const [message,setMessage] = useState("")
                         setParentName("");
     setCompanyName("");
     setMessage("");
+      navigate("/thank-you"); // ⬅️ Redirect
 
                                 
                               }

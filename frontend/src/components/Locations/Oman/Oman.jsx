@@ -17,6 +17,7 @@ import { createCallBackAction } from '../../../actions/contactUsAction';
 import { CONTACT_US_RESET } from '../../../constants/contactUsContants';
 import Metadata from '../../layout/Metadata/Metadata';
 import video from '../../../assets/oman.mp4';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -74,6 +75,7 @@ const [country, setCountry] = useState(""); // safe to use null
 const [program,setProgram] = useState("")
 const [phoneNo,setPhoneNo] = useState("")
 const [parentName,setParentName] = useState("")
+  const navigate = useNavigate(); // ⬅️ Add this
 
 const [companyName,setCompanyName] = useState("")
 const [message,setMessage] = useState("")
@@ -210,6 +212,7 @@ const [WhatsAppNo,setWhatsAppNo] = useState("")
                         setParentName("");
     setCompanyName("");
     setMessage("");
+      navigate("/thank-you"); // ⬅️ Redirect
 
                                 
                               }

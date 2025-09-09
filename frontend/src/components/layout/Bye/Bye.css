@@ -1,0 +1,60 @@
+/* Container centers everything */
+.bye-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  background-color: #f3f4f6; /* light gray */
+  padding: 1rem;
+}
+
+/* Card box */
+.bye-card {
+  background: #ffffff;
+  padding: 8rem 4rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+/* Title */
+.bye-title {
+  font-size: 2.4rem;
+  color: #1f2937; /* dark gray */
+  margin-bottom: 1.5rem;
+  font-family: "Sour Gummy";
+}
+
+/* Button */
+.bye-button {
+ background-color: #2C7EAD;
+  color: white;
+  border: none;
+  width: 20%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 10px;
+  transition: all 0.5s;
+  font-family: "Sour Gummy";
+  cursor: pointer;
+  letter-spacing: 0.2vmax;
+  word-spacing: 0.4vmax;
+}
+
+/* Hover effect */
+.bye-button:hover {
+  background-color: #124e71;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .bye-title {
+    font-size: 1.5rem;
+  }
+
+  .bye-button {
+    width: 100%;
+  }
+}

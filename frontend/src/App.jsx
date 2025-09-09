@@ -84,6 +84,7 @@ import PageNotFound from './components/layout/PageNotFound/PageNotFound';
 import MiniFooter from './components/layout/Footer/MiniFooter';
 import ScrollToTop from './components/layout/Scroll/Scroll';
 import Pakistan from './components/Locations/Pakistan/Pakistan';
+import Bye from './components/layout/Bye/Bye';
 
 function App() {
  
@@ -116,6 +117,8 @@ const {isAuthenticatedUser , user} = useSelector((state)=>state.loginUser)
       <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/*' element={<PageNotFound />} />
+        <Route path='/thank-you' element={<Bye />} />
+
 
         <Route path='/contact-us' element={<ContactUs />} />
         <Route path='/partner-with-us' element={<ContactPartnerWithUs />} />

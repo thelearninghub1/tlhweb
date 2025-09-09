@@ -122,7 +122,7 @@ exports.createCallBack = catchAsyncErrors(async (req, res, next) => {
     });
 
 
-    const sendMessage = `Dear Admin,\nMy name is ${name} and My children name is ${parentName}. and I am from ${country}. My email is ${email} And my Phone Number is : ${phoneNo} And here is my whatsApp Number : ${WhatsAppNo}. My child age is ${companyName} & currently studying in ${message} Grade. I am interested to  take admission in ${program} \nWaiting for your response. \nRegards,
+    const sendMessage = `Dear Admin,\nMy name is ${name} and My  children name is ${parentName}. and I am from ${country}. My email is ${email} And my Phone Number is : ${phoneNo} And here is my whatsApp Number : ${WhatsAppNo}. My child age is ${companyName} & currently studying in ${message} Grade. I am interested to  take admission in ${program} \nWaiting for your response. \nRegards,
 ${name}.`; 
 
 

@@ -20,6 +20,7 @@ import { CONTACT_US_RESET } from '../../../constants/contactUsContants';
 import Metadata from '../../layout/Metadata/Metadata';
 import video from '../../../assets/skills.mp4';
 import './SkillDevelopment.css'
+import { useNavigate } from 'react-router-dom';
 
 
 // Format countries for dropdown
@@ -68,6 +69,7 @@ const SkillDevelopment = () => {
 "Coding",
 "Abacus Mathematics"
 ]
+  const navigate = useNavigate(); // ⬅️ Add this
 
 
 const [name,setName] = useState("")
@@ -211,6 +213,7 @@ const [message,setMessage] = useState("")
                         setParentName("");
     setCompanyName("");
     setMessage("");
+      navigate("/thank-you"); // ⬅️ Redirect
 
                                 
                               }

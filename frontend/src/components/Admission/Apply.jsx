@@ -17,6 +17,7 @@ import { allFeatureAction } from '../../actions/affilationAction';
 import { createCallBackAction } from '../../actions/contactUsAction';
 import { CONTACT_US_RESET } from '../../constants/contactUsContants';
 import Metadata from '../layout/Metadata/Metadata.jsx';
+import { useNavigate } from 'react-router-dom';
  
 
 
@@ -43,7 +44,7 @@ const Apply = () => {
 "Abacus Mathematics"
 ]
 
-
+  const navigate = useNavigate(); // ⬅️ Add this
 const [name,setName] = useState("")
 const [email,setEmail] = useState("")
 const [country, setCountry] = useState(""); // safe to use null
@@ -186,7 +187,7 @@ myForm.set("country", country?.label ?? "");
     setParentName("");
     setCompanyName("");
     setMessage("");
-
+      navigate("/thank-you"); // ⬅️ Redirect
           
         }
 
