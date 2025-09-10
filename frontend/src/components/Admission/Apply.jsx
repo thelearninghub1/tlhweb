@@ -18,7 +18,7 @@ import { createCallBackAction } from '../../actions/contactUsAction';
 import { CONTACT_US_RESET } from '../../constants/contactUsContants';
 import Metadata from '../layout/Metadata/Metadata.jsx';
 import { useNavigate } from 'react-router-dom';
- 
+import {matchSorter} from "match-sorter"; // install with: npm i match-sorter
 
 
 // Format countries for dropdown
@@ -28,11 +28,6 @@ const formattedCountries = countries.map((country) => ({
   flag: `https://flagcdn.com/w40/${country.cca2.toLowerCase()}.png`,
 }));
 
-const textOptions = [
-  "Schooling",
-  "Nursery to 12th",
-  "O/A Levels Tuitions",
-];
 const Apply = () => {
 
   const programs = [
@@ -278,18 +273,30 @@ myForm.set("country", country?.label ?? "");
       </option>
     ))}
       </select>
-  <Select
+<Select
   options={formattedCountries}
   value={country || ""}
   onChange={(selectedOption) => setCountry(selectedOption)}
   placeholder="Select Country"
   className="country-select"
+  isSearchable={true}
   getOptionLabel={(e) => (
     <div className="country-option">
       <img src={e.flag} alt="" width="20px" style={{ marginRight: 10 }} />
       {e.label}
     </div>
   )}
+  getOptionValue={(e) => e.value}
+  filterOption={(option, rawInput) => {
+    const input = rawInput.toLowerCase();
+    const name = option.data.label.toLowerCase(); // United Arab Emirates (AE)
+    const code = option.data.value.toLowerCase(); // AE
+    return (
+      name.includes(input) || 
+      code.includes(input) || 
+      matchSorter([name], input).length > 0 // fuzzy search
+    );
+  }}
 />
 
 

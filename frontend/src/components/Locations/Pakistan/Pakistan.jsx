@@ -18,6 +18,7 @@ import { CONTACT_US_RESET } from '../../../constants/contactUsContants';
 import Metadata from '../../layout/Metadata/Metadata';
 import video from '../../../assets/pakistan.mp4';
 import { useNavigate } from 'react-router-dom';
+import {matchSorter} from "match-sorter"; // install with: npm i match-sorter
 
 
 
@@ -307,18 +308,30 @@ const [message,setMessage] = useState("")
       </option>
     ))}
       </select>
-  <Select
+ <Select
   options={formattedCountries}
   value={country || ""}
   onChange={(selectedOption) => setCountry(selectedOption)}
   placeholder="Select Country"
   className="country-select"
+  isSearchable={true}
   getOptionLabel={(e) => (
     <div className="country-option">
       <img src={e.flag} alt="" width="20px" style={{ marginRight: 10 }} />
       {e.label}
     </div>
   )}
+  getOptionValue={(e) => e.value}
+  filterOption={(option, rawInput) => {
+    const input = rawInput.toLowerCase();
+    const name = option.data.label.toLowerCase(); // United Arab Emirates (AE)
+    const code = option.data.value.toLowerCase(); // AE
+    return (
+      name.includes(input) || 
+      code.includes(input) || 
+      matchSorter([name], input).length > 0 // fuzzy search
+    );
+  }}
 />
 
 

@@ -1,25 +1,24 @@
 import React, { Fragment , useState , useEffect, useRef} from 'react';
+import './Apply.css';
 import Select from "react-select";
 import countries from "world-countries";
-import ClientCard from '../../About/ClientCard';
-import PartnerCard from '../../Admission/PartnerCard';
-import { useDispatch , useSelector } from 'react-redux';
-import { allStudentAction , clearErrors } from "../../../actions/studentAction";
-import Loader from '../../layout/Loader/Loader';
-import { toast } from 'react-toastify';
-import { allFeedbackAction } from "../../../actions/feedbackActions";
-import { allCardAction } from "../../../actions/cardActions";
+import ClientCard from '../About/ClientCard';
+import PartnerCard from './PartnerCard.jsx';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { allPartnerAction } from "../../../actions/techActions";
-import { allFeatureAction } from '../../../actions/affilationAction';
-import { createCallBackAction } from '../../../actions/contactUsAction';
-import { CONTACT_US_RESET } from '../../../constants/contactUsContants';
-import Metadata from '../../layout/Metadata/Metadata';
-import video from '../../../assets/ksa.mp4';
+import {useDispatch , useSelector} from 'react-redux';
+import { allStudentAction , clearErrors } from "../../actions/studentAction";
+import { allFeedbackAction } from "../../actions/feedbackActions";
+import { allCardAction } from "../../actions/cardActions";
+import {toast} from 'react-toastify';
+import { allPartnerAction } from "../../actions/techActions";
+import Loader from '../layout/Loader/Loader.jsx';
+import { allFeatureAction } from '../../actions/affilationAction';
+import { createCallBackAction } from '../../actions/contactUsAction';
+import { CONTACT_US_RESET } from '../../constants/contactUsContants';
+import Metadata from '../layout/Metadata/Metadata.jsx';
 import { useNavigate } from 'react-router-dom';
-import {matchSorter} from "match-sorter"; // install with: npm i match-sorter
-
+ 
 
 
 // Format countries for dropdown
@@ -29,38 +28,14 @@ const formattedCountries = countries.map((country) => ({
   flag: `https://flagcdn.com/w40/${country.cca2.toLowerCase()}.png`,
 }));
 
+const textOptions = [
+  "Schooling",
+  "Nursery to 12th",
+  "O/A Levels Tuitions",
+];
+const Apply = () => {
 
-const Ksa = () => {
-
-
-
-
-   const videoRef = useRef();
-
-  useEffect(() => {
-    const handleResize = () => {
-      const videoEl = videoRef.current;
-      if (!videoEl) return;
-
-      // Example: assuming your video is 16:9
-      const videoAspect = 16 / 9;
-      const windowAspect = window.innerWidth / window.innerHeight;
-
-      if (Math.abs(windowAspect - videoAspect) < 0.15) {
-        // Aspect ratios are close → fill screen
-        videoEl.style.objectFit = 'cover';
-      } else {
-        // Aspect ratios very different → show all video
-        videoEl.style.objectFit = 'contain';
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    handleResize(); // run once on load
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-    const programs = [
+  const programs = [
     "Online schooling",
 "One to One tutoring ",
 "O/A levels tuitions",
@@ -70,185 +45,177 @@ const Ksa = () => {
 ]
 
   const navigate = useNavigate(); // ⬅️ Add this
-
 const [name,setName] = useState("")
 const [email,setEmail] = useState("")
 const [country, setCountry] = useState(""); // safe to use null
 const [program,setProgram] = useState("")
 const [phoneNo,setPhoneNo] = useState("")
 const [WhatsAppNo,setWhatsAppNo] = useState("")
-const [parentName,setParentName] = useState("")
-
 const [companyName,setCompanyName] = useState("")
 const [message,setMessage] = useState("")
+const [parentName,setParentName] = useState("")
 
-    const dispatch = useDispatch();
-      const {  error:FormError, success } = useSelector((state) => state.createContactUs);
   
-    const { loading, error, feedbacks:allStudentFeedbacks } = useSelector((state) => state.allStudent);
-    const {  error:FeedError, feedbacks:allFeedbacks } = useSelector((state) => state.allFeedbacks);
-    const {  error:cardError, cards } = useSelector((state) => state.allCards);
-    const {  error:partnerError,partners  } = useSelector((state) => state.allPartners);
-    const {error:featureError,afiliations} = useSelector((state)=>state.allAffiliation);
-    const [feedbackIndex, setFeedbackIndex] = useState(0);
-  const [isPartnerHovering, setIsPartnerHovering] = useState(false);
-
-  // Refs
-  const partnerScrollRef = useRef();
+  const dispatch = useDispatch();
+    const {  error:FormError, success } = useSelector((state) => state.createContactUs);
   
- // Auto change feedback carousel
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setFeedbackIndex((prevIndex) =>
-        allFeedbacks && allFeedbacks.length > 0
-          ? (prevIndex + 1) % allFeedbacks.length
-          : 0
-      );
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [allFeedbacks]);
+  const { loading, error, feedbacks:allStudentFeedbacks } = useSelector((state) => state.allStudent);
+  const {  error:FeedError, feedbacks:allFeedbacks } = useSelector((state) => state.allFeedbacks);
+  const {  error:cardError, cards } = useSelector((state) => state.allCards);
+  const {  error:partnerError,partners  } = useSelector((state) => state.allPartners);
+  const {error:featureError,afiliations} = useSelector((state)=>state.allAffiliation);
 
-  // Partner auto scroll
-  useEffect(() => {
-    const container = partnerScrollRef.current;
-    let intervalId;
-    const startScroll = () => {
-      intervalId = setInterval(() => {
-        if (!isPartnerHovering && container) {
-          container.scrollBy({ left: 6, behavior: 'smooth' });
-          const atEnd = container.scrollLeft + container.offsetWidth >= container.scrollWidth - 1;
-          if (atEnd) {
-            clearInterval(intervalId);
-            setTimeout(() => {
-              container.scrollTo({ left: 0, behavior: 'auto' });
-              setTimeout(startScroll, 500);
-            }, 1000);
-          }
-        }
-      }, 20);
-    };
-    startScroll();
-    return () => clearInterval(intervalId);
-  }, [isPartnerHovering]);
+ 
 
-  const scrollPartnerLeft = () => partnerScrollRef.current?.scrollBy({ left: -300, behavior: 'smooth' });
-  const scrollPartnerRight = () => partnerScrollRef.current?.scrollBy({ left: 300, behavior: 'smooth' });
 
 
 
 
   const handleSubmit = (e) => {
-     e.preventDefault();
-     const myForm = new FormData();
-     myForm.set("name",name);
-     myForm.set("email",email);
-     myForm.set("program",program);
-     myForm.set("phoneNo",phoneNo);
-     myForm.set("WhatsAppNo",WhatsAppNo);
-    myForm.set("parentName",parentName);
- 
+    e.preventDefault();
+    const myForm = new FormData();
+    myForm.set("name",name);
+    myForm.set("email",email);
+    myForm.set("program",program);
+    myForm.set("phoneNo",phoneNo);
+    myForm.set("WhatsAppNo",WhatsAppNo);
     myForm.set("message",message);
     myForm.set("companyName",companyName);
+    myForm.set("parentName",parentName);
 
- myForm.set("country", country?.label ?? "");
- 
- 
-     dispatch(createCallBackAction(myForm))
-   };
+myForm.set("country", country?.label ?? "");
 
+
+    dispatch(createCallBackAction(myForm))
+  };
+
+
+
+    const featured = [
+      { id: 1, title: "No Physical Barriers", description: " Learn from anywhere with fully online classes — quality education delivered right to your home." },
+      { id: 2, title: "Modern STEAM Curriculum", description: "Cutting-edge syllabus integrating Science, Technology, Engineering, Arts, and Mathematics to equip students for the future." },
+      { id: 3, title: "Continuous Assessment", description: "Structured evaluations to monitor student growth, ensuring steady academic improvement at every stage." },
+      { id: 4, title: "Parent-Teacher Collaboration", description: "Parents stay informed through regular updates, progress tracking, and direct communication with instructors." }
+    ];
+
+    const [feedbackIndex, setFeedbackIndex] = useState(0);
+    const [isPartnerHovering, setIsPartnerHovering] = useState(false);
   
-  
-     
-  
+    // Refs
+    const partnerScrollRef = useRef();
     
-  const featured = [
-    { id: 1, title: "No Physical Barriers", description: " Learn from anywhere with fully online classes — quality education delivered right to your home." },
-    { id: 2, title: "Modern STEAM Curriculum", description: "Cutting-edge syllabus integrating Science, Technology, Engineering, Arts, and Mathematics to equip students for the future." },
-    { id: 3, title: "Continuous Assessment", description: "Structured evaluations to monitor student growth, ensuring steady academic improvement at every stage." },
-    { id: 4, title: "Parent-Teacher Collaboration", description: "Parents stay informed through regular updates, progress tracking, and direct communication with instructors." }
-  ]; 
+   // Auto change feedback carousel
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setFeedbackIndex((prevIndex) =>
+          allFeedbacks && allFeedbacks.length > 0
+            ? (prevIndex + 1) % allFeedbacks.length
+            : 0
+        );
+      }, 3000);
+      return () => clearInterval(interval);
+    }, [allFeedbacks]);
+  
+    // Partner auto scroll
+    useEffect(() => {
+                                  AOS.init()
+
+      const container = partnerScrollRef.current;
+      let intervalId;
+      const startScroll = () => {
+        intervalId = setInterval(() => {
+          if (!isPartnerHovering && container) {
+            container.scrollBy({ left: 6, behavior: 'smooth' });
+            const atEnd = container.scrollLeft + container.offsetWidth >= container.scrollWidth - 1;
+            if (atEnd) {
+              clearInterval(intervalId);
+              setTimeout(() => {
+                container.scrollTo({ left: 0, behavior: 'auto' });
+                setTimeout(startScroll, 500);
+              }, 1000);
+            }
+          }
+        }, 20);
+      };
+      startScroll();
+      return () => clearInterval(intervalId);
+    }, [isPartnerHovering]);
+  
+    const scrollPartnerLeft = () => partnerScrollRef.current?.scrollBy({ left: -300, behavior: 'smooth' });
+    const scrollPartnerRight = () => partnerScrollRef.current?.scrollBy({ left: 300, behavior: 'smooth' });
+  
   
 
-
-       useEffect(()=>{
-        
-                                      AOS.init()
-                  if (error) {
-                        toast.error(error);
-                        dispatch(clearErrors());
-                      }
-                      if (FeedError) {
-                        toast.error(FeedError)
-                        dispatch(clearErrors())
-                      }
-                      if (cardError) {
-                        toast.error(cardError)
-                        dispatch(clearErrors())
-                        
-                      }
-                      if (partnerError) {
-                        toast.error(partnerError)
-                        dispatch(clearErrors())
-        
-                      }
-                      if (featureError) {
-                        toast.error(featureError)
-                        dispatch(clearErrors())
-                        
-                      }
-                      if(FormError){
-                                  toast.error(FormError);
-                                  dispatch(clearErrors());
-                              }
-                                 if (success) {
-                          toast.success(`Thank you. Our team will contact you soon!`);
-                          dispatch({type:CONTACT_US_RESET})
-                      // Reset Fields
-                          setName("");
-                          setEmail("");
-                          setCountry("");
-                          setPhoneNo("");
-                          setProgram("");
-                          setWhatsAppNo("");
-                        setParentName("");
+      useEffect(() => {
+        if (error) {
+          toast.error(error);
+          dispatch(clearErrors());
+        }
+        if (FeedError) {
+          toast.error(FeedError);
+          dispatch(clearErrors());
+        }
+     
+     
+        if(cardError){
+            
+            toast.error(cardError);
+            dispatch(clearErrors());
+        }
+        if(partnerError){
+            toast.error(partnerError);
+            dispatch(clearErrors());
+        }
+          if(featureError){
+            toast.error(featureError);
+            dispatch(clearErrors());
+        }
+         if(FormError){
+            toast.error(FormError);
+            dispatch(clearErrors());
+        }
+           if (success) {
+    toast.success(`Thank you. Our team will contact you soon!`);
+    dispatch({type:CONTACT_US_RESET})
+// Reset Fields
+    setName("");
+    setEmail("");
+    setCountry("");
+    setPhoneNo("");
+    setProgram("");
+    setWhatsAppNo("");
+    setParentName("");
     setCompanyName("");
     setMessage("");
       navigate("/thank-you"); // ⬅️ Redirect
+          
+        }
 
-                                
-                              }
-                      dispatch(allCardAction())
-                      dispatch(allFeatureAction())
-                      dispatch(allStudentAction())
-                      dispatch(allFeedbackAction())
-                      dispatch(allPartnerAction())
-        
-            },[error,FormError,success,dispatch,FeedError,cardError,partnerError,featureError])
-            
-    
-    
+        dispatch(allCardAction());
+        dispatch(allPartnerAction())
+        dispatch(allStudentAction());
+        dispatch(allFeedbackAction())
+        dispatch(allFeatureAction())
+      },[error, dispatch ,FormError ,FeedError , cardError,partnerError,featureError,success]);
 
   return (
-
+<Fragment>
+  {
+    loading ? (<Loader/>) : (
+      
       <Fragment>
-        {
-          loading ? (<Loader/>):(  <Fragment>
-        <Metadata title="Saudi Arabia - The Learning Hub" />
+        <Metadata title="Apply Now - The Learning Hub" />
 
-          <div className="servicesDetailsContainer">
-            <div className='topBahrianContainer'>
-              
-                                              <div className="video-background">
-                                            <video src={video} autoPlay loop muted playsInline />
-                                            </div>
-            <div className="container">
+      <div className="servicesDetailsContainer">
+        <div className='topServiceDetailsContainer'>
+        <div className="container">
       <div className="left-section">
       </div>
 
       <div className="right-section">
         <h3>We are here to help</h3>
         <p>Speak with an Admission Counselor</p>
-         <form onSubmit={handleSubmit}>
+       <form onSubmit={handleSubmit}>
       <input
         type="text"
         name="name"
@@ -311,30 +278,18 @@ const [message,setMessage] = useState("")
       </option>
     ))}
       </select>
- <Select
+  <Select
   options={formattedCountries}
   value={country || ""}
   onChange={(selectedOption) => setCountry(selectedOption)}
   placeholder="Select Country"
   className="country-select"
-  isSearchable={true}
   getOptionLabel={(e) => (
     <div className="country-option">
       <img src={e.flag} alt="" width="20px" style={{ marginRight: 10 }} />
       {e.label}
     </div>
   )}
-  getOptionValue={(e) => e.value}
-  filterOption={(option, rawInput) => {
-    const input = rawInput.toLowerCase();
-    const name = option.data.label.toLowerCase(); // United Arab Emirates (AE)
-    const code = option.data.value.toLowerCase(); // AE
-    return (
-      name.includes(input) || 
-      code.includes(input) || 
-      matchSorter([name], input).length > 0 // fuzzy search
-    );
-  }}
 />
 
 
@@ -343,7 +298,9 @@ const [message,setMessage] = useState("")
     </form>
       </div>
     </div>
-            </div>
+        </div>
+        
+      
                         <div className="homesMainContainer">
 
             <div className="learn-portal-container">
@@ -390,12 +347,13 @@ Whether you are a school looking to add VR/AR learning, a parent seeking a stron
   onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
 >
   APPLY NOW
-</button>  
+</button>
+  
     </div>
 
 
     </div>
-      <div className="learn-image-container">
+    <div className="learn-image-container">
                     <iframe
     src="https://youtube.com/embed/MqJJiP_x1IE"
     title="YouTube video player"
@@ -404,7 +362,7 @@ Whether you are a school looking to add VR/AR learning, a parent seeking a stron
     referrerPolicy="strict-origin-when-cross-origin"
     allowFullScreen
   ></iframe>
-                  </div>
+                  </div> 
   </section>
     </div>
             <div className="edu-portal-container">
@@ -412,7 +370,6 @@ Whether you are a school looking to add VR/AR learning, a parent seeking a stron
         {afiliations && afiliations.map((feature) => (
           <div key={feature.id} className="edu-feature-card">
             <img src={feature.avatar.url} alt={feature.title} className="edu-card-image" />
-
             <h3 className="edu-card-title">{feature.title}</h3>
             <p className="edu-card-description">{feature.description}</p>
           </div>
@@ -511,12 +468,12 @@ Whether you are a school looking to add VR/AR learning, a parent seeking a stron
                 </div>
               </section>
     </div>
-            </div>
-        
-      </Fragment>)
-        }
-      </Fragment>
+        </div>
+  </Fragment>
+    )
+  }
+</Fragment>
       )
     }
 
-export default Ksa
+export default Apply
