@@ -19,6 +19,7 @@ import { CONTACT_US_RESET } from '../../constants/contactUsContants';
 import Metadata from '../layout/Metadata/Metadata.jsx';
 import { useNavigate } from 'react-router-dom';
 import {matchSorter} from "match-sorter"; // install with: npm i match-sorter
+import video from '../../assets/apply.mp4'
 
 
 // Format countries for dropdown
@@ -64,6 +65,48 @@ const [parentName,setParentName] = useState("")
 
 
 
+// --- Add these near other states and refs ---
+// Add these states, refs and utils near the top of Apply.js
+const insightScrollRef = useRef();
+const [isInsightHovering, setIsInsightHovering] = useState(false);
+
+// Reusable auto-scroll hook
+const useAutoScroll = (ref, isHovering) => {
+  useEffect(() => {
+    const container = ref.current;
+    let intervalId;
+
+    const startScroll = () => {
+      intervalId = setInterval(() => {
+        if (!isHovering && container) {
+          container.scrollBy({ left: 6, behavior: "smooth" });
+          const atEnd =
+            container.scrollLeft + container.offsetWidth >=
+            container.scrollWidth - 1;
+          if (atEnd) {
+            clearInterval(intervalId);
+            setTimeout(() => {
+              container.scrollTo({ left: 0, behavior: "auto" });
+              setTimeout(startScroll, 500);
+            }, 1000);
+          }
+        }
+      }, 20);
+    };
+
+    startScroll();
+    return () => clearInterval(intervalId);
+  }, [isHovering, ref]);
+};
+
+// Attach auto scroll for insights
+useAutoScroll(insightScrollRef, isInsightHovering);
+
+// Manual scroll buttons
+const scrollLeft = (ref) =>
+  ref.current?.scrollBy({ left: -300, behavior: "smooth" });
+const scrollRight = (ref) =>
+  ref.current?.scrollBy({ left: 300, behavior: "smooth" });
 
 
   const handleSubmit = (e) => {
@@ -202,78 +245,82 @@ myForm.set("country", country?.label ?? "");
         <Metadata title="Apply Now - The Learning Hub" />
 
       <div className="servicesDetailsContainer">
-        <div className='topServiceDetailsContainer'>
-        <div className="container">
+           <div className='topBahrianContainer'>
+              
+                                              <div className="video-background">
+                                            <video src={video} autoPlay loop muted playsInline />
+                                            </div>
+            <div className="container">
       <div className="left-section">
       </div>
 
       <div className="right-section">
         <h3>We are here to help</h3>
         <p>Speak with an Admission Counselor</p>
-       <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="name"
-        placeholder="Parent Name*"
-        required
-        value={name}
-        onChange={(e)=>setName(e.target.value)}
-      />
-       
-      <input
-        type="email"
-        name="email"
-        placeholder="Email*"
-        required
-        value={email}
-        onChange={(e)=>setEmail(e.target.value)}
-      />
-      <input
-        type="tel"
-        name="phone"
-        placeholder="Phone*"
-        required
-        value={phoneNo}
-        onChange={(e)=>setPhoneNo(e.target.value)}
-      />
-      <input
-        type="text"
-        name="whatsapp"
-        placeholder="Whatsapp"
-        value={WhatsAppNo}
-        onChange={(e)=>setWhatsAppNo(e.target.value)}
-      />
-       <input
-        type="text"
-        name="name"
-        placeholder="Student Name*"
-        required
-        value={parentName}
-        onChange={(e)=>setParentName(e.target.value)}
-      />
-         <input
-        type="text"
-        name="comapnyName"
-        placeholder="Student Age"
-        value={companyName}
-        onChange={(e)=>setCompanyName(e.target.value)}
-      />
-        <input
-        type="text"
-        name="message"
-        placeholder="Student Grade"
-        value={message}
-        onChange={(e)=>setMessage(e.target.value)}
-      />
-      <select name="program" required value={program} onChange={(e)=>setProgram(e.target.value)}>
-        <option value="">-- Choose Program --</option>
-        {programs && programs.map((program, index) => (
-      <option key={index} value={program}>
-        {program}
-      </option>
-    ))}
-      </select>
-<Select
+        <form onSubmit={handleSubmit}>
+             <input
+               type="text"
+               name="name"
+               placeholder="Parent Name*"
+               required
+               value={name}
+               onChange={(e)=>setName(e.target.value)}
+             />
+              
+             <input
+               type="email"
+               name="email"
+               placeholder="Email*"
+               required
+               value={email}
+               onChange={(e)=>setEmail(e.target.value)}
+             />
+             <input
+               type="tel"
+               name="phone"
+               placeholder="Phone*"
+               required
+               value={phoneNo}
+               onChange={(e)=>setPhoneNo(e.target.value)}
+             />
+             <input
+               type="text"
+               name="whatsapp"
+               placeholder="Whatsapp"
+               value={WhatsAppNo}
+               onChange={(e)=>setWhatsAppNo(e.target.value)}
+             />
+              <input
+               type="text"
+               name="name"
+               placeholder="Student Name*"
+               required
+               value={parentName}
+               onChange={(e)=>setParentName(e.target.value)}
+             />
+                <input
+               type="text"
+               name="comapnyName"
+               placeholder="Student Age"
+               value={companyName}
+               onChange={(e)=>setCompanyName(e.target.value)}
+             />
+               <input
+               type="text"
+               name="message"
+               placeholder="Student Grade"
+               value={message}
+               onChange={(e)=>setMessage(e.target.value)}
+             />
+             <select name="program" required value={program} onChange={(e)=>setProgram(e.target.value)}>
+               <option value="">-- Choose Program --</option>
+               {programs && programs.map((program, index) => (
+             <option key={index} value={program}>
+               {program}
+             </option>
+           ))}
+             </select>
+       <Select
   options={formattedCountries}
   value={country || ""}
   onChange={(selectedOption) => setCountry(selectedOption)}
@@ -298,14 +345,16 @@ myForm.set("country", country?.label ?? "");
     );
   }}
 />
-
-
-     
-      <button type="submit" className="request-btn">REQUEST A CALL BACK</button>
-    </form>
+       
+       
+            
+             <button type="submit" className="request-btn">REQUEST A CALL BACK</button>
+           </form>
       </div>
     </div>
-        </div>
+            </div>
+
+        
         
       
                         <div className="homesMainContainer">
@@ -387,20 +436,29 @@ Whether you are a school looking to add VR/AR learning, a parent seeking a stron
             <div> 
    
       {/* Happy Students Section */}
-     <section className="happy-students-section">
-                <h2 className="title" data-aos="fade-down">School Insights</h2>
-                <div className="video-container" data-aos="fade-down">
-                  {allStudentFeedbacks && allStudentFeedbacks.map((video) => (
-                    <iframe
-                      key={video._id}
-                      className="student-video"
-                      src={video.ytLink}
-                      title={video._id}
-                      allowFullScreen
-                    ></iframe>
-                  ))}
+     <div className='thirdMidContainer'>
+                <h1 className="title" data-aos="fade-down">School Insights</h1>
+                <div className="teacher-carousel-wrapper">
+                  <button onClick={() => scrollLeft(insightScrollRef)}>◀</button>
+                  <div
+                    className="teacher-carousel"
+                    ref={insightScrollRef}
+                    onMouseEnter={() => setIsInsightHovering(true)}
+                    onMouseLeave={() => setIsInsightHovering(false)}
+                  >
+                    {allStudentFeedbacks && allStudentFeedbacks.map((video) => (
+                      <iframe
+                        key={video._id}
+                        className="student-video"
+                        src={video.ytLink}
+                        title={video._id}
+                        allowFullScreen
+                      ></iframe>
+                    ))}
+                  </div>
+                  <button onClick={() => scrollRight(insightScrollRef)}>▶</button>
                 </div>
-              </section>
+              </div>
          <div className="secondMidContainer">
                 <div className="secondMidContainer1">
                       <iframe

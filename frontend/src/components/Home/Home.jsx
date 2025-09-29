@@ -1,7 +1,5 @@
 import React, { useState, useEffect, Fragment, useRef } from "react";
 import './Home.css';
-import { IoLogoYoutube } from "react-icons/io";
-import { Dialog, DialogContent } from '@mui/material';
 import ClientCard from '../About/ClientCard';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -27,11 +25,15 @@ const Home = () => {
   const { error: partnerError, partners } = useSelector((state) => state.allPartners);
   const { error: teamError, teachers } = useSelector((state) => state.allTeachers);
 
-  // Separate refs and hover states
+  // Refs
   const teacherScrollRef = useRef();
   const partnerScrollRef = useRef();
+  const insightScrollRef = useRef();
+
+  // Hover states
   const [isTeacherHovering, setIsTeacherHovering] = useState(false);
   const [isPartnerHovering, setIsPartnerHovering] = useState(false);
+  const [isInsightHovering, setIsInsightHovering] = useState(false);
 
   const [feedbackIndex, setFeedbackIndex] = useState(0);
 
@@ -45,64 +47,41 @@ const Home = () => {
     return () => clearInterval(interval);
   }, [allFeedbacks]);
 
-  // Teacher auto scroll
-  useEffect(() => {
-    const container = teacherScrollRef.current;
-    let intervalId;
+  // Auto scroll utility
+  const useAutoScroll = (ref, isHovering) => {
+    useEffect(() => {
+      const container = ref.current;
+      let intervalId;
 
-    const startScroll = () => {
-      intervalId = setInterval(() => {
-        if (!isTeacherHovering && container) {
-          container.scrollBy({ left: 6, behavior: 'smooth' });
-          const atEnd = container.scrollLeft + container.offsetWidth >= container.scrollWidth - 1;
-          if (atEnd) {
-            clearInterval(intervalId);
-            setTimeout(() => {
-              container.scrollTo({ left: 0, behavior: 'auto' });
-              setTimeout(startScroll, 500);
-            }, 1000);
+      const startScroll = () => {
+        intervalId = setInterval(() => {
+          if (!isHovering && container) {
+            container.scrollBy({ left: 6, behavior: 'smooth' });
+            const atEnd = container.scrollLeft + container.offsetWidth >= container.scrollWidth - 1;
+            if (atEnd) {
+              clearInterval(intervalId);
+              setTimeout(() => {
+                container.scrollTo({ left: 0, behavior: 'auto' });
+                setTimeout(startScroll, 500);
+              }, 1000);
+            }
           }
-        }
-      }, 20);
-    };
+        }, 20);
+      };
 
-    startScroll();
-    return () => clearInterval(intervalId);
-  }, [isTeacherHovering]);
+      startScroll();
+      return () => clearInterval(intervalId);
+    }, [isHovering, ref]);
+  };
 
-  // Partner auto scroll
-  useEffect(() => {
-                                          AOS.init()
-    
-    const container = partnerScrollRef.current;
-    let intervalId;
-
-    const startScroll = () => {
-      intervalId = setInterval(() => {
-        if (!isPartnerHovering && container) {
-          container.scrollBy({ left: 6, behavior: 'smooth' });
-          const atEnd = container.scrollLeft + container.offsetWidth >= container.scrollWidth - 1;
-          if (atEnd) {
-            clearInterval(intervalId);
-            setTimeout(() => {
-              container.scrollTo({ left: 0, behavior: 'auto' });
-              setTimeout(startScroll, 500);
-            }, 1000);
-          }
-        }
-      }, 20);
-    };
-
-    startScroll();
-    return () => clearInterval(intervalId);
-  }, [isPartnerHovering]);
+  // Attach auto scroll
+  useAutoScroll(teacherScrollRef, isTeacherHovering);
+  useAutoScroll(partnerScrollRef, isPartnerHovering);
+  useAutoScroll(insightScrollRef, isInsightHovering);
 
   // Manual scroll
-  const scrollTeacherLeft = () => teacherScrollRef.current?.scrollBy({ left: -300, behavior: 'smooth' });
-  const scrollTeacherRight = () => teacherScrollRef.current?.scrollBy({ left: 300, behavior: 'smooth' });
-
-  const scrollPartnerLeft = () => partnerScrollRef.current?.scrollBy({ left: -300, behavior: 'smooth' });
-  const scrollPartnerRight = () => partnerScrollRef.current?.scrollBy({ left: 300, behavior: 'smooth' });
+  const scrollLeft = (ref) => ref.current?.scrollBy({ left: -300, behavior: 'smooth' });
+  const scrollRight = (ref) => ref.current?.scrollBy({ left: 300, behavior: 'smooth' });
 
   const featured = [
     { id: 1, title: "No Physical Barriers", description: " Learn from anywhere with fully online classes — quality education delivered right to your home." },
@@ -111,10 +90,8 @@ const Home = () => {
     { id: 4, title: "Parent-Teacher Collaboration", description: "Parents stay informed through regular updates, progress tracking, and direct communication with instructors." }
   ];
 
-
-
-
   useEffect(() => {
+    AOS.init();
     if (error) {
       toast.error(error);
       dispatch(clearErrors());
@@ -151,19 +128,16 @@ const Home = () => {
           <Metadata title={`The Learning Hub`} />
 
           <div className="servicesDetailsContainer">
-         <section className="hero">
-  <video
-    autoPlay
-    loop 
-    muted
-    playsInline
-    className="background-video"
-  >
-    <source src={video} type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-</section>
+            {/* Hero Section */}
+            <section className="hero">
+              <video autoPlay loop muted playsInline className="background-video">
+                <source src={video} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </section>
+
             <div className="homesMainContainer">
+              {/* Enrollment + STEAM Section */}
               <div className="learn-portal-container">
                 <section className="learn-enrollment" data-aos="fade-down">
                   <button className="learn-enroll-btn">
@@ -191,45 +165,56 @@ const Home = () => {
                   </div>
                   <div className="learn-image-container">
                     <iframe
-    src="https://youtube.com/embed/MqJJiP_x1IE"
-    title="YouTube video player"
-    className="responsive-iframe"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerPolicy="strict-origin-when-cross-origin"
-    allowFullScreen
-  ></iframe>
+                      src="https://youtube.com/embed/MqJJiP_x1IE"
+                      title="YouTube video player"
+                      className="responsive-iframe"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                    ></iframe>
                   </div>
                 </section>
               </div>
 
-              <section className="happy-students-section">
-                <h2 className="title" data-aos="fade-down">School Insights</h2>
-                <div className="video-container" data-aos="fade-down">
-                  {allStudentFeedbacks && allStudentFeedbacks.map((video) => (
-                    <iframe
-                      key={video._id}
-                      className="student-video"
-                      src={video.ytLink}
-                      title={video._id}
-                      allowFullScreen
-                    ></iframe>
-                  ))}
+              {/* School Insights */}
+              <div className='thirdMidContainer'>
+                <h1 className="title" data-aos="fade-down">School Insights</h1>
+                <div className="teacher-carousel-wrapper">
+                  <button onClick={() => scrollLeft(insightScrollRef)}>◀</button>
+                  <div
+                    className="teacher-carousel"
+                    ref={insightScrollRef}
+                    onMouseEnter={() => setIsInsightHovering(true)}
+                    onMouseLeave={() => setIsInsightHovering(false)}
+                  >
+                    {allStudentFeedbacks && allStudentFeedbacks.map((video) => (
+                      <iframe
+                        key={video._id}
+                        className="student-video"
+                        src={video.ytLink}
+                        title={video._id}
+                        allowFullScreen
+                      ></iframe>
+                    ))}
+                  </div>
+                  <button onClick={() => scrollRight(insightScrollRef)}>▶</button>
                 </div>
-              </section>
+              </div>
 
+              {/* Testimonials */}
               <div className="secondMidContainer">
                 <div className="secondMidContainer1">
-                      <iframe
-                        width="520"
-                        height="315"
-                        src="https://www.youtube.com/embed/q8NjbC4uGW4?si=IXLXpGdfxXw6Tfa4"
-                        title="YouTube video player"
-                        style={{ border: 0 }}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin"
-                        allowFullScreen
-                        className='iframeTag'
-                      ></iframe>
+                  <iframe
+                    width="520"
+                    height="315"
+                    src="https://www.youtube.com/embed/q8NjbC4uGW4?si=IXLXpGdfxXw6Tfa4"
+                    title="YouTube video player"
+                    style={{ border: 0 }}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                    className='iframeTag'
+                  ></iframe>
                 </div>
 
                 <div className="secondMidContainer2">
@@ -253,15 +238,11 @@ const Home = () => {
                 </div>
               </div>
 
+              {/* Experienced Team */}
               <div className="thirdMidContainer">
-                <div>
-                  <p>Our team members</p>
-                  <h1 className="title">Experienced Team</h1>
-                  <h3>Teamwork is the ability to work together toward a common vision. The ability is to directly involve the individual accomplishments toward organizational objectives. It is the fuel that allows common people to attain uncommon results.</h3>
-                </div>
-
+                <h1 className="title">Experienced Team</h1>
                 <div className="teacher-carousel-wrapper">
-                  <button onClick={scrollTeacherLeft}>◀</button>
+                  <button onClick={() => scrollLeft(teacherScrollRef)}>◀</button>
                   <div
                     className="teacher-carousel"
                     ref={teacherScrollRef}
@@ -272,19 +253,15 @@ const Home = () => {
                       <TeacherCard member={member} key={member._id} />
                     ))}
                   </div>
-                  <button onClick={scrollTeacherRight}>▶</button>
+                  <button onClick={() => scrollRight(teacherScrollRef)}>▶</button>
                 </div>
               </div>
 
+              {/* Technology Partners */}
               <div className='thirdMidContainer'>
-                <div>
-                  <p data-aos="fade-down">Our team Partners</p>
-                  <h1 className="title" data-aos="fade-down">Technology Partners</h1>
-                  <h3 data-aos="fade-down">Teamwork is the ability to work together toward a common vision. The ability is to directly involve the individual accomplishments toward organizational objectives. It is the fuel that allows common people to attain uncommon results.</h3>
-                </div>
-
+                <h1 className="title" data-aos="fade-down">Technology Partners</h1>
                 <div className="teacher-carousel-wrapper">
-                  <button onClick={scrollPartnerLeft}>◀</button>
+                  <button onClick={() => scrollLeft(partnerScrollRef)}>◀</button>
                   <div
                     className="teacher-carousel"
                     ref={partnerScrollRef}
@@ -295,10 +272,11 @@ const Home = () => {
                       <PartnerCard member={member} key={member._id} />
                     ))}
                   </div>
-                  <button onClick={scrollPartnerRight}>▶</button>
+                  <button onClick={() => scrollRight(partnerScrollRef)}>▶</button>
                 </div>
               </div>
 
+              {/* Why The Learning Hub */}
               <section className="why-choose-section" data-aos="fade-down">
                 <h1 className="title chooseContainer">Why The Learning Hub ?</h1>
                 <div className="why-choose-grid">

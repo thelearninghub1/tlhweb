@@ -31,6 +31,47 @@ const formattedCountries = countries.map((country) => ({
 
 
 const Malaysia = () => {
+// Add these states, refs and utils near the top of Apply.js
+const insightScrollRef = useRef();
+const [isInsightHovering, setIsInsightHovering] = useState(false);
+
+// Reusable auto-scroll hook
+const useAutoScroll = (ref, isHovering) => {
+  useEffect(() => {
+    const container = ref.current;
+    let intervalId;
+
+    const startScroll = () => {
+      intervalId = setInterval(() => {
+        if (!isHovering && container) {
+          container.scrollBy({ left: 6, behavior: "smooth" });
+          const atEnd =
+            container.scrollLeft + container.offsetWidth >=
+            container.scrollWidth - 1;
+          if (atEnd) {
+            clearInterval(intervalId);
+            setTimeout(() => {
+              container.scrollTo({ left: 0, behavior: "auto" });
+              setTimeout(startScroll, 500);
+            }, 1000);
+          }
+        }
+      }, 20);
+    };
+
+    startScroll();
+    return () => clearInterval(intervalId);
+  }, [isHovering, ref]);
+};
+
+// Attach auto scroll for insights
+useAutoScroll(insightScrollRef, isInsightHovering);
+
+// Manual scroll buttons
+const scrollLeft = (ref) =>
+  ref.current?.scrollBy({ left: -300, behavior: "smooth" });
+const scrollRight = (ref) =>
+  ref.current?.scrollBy({ left: 300, behavior: "smooth" });
 
 
 
@@ -418,20 +459,30 @@ Whether you are a school looking to add VR/AR learning, a parent seeking a stron
             <div> 
    
       {/* Happy Students Section */}
-     <section className="happy-students-section">
-                <h2 className="title" data-aos="fade-down">School Insights</h2>
-                <div className="video-container" data-aos="fade-down">
-                  {allStudentFeedbacks && allStudentFeedbacks.map((video) => (
-                    <iframe
-                      key={video._id}
-                      className="student-video"
-                      src={video.ytLink}
-                      title={video._id}
-                      allowFullScreen
-                    ></iframe>
-                  ))}
+          <div className='thirdMidContainer'>
+                <h1 className="title" data-aos="fade-down">School Insights</h1>
+                <div className="teacher-carousel-wrapper">
+                  <button onClick={() => scrollLeft(insightScrollRef)}>◀</button>
+                  <div
+                    className="teacher-carousel"
+                    ref={insightScrollRef}
+                    onMouseEnter={() => setIsInsightHovering(true)}
+                    onMouseLeave={() => setIsInsightHovering(false)}
+                  >
+                    {allStudentFeedbacks && allStudentFeedbacks.map((video) => (
+                      <iframe
+                        key={video._id}
+                        className="student-video"
+                        src={video.ytLink}
+                        title={video._id}
+                        allowFullScreen
+                      ></iframe>
+                    ))}
+                  </div>
+                  <button onClick={() => scrollRight(insightScrollRef)}>▶</button>
                 </div>
-              </section>
+              </div>
+
          <div className="secondMidContainer">
                 <div className="secondMidContainer1">
                       <iframe
