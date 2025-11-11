@@ -13,29 +13,49 @@ import { toast } from 'react-toastify';
 import { allPartnerAction } from "../../actions/techActions";
 import Loader from "../layout/Loader/Loader";
 import Metadata from "../layout/Metadata/Metadata";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { allTeacherAction } from "../../actions/teacherActions";
 import TeacherCard from "../About/Teachers/TeacherCard";
+import SchoolIcon from '@mui/icons-material/School';
+import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
+import ViewInArIcon from '@mui/icons-material/ViewInAr';
+import CardMembershipIcon from '@mui/icons-material/CardMembership';
+import { allFeatureAction } from '../../actions/affilationAction';
 
 const Home = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { loading, error, feedbacks: allStudentFeedbacks } = useSelector((state) => state.allStudent);
   const { error: FeedError, feedbacks: allFeedbacks } = useSelector((state) => state.allFeedbacks);
   const { error: cardError, cards } = useSelector((state) => state.allCards);
   const { error: partnerError, partners } = useSelector((state) => state.allPartners);
   const { error: teamError, teachers } = useSelector((state) => state.allTeachers);
+  const { error: featureError, afiliations } = useSelector((state) => state.allAffiliation);
 
   // Refs
   const teacherScrollRef = useRef();
   const partnerScrollRef = useRef();
   const insightScrollRef = useRef();
+  const scrollingCardsRef = useRef(); // ADD THIS REF
 
   // Hover states
   const [isTeacherHovering, setIsTeacherHovering] = useState(false);
   const [isPartnerHovering, setIsPartnerHovering] = useState(false);
   const [isInsightHovering, setIsInsightHovering] = useState(false);
+  const [isScrollingHovering, setIsScrollingHovering] = useState(false); // ADD THIS STATE
 
   const [feedbackIndex, setFeedbackIndex] = useState(0);
+  const [activeTab, setActiveTab] = useState('featured');
+
+  // Handle enquire button click
+  const handleEnquireClick = () => {
+    navigate('/apply-now');
+  };
+
+  // Handle enroll now click
+  const handleEnrollNow = () => {
+    navigate('/apply-now');
+  };
 
   // Feedback auto change
   useEffect(() => {
@@ -78,6 +98,7 @@ const Home = () => {
   useAutoScroll(teacherScrollRef, isTeacherHovering);
   useAutoScroll(partnerScrollRef, isPartnerHovering);
   useAutoScroll(insightScrollRef, isInsightHovering);
+  useAutoScroll(scrollingCardsRef, isScrollingHovering); // ADD THIS HOOK
 
   // Manual scroll
   const scrollLeft = (ref) => ref.current?.scrollBy({ left: -300, behavior: 'smooth' });
@@ -112,12 +133,17 @@ const Home = () => {
       toast.error(partnerError);
       dispatch(clearErrors());
     }
+    if (featureError) {
+      toast.error(featureError);
+      dispatch(clearErrors());
+    }
     dispatch(allCardAction());
     dispatch(allTeacherAction());
     dispatch(allPartnerAction());
     dispatch(allStudentAction());
     dispatch(allFeedbackAction());
-  }, [error, dispatch, FeedError, cardError, teamError, partnerError]);
+    dispatch(allFeatureAction());
+  }, [error, dispatch, FeedError, cardError, teamError, partnerError, featureError]);
 
   return (
     <Fragment>
@@ -203,19 +229,97 @@ const Home = () => {
 
               {/* Testimonials */}
               <div className="secondMidContainer">
-                <div className="secondMidContainer1">
-                  <iframe
-                    width="520"
-                    height="315"
-                    src="https://www.youtube.com/embed/q8NjbC4uGW4?si=IXLXpGdfxXw6Tfa4"
-                    title="YouTube video player"
-                    style={{ border: 0 }}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                    className='iframeTag'
-                  ></iframe>
-                </div>
+{/* Programs Section - Updated Design */}
+<div className="secondMidContainer1">
+  <div className="home-programs-section">
+    {/* Static Top Bar with Infinite Scrolling Cards */}
+    <div className="programs-top-bar">
+      <div className="scrolling-cards-container">
+        <div 
+          className="scrolling-cards-track"
+          ref={scrollingCardsRef}
+          onMouseEnter={() => setIsScrollingHovering(true)}
+          onMouseLeave={() => setIsScrollingHovering(false)}
+        >
+          {/* First set of cards */}
+          <div className="scrolling-card">
+            <SchoolIcon className="scrolling-icon" />
+            <span>Certified Online schooling</span>
+          </div>
+          <div className="scrolling-card">
+            <RocketLaunchIcon className="scrolling-icon" />
+            <span>STEAM</span>
+          </div>
+          <div className="scrolling-card">
+            <ViewInArIcon className="scrolling-icon" />
+            <span>MetaVerse</span>
+          </div>
+          <div className="scrolling-card">
+            <CardMembershipIcon className="scrolling-icon" />
+            <span>Professional Certificate Courses</span>
+          </div>
+          
+          {/* Duplicate set for seamless looping */}
+       
+         
+          
+         
+        </div>
+      </div>
+    </div> 
+
+    {/* Two Column Layout */}
+    <div className="programs-content-section">
+      {/* Left Column - Heading and Description */}
+      <div className="programs-left-column">
+        <h2 className="programs-main-title">Our Programs</h2>
+        <p className="programs-subtitle">
+          Online learning offers a dynamic and flexible approach to education, allowing individuals to explore subjects they are passionate about from anywhere in the world. With access to diverse courses and resources, learners can study at their own pace, develop valuable skills, and connect with global communities, fostering personal growth, professional development, and a lifelong love for learning.
+        </p>
+        
+        {/* Filter Tabs */}
+        <div className="programs-tabs">
+          <button 
+            className={`program-tab-btn ${activeTab === 'featured' ? 'active' : ''}`}
+            onClick={() => setActiveTab('featured')}
+          >
+            Featured
+          </button>
+          <button 
+            className={`program-tab-btn ${activeTab === 'all' ? 'active' : ''}`}
+            onClick={() => setActiveTab('all')}
+          >
+            All
+          </button>
+        </div>
+      </div>
+
+      {/* Right Column - Dynamic Cards */}
+      <div className="programs-right-column">
+       
+        <div className="program-cards-grid">
+  {afiliations && afiliations.slice(0, 4).map((feature, index) => (
+    <div key={feature._id} className="program-card" data-aos="zoom-in">
+      <div className="program-card-content">
+       
+        <h3 className="program-card-title">{feature.title}</h3>
+         <div className="program-card-image">
+          <img src={feature.avatar.url} alt={feature.title} />
+        </div>
+      </div>
+      <button 
+        className="program-enquire-btn"
+        onClick={handleEnquireClick}
+      >
+        Enquire
+      </button>
+    </div>
+  ))}
+</div>
+      </div>
+    </div>
+  </div>
+</div>
 
                 <div className="secondMidContainer2">
                   <div className="custom-carousel">

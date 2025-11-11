@@ -345,6 +345,244 @@ flex-wrap: wrap;
   
 
 
+.secondMidContainer1 {
+  background-color: #2C7EAD;
+  box-sizing: border-box;
+  padding-bottom: 2vmax;
+}
+
+
+
+
+
+
+
+
+/* Programs Section - Scoped inside secondMidContainer1 */
+.secondMidContainer1 .home-programs-section {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #2C7EAD;
+
+
+
+}
+
+
+
+
+/* Two Column Layout */
+.secondMidContainer1 .programs-content-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Left Column Styles */
+.secondMidContainer1 .programs-left-column {
+  padding-top: 20px;
+}
+
+.secondMidContainer1 .programs-main-title {
+  font-size: 4.5rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 15px;
+  line-height: 1.2;
+  color: white;
+  font-family: "Sour Gummy";
+  text-align: left;
+
+}
+
+.secondMidContainer1 .programs-subtitle {
+  font-size: 1.6rem;
+  margin-bottom: 30px;
+  line-height: 1.6;
+  color: white;
+  font-family: "Sour Gummy";
+  text-align: left;
+
+
+
+}
+
+.secondMidContainer1 .programs-tabs {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.program-tab-btn {
+  padding: 12px 30px;
+  border: 2px solid #e2e8f0;
+  background: white;
+  border-radius: 8px;
+  font-weight: 700;
+  color: #2C7EAD;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Sour Gummy", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.program-tab-btn.active {
+  background: #73afd4;
+  border-color: #C1E3F8;
+  color: white;
+  box-shadow: 0 4px 12px rgba(74, 108, 247, 0.3);
+  transform: translateY(-2px);
+}
+
+.program-tab-btn:hover:not(.active) {
+  border-color: #4a6cf7;
+  color: #4a6cf7;
+  background: #f8faff;
+  transform: translateY(-1px);
+}
+
+
+
+
+
+/* Right Column - Cards Grid */
+.secondMidContainer1 .programs-right-column {
+  display: flex;
+  justify-content: center;
+}
+
+.secondMidContainer1 .program-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+}
+
+.secondMidContainer1 .program-card {
+  background: #2C7EAD;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  border: 4px solid #e9ecef;
+  height: fit-content;
+
+
+}
+.secondMidContainer1 .program-card:nth-child(even) {
+  align-items: flex-end;
+}
+
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .secondMidContainer1 .programs-content-section {
+    gap: 40px;
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 968px) {
+  .secondMidContainer1 .programs-content-section {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .secondMidContainer1 .programs-main-title {
+    font-size: 2.2rem;
+    text-align: center;
+  }
+  
+  .secondMidContainer1 .programs-subtitle {
+    text-align: center;
+  }
+  
+  .secondMidContainer1 .programs-tabs {
+    justify-content: center;
+  }
+  
+  .secondMidContainer1 .program-cards-grid {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .secondMidContainer1 .program-cards-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    gap: 15px;
+  }
+  
+  .secondMidContainer1 .scrolling-card {
+    min-width: 200px;
+    padding: 10px 15px;
+    margin: 0 10px;
+  }
+  
+  .secondMidContainer1 .scrolling-card span {
+    font-size: 0.9rem;
+  }
+  
+  .secondMidContainer1 .scrolling-icon {
+    font-size: 1.2rem !important;
+  }
+  
+  .secondMidContainer1 .programs-main-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .secondMidContainer1 .programs-tabs {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .secondMidContainer1 .program-tab-btn {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .secondMidContainer1 .scrolling-card {
+    min-width: 170px;
+    margin: 0 8px;
+    padding: 8px 12px;
+  }
+  
+  .secondMidContainer1 .scrolling-icon {
+    font-size: 1.1rem !important;
+    margin-right: 8px;
+  }
+  
+  .secondMidContainer1 .programs-content-section {
+    padding: 0 15px;
+    gap: 30px;
+  }
+  
+  .secondMidContainer1 .program-card-content {
+    padding: 15px;
+  }
+  
+  .secondMidContainer1 .program-card-title {
+    font-size: 1rem;
+    min-height: 40px;
+  }
+}
+
+/* Pause animation on hover */
+.secondMidContainer1 .scrolling-cards-container:hover .scrolling-cards-track {
+  animation-play-state: paused;
+}
 
 
 
@@ -355,3 +593,335 @@ flex-wrap: wrap;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Static Top Bar with Infinite Scrolling */
+.secondMidContainer1 .programs-top-bar {
+  padding: 15px 0;
+  border-bottom: 1px solid #e9ecef;
+  margin-bottom: 40px;
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 3px solid white;
+  background-color: #2C7EAD;
+  overflow: hidden; /* ADD THIS LINE */
+  align-items: center;
+}
+
+.secondMidContainer1 .scrolling-cards-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  
+}
+
+.secondMidContainer1 .scrolling-cards-track {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 1vmax;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.secondMidContainer1 .scrolling-card {
+  display: flex;
+  align-items: center;
+  background: #2C7EAD;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  padding: 12px;
+  margin:  4px 30px;
+
+}
+
+.secondMidContainer1 .scrolling-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.secondMidContainer1 .scrolling-icon {
+  font-size: 2rem !important;
+  color: white;
+}
+
+.secondMidContainer1 .scrolling-card span {
+  font-weight: 600;
+  color: white;
+  padding-left: 0.2vmax;
+  white-space: nowrap;
+  font-size: 0.95rem;
+  font-family: "Sour Gummy";
+}
+
+@keyframes scrollInfinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Program Cards Layout - Updated for Circular Enquire Buttons */
+.secondMidContainer1 .program-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  width: 100%;
+  padding: 2vmax 0vmax;
+}
+
+.secondMidContainer1 .program-card {
+  background: white;
+  border-radius: 15px;
+  overflow: visible;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  border: 3px solid #e9ecef;
+  position: relative;
+  padding-bottom: 80px; /* Space for circular button */
+  display: flex;
+  flex-direction: column;
+  border-bottom-right-radius:50% ;
+}
+
+.secondMidContainer1 .program-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  border-color: #2C7EAD;
+}
+
+/* Card Content */
+.program-card-content {
+  padding: 25px;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.program-card-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 20px;
+  border: 4px solid #2C7EAD;
+  background: white;
+}
+
+.program-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.program-card:hover .program-card-image img {
+  transform: scale(1.1);
+}
+
+.secondMidContainer1 .program-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2C7EAD;
+  margin-bottom: 15px;
+  line-height: 1.3;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Sour Gummy", sans-serif;
+  text-align: center;
+}
+
+/* Circular Enquire Button */
+.program-enquire-btn {
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-weight: 700;
+  font-family: "Sour Gummy", sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: -0px; /* Half outside the card */
+  left: 80%;
+  transform: translateX(-50%);
+  box-shadow: 0 5px 15px rgba(44, 126, 173, 0.3);
+  text-align: center;
+  line-height: 1.2;
+  padding: 10px;
+}
+
+.program-enquire-btn:hover {
+  background: #1e5a7a;
+  color: white;
+  transform: translateX(-50%) scale(1.1);
+  box-shadow: 0 8px 25px rgba(44, 126, 173, 0.4);
+}
+
+/* Card Layout for Even/Odd Positioning */
+.secondMidContainer1 .program-card:nth-child(odd) {
+  align-items: flex-start;
+}
+
+.secondMidContainer1 .program-card:nth-child(even) {
+  align-items: flex-end;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .secondMidContainer1 .program-cards-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    gap: 40px;
+  }
+  
+  .secondMidContainer1 .program-card {
+    min-height: 320px;
+    padding-bottom: 70px;
+  }
+  
+  .program-enquire-btn {
+    width: 70px;
+    height: 70px;
+    bottom: -35px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .secondMidContainer1 .program-card {
+    min-height: 280px;
+    padding-bottom: 60px;
+  }
+  
+  .program-card-image {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .secondMidContainer1 .program-card-title {
+    font-size: 1.2rem;
+    min-height: 50px;
+  }
+  
+  .program-enquire-btn {
+    width: 60px;
+    height: 60px;
+    bottom: -30px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Alternative color options for circular buttons */
+.program-enquire-btn.primary {
+  background: #2C7EAD;
+}
+
+.program-enquire-btn.secondary {
+  background: #FF6B6B;
+}
+
+.program-enquire-btn.accent {
+  background: #4ECDC4;
+}
+
+.program-enquire-btn.dark {
+  background: #2D3748;
+}
