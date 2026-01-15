@@ -85,6 +85,7 @@ import MiniFooter from './components/layout/Footer/MiniFooter';
 import ScrollToTop from './components/layout/Scroll/Scroll';
 import Pakistan from './components/Locations/Pakistan/Pakistan';
 import Bye from './components/layout/Bye/Bye';
+import { HelmetProvider } from 'react-helmet-async';
 
 function App() {
  
@@ -105,6 +106,8 @@ const {isAuthenticatedUser , user} = useSelector((state)=>state.loginUser)
      },[dispatch]);
 
   return (
+    <HelmetProvider>
+
     <>
     <Router>
 
@@ -200,6 +203,8 @@ const {isAuthenticatedUser , user} = useSelector((state)=>state.loginUser)
     </Router>
 
     </>
+        </HelmetProvider>
+
   )
 }
 

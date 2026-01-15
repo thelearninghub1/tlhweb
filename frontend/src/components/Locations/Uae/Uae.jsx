@@ -18,8 +18,8 @@ import { CONTACT_US_RESET } from '../../../constants/contactUsContants';
 import Metadata from '../../layout/Metadata/Metadata';
 import video from '../../../assets/uae.mp4';
 import { useNavigate } from 'react-router-dom';
-import {matchSorter} from "match-sorter"; // install with: npm i match-sorter
-
+import {matchSorter} from "match-sorter"; // install with: 
+import { AdmissionsSEO, RegionalSEO } from '../../seo';
 
 
 // Format countries for dropdown
@@ -270,6 +270,9 @@ const [WhatsAppNo,setWhatsAppNo] = useState("")
       <Fragment>
         {
           loading ? (<Loader/>):(  <Fragment>
+            
+      <AdmissionsSEO region="uae" />
+      <RegionalSEO country="uae" city="Dubai" />
         <Metadata title="UAE - The Learning Hub" />
 
           <div className="servicesDetailsContainer">

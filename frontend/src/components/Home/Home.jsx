@@ -21,6 +21,7 @@ import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import ViewInArIcon from '@mui/icons-material/ViewInAr';
 import CardMembershipIcon from '@mui/icons-material/CardMembership';
 import { allFeatureAction } from '../../actions/affilationAction';
+import { HomeSEO } from "../seo";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -152,6 +153,7 @@ const Home = () => {
       ) : (
         <Fragment>
           <Metadata title={`The Learning Hub`} />
+    <HomeSEO>
 
           <div className="servicesDetailsContainer">
             {/* Hero Section */}
@@ -394,6 +396,9 @@ const Home = () => {
               </section>
             </div>
           </div>
+
+    </HomeSEO>
+
         </Fragment>
       )}
     </Fragment>
