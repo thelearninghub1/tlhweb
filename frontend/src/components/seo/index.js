@@ -4,8 +4,6 @@ import ProgramsSEO from './ProgramsSEO';
 import AdmissionsSEO from './AdmissionsSEO';
 import LoginSEO from './LoginSEO';
 import ReviewsSEO from './ReviewsSEO';
-import AboutSEO from './AboutSEO';
-import ContactSEO from './ContactSEO';
 import RegionalSEO from './RegionalSEO';
 import GlobalSEO from './GlobalSEO';
 
@@ -15,8 +13,6 @@ export {
   AdmissionsSEO,
   LoginSEO,
   ReviewsSEO,
-  AboutSEO,
-  ContactSEO,
   RegionalSEO,
   GlobalSEO
 };
