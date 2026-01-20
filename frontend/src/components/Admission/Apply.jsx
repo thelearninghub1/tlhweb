@@ -244,7 +244,7 @@ myForm.set("country", country?.label ?? "");
       
       <Fragment>
         <Metadata title="Apply Now - The Learning Hub" />
-    <ProgramsSEO programType="british">
+    <ProgramsSEO programType="british" />
 
       <div className="servicesDetailsContainer">
            <div className='topBahrianContainer'>
@@ -536,7 +536,6 @@ Whether you are a school looking to add VR/AR learning, a parent seeking a stron
               </section>
     </div>
         </div>
-    </ProgramsSEO>
 
   </Fragment>
     )

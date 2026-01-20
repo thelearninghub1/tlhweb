@@ -153,7 +153,7 @@ const Home = () => {
       ) : (
         <Fragment>
           <Metadata title={`The Learning Hub`} />
-    <HomeSEO>
+    <HomeSEO />
 
           <div className="servicesDetailsContainer">
             {/* Hero Section */}
@@ -397,7 +397,6 @@ const Home = () => {
             </div>
           </div>
 
-    </HomeSEO>
 
         </Fragment>
       )}
