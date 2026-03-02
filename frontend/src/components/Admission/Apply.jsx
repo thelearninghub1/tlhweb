@@ -20,7 +20,6 @@ import Metadata from '../layout/Metadata/Metadata.jsx';
 import { useNavigate } from 'react-router-dom';
 import {matchSorter} from "match-sorter"; // install with: npm i match-sorter
 import video from '../../assets/apply.mp4'
-import ProgramsSEO from '../seo/ProgramsSEO.jsx';
 
 
 // Format countries for dropdown
@@ -244,7 +243,6 @@ myForm.set("country", country?.label ?? "");
       
       <Fragment>
         <Metadata title="Apply Now - The Learning Hub" />
-    <ProgramsSEO programType="british" />
 
       <div className="servicesDetailsContainer">
            <div className='topBahrianContainer'>

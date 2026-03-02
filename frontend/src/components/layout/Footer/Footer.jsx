@@ -11,7 +11,7 @@ const services = [
     { _id: 1, name: "Skills Development", nameLink: "skills-development-courses" },
     { _id: 2, name: "Instructional Methods", nameLink: "instructional-methods" },
     { _id: 3, name: "Academic Support", nameLink: "academic-support" },
-    { _id: 4, name: "Subjects Summary", nameLink: "subjects-summary" },
+    { _id: 4, name: "Teachers Assessment", nameLink: "https://assessment.thelearninghubedu.com/" },
     { _id: 5, name: "STEM LMS", nameLink: "https://lms.thelearninghubedu.com/" },
 ];
 
@@ -31,25 +31,25 @@ const Footer = () => {
                         <img src={logo} alt="logo" />
                         <p>Shaping minds through innovative online schooling, personalized tutoring, and immersive, tech-enabled learning experiences — accessible everywhere!</p>
                     </div>
-                    <div className="midFooter1">
-                        <h1>Academics</h1>
-                        {services.map((ser) =>
-                            ser._id === 5 ? (
-                                <a
-                                    key={ser._id}
-                                    href={ser.nameLink}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    {ser.name}
-                                </a>
-                            ) : (
-                                <Link key={ser._id} to={`/${ser.nameLink}/`}>
-                                    {ser.name}
-                                </Link>
-                            )
-                        )}
-                    </div>
+                 <div className="midFooter1">
+    <h1>Academics</h1>
+    {services.map((ser) =>
+        ser._id === 5 || ser._id === 4 ? (
+            <a
+                key={ser._id}
+                href={ser.nameLink}
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                {ser.name}
+            </a>
+        ) : (
+            <Link key={ser._id} to={`/${ser.nameLink}/`}>
+                {ser.name}
+            </Link>
+        )
+    )}
+</div>
                     <div className="midFooter2">
                         <h1>Useful Links</h1>
                         <Link to={`/about-us`}>About Us</Link>
