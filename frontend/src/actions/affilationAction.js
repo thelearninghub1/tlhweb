@@ -24,7 +24,7 @@ export const allAffiliationAction = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_AFFILIATION_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:4000/api/v1/afiliations`);
+    const { data } = await axios.get(`/api/v1/afiliations`);
 
     dispatch({
       type: ALL_AFFILIATION_SUCCESS,
@@ -43,7 +43,7 @@ export const affiliationDetailsAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: AFFILIATION_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:4000/api/v1/admin/afiliation/${id}`);
+    const { data } = await axios.get(`/api/v1/admin/afiliation/${id}`);
 
     dispatch({
       type: AFFILIATION_DETAILS_SUCCESS,
@@ -68,7 +68,7 @@ export const createAffiliationAction = (newAffiliationData) => async (dispatch) 
     };
 
     const { data } = await axios.post(
-      `http://localhost:4000/api/v1/admin/afiliation/create`,
+      `/api/v1/admin/afiliation/create`,
       newAffiliationData,
       config
     );
@@ -96,7 +96,7 @@ export const deleteAffiliationAction = (id) => async (dispatch) => {
     };
 
     const { data } = await axios.delete(
-      `http://localhost:4000/api/v1/admin/afiliation/${id}`,
+      `/api/v1/admin/afiliation/${id}`,
       config
     );
 
@@ -123,7 +123,7 @@ export const updateAffiliationAction = (id, newAffiliationData) => async (dispat
     };
 
     const { data } = await axios.put(
-      `http://localhost:4000/api/v1/admin/afiliation/${id}`,
+      `/api/v1/admin/afiliation/${id}`,
       newAffiliationData,
       config
     );
@@ -171,7 +171,7 @@ export const allExtraAction = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_AFFILIATION_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:4000/api/v1/extra-activities`);
+    const { data } = await axios.get(`/api/v1/extra-activities`);
 
     dispatch({
       type: ALL_AFFILIATION_SUCCESS,
@@ -190,7 +190,7 @@ export const extraDetailsAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: AFFILIATION_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:4000/api/v1/admin/extra-activity/${id}`);
+    const { data } = await axios.get(`/api/v1/admin/extra-activity/${id}`);
 
     dispatch({
       type: AFFILIATION_DETAILS_SUCCESS,
@@ -215,7 +215,7 @@ export const createExtraAction = (newAffiliationData) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `http://localhost:4000/api/v1/admin/extra-activity/create`,
+      `/api/v1/admin/extra-activity/create`,
       newAffiliationData,
       config
     );
@@ -243,7 +243,7 @@ export const deleteExtraAction = (id) => async (dispatch) => {
     };
 
     const { data } = await axios.delete(
-      `http://localhost:4000/api/v1/admin/extra-activity/${id}`,
+      `/api/v1/admin/extra-activity/${id}`,
       config
     );
 
@@ -270,7 +270,7 @@ export const updateExtraAction = (id, newAffiliationData) => async (dispatch) =>
     };
 
     const { data } = await axios.put(
-      `http://localhost:4000/api/v1/admin/extra-activity/${id}`,
+      `/api/v1/admin/extra-activity/${id}`,
       newAffiliationData,
       config
     );
@@ -305,7 +305,7 @@ export const allInstructionalAction = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_AFFILIATION_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:4000/api/v1/instrutionals`);
+    const { data } = await axios.get(`/api/v1/instrutionals`);
 
     dispatch({
       type: ALL_AFFILIATION_SUCCESS,
@@ -324,7 +324,7 @@ export const instrutionalsDetailsAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: AFFILIATION_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:4000/api/v1/admin/instrutional/${id}`);
+    const { data } = await axios.get(`/api/v1/admin/instrutional/${id}`);
 
     dispatch({
       type: AFFILIATION_DETAILS_SUCCESS,
@@ -349,7 +349,7 @@ export const createInstrutionalAction = (newAffiliationData) => async (dispatch)
     };
 
     const { data } = await axios.post(
-      `http://localhost:4000/api/v1/admin/instrutional/create`,
+      `/api/v1/admin/instrutional/create`,
       newAffiliationData,
       config
     );
@@ -377,7 +377,7 @@ export const deleteInstrutionalAction = (id) => async (dispatch) => {
     };
 
     const { data } = await axios.delete(
-      `http://localhost:4000/api/v1/admin/instrutional/${id}`,
+      `/api/v1/admin/instrutional/${id}`,
       config
     );
 
@@ -404,7 +404,7 @@ export const updateInstrutionalAction = (id, newAffiliationData) => async (dispa
     };
 
     const { data } = await axios.put(
-      `http://localhost:4000/api/v1/admin/instrutional/${id}`,
+      `/api/v1/admin/instrutional/${id}`,
       newAffiliationData,
       config
     );
@@ -452,7 +452,7 @@ export const allSupportAction = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_AFFILIATION_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:4000/api/v1/supports`);
+    const { data } = await axios.get(`/api/v1/supports`);
 
     dispatch({
       type: ALL_AFFILIATION_SUCCESS,
@@ -471,7 +471,7 @@ export const supportDetailsAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: AFFILIATION_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:4000/api/v1/admin/support/${id}`);
+    const { data } = await axios.get(`/api/v1/admin/support/${id}`);
 
     dispatch({
       type: AFFILIATION_DETAILS_SUCCESS,
@@ -496,7 +496,7 @@ export const createSupportAction = (newAffiliationData) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `http://localhost:4000/api/v1/admin/support/create`,
+      `/api/v1/admin/support/create`,
       newAffiliationData,
       config
     );
@@ -524,7 +524,7 @@ export const deleteSupportAction = (id) => async (dispatch) => {
     };
 
     const { data } = await axios.delete(
-      `http://localhost:4000/api/v1/admin/support/${id}`,
+      `/api/v1/admin/support/${id}`,
       config
     );
 
@@ -551,7 +551,7 @@ export const updateSupportAction = (id, newAffiliationData) => async (dispatch) 
     };
 
     const { data } = await axios.put(
-      `http://localhost:4000/api/v1/admin/support/${id}`,
+      `/api/v1/admin/support/${id}`,
       newAffiliationData,
       config
     );
@@ -624,7 +624,7 @@ export const allFeatureAction = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_AFFILIATION_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:4000/api/v1/features`);
+    const { data } = await axios.get(`/api/v1/features`);
 
     dispatch({
       type: ALL_AFFILIATION_SUCCESS,
@@ -643,7 +643,7 @@ export const featureDetailsAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: AFFILIATION_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:4000/api/v1/admin/feature/${id}`);
+    const { data } = await axios.get(`/api/v1/admin/feature/${id}`);
 
     dispatch({
       type: AFFILIATION_DETAILS_SUCCESS,
@@ -668,7 +668,7 @@ export const createFeatureAction = (newAffiliationData) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `http://localhost:4000/api/v1/admin/feature/create`,
+      `/api/v1/admin/feature/create`,
       newAffiliationData,
       config
     );
@@ -696,7 +696,7 @@ export const deleteFeatureAction = (id) => async (dispatch) => {
     };
 
     const { data } = await axios.delete(
-      `http://localhost:4000/api/v1/admin/feature/${id}`,
+      `/api/v1/admin/feature/${id}`,
       config
     );
 
@@ -723,7 +723,7 @@ export const updateFeatureAction = (id, newAffiliationData) => async (dispatch) 
     };
 
     const { data } = await axios.put(
-      `http://localhost:4000/api/v1/admin/feature/${id}`,
+      `/api/v1/admin/feature/${id}`,
       newAffiliationData,
       config
     );
