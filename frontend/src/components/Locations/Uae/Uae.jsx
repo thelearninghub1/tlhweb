@@ -391,7 +391,7 @@ const [WhatsAppNo,setWhatsAppNo] = useState("")
       {/* Enrollment Button */}
       <section className="learn-enrollment" data-aos="fade-down">
         <button className="learn-enroll-btn">
-          ENROLL YOUR CHILD FOR SESSION 2025-26 AND BECOME PART OF THE LEARNING HUB COMMUNITY.
+          ENROLL YOUR CHILD FOR SESSION 2026-27 AND BECOME PART OF THE LEARNING HUB COMMUNITY.
         </button>
       </section>
 
