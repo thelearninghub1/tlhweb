@@ -37,13 +37,13 @@ const Home = () => {
   const teacherScrollRef = useRef();
   const partnerScrollRef = useRef();
   const insightScrollRef = useRef();
-  const scrollingCardsRef = useRef(); // ADD THIS REF
+  const scrollingCardsRef = useRef();
 
   // Hover states
   const [isTeacherHovering, setIsTeacherHovering] = useState(false);
   const [isPartnerHovering, setIsPartnerHovering] = useState(false);
   const [isInsightHovering, setIsInsightHovering] = useState(false);
-  const [isScrollingHovering, setIsScrollingHovering] = useState(false); // ADD THIS STATE
+  const [isScrollingHovering, setIsScrollingHovering] = useState(false);
 
   const [feedbackIndex, setFeedbackIndex] = useState(0);
   const [activeTab, setActiveTab] = useState('featured');
@@ -99,7 +99,7 @@ const Home = () => {
   useAutoScroll(teacherScrollRef, isTeacherHovering);
   useAutoScroll(partnerScrollRef, isPartnerHovering);
   useAutoScroll(insightScrollRef, isInsightHovering);
-  useAutoScroll(scrollingCardsRef, isScrollingHovering); // ADD THIS HOOK
+  useAutoScroll(scrollingCardsRef, isScrollingHovering);
 
   // Manual scroll
   const scrollLeft = (ref) => ref.current?.scrollBy({ left: -300, behavior: 'smooth' });
@@ -153,12 +153,19 @@ const Home = () => {
       ) : (
         <Fragment>
           <Metadata title={`The Learning Hub`} />
-    <HomeSEO />
+          <HomeSEO />
 
           <div className="servicesDetailsContainer">
             {/* Hero Section */}
             <section className="hero">
-              <video autoPlay loop muted playsInline className="background-video">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="background-video"
+                preload="auto"
+              >
                 <source src={video} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
@@ -231,97 +238,88 @@ const Home = () => {
 
               {/* Testimonials */}
               <div className="secondMidContainer">
-{/* Programs Section - Updated Design */}
-<div className="secondMidContainer1">
-  <div className="home-programs-section">
-    {/* Static Top Bar with Infinite Scrolling Cards */}
-    <div className="programs-top-bar">
-      <div className="scrolling-cards-container">
-        <div 
-          className="scrolling-cards-track"
-          ref={scrollingCardsRef}
-          onMouseEnter={() => setIsScrollingHovering(true)}
-          onMouseLeave={() => setIsScrollingHovering(false)}
-        >
-          {/* First set of cards */}
-          <div className="scrolling-card">
-            <SchoolIcon className="scrolling-icon" />
-            <span>Certified Online schooling</span>
-          </div>
-          <div className="scrolling-card">
-            <RocketLaunchIcon className="scrolling-icon" />
-            <span>STEAM</span>
-          </div>
-          <div className="scrolling-card">
-            <ViewInArIcon className="scrolling-icon" />
-            <span>MetaVerse</span>
-          </div>
-          <div className="scrolling-card">
-            <CardMembershipIcon className="scrolling-icon" />
-            <span>Professional Certificate Courses</span>
-          </div>
-          
-          {/* Duplicate set for seamless looping */}
-       
-         
-          
-         
-        </div>
-      </div>
-    </div> 
+                {/* Programs Section - Updated Design */}
+                <div className="secondMidContainer1">
+                  <div className="home-programs-section">
+                    {/* Static Top Bar with Infinite Scrolling Cards */}
+                    <div className="programs-top-bar">
+                      <div className="scrolling-cards-container">
+                        <div
+                          className="scrolling-cards-track"
+                          ref={scrollingCardsRef}
+                          onMouseEnter={() => setIsScrollingHovering(true)}
+                          onMouseLeave={() => setIsScrollingHovering(false)}
+                        >
+                          <div className="scrolling-card">
+                            <SchoolIcon className="scrolling-icon" />
+                            <span>Certified Online schooling</span>
+                          </div>
+                          <div className="scrolling-card">
+                            <RocketLaunchIcon className="scrolling-icon" />
+                            <span>STEAM</span>
+                          </div>
+                          <div className="scrolling-card">
+                            <ViewInArIcon className="scrolling-icon" />
+                            <span>MetaVerse</span>
+                          </div>
+                          <div className="scrolling-card">
+                            <CardMembershipIcon className="scrolling-icon" />
+                            <span>Professional Certificate Courses</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
-    {/* Two Column Layout */}
-    <div className="programs-content-section">
-      {/* Left Column - Heading and Description */}
-      <div className="programs-left-column">
-        <h2 className="programs-main-title">Our Programs</h2>
-        <p className="programs-subtitle">
-          Online learning offers a dynamic and flexible approach to education, allowing individuals to explore subjects they are passionate about from anywhere in the world. With access to diverse courses and resources, learners can study at their own pace, develop valuable skills, and connect with global communities, fostering personal growth, professional development, and a lifelong love for learning.
-        </p>
-        
-        {/* Filter Tabs */}
-        <div className="programs-tabs">
-          <button 
-            className={`program-tab-btn ${activeTab === 'featured' ? 'active' : ''}`}
-            onClick={() => setActiveTab('featured')}
-          >
-            Featured
-          </button>
-          <button 
-            className={`program-tab-btn ${activeTab === 'all' ? 'active' : ''}`}
-            onClick={() => setActiveTab('all')}
-          >
-            All
-          </button>
-        </div>
-      </div>
+                    {/* Two Column Layout */}
+                    <div className="programs-content-section">
+                      {/* Left Column - Heading and Description */}
+                      <div className="programs-left-column">
+                        <h2 className="programs-main-title">Our Programs</h2>
+                        <p className="programs-subtitle">
+                          Online learning offers a dynamic and flexible approach to education, allowing individuals to explore subjects they are passionate about from anywhere in the world. With access to diverse courses and resources, learners can study at their own pace, develop valuable skills, and connect with global communities, fostering personal growth, professional development, and a lifelong love for learning.
+                        </p>
 
-      {/* Right Column - Dynamic Cards */}
-      <div className="programs-right-column">
-       
-        <div className="program-cards-grid">
-  {afiliations && afiliations.slice(0, 4).map((feature, index) => (
-    <div key={feature._id} className="program-card" data-aos="zoom-in">
-      <div className="program-card-content">
-       
-        <h3 className="program-card-title">{feature.title}</h3>
-         <div className="program-card-image">
-          <img src={feature.avatar.url} alt={feature.title} />
-        </div>
-      </div>
-      <button 
-        className="program-enquire-btn"
-        onClick={handleEnquireClick}
-      >
-        Enquire
-      </button>
-    </div>
-  ))}
-</div>
-      </div>
-    </div>
-  </div>
-</div>
+                        {/* Filter Tabs */}
+                        <div className="programs-tabs">
+                          <button
+                            className={`program-tab-btn ${activeTab === 'featured' ? 'active' : ''}`}
+                            onClick={() => setActiveTab('featured')}
+                          >
+                            Featured
+                          </button>
+                          <button
+                            className={`program-tab-btn ${activeTab === 'all' ? 'active' : ''}`}
+                            onClick={() => setActiveTab('all')}
+                          >
+                            All
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Right Column - Dynamic Cards */}
+                      <div className="programs-right-column">
+                        <div className="program-cards-grid">
+                          {afiliations && afiliations.slice(0, 4).map((feature, index) => (
+                            <div key={feature._id} className="program-card" data-aos="zoom-in">
+                              <div className="program-card-content">
+                                <h3 className="program-card-title">{feature.title}</h3>
+                                <div className="program-card-image">
+                                  <img src={feature.avatar.url} alt={feature.title} />
+                                </div>
+                              </div>
+                              <button
+                                className="program-enquire-btn"
+                                onClick={handleEnquireClick}
+                              >
+                                Enquire
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                 <div className="secondMidContainer2">
                   <div className="custom-carousel">
@@ -396,8 +394,6 @@ const Home = () => {
               </section>
             </div>
           </div>
-
-
         </Fragment>
       )}
     </Fragment>
