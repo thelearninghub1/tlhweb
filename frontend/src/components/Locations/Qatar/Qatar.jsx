@@ -1,26 +1,23 @@
-import React, { Fragment , useState , useEffect, useRef} from 'react';
+import React, { Fragment, useState, useEffect, useRef } from 'react';
 import Select from "react-select";
 import countries from "world-countries";
 import ClientCard from '../../About/ClientCard';
 import PartnerCard from '../../Admission/PartnerCard';
-import { useDispatch , useSelector } from 'react-redux';
-import { allStudentAction , clearErrors } from "../../../actions/studentAction";
+import { useDispatch, useSelector } from 'react-redux';
+import { allStudentAction, clearErrors } from "../../../actions/studentAction";
 import Loader from '../../layout/Loader/Loader';
 import { toast } from 'react-toastify';
 import { allFeedbackAction } from "../../../actions/feedbackActions";
 import { allCardAction } from "../../../actions/cardActions";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import { allPartnerAction } from "../../../actions/techActions";
 import { allFeatureAction } from '../../../actions/affilationAction';
 import { createCallBackAction } from '../../../actions/contactUsAction';
 import { CONTACT_US_RESET } from '../../../constants/contactUsContants';
 import Metadata from '../../layout/Metadata/Metadata';
-import video from '../../../assets/qatar.mp4';
 import { useNavigate } from 'react-router-dom';
-import {matchSorter} from "match-sorter"; // install with: npm i match-sorter
-
-
+import { matchSorter } from "match-sorter";
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaGlobeAmericas } from 'react-icons/fa';
 
 // Format countries for dropdown
 const formattedCountries = countries.map((country) => ({
@@ -29,540 +26,347 @@ const formattedCountries = countries.map((country) => ({
   flag: `https://flagcdn.com/w40/${country.cca2.toLowerCase()}.png`,
 }));
 
-
 const Qatar = () => {
-
-
-// Add these states, refs and utils near the top of Apply.js
-const insightScrollRef = useRef();
-const [isInsightHovering, setIsInsightHovering] = useState(false);
-
-// Reusable auto-scroll hook
-const useAutoScroll = (ref, isHovering) => {
-  useEffect(() => {
-    const container = ref.current;
-    let intervalId;
-
-    const startScroll = () => {
-      intervalId = setInterval(() => {
-        if (!isHovering && container) {
-          container.scrollBy({ left: 6, behavior: "smooth" });
-          const atEnd =
-            container.scrollLeft + container.offsetWidth >=
-            container.scrollWidth - 1;
-          if (atEnd) {
-            clearInterval(intervalId);
-            setTimeout(() => {
-              container.scrollTo({ left: 0, behavior: "auto" });
-              setTimeout(startScroll, 500);
-            }, 1000);
-          }
-        }
-      }, 20);
-    };
-
-    startScroll();
-    return () => clearInterval(intervalId);
-  }, [isHovering, ref]);
-};
-
-// Attach auto scroll for insights
-useAutoScroll(insightScrollRef, isInsightHovering);
-
-// Manual scroll buttons
-const scrollLeft = (ref) =>
-  ref.current?.scrollBy({ left: -300, behavior: "smooth" });
-const scrollRight = (ref) =>
-  ref.current?.scrollBy({ left: 300, behavior: "smooth" });
-
-
-   const videoRef = useRef();
-
-  useEffect(() => {
-    const handleResize = () => {
-      const videoEl = videoRef.current;
-      if (!videoEl) return;
-
-      // Example: assuming your video is 16:9
-      const videoAspect = 16 / 9;
-      const windowAspect = window.innerWidth / window.innerHeight;
-
-      if (Math.abs(windowAspect - videoAspect) < 0.15) {
-        // Aspect ratios are close → fill screen
-        videoEl.style.objectFit = 'cover';
-      } else {
-        // Aspect ratios very different → show all video
-        videoEl.style.objectFit = 'contain';
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    handleResize(); // run once on load
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-    const programs = [
-    "Online schooling",
-"One to One tutoring ",
-"O/A levels tuitions",
-"Grade 9 and 10 Federal Board",
-"Coding",
-"Abacus Mathematics"
-]
-
-
-const [name,setName] = useState("")
-const [email,setEmail] = useState("")
-const [country, setCountry] = useState(""); // safe to use null
-const [program,setProgram] = useState("")
-const [phoneNo,setPhoneNo] = useState("")
-const [WhatsAppNo,setWhatsAppNo] = useState("")
-const [parentName,setParentName] = useState("")
-  const navigate = useNavigate(); // ⬅️ Add this
-
-const [companyName,setCompanyName] = useState("")
-const [message,setMessage] = useState("")
-
-    const dispatch = useDispatch();
-      const {  error:FormError, success } = useSelector((state) => state.createContactUs);
+  const programs = ["Online schooling", "One to One tutoring", "O/A levels tuitions", "Grade 9 and 10 Federal Board", "Coding", "Abacus Mathematics"];
   
-    const { loading, error, feedbacks:allStudentFeedbacks } = useSelector((state) => state.allStudent);
-    const {  error:FeedError, feedbacks:allFeedbacks } = useSelector((state) => state.allFeedbacks);
-    const {  error:cardError, cards } = useSelector((state) => state.allCards);
-    const {  error:partnerError,partners  } = useSelector((state) => state.allPartners);
-    const {error:featureError,afiliations} = useSelector((state)=>state.allAffiliation);
-    const [feedbackIndex, setFeedbackIndex] = useState(0);
+  const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [country, setCountry] = useState(null);
+  const [program, setProgram] = useState("");
+  const [phoneNo, setPhoneNo] = useState("");
+  const [WhatsAppNo, setWhatsAppNo] = useState("");
+  const [parentName, setParentName] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [message, setMessage] = useState("");
+  const [feedbackIndex, setFeedbackIndex] = useState(0);
+
+  const [isInsightHovering, setIsInsightHovering] = useState(false);
   const [isPartnerHovering, setIsPartnerHovering] = useState(false);
-
-  // Refs
-  const partnerScrollRef = useRef();
   
- // Auto change feedback carousel
+  const insightScrollRef = useRef();
+  const partnerScrollRef = useRef();
+
+  const dispatch = useDispatch();
+  const { error: FormError, success } = useSelector((state) => state.createContactUs);
+  const { loading, error, feedbacks: allStudentFeedbacks } = useSelector((state) => state.allStudent);
+  const { error: FeedError, feedbacks: allFeedbacks } = useSelector((state) => state.allFeedbacks);
+  const { error: cardError, cards } = useSelector((state) => state.allCards);
+  const { error: partnerError, partners } = useSelector((state) => state.allPartners);
+  const { error: featureError, afiliations } = useSelector((state) => state.allAffiliation);
+
+  // Auto Scroll Hook
+  const useAutoScroll = (ref, isHovering) => {
+    useEffect(() => {
+      const container = ref.current;
+      let intervalId;
+      const startScroll = () => {
+        intervalId = setInterval(() => {
+          if (!isHovering && container) {
+            container.scrollBy({ left: 2, behavior: "smooth" });
+            const atEnd = container.scrollLeft + container.offsetWidth >= container.scrollWidth - 2;
+            if (atEnd) {
+              clearInterval(intervalId);
+              setTimeout(() => {
+                container.scrollTo({ left: 0, behavior: "smooth" });
+                setTimeout(startScroll, 1000);
+              }, 2000);
+            }
+          }
+        }, 20);
+      };
+      startScroll();
+      return () => clearInterval(intervalId);
+    }, [isHovering, ref]);
+  };
+
+  useAutoScroll(insightScrollRef, isInsightHovering);
+  useAutoScroll(partnerScrollRef, isPartnerHovering);
+
+  const scrollLeft = (ref) => ref.current?.scrollBy({ left: -320, behavior: "smooth" });
+  const scrollRight = (ref) => ref.current?.scrollBy({ left: 320, behavior: "smooth" });
+
+  // Feedback Auto-Rotate
   useEffect(() => {
     const interval = setInterval(() => {
-      setFeedbackIndex((prevIndex) =>
-        allFeedbacks && allFeedbacks.length > 0
-          ? (prevIndex + 1) % allFeedbacks.length
-          : 0
-      );
-    }, 3000);
+      setFeedbackIndex((prev) => allFeedbacks?.length ? (prev + 1) % allFeedbacks.length : 0);
+    }, 5000);
     return () => clearInterval(interval);
   }, [allFeedbacks]);
 
-  // Partner auto scroll
-  useEffect(() => {
-    const container = partnerScrollRef.current;
-    let intervalId;
-    const startScroll = () => {
-      intervalId = setInterval(() => {
-        if (!isPartnerHovering && container) {
-          container.scrollBy({ left: 6, behavior: 'smooth' });
-          const atEnd = container.scrollLeft + container.offsetWidth >= container.scrollWidth - 1;
-          if (atEnd) {
-            clearInterval(intervalId);
-            setTimeout(() => {
-              container.scrollTo({ left: 0, behavior: 'auto' });
-              setTimeout(startScroll, 500);
-            }, 1000);
-          }
-        }
-      }, 20);
-    };
-    startScroll();
-    return () => clearInterval(intervalId);
-  }, [isPartnerHovering]);
-
-  const scrollPartnerLeft = () => partnerScrollRef.current?.scrollBy({ left: -300, behavior: 'smooth' });
-  const scrollPartnerRight = () => partnerScrollRef.current?.scrollBy({ left: 300, behavior: 'smooth' });
-
-
-
-
   const handleSubmit = (e) => {
-     e.preventDefault();
-     const myForm = new FormData();
-     myForm.set("name",name);
-     myForm.set("email",email);
-     myForm.set("program",program);
-     myForm.set("phoneNo",phoneNo);
-     myForm.set("WhatsAppNo",WhatsAppNo);
-    myForm.set("parentName",parentName);
-     
-    myForm.set("message",message);
-    myForm.set("companyName",companyName);
+    e.preventDefault();
+    const myForm = new FormData();
+    myForm.set("name", name);
+    myForm.set("email", email);
+    myForm.set("program", program);
+    myForm.set("phoneNo", phoneNo);
+    myForm.set("WhatsAppNo", WhatsAppNo);
+    myForm.set("parentName", parentName);
+    myForm.set("message", message);
+    myForm.set("companyName", companyName);
+    myForm.set("country", country?.label ?? "");
+    dispatch(createCallBackAction(myForm));
+  };
 
- 
- myForm.set("country", country?.label ?? "");
- 
- 
-     dispatch(createCallBackAction(myForm))
-   };
+  useEffect(() => {
+    if (error || FeedError || cardError || partnerError || featureError || FormError) {
+      toast.error(error || FeedError || cardError || partnerError || featureError || FormError);
+      dispatch(clearErrors());
+    }
+    if (success) {
+      toast.success(`Thank you. Our team will contact you soon!`);
+      dispatch({ type: CONTACT_US_RESET });
+      setName(""); setEmail(""); setCountry(null); setPhoneNo(""); setProgram(""); setWhatsAppNo(""); setParentName(""); setCompanyName(""); setMessage("");
+      navigate("/thank-you");
+    }
+    dispatch(allCardAction());
+    dispatch(allFeatureAction());
+    dispatch(allStudentAction());
+    dispatch(allFeedbackAction());
+    dispatch(allPartnerAction());
+  }, [error, FormError, success, dispatch, FeedError, cardError, partnerError, featureError, navigate]);
 
- 
+  const inputClass = "w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-slate-800 placeholder-gray-400 outline-none transition-all focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100/50 text-sm";
+
   const featured = [
-    { id: 1, title: "No Physical Barriers", description: " Learn from anywhere with fully online classes — quality education delivered right to your home." },
-    { id: 2, title: "Modern STEAM Curriculum", description: "Cutting-edge syllabus integrating Science, Technology, Engineering, Arts, and Mathematics to equip students for the future." },
-    { id: 3, title: "Continuous Assessment", description: "Structured evaluations to monitor student growth, ensuring steady academic improvement at every stage." },
-    { id: 4, title: "Parent-Teacher Collaboration", description: "Parents stay informed through regular updates, progress tracking, and direct communication with instructors." }
-  ]; 
-  
-
-
-       useEffect(()=>{
-        
-                                      AOS.init()
-                  if (error) {
-                        toast.error(error);
-                        dispatch(clearErrors());
-                      }
-                      if (FeedError) {
-                        toast.error(FeedError)
-                        dispatch(clearErrors())
-                      }
-                      if (cardError) {
-                        toast.error(cardError)
-                        dispatch(clearErrors())
-                        
-                      }
-                      if (partnerError) {
-                        toast.error(partnerError)
-                        dispatch(clearErrors())
-        
-                      }
-                      if (featureError) {
-                        toast.error(featureError)
-                        dispatch(clearErrors())
-                        
-                      }
-                      if(FormError){
-                                  toast.error(FormError);
-                                  dispatch(clearErrors());
-                              }
-                                 if (success) {
-                          toast.success(`Thank you. Our team will contact you soon!`);
-                          dispatch({type:CONTACT_US_RESET})
-                      // Reset Fields
-                          setName("");
-                          setEmail("");
-                          setCountry("");
-                          setPhoneNo("");
-                          setProgram("");
-                          setWhatsAppNo("");
-                        setParentName("");
-    setCompanyName("");
-    setMessage("");
-      navigate("/thank-you"); // ⬅️ Redirect
-
-                                
-                              }
-                      dispatch(allCardAction())
-                      dispatch(allFeatureAction())
-                      dispatch(allStudentAction())
-                      dispatch(allFeedbackAction())
-                      dispatch(allPartnerAction())
-        
-            },[error,FormError,success,dispatch,FeedError,cardError,partnerError,featureError])
-            
-    
-    
+    { id: 1, title: "No Physical Barriers", description: "Learn from anywhere with fully online classes — quality education delivered right to your home.", icon: "🌍" },
+    { id: 2, title: "Modern STEAM Curriculum", description: "Cutting-edge syllabus integrating Science, Technology, Engineering, Arts, and Mathematics to equip students for the future.", icon: "🚀" },
+    { id: 3, title: "Continuous Assessment", description: "Structured evaluations to monitor student growth, ensuring steady academic improvement at every stage.", icon: "📈" },
+    { id: 4, title: "Parent-Teacher Collaboration", description: "Parents stay informed through regular updates, progress tracking, and direct communication with instructors.", icon: "🤝" }
+  ];
 
   return (
+    <Fragment>
+      {loading ? (
+        <Loader />
+      ) : (
+        <Fragment>
+          <Metadata title="Qatar - The Learning Hub" />
 
-      <Fragment>
-        {
-          loading ? (<Loader/>):(  <Fragment>
-        <Metadata title="Qatar - The Learning Hub" />
+          <div style={{ minHeight: '100vh', background: '#f8fafc', position: 'relative', overflow: 'hidden' }}>
+            
+            {/* ================= BACKGROUND ANIMATED ORBS ================= */}
+            <motion.div animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} style={{ position: 'absolute', top: '-10%', left: '-10%', width: '500px', height: '500px', background: 'rgba(99, 102, 241, 0.15)', borderRadius: '50%', filter: 'blur(100px)', pointerEvents: 'none' }} />
+            <motion.div animate={{ scale: [1, 1.5, 1], opacity: [0.2, 0.4, 0.2] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }} style={{ position: 'absolute', bottom: '10%', right: '-10%', width: '600px', height: '600px', background: 'rgba(236, 72, 153, 0.15)', borderRadius: '50%', filter: 'blur(100px)', pointerEvents: 'none' }} />
 
-          <div className="servicesDetailsContainer">
-            <div className='topBahrianContainer'>
+            {/* ================= HERO BANNER ================= */}
+            <div style={{ position: 'relative', background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)', padding: '6rem 1rem 8rem 1rem', overflow: 'hidden' }}>
+              <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)', backgroundSize: '30px 30px', opacity: 0.8 }} />
               
-                                              <div className="video-background">
-                                            <video src={video} autoPlay loop muted playsInline />
-                                            </div>
-            <div className="container">
-      <div className="left-section">
-      </div>
+              <motion.div animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} style={{ position: 'absolute', top: '20%', right: '10%', opacity: 0.1 }} className="text-white text-9xl hidden md:block">
+                <FaGlobeAmericas />
+              </motion.div>
 
-      <div className="right-section">
-        <h3>We are here to help</h3>
-        <p>Speak with an Admission Counselor</p>
-          <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="name"
-        placeholder="Parent Name*"
-        required
-        value={name}
-        onChange={(e)=>setName(e.target.value)}
-      />
-       
-      <input
-        type="email"
-        name="email"
-        placeholder="Email*"
-        required
-        value={email}
-        onChange={(e)=>setEmail(e.target.value)}
-      />
-      <input
-        type="tel"
-        name="phone"
-        placeholder="Phone*"
-        required
-        value={phoneNo}
-        onChange={(e)=>setPhoneNo(e.target.value)}
-      />
-      <input
-        type="text"
-        name="whatsapp"
-        placeholder="Whatsapp"
-        value={WhatsAppNo}
-        onChange={(e)=>setWhatsAppNo(e.target.value)}
-      />
-       <input
-        type="text"
-        name="name"
-        placeholder="Student Name*"
-        required
-        value={parentName}
-        onChange={(e)=>setParentName(e.target.value)}
-      />
-         <input
-        type="text"
-        name="comapnyName"
-        placeholder="Student Age"
-        value={companyName}
-        onChange={(e)=>setCompanyName(e.target.value)}
-      />
-        <input
-        type="text"
-        name="message"
-        placeholder="Student Grade"
-        value={message}
-        onChange={(e)=>setMessage(e.target.value)}
-      />
-      <select name="program" required value={program} onChange={(e)=>setProgram(e.target.value)}>
-        <option value="">-- Choose Program --</option>
-        {programs && programs.map((program, index) => (
-      <option key={index} value={program}>
-        {program}
-      </option>
-    ))}
-      </select>
-  <Select
-  options={formattedCountries}
-  value={country || ""}
-  onChange={(selectedOption) => setCountry(selectedOption)}
-  placeholder="Select Country"
-  className="country-select"
-  isSearchable={true}
-  getOptionLabel={(e) => (
-    <div className="country-option">
-      <img src={e.flag} alt="" width="20px" style={{ marginRight: 10 }} />
-      {e.label}
-    </div>
-  )}
-  getOptionValue={(e) => e.value}
-  filterOption={(option, rawInput) => {
-    const input = rawInput.toLowerCase();
-    const name = option.data.label.toLowerCase(); // United Arab Emirates (AE)
-    const code = option.data.value.toLowerCase(); // AE
-    return (
-      name.includes(input) || 
-      code.includes(input) || 
-      matchSorter([name], input).length > 0 // fuzzy search
-    );
-  }}
-/>
+              <div style={{ position: 'relative', maxWidth: '800px', margin: '0 auto', textAlign: 'center', zIndex: 10 }}>
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} style={{ display: 'inline-block', padding: '0.5rem 1.25rem', borderRadius: '50px', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: '#e0e7ff', fontSize: '0.875rem', fontWeight: 600, letterSpacing: '1px', marginBottom: '1.5rem', backdropFilter: 'blur(10px)' }}>
+                  GLOBAL LEARNING
+                </motion.div>
 
-     
-      <button type="submit" className="request-btn">REQUEST A CALL BACK</button>
-    </form>
-      </div>
-    </div>
+                <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="text-5xl md:text-7xl font-extrabold text-white tracking-tight">
+                  Learning in <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">Qatar</span>
+                </motion.h1>
+
+                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} style={{ marginTop: '1.5rem', fontSize: '1.125rem', color: '#cbd5e1', maxWidth: '600px', margin: '1.5rem auto 0 auto', lineHeight: 1.6 }}>
+                  Enroll your child for Session 2026-27 and become part of The Learning Hub community.
+                </motion.p>
+              </div>
+
+              <div style={{ position: 'absolute', bottom: -1, left: 0, right: 0, lineHeight: 0, zIndex: 10 }}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" style={{ display: 'block', width: '100%', height: 'auto' }}>
+                  <path fill="#f8fafc" fillOpacity="1" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
+                </svg>
+              </div>
             </div>
-                        <div className="homesMainContainer">
 
-            <div className="learn-portal-container">
-    
-
-      {/* Enrollment Button */}
-      <section className="learn-enrollment" data-aos="fade-down">
-        <button className="learn-enroll-btn">
-          ENROLL YOUR CHILD FOR SESSION 2026-27 AND BECOME PART OF THE LEARNING HUB COMMUNITY.
-        </button>
-      </section>
-
-      {/* Content Section */}
-      <section className="learn-content-section" data-aos="fade-down">
-    <div className="learn-text-content">
-    
-    
-
-      <div className="introduction-container" data-aos="fade-down">
-      <h1 className="title" data-aos="fade-down">Learning That Inspires</h1>
-   <p className="affiliation-intro" data-aos="fade-down">
-At TLH, we believe that learning should feel like an adventure. It should spark curiosity and build confidence. That’s why our programs are designed to be interactive, creative, and future-focused.      </p>
-
-      <p className="affiliation-subtitle"  data-aos="fade-down">We offer:</p>
-      <ul className="affiliation-list" >
-        <li data-aos="fade-down">
-          <strong>Certified online schooling</strong> 
-        </li>
-        <li data-aos="fade-down">
-          <strong>Personalized tutoring</strong> 
-        </li>
-        <li data-aos="fade-down">
-          <strong>Live study support and exam preperation</strong> 
-        </li>
-        <li data-aos="fade-down">
-          <strong>Hands-on STEAM programs</strong> 
-        </li>
-      </ul>
-
-      <p className="affiliation-text" data-aos="fade-down">
-Whether you are a school looking to add VR/AR learning, a parent seeking a strong STEAM foundation, or a student ready to dive into coding, robotics, or design, we have something for you.      </p>
-<button
-  className="learn-apply-btn"
-  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
->
-  APPLY NOW
-</button>  
-    </div>
-
-
-    </div>
-    <div className="learn-image-container">
-                    <iframe
-    src="https://youtube.com/embed/MqJJiP_x1IE"
-    title="YouTube video player"
-    className="responsive-iframe"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerPolicy="strict-origin-when-cross-origin"
-    allowFullScreen
-  ></iframe>
-                  </div>
-  </section>
-    </div>
-            <div className="edu-portal-container">
-      <div className="edu-cards-container" data-aos="fade-down">
-        {afiliations && afiliations.map((feature) => (
-          <div key={feature.id} className="edu-feature-card">
-            <img src={feature.avatar.url} alt={feature.title} className="edu-card-image" />
-            <h3 className="edu-card-title">{feature.title}</h3>
-            <p className="edu-card-description">{feature.description}</p>
-          </div>
-        ))}
-      </div>
-      <button className="edu-enroll-btn" data-aos="fade-down">ENROLL NOW</button>
-    </div>
-            <div> 
-   
-      {/* Happy Students Section */}
-          <div className='thirdMidContainer'>
-                <h1 className="title" data-aos="fade-down">School Insights</h1>
-                <div className="teacher-carousel-wrapper">
-                  <button onClick={() => scrollLeft(insightScrollRef)}>◀</button>
-                  <div
-                    className="teacher-carousel"
-                    ref={insightScrollRef}
-                    onMouseEnter={() => setIsInsightHovering(true)}
-                    onMouseLeave={() => setIsInsightHovering(false)}
-                  >
-                    {allStudentFeedbacks && allStudentFeedbacks.map((video) => (
-                      <iframe
-                        key={video._id}
-                        className="student-video"
-                        src={video.ytLink}
-                        title={video._id}
-                        allowFullScreen
-                      ></iframe>
+            {/* ================= MAIN CONTENT ================= */}
+            <div style={{ position: 'relative', maxWidth: '1200px', margin: '-4rem auto 0 auto', padding: '0 1rem 5rem 1rem', zIndex: 20 }}>
+              
+              {/* TOP SECTION: FORM & CONTENT */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4rem', alignItems: 'stretch', marginBottom: '6rem' }}>
+                
+                <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ flex: '1 1 500px', display: 'flex', flexDirection: 'column' }}>
+                  <h2 className="text-3xl font-bold text-slate-900 mb-6">Learning That Inspires</h2>
+                  <p style={{ fontSize: '1.05rem', color: '#475569', lineHeight: 1.8, marginBottom: '1.5rem' }}>
+                    At TLH, we believe that learning should feel like an adventure. It should spark curiosity and build confidence. That’s why our programs are designed to be interactive, creative, and future-focused.
+                  </p>
+                  
+                  <h3 className="text-xl font-bold text-slate-800 mb-4">We offer:</h3>
+                  <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem', paddingLeft: 0, listStyle: 'none' }}>
+                    {["Certified online schooling", "Personalized tutoring", "Live study support and exam preparation", "Hands-on STEAM programs"].map((item, i) => (
+                      <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                        <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: '#e0e7ff', color: '#4f46e5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.875rem', fontWeight: 'bold' }}>✓</div>
+                        <span style={{ color: '#334155', fontWeight: 500 }}>{item}</span>
+                      </li>
                     ))}
+                  </ul>
+
+                  <div style={{ flex: 1, borderRadius: '1.5rem', overflow: 'hidden', boxShadow: '0 20px 40px -10px rgba(0,0,0,0.1)', border: '6px solid white', background: '#0f172a', minHeight: '280px' }}>
+                    <iframe src="https://youtube.com/embed/MqJJiP_x1IE" title="YouTube video player" style={{ width: '100%', height: '100%', border: 0, display: 'block' }} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                   </div>
-                  <button onClick={() => scrollRight(insightScrollRef)}>▶</button>
+                </motion.div>
+
+                <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} style={{ flex: '1 1 400px', background: 'white', borderRadius: '1.5rem', padding: '2.5rem', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.15)', border: '1px solid #e2e8f0' }}>
+                  <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                    <h3 className="text-2xl font-bold text-slate-900 mb-2">We are here to help</h3>
+                    <p style={{ color: '#64748b', fontSize: '0.95rem' }}>Speak with an Admission Counselor</p>
+                  </div>
+
+                  <form style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }} onSubmit={handleSubmit}>
+                    <input type="text" placeholder="Parent Name *" required value={name} onChange={(e) => setName(e.target.value)} className={inputClass} />
+                    <input type="email" placeholder="Email *" required value={email} onChange={(e) => setEmail(e.target.value)} className={inputClass} />
+                    <input type="tel" placeholder="Phone *" required value={phoneNo} onChange={(e) => setPhoneNo(e.target.value)} className={inputClass} />
+                    <input type="text" placeholder="WhatsApp Number" value={WhatsAppNo} onChange={(e) => setWhatsAppNo(e.target.value)} className={inputClass} />
+                    
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                      <input type="text" placeholder="Student Name *" required value={parentName} onChange={(e) => setParentName(e.target.value)} className={inputClass} />
+                      <input type="text" placeholder="Student Age" value={companyName} onChange={(e) => setCompanyName(e.target.value)} className={inputClass} />
+                    </div>
+                    
+                    <input type="text" placeholder="Student Grade" value={message} onChange={(e) => setMessage(e.target.value)} className={inputClass} />
+
+                    <select value={program} onChange={(e) => setProgram(e.target.value)} required className={inputClass}>
+                      <option value="">-- Choose Program --</option>
+                      {programs.map((prog, index) => (<option key={index} value={prog}>{prog}</option>))}
+                    </select>
+
+                    <Select
+                      options={formattedCountries}
+                      value={country}
+                      onChange={(selectedOption) => setCountry(selectedOption)}
+                      placeholder="Select Country"
+                      isSearchable={true}
+                      styles={{
+                        control: (base) => ({ ...base, padding: '2px', borderRadius: '0.75rem', borderColor: '#e5e7eb', backgroundColor: '#f9fafb' }),
+                        menu: (base) => ({ ...base, zIndex: 9999 })
+                      }}
+                      getOptionLabel={(e) => (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <img src={e.flag} alt="" width="20px" />
+                          {e.label}
+                        </div>
+                      )}
+                      getOptionValue={(e) => e.value}
+                      filterOption={(option, rawInput) => {
+                        const input = rawInput.toLowerCase();
+                        const name = option.data.label.toLowerCase();
+                        const code = option.data.value.toLowerCase();
+                        return name.includes(input) || code.includes(input) || matchSorter([name], input).length > 0;
+                      }}
+                    />
+
+                    <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit" style={{ width: '100%', padding: '1rem', borderRadius: '0.75rem', color: 'white', fontWeight: 'bold', fontSize: '1rem', background: 'linear-gradient(to right, #4f46e5, #db2777)', border: 'none', cursor: 'pointer', marginTop: '0.5rem', boxShadow: '0 10px 20px -5px rgba(79, 70, 229, 0.4)' }}>
+                      REQUEST A CALL BACK
+                    </motion.button>
+                  </form>
+                </motion.div>
+              </div>
+
+              {/* SECTION: PROGRAMS */}
+              <div style={{ marginBottom: '6rem' }}>
+                <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+                  <h2 className="text-3xl font-bold text-slate-900">Explore Our Programs</h2>
+                  <p style={{ color: '#64748b', marginTop: '0.5rem' }}>Tailored educational paths for every learner</p>
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+                  {afiliations && afiliations.map((feature) => (
+                    <motion.div key={feature.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} whileHover={{ y: -8, scale: 1.02 }} style={{ background: 'white', borderRadius: '1.5rem', overflow: 'hidden', boxShadow: '0 10px 30px -10px rgba(0,0,0,0.05)', border: '1px solid #f1f5f9' }}>
+                      <img src={feature.avatar.url} alt={feature.title} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+                      <div style={{ padding: '1.5rem' }}>
+                        <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '0.75rem' }}>{feature.title}</h3>
+                        <p style={{ fontSize: '0.95rem', color: '#64748b', lineHeight: 1.6 }}>{feature.description}</p>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
 
-         <div className="secondMidContainer">
-                <div className="secondMidContainer1">
-                      <iframe
-                        width="520"
-                        height="315"
-                        src="https://www.youtube.com/embed/q8NjbC4uGW4?si=IXLXpGdfxXw6Tfa4"
-                        title="YouTube video player"
-                        style={{ border: 0 }}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin"
-                        allowFullScreen
-                        className='iframeTag'
-                      ></iframe>
+              {/* SECTION: SCHOOL INSIGHTS */}
+              <div style={{ marginBottom: '6rem' }}>
+                <h2 className="text-2xl font-bold text-slate-900 text-center mb-8">School Insights</h2>
+                <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+                  <button onClick={() => scrollLeft(insightScrollRef)} style={{ position: 'absolute', left: -20, zIndex: 10, width: '48px', height: '48px', borderRadius: '50%', background: 'white', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.25rem' }} className="hover:bg-indigo-50">◀</button>
+                  <div ref={insightScrollRef} onMouseEnter={() => setIsInsightHovering(true)} onMouseLeave={() => setIsInsightHovering(false)} style={{ display: 'flex', gap: '1.5rem', overflowX: 'auto', padding: '1rem 0', scrollBehavior: 'smooth', msOverflowStyle: 'none', scrollbarWidth: 'none' }} className="hide-scrollbar">
+                    {allStudentFeedbacks && allStudentFeedbacks.map((vid) => (
+                      <iframe key={vid._id} src={vid.ytLink} title="Student Insight" style={{ width: '350px', height: '220px', borderRadius: '1rem', border: '4px solid white', boxShadow: '0 10px 20px -5px rgba(0,0,0,0.1)', flexShrink: 0 }} allowFullScreen></iframe>
+                    ))}
+                  </div>
+                  <button onClick={() => scrollRight(insightScrollRef)} style={{ position: 'absolute', right: -20, zIndex: 10, width: '48px', height: '48px', borderRadius: '50%', background: 'white', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.25rem' }} className="hover:bg-indigo-50">▶</button>
                 </div>
+              </div>
 
-                <div className="secondMidContainer2">
-                  <div className="custom-carousel">
-                    {allFeedbacks && allFeedbacks.map((feedback, i) => (
-                      <div
-                        key={feedback._id}
-                        className={`carouselFeedContainer carousel-slide ${i === feedbackIndex ? 'active' : ''}`}
-                      >
-                        <i>{feedback.description}</i>
-                        <b>{feedback.name}</b>
-                        <p>{feedback.title}</p>
+              {/* SECTION: TESTIMONIALS */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '4rem', alignItems: 'center', marginBottom: '6rem' }}>
+                <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+                  <h2 className="text-3xl font-bold text-slate-900 mb-8">What Parents Say</h2>
+                  <div style={{ position: 'relative', background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)', padding: '3rem', borderRadius: '1.5rem', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)', overflow: 'hidden' }}>
+                    <div style={{ position: 'absolute', top: '10px', right: '20px', fontSize: '120px', color: 'rgba(255,255,255,0.05)', fontFamily: 'serif', lineHeight: 1 }}>"</div>
+                    <AnimatePresence mode="wait">
+                      {allFeedbacks && allFeedbacks.length > 0 && (
+                        <motion.div key={feedbackIndex} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.5 }} style={{ position: 'relative', zIndex: 10 }}>
+                          <p style={{ fontSize: '1.15rem', fontStyle: 'italic', color: '#f8fafc', lineHeight: 1.8, marginBottom: '2rem' }}>"{allFeedbacks[feedbackIndex].description}"</p>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                            <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'linear-gradient(to bottom right, #6366f1, #d946ef)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', color: 'white', fontSize: '1.25rem' }}>{allFeedbacks[feedbackIndex].name.charAt(0)}</div>
+                            <div>
+                              <h4 style={{ fontWeight: 'bold', color: 'white', margin: 0, fontSize: '1.1rem' }}>{allFeedbacks[feedbackIndex].name}</h4>
+                              <p style={{ color: '#a5b4fc', fontSize: '0.9rem', margin: 0 }}>{allFeedbacks[feedbackIndex].title}</p>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </motion.div>
+
+                <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2rem' }}>
+                    {cards && cards.map((card) => (<ClientCard card={card} key={card._id} />))}
+                  </div>
+                  <div style={{ borderRadius: '1.5rem', overflow: 'hidden', boxShadow: '0 20px 40px -10px rgba(0,0,0,0.1)', border: '4px solid white', background: '#0f172a' }}>
+                    <iframe width="100%" height="250" src="https://www.youtube.com/embed/q8NjbC4uGW4?si=IXLXpGdfxXw6Tfa4" title="YouTube video player" style={{ border: 0, display: 'block' }} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* SECTION: PARTNERS */}
+              <div style={{ marginBottom: '6rem' }}>
+                <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+                  <h2 className="text-2xl font-bold text-slate-900">Technology Partners</h2>
+                </div>
+                <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+                  <button onClick={() => scrollLeft(partnerScrollRef)} style={{ position: 'absolute', left: -20, zIndex: 10, width: '48px', height: '48px', borderRadius: '50%', background: 'white', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.25rem' }} className="hover:bg-indigo-50">◀</button>
+                  <div ref={partnerScrollRef} onMouseEnter={() => setIsPartnerHovering(true)} onMouseLeave={() => setIsPartnerHovering(false)} style={{ display: 'flex', gap: '2rem', overflowX: 'auto', padding: '1rem 0', scrollBehavior: 'smooth', msOverflowStyle: 'none', scrollbarWidth: 'none' }} className="hide-scrollbar">
+                    {partners && partners.map((member) => (
+                      <div key={member._id} style={{ minWidth: '250px', flexShrink: 0 }}>
+                        <PartnerCard member={member} />
                       </div>
                     ))}
                   </div>
-                  <div className="client-card-container">
-                    {cards && cards.map((card) => (
-                      <ClientCard card={card} key={card._id} />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-      {/* Our Partners Section */}
-          <div className='thirdMidContainer'>
-                <div>
-                  <p data-aos="fade-down">Our team Partners</p>
-                  <h1 data-aos="fade-down" className='title'>Technology Partners</h1>
-                  <h3 data-aos="fade-down">Teamwork is the ability to work together toward a common vision. The ability is to directly involve the individual accomplishments toward organizational objectives. It is the fuel that allows common people to attain uncommon results.</h3>
-                </div>
-
-                <div className="teacher-carousel-wrapper">
-                  <button onClick={scrollPartnerLeft}>◀</button>
-                  <div
-                    className="teacher-carousel"
-                    ref={partnerScrollRef}
-                    onMouseEnter={() => setIsPartnerHovering(true)}
-                    onMouseLeave={() => setIsPartnerHovering(false)}
-                  >
-                    {partners && partners.map((member) => (
-                      <PartnerCard member={member} key={member._id} />
-                    ))}
-                  </div>
-                  <button onClick={scrollPartnerRight}>▶</button>
+                  <button onClick={() => scrollRight(partnerScrollRef)} style={{ position: 'absolute', right: -20, zIndex: 10, width: '48px', height: '48px', borderRadius: '50%', background: 'white', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.25rem' }} className="hover:bg-indigo-50">▶</button>
                 </div>
               </div>
 
-
-      {/* Why Choose Learn Section */}
-    <section className="why-choose-section" data-aos="fade-down">
-                <h1 className="title chooseContainer">Why The Learning Hub ?</h1>
-                <div className="why-choose-grid">
+              {/* SECTION: WHY CHOOSE */}
+              <section>
+                <h2 className="text-3xl font-bold text-slate-900 text-center mb-10">Why The Learning Hub?</h2>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}>
                   {featured.map((feature) => (
-                    <div key={feature.id} className="why-choose-card">
-                      <h3 className="feature-title">{feature.title}</h3>
-                      <p className="feature-description">{feature.description}</p>
-                    </div>
+                    <motion.div key={feature.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} whileHover={{ y: -5 }} style={{ background: 'white', padding: '2rem', borderRadius: '1.5rem', boxShadow: '0 10px 30px -10px rgba(0,0,0,0.05)', border: '1px solid #f1f5f9' }}>
+                      <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>{feature.icon}</div>
+                      <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '0.75rem' }}>{feature.title}</h3>
+                      <p style={{ color: '#64748b', lineHeight: 1.6, fontSize: '0.95rem', margin: 0 }}>{feature.description}</p>
+                    </motion.div>
                   ))}
                 </div>
               </section>
-    </div>
-            </div>
-        
-      </Fragment>)
-        }
-      </Fragment>
-      )
-    }
 
-export default Qatar
+            </div>
+          </div>
+        </Fragment>
+      )}
+    </Fragment>
+  );
+};
+
+export default Qatar;

@@ -1,9 +1,5 @@
 import React, { useState, useEffect, Fragment, useRef } from "react";
-import './Home.css';
 import ClientCard from '../About/ClientCard';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import video from '../../assets/video.mp4';
 import PartnerCard from '../Admission/PartnerCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { allStudentAction, clearErrors } from "../../actions/studentAction";
@@ -22,6 +18,8 @@ import ViewInArIcon from '@mui/icons-material/ViewInAr';
 import CardMembershipIcon from '@mui/icons-material/CardMembership';
 import { allFeatureAction } from '../../actions/affilationAction';
 import { HomeSEO } from "../seo";
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaArrowRight, FaGraduationCap, FaGlobe } from 'react-icons/fa';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -44,19 +42,7 @@ const Home = () => {
   const [isPartnerHovering, setIsPartnerHovering] = useState(false);
   const [isInsightHovering, setIsInsightHovering] = useState(false);
   const [isScrollingHovering, setIsScrollingHovering] = useState(false);
-
   const [feedbackIndex, setFeedbackIndex] = useState(0);
-  const [activeTab, setActiveTab] = useState('featured');
-
-  // Handle enquire button click
-  const handleEnquireClick = () => {
-    navigate('/apply-now');
-  };
-
-  // Handle enroll now click
-  const handleEnrollNow = () => {
-    navigate('/apply-now');
-  };
 
   // Feedback auto change
   useEffect(() => {
@@ -64,7 +50,7 @@ const Home = () => {
       setFeedbackIndex((prevIndex) =>
         allFeedbacks && allFeedbacks.length > 0 ? (prevIndex + 1) % allFeedbacks.length : 0
       );
-    }, 3000);
+    }, 5000);
     return () => clearInterval(interval);
   }, [allFeedbacks]);
 
@@ -77,14 +63,14 @@ const Home = () => {
       const startScroll = () => {
         intervalId = setInterval(() => {
           if (!isHovering && container) {
-            container.scrollBy({ left: 6, behavior: 'smooth' });
-            const atEnd = container.scrollLeft + container.offsetWidth >= container.scrollWidth - 1;
+            container.scrollBy({ left: 2, behavior: 'smooth' });
+            const atEnd = container.scrollLeft + container.offsetWidth >= container.scrollWidth - 2;
             if (atEnd) {
               clearInterval(intervalId);
               setTimeout(() => {
-                container.scrollTo({ left: 0, behavior: 'auto' });
-                setTimeout(startScroll, 500);
-              }, 1000);
+                container.scrollTo({ left: 0, behavior: 'smooth' });
+                setTimeout(startScroll, 1000);
+              }, 2000);
             }
           }
         }, 20);
@@ -95,49 +81,29 @@ const Home = () => {
     }, [isHovering, ref]);
   };
 
-  // Attach auto scroll
   useAutoScroll(teacherScrollRef, isTeacherHovering);
   useAutoScroll(partnerScrollRef, isPartnerHovering);
   useAutoScroll(insightScrollRef, isInsightHovering);
   useAutoScroll(scrollingCardsRef, isScrollingHovering);
 
-  // Manual scroll
-  const scrollLeft = (ref) => ref.current?.scrollBy({ left: -300, behavior: 'smooth' });
-  const scrollRight = (ref) => ref.current?.scrollBy({ left: 300, behavior: 'smooth' });
+  const scrollLeft = (ref) => ref.current?.scrollBy({ left: -320, behavior: 'smooth' });
+  const scrollRight = (ref) => ref.current?.scrollBy({ left: 320, behavior: 'smooth' });
 
   const featured = [
-    { id: 1, title: "No Physical Barriers", description: " Learn from anywhere with fully online classes — quality education delivered right to your home." },
-    { id: 2, title: "Modern STEAM Curriculum", description: "Cutting-edge syllabus integrating Science, Technology, Engineering, Arts, and Mathematics to equip students for the future." },
-    { id: 3, title: "Continuous Assessment", description: "Structured evaluations to monitor student growth, ensuring steady academic improvement at every stage." },
-    { id: 4, title: "Parent-Teacher Collaboration", description: "Parents stay informed through regular updates, progress tracking, and direct communication with instructors." }
+    { id: 1, title: "No Physical Barriers", description: "Learn from anywhere with fully online classes — quality education delivered right to your home.", icon: "🌍" },
+    { id: 2, title: "Modern STEAM Curriculum", description: "Cutting-edge syllabus integrating Science, Technology, Engineering, Arts, and Mathematics to equip students for the future.", icon: "🚀" },
+    { id: 3, title: "Continuous Assessment", description: "Structured evaluations to monitor student growth, ensuring steady academic improvement at every stage.", icon: "📈" },
+    { id: 4, title: "Parent-Teacher Collaboration", description: "Parents stay informed through regular updates, progress tracking, and direct communication with instructors.", icon: "🤝" }
   ];
 
   useEffect(() => {
-    AOS.init();
-    if (error) {
-      toast.error(error);
-      dispatch(clearErrors());
-    }
-    if (FeedError) {
-      toast.error(FeedError);
-      dispatch(clearErrors());
-    }
-    if (teamError) {
-      toast.error(teamError);
-      dispatch(clearErrors());
-    }
-    if (cardError) {
-      toast.error(cardError);
-      dispatch(clearErrors());
-    }
-    if (partnerError) {
-      toast.error(partnerError);
-      dispatch(clearErrors());
-    }
-    if (featureError) {
-      toast.error(featureError);
-      dispatch(clearErrors());
-    }
+    if (error) { toast.error(error); dispatch(clearErrors()); }
+    if (FeedError) { toast.error(FeedError); dispatch(clearErrors()); }
+    if (teamError) { toast.error(teamError); dispatch(clearErrors()); }
+    if (cardError) { toast.error(cardError); dispatch(clearErrors()); }
+    if (partnerError) { toast.error(partnerError); dispatch(clearErrors()); }
+    if (featureError) { toast.error(featureError); dispatch(clearErrors()); }
+    
     dispatch(allCardAction());
     dispatch(allTeacherAction());
     dispatch(allPartnerAction());
@@ -155,243 +121,179 @@ const Home = () => {
           <Metadata title={`The Learning Hub`} />
           <HomeSEO />
 
-          <div className="servicesDetailsContainer">
-            {/* Hero Section */}
-            <section className="hero">
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="background-video"
-                preload="auto"
-              >
-                <source src={video} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </section>
+          <div style={{ minHeight: '100vh', background: '#f8fafc', position: 'relative', overflow: 'hidden' }}>
+            
+            {/* ================= HERO SECTION ================= */}
+            <div style={{ position: 'relative', background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)', padding: '8rem 1rem 10rem 1rem', overflow: 'hidden' }}>
+              
+              {/* Animated Background Orbs */}
+              <motion.div animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} style={{ position: 'absolute', top: '-10%', left: '-10%', width: '600px', height: '600px', background: 'rgba(99, 102, 241, 0.2)', borderRadius: '50%', filter: 'blur(120px)', pointerEvents: 'none' }} />
+              <motion.div animate={{ scale: [1, 1.5, 1], opacity: [0.2, 0.4, 0.2] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }} style={{ position: 'absolute', bottom: '-10%', right: '-10%', width: '700px', height: '700px', background: 'rgba(236, 72, 153, 0.2)', borderRadius: '50%', filter: 'blur(120px)', pointerEvents: 'none' }} />
 
-            <div className="homesMainContainer">
-              {/* Enrollment + STEAM Section */}
-              <div className="learn-portal-container">
-                <section className="learn-enrollment" data-aos="fade-down">
-                  <button className="learn-enroll-btn">
-                    ENROLL YOUR CHILD FOR SESSION 2026-27 AND BECOME PART OF THE LEARNING HUB.
-                  </button>
-                </section>
+              <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)', backgroundSize: '40px 40px', opacity: 0.8 }} />
 
-                <section className="learn-content-section" data-aos="fade-down">
-                  <div className="learn-text-content">
-                    <h2 className="title">Quality STEAM Online Ed-Tech at TLH:</h2>
-                    <div className="affiliation-intro learn-description">
-                      <ul>
-                        <li>Accessible to all types of learners across the globe.</li>
-                        <li>Live virtual classrooms for interactive e-learning experiences.</li>
-                        <li>Comprehensive Learning Management System (LMS) support:</li>
-                        <ul>
-                          <li>Access study packs and learning materials remotely.</li>
-                          <li>Submit assignments easily through the platform.</li>
-                          <li>Participate in class discussions and collaborative activities.</li>
-                          <li>Track academic progress in an organized and efficient manner.</li>
-                        </ul>
-                      </ul>
-                    </div>
-                    <Link to={`/apply-now`} className="learn-apply-btn brotb">APPLY NOW</Link>
-                  </div>
-                  <div className="learn-image-container">
-                    <iframe
-                      src="https://youtube.com/embed/MqJJiP_x1IE"
-                      title="YouTube video player"
-                      className="responsive-iframe"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      allowFullScreen
-                    ></iframe>
-                  </div>
-                </section>
+              {/* Floating Icons */}
+              <motion.div animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} style={{ position: 'absolute', top: '20%', left: '10%', opacity: 0.1 }} className="text-white hidden md:block"><FaGraduationCap size={120} /></motion.div>
+              <motion.div animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }} transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }} style={{ position: 'absolute', bottom: '20%', right: '10%', opacity: 0.1 }} className="text-white hidden md:block"><FaGlobe size={120} /></motion.div>
+
+              {/* Hero Content */}
+              <div style={{ position: 'relative', maxWidth: '900px', margin: '0 auto', textAlign: 'center', zIndex: 10 }}>
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} style={{ display: 'inline-block', padding: '0.5rem 1.5rem', borderRadius: '50px', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: '#e0e7ff', fontSize: '0.9rem', fontWeight: 600, letterSpacing: '2px', marginBottom: '2rem', backdropFilter: 'blur(10px)' }}>
+                  ENROLLMENT OPEN FOR 2026-27
+                </motion.div>
+
+                <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', fontWeight: 900, color: 'white', lineHeight: 1.1, marginBottom: '1.5rem' }}>
+                  Shaping the <br />
+                  <span style={{ background: 'linear-gradient(to right, #818cf8, #c084fc, #f472b6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Future of Learning</span>
+                </motion.h1>
+
+                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} style={{ fontSize: '1.2rem', color: '#cbd5e1', maxWidth: '700px', margin: '0 auto 3rem auto', lineHeight: 1.6 }}>
+                  Join a global community of learners. Access certified online schooling, personalized tutoring, and immersive STEAM programs from anywhere in the world.
+                </motion.p>
+
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+                  <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => navigate('/apply-now')} style={{ padding: '1rem 2.5rem', borderRadius: '50px', background: 'linear-gradient(to right, #4f46e5, #db2777)', color: 'white', fontWeight: 'bold', fontSize: '1.1rem', border: 'none', cursor: 'pointer', boxShadow: '0 10px 30px -5px rgba(79, 70, 229, 0.6)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    Apply Now <FaArrowRight />
+                  </motion.button>
+                  <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => document.getElementById('programs-section').scrollIntoView({ behavior: 'smooth' })} style={{ padding: '1rem 2.5rem', borderRadius: '50px', background: 'rgba(255,255,255,0.1)', color: 'white', fontWeight: 'bold', fontSize: '1.1rem', border: '1px solid rgba(255,255,255,0.2)', cursor: 'pointer', backdropFilter: 'blur(10px)' }}>
+                    Explore Programs
+                  </motion.button>
+                </motion.div>
               </div>
 
-              {/* School Insights */}
-              <div className='thirdMidContainer'>
-                <h1 className="title" data-aos="fade-down">School Insights</h1>
-                <div className="teacher-carousel-wrapper">
-                  <button onClick={() => scrollLeft(insightScrollRef)}>◀</button>
-                  <div
-                    className="teacher-carousel"
-                    ref={insightScrollRef}
-                    onMouseEnter={() => setIsInsightHovering(true)}
-                    onMouseLeave={() => setIsInsightHovering(false)}
-                  >
-                    {allStudentFeedbacks && allStudentFeedbacks.map((video) => (
-                      <iframe
-                        key={video._id}
-                        className="student-video"
-                        src={video.ytLink}
-                        title={video._id}
-                        allowFullScreen
-                      ></iframe>
-                    ))}
-                  </div>
-                  <button onClick={() => scrollRight(insightScrollRef)}>▶</button>
-                </div>
+              {/* SVG Wave */}
+              <div style={{ position: 'absolute', bottom: -1, left: 0, right: 0, lineHeight: 0, zIndex: 10 }}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" style={{ display: 'block', width: '100%', height: 'auto' }}>
+                  <path fill="#f8fafc" fillOpacity="1" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
+                </svg>
               </div>
+            </div>
 
-              {/* Testimonials */}
-              <div className="secondMidContainer">
-                {/* Programs Section - Updated Design */}
-                <div className="secondMidContainer1">
-                  <div className="home-programs-section">
-                    {/* Static Top Bar with Infinite Scrolling Cards */}
-                    <div className="programs-top-bar">
-                      <div className="scrolling-cards-container">
-                        <div
-                          className="scrolling-cards-track"
-                          ref={scrollingCardsRef}
-                          onMouseEnter={() => setIsScrollingHovering(true)}
-                          onMouseLeave={() => setIsScrollingHovering(false)}
-                        >
-                          <div className="scrolling-card">
-                            <SchoolIcon className="scrolling-icon" />
-                            <span>Certified Online schooling</span>
-                          </div>
-                          <div className="scrolling-card">
-                            <RocketLaunchIcon className="scrolling-icon" />
-                            <span>STEAM</span>
-                          </div>
-                          <div className="scrolling-card">
-                            <ViewInArIcon className="scrolling-icon" />
-                            <span>MetaVerse</span>
-                          </div>
-                          <div className="scrolling-card">
-                            <CardMembershipIcon className="scrolling-icon" />
-                            <span>Professional Certificate Courses</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Two Column Layout */}
-                    <div className="programs-content-section">
-                      {/* Left Column - Heading and Description */}
-                      <div className="programs-left-column">
-                        <h2 className="programs-main-title">Our Programs</h2>
-                        <p className="programs-subtitle">
-                          Online learning offers a dynamic and flexible approach to education, allowing individuals to explore subjects they are passionate about from anywhere in the world. With access to diverse courses and resources, learners can study at their own pace, develop valuable skills, and connect with global communities, fostering personal growth, professional development, and a lifelong love for learning.
-                        </p>
-
-                        {/* Filter Tabs */}
-                        <div className="programs-tabs">
-                          <button
-                            className={`program-tab-btn ${activeTab === 'featured' ? 'active' : ''}`}
-                            onClick={() => setActiveTab('featured')}
-                          >
-                            Featured
-                          </button>
-                          <button
-                            className={`program-tab-btn ${activeTab === 'all' ? 'active' : ''}`}
-                            onClick={() => setActiveTab('all')}
-                          >
-                            All
-                          </button>
-                        </div>
-                      </div>
-
-                      {/* Right Column - Dynamic Cards */}
-                      <div className="programs-right-column">
-                        <div className="program-cards-grid">
-                          {afiliations && afiliations.slice(0, 4).map((feature, index) => (
-                            <div key={feature._id} className="program-card" data-aos="zoom-in">
-                              <div className="program-card-content">
-                                <h3 className="program-card-title">{feature.title}</h3>
-                                <div className="program-card-image">
-                                  <img src={feature.avatar.url} alt={feature.title} />
-                                </div>
-                              </div>
-                              <button
-                                className="program-enquire-btn"
-                                onClick={handleEnquireClick}
-                              >
-                                Enquire
-                              </button>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+            {/* ================= MAIN CONTENT ================= */}
+            <div style={{ position: 'relative', maxWidth: '1200px', margin: '-4rem auto 0 auto', padding: '0 1rem 5rem 1rem', zIndex: 20 }}>
+              
+              {/* WHY CHOOSE US */}
+              <section style={{ marginBottom: '6rem' }}>
+                <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+                  <h2 className="text-3xl font-bold text-slate-900 mb-2">Why The Learning Hub?</h2>
+                  <p className="text-slate-500">Discover what makes us different.</p>
                 </div>
-
-                <div className="secondMidContainer2">
-                  <div className="custom-carousel">
-                    {allFeedbacks && allFeedbacks.map((feedback, i) => (
-                      <div
-                        key={feedback._id}
-                        className={`carouselFeedContainer carousel-slide ${i === feedbackIndex ? 'active' : ''}`}
-                      >
-                        <i>{feedback.description}</i>
-                        <b>{feedback.name}</b>
-                        <p>{feedback.title}</p>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="client-card-container">
-                    {cards && cards.map((card) => (
-                      <ClientCard card={card} key={card._id} />
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Experienced Team */}
-              <div className="thirdMidContainer">
-                <h1 className="title">Experienced Team</h1>
-                <div className="teacher-carousel-wrapper">
-                  <button onClick={() => scrollLeft(teacherScrollRef)}>◀</button>
-                  <div
-                    className="teacher-carousel"
-                    ref={teacherScrollRef}
-                    onMouseEnter={() => setIsTeacherHovering(true)}
-                    onMouseLeave={() => setIsTeacherHovering(false)}
-                  >
-                    {teachers && teachers.map((member) => (
-                      <TeacherCard member={member} key={member._id} />
-                    ))}
-                  </div>
-                  <button onClick={() => scrollRight(teacherScrollRef)}>▶</button>
-                </div>
-              </div>
-
-              {/* Technology Partners */}
-              <div className='thirdMidContainer'>
-                <h1 className="title" data-aos="fade-down">Technology Partners</h1>
-                <div className="teacher-carousel-wrapper">
-                  <button onClick={() => scrollLeft(partnerScrollRef)}>◀</button>
-                  <div
-                    className="teacher-carousel"
-                    ref={partnerScrollRef}
-                    onMouseEnter={() => setIsPartnerHovering(true)}
-                    onMouseLeave={() => setIsPartnerHovering(false)}
-                  >
-                    {partners && partners.map((member) => (
-                      <PartnerCard member={member} key={member._id} />
-                    ))}
-                  </div>
-                  <button onClick={() => scrollRight(partnerScrollRef)}>▶</button>
-                </div>
-              </div>
-
-              {/* Why The Learning Hub */}
-              <section className="why-choose-section" data-aos="fade-down">
-                <h1 className="title chooseContainer">Why The Learning Hub ?</h1>
-                <div className="why-choose-grid">
-                  {featured.map((feature) => (
-                    <div key={feature.id} className="why-choose-card">
-                      <h3 className="feature-title">{feature.title}</h3>
-                      <p className="feature-description">{feature.description}</p>
-                    </div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}>
+                  {featured.map((feature, i) => (
+                    <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} whileHover={{ y: -5 }} style={{ background: 'white', padding: '2rem', borderRadius: '1.5rem', boxShadow: '0 10px 30px -10px rgba(0,0,0,0.05)', border: '1px solid #f1f5f9' }}>
+                      <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>{feature.icon}</div>
+                      <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '0.75rem' }}>{feature.title}</h3>
+                      <p style={{ color: '#64748b', lineHeight: 1.6, fontSize: '0.95rem', margin: 0 }}>{feature.description}</p>
+                    </motion.div>
                   ))}
                 </div>
               </section>
+
+              {/* PROGRAMS SECTION */}
+              <div id="programs-section" style={{ marginBottom: '6rem' }}>
+                <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+                  <h2 className="text-3xl font-bold text-slate-900 mb-2">Explore Our Programs</h2>
+                  <p className="text-slate-500">Tailored educational paths for every learner</p>
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+                  {afiliations && afiliations.slice(0, 4).map((feature, i) => (
+                    <motion.div key={feature._id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} whileHover={{ y: -8, scale: 1.02 }} style={{ background: 'white', borderRadius: '1.5rem', overflow: 'hidden', boxShadow: '0 10px 30px -10px rgba(0,0,0,0.05)', border: '1px solid #f1f5f9' }}>
+                      <img src={feature.avatar.url} alt={feature.title} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+                      <div style={{ padding: '1.5rem' }}>
+                        <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '0.75rem' }}>{feature.title}</h3>
+                        <p style={{ fontSize: '0.95rem', color: '#64748b', lineHeight: 1.6, marginBottom: '1.5rem', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{feature.description}</p>
+                        <Link to="/apply-now" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: '#4f46e5', fontWeight: 600, textDecoration: 'none', fontSize: '0.9rem' }}>Enquire Now <FaArrowRight size={12} /></Link>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* TESTIMONIALS & STATS */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '4rem', alignItems: 'center', marginBottom: '6rem' }}>
+                <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+                  <h2 className="text-3xl font-bold text-slate-900 mb-8">What Parents Say</h2>
+                  <div style={{ position: 'relative', background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)', padding: '3rem', borderRadius: '1.5rem', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)', overflow: 'hidden' }}>
+                    <div style={{ position: 'absolute', top: '10px', right: '20px', fontSize: '120px', color: 'rgba(255,255,255,0.05)', fontFamily: 'serif', lineHeight: 1 }}>"</div>
+                    <AnimatePresence mode="wait">
+                      {allFeedbacks && allFeedbacks.length > 0 && (
+                        <motion.div key={feedbackIndex} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.5 }} style={{ position: 'relative', zIndex: 10 }}>
+                          <p style={{ fontSize: '1.15rem', fontStyle: 'italic', color: '#f8fafc', lineHeight: 1.8, marginBottom: '2rem' }}>"{allFeedbacks[feedbackIndex].description}"</p>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                            <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'linear-gradient(to bottom right, #6366f1, #d946ef)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', color: 'white', fontSize: '1.25rem' }}>{allFeedbacks[feedbackIndex].name.charAt(0)}</div>
+                            <div>
+                              <h4 style={{ fontWeight: 'bold', color: 'white', margin: 0, fontSize: '1.1rem' }}>{allFeedbacks[feedbackIndex].name}</h4>
+                              <p style={{ color: '#a5b4fc', fontSize: '0.9rem', margin: 0 }}>{allFeedbacks[feedbackIndex].title}</p>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </motion.div>
+
+                <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2rem' }}>
+                    {cards && cards.map((card) => (<ClientCard card={card} key={card._id} />))}
+                  </div>
+                  <div style={{ borderRadius: '1.5rem', overflow: 'hidden', boxShadow: '0 20px 40px -10px rgba(0,0,0,0.1)', border: '4px solid white', background: '#0f172a' }}>
+                    <iframe width="100%" height="250" src="https://www.youtube.com/embed/q8NjbC4uGW4?si=IXLXpGdfxXw6Tfa4" title="YouTube video player" style={{ border: 0, display: 'block' }} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* SCHOOL INSIGHTS */}
+              <div style={{ marginBottom: '6rem' }}>
+                <h2 className="text-2xl font-bold text-slate-900 text-center mb-8">School Insights</h2>
+                <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+                  <button onClick={() => scrollLeft(insightScrollRef)} style={{ position: 'absolute', left: -20, zIndex: 10, width: '48px', height: '48px', borderRadius: '50%', background: 'white', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.25rem' }} className="hover:bg-indigo-50">◀</button>
+                  <div ref={insightScrollRef} onMouseEnter={() => setIsInsightHovering(true)} onMouseLeave={() => setIsInsightHovering(false)} style={{ display: 'flex', gap: '1.5rem', overflowX: 'auto', padding: '1rem 0', scrollBehavior: 'smooth', msOverflowStyle: 'none', scrollbarWidth: 'none' }} className="hide-scrollbar">
+                    {allStudentFeedbacks && allStudentFeedbacks.map((vid) => (
+                      <iframe key={vid._id} src={vid.ytLink} title="Student Insight" style={{ width: '350px', height: '220px', borderRadius: '1rem', border: '4px solid white', boxShadow: '0 10px 20px -5px rgba(0,0,0,0.1)', flexShrink: 0 }} allowFullScreen></iframe>
+                    ))}
+                  </div>
+                  <button onClick={() => scrollRight(insightScrollRef)} style={{ position: 'absolute', right: -20, zIndex: 10, width: '48px', height: '48px', borderRadius: '50%', background: 'white', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.25rem' }} className="hover:bg-indigo-50">▶</button>
+                </div>
+              </div>
+
+              {/* EXPERIENCED TEAM */}
+              <div style={{ marginBottom: '6rem' }}>
+                <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+                  <h2 className="text-3xl font-bold text-slate-900 mb-2">Experienced Team</h2>
+                  <p className="text-slate-500">Meet the experts guiding your child's journey.</p>
+                </div>
+                <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+                  <button onClick={() => scrollLeft(teacherScrollRef)} style={{ position: 'absolute', left: -20, zIndex: 10, width: '48px', height: '48px', borderRadius: '50%', background: 'white', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.25rem' }} className="hover:bg-indigo-50">◀</button>
+                  <div ref={teacherScrollRef} onMouseEnter={() => setIsTeacherHovering(true)} onMouseLeave={() => setIsTeacherHovering(false)} style={{ display: 'flex', gap: '2rem', overflowX: 'auto', padding: '1rem 0', scrollBehavior: 'smooth', msOverflowStyle: 'none', scrollbarWidth: 'none' }} className="hide-scrollbar">
+                    {teachers && teachers.map((member) => (
+                      <div key={member._id} style={{ minWidth: '300px', flexShrink: 0 }}>
+                        <TeacherCard member={member} />
+                      </div>
+                    ))}
+                  </div>
+                  <button onClick={() => scrollRight(teacherScrollRef)} style={{ position: 'absolute', right: -20, zIndex: 10, width: '48px', height: '48px', borderRadius: '50%', background: 'white', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.25rem' }} className="hover:bg-indigo-50">▶</button>
+                </div>
+              </div>
+
+              {/* TECHNOLOGY PARTNERS */}
+              <div style={{ marginBottom: '6rem' }}>
+                <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+                  <h2 className="text-3xl font-bold text-slate-900 mb-2">Technology Partners</h2>
+                  <p className="text-slate-500">Collaborating with world-class tech providers.</p>
+                </div>
+                <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+                  <button onClick={() => scrollLeft(partnerScrollRef)} style={{ position: 'absolute', left: -20, zIndex: 10, width: '48px', height: '48px', borderRadius: '50%', background: 'white', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.25rem' }} className="hover:bg-indigo-50">◀</button>
+                  <div ref={partnerScrollRef} onMouseEnter={() => setIsPartnerHovering(true)} onMouseLeave={() => setIsPartnerHovering(false)} style={{ display: 'flex', gap: '2rem', overflowX: 'auto', padding: '1rem 0', scrollBehavior: 'smooth', msOverflowStyle: 'none', scrollbarWidth: 'none' }} className="hide-scrollbar">
+                    {partners && partners.map((member) => (
+                      <div key={member._id} style={{ minWidth: '250px', flexShrink: 0 }}>
+                        <PartnerCard member={member} />
+                      </div>
+                    ))}
+                  </div>
+                  <button onClick={() => scrollRight(partnerScrollRef)} style={{ position: 'absolute', right: -20, zIndex: 10, width: '48px', height: '48px', borderRadius: '50%', background: 'white', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.25rem' }} className="hover:bg-indigo-50">▶</button>
+                </div>
+              </div>
+
             </div>
           </div>
         </Fragment>

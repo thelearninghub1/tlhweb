@@ -9,7 +9,7 @@ import { CiYoutube } from 'react-icons/ci';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoCloseSharp } from "react-icons/io5";
 import logo from '../../../assets/logo.png';
-import './Header.css';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const services = [
   { name: "Skills Development Courses", nameLink: "skills-development-courses" },
@@ -56,9 +56,109 @@ const media = {
   youtube: "https://youtube.com/@thelearninghub_tlh.?si=HTuOvOPLsPBva8Yu"
 };
 
+// Controlled Dropdown Component
+const DesktopDropdown = ({ title, mainLink, items }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div 
+      style={{ position: 'relative', display: 'inline-block' }}
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+    >
+      <Link 
+        to={mainLink} 
+        style={{ display: 'flex', alignItems: 'center', gap: '4px', color: 'white', textDecoration: 'none', fontWeight: 500, padding: '1rem 0' }}
+      >
+        {title} <IoIosArrowDown style={{ fontSize: '0.8rem', transform: isOpen ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s' }} />
+      </Link>
+      
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, visibility: 'hidden' }}
+            animate={{ opacity: 1, y: 0, visibility: 'visible' }}
+            exit={{ opacity: 0, y: 10, visibility: 'hidden' }}
+            transition={{ duration: 0.2 }}
+            style={{
+              position: 'absolute',
+              top: '100%',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              background: 'rgba(30, 27, 75, 0.98)',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255,255,255,0.15)',
+              borderRadius: '1rem',
+              padding: '1rem',
+              minWidth: '240px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.25rem',
+              boxShadow: '0 20px 40px -10px rgba(0,0,0,0.6)',
+              zIndex: 9999,
+            }}
+          >
+            {items.map((item) => (
+              <Link 
+                key={item.name} 
+                to={`/${item.nameLink}`}
+                style={{ 
+                  color: '#cbd5e1', textDecoration: 'none', fontSize: '0.9rem', padding: '0.6rem 1rem', borderRadius: '0.5rem', transition: 'all 0.2s' 
+                }}
+                className="hover:bg-indigo-500/20 hover:text-white hover:pl-5"
+              >
+                {item.name}
+              </Link>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+const MobileAccordion = ({ title, mainLink, items, isOpen, toggle }) => {
+  return (
+    <div style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem', marginBottom: '0.5rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Link to={mainLink} style={{ color: 'white', textDecoration: 'none', fontWeight: 600, fontSize: '1.1rem', padding: '0.5rem 0', flex: 1 }}>
+          {title}
+        </Link>
+        <button 
+          onClick={toggle} 
+          style={{ background: 'transparent', border: 'none', color: '#a5b4fc', fontSize: '1.2rem', cursor: 'pointer', padding: '0.5rem' }}
+        >
+          <motion.div animate={{ rotate: isOpen ? 180 : 0 }}><IoIosArrowDown /></motion.div>
+        </button>
+      </div>
+      
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            style={{ overflow: 'hidden' }}
+          >
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', paddingLeft: '1rem', paddingTop: '0.5rem' }}>
+              {items.map((item) => (
+                <Link 
+                  key={item.name} 
+                  to={`/${item.nameLink}`}
+                  style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.95rem', padding: '0.5rem 0' }}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
 const Header = () => {
-
-
   const [clicked, setClicked] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -73,12 +173,10 @@ const Header = () => {
   const handleClick = () => setClicked(!clicked);
 
   const toggleMenu = (menuName) => {
-    if (screenWidth <= 900) {
-      setOpenMenus(prev => ({
-        ...prev,
-        [menuName]: !prev[menuName]
-      }));
-    }
+    setOpenMenus(prev => ({
+      ...prev,
+      [menuName]: !prev[menuName]
+    }));
   };
 
   useEffect(() => {
@@ -98,95 +196,104 @@ const Header = () => {
   const isMobile = screenWidth <= 900;
 
   return (
-    <nav className={`navbarContainer ${isScrolled ? "scrolled" : ""}`}>
-      <div className="leftNavbar">
-        <Link to={`/`}>
-          <img src={logo} alt="logo" />
+    <nav style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100%',
+      zIndex: 9999,
+      overflow: 'visible',
+      transition: 'all 0.3s ease',
+      background: isScrolled ? 'rgba(15, 23, 42, 0.85)' : 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)',
+      backdropFilter: isScrolled ? 'blur(16px)' : 'none',
+      borderBottom: isScrolled ? '1px solid rgba(255,255,255,0.1)' : '1px solid transparent',
+      boxShadow: isScrolled ? '0 10px 30px -10px rgba(0,0,0,0.5)' : 'none',
+      padding: isScrolled ? '0.5rem 0' : '0'
+    }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '80px', overflow: 'visible' }}>
+        
+        {/* Logo */}
+        <Link to={`/`} style={{ display: 'flex', alignItems: 'center' }}>
+          <img src={logo} alt="logo" style={{ height: '60px', width: 'auto', objectFit: 'contain' }} />
         </Link>
-        <div className="hamburger" id="mobile" onClick={handleClick}>
-          {clicked ? <IoCloseSharp /> : <GiHamburgerMenu />}
-        </div>
-      </div>
 
-      <div className={clicked ? "midNavbar active" : "midNavbar"} id='midNavbar'>
-        <ul>
-
-          {/* ABOUT US */}
-          <li className='minilist' onClick={() => toggleMenu("about")}>
-            <Link to={`/about-us`}>About Us</Link> <IoIosArrowDown />
-            <div className='minilistAboutContainer' style={{ display: isMobile ? (openMenus.about ? "flex" : "none") : undefined }}>
-              {aboutUs.map((item) => (
-                <li key={item.name} onClick={handleClick}>
-                  <Link to={`/${item.nameLink}`}>{item.name}</Link>
-                </li>
-              ))}
-            </div>
-          </li>
-
-          {/* ADMISSIONS */}
-          <li className='minilist' onClick={() => toggleMenu("admission")}>
-            <Link to={`/apply-now`}>Admission</Link> <IoIosArrowDown />
-            <div className='minilistAdmissionContainer' style={{ display: isMobile ? (openMenus.admission ? "flex" : "none") : undefined }}>
-              {admissions.map((item) => (
-                <li key={item.name} onClick={handleClick}>
-                  <Link to={`/${item.nameLink}`}>{item.name}</Link>
-                </li>
-              ))}
-            </div>
-          </li>
-
-          {/* ACADEMICS */}
-          <li className='minilist' onClick={() => toggleMenu("academics")}>
-            <Link to={`/skills-development-courses`}>Academics</Link> <IoIosArrowDown />
-            <div className='minilistContainer' style={{ display: isMobile ? (openMenus.academics ? "flex" : "none") : undefined }}>
-              {services.map((item) => (
-                <li key={item.name} onClick={handleClick}>
-                  <Link to={`/${item.nameLink}`}>{item.name}</Link>
-                </li>
-              ))}
-            </div>
-          </li>
-
-          {/* LOCATIONS */}
-          <li className='minilist' onClick={() => toggleMenu("location")}>
-            <Link to={`/uae`}>Locations</Link> <IoIosArrowDown />
-            <div className='minilistLocationContainer' style={{ display: isMobile ? (openMenus.location ? "flex" : "none") : undefined }}>
-              {locations.map((item) => (
-                <li key={item.name} onClick={handleClick}>
-                  <Link to={`/${item.nameLink}`}>{item.name}</Link>
-                </li>
-              ))}
-            </div>
-          </li>
-
-          {/* CONTACT US */}
-          <li className='minilist' onClick={() => toggleMenu("contact")}>
-            <Link to={`/contact-us`}>Contact Us</Link> <IoIosArrowDown />
-            <div className='minilistContactContainer' style={{ display: isMobile ? (openMenus.contact ? "flex" : "none") : undefined }}>
-              {contactUs.map((item) => (
-                <li key={item.name} onClick={handleClick}>
-                  <Link to={`/${item.nameLink}`}>{item.name}</Link>
-                </li>
-              ))}
-            </div>
-          </li>
-
-        </ul>
-      </div>
-
-      <div className="rightNavbar">
-        <div><MdOutlinePhoneInTalk /></div>
-        <div>
-          <p>Call anytime</p>
-          <p className='ikbhai'>+971 55 292 0583</p>
-          <div className='socialMedia'>
-            <a href={media.facebook} target='blank'><RiFacebookCircleLine /></a>
-            <a href={media.linkedin} target='blank'><TbBrandLinkedin /></a>
-            <a href={media.instagram} target='blank'><FaInstagram /></a>
-            <a href={media.youtube} target='blank'><CiYoutube /></a>
+        {/* Desktop Nav */}
+        {!isMobile && (
+          <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', overflow: 'visible' }}>
+            <DesktopDropdown title="About Us" mainLink="/about-us" items={aboutUs} />
+            <DesktopDropdown title="Admission" mainLink="/apply-now" items={admissions} />
+            <DesktopDropdown title="Academics" mainLink="/skills-development-courses" items={services} />
+            <DesktopDropdown title="Locations" mainLink="/uae" items={locations} />
+            <DesktopDropdown title="Contact Us" mainLink="/contact-us" items={contactUs} />
           </div>
-        </div>
+        )}
+
+        {/* Right Side */}
+        {!isMobile ? (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <div style={{ 
+              width: '40px', height: '40px', borderRadius: '50%', 
+              border: '1px solid rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#a5b4fc', fontSize: '1.2rem'
+            }}>
+              <MdOutlinePhoneInTalk />
+            </div>
+            <div>
+              <p style={{ margin: 0, fontSize: '0.75rem', color: '#94a3b8' }}>Call anytime</p>
+              <p style={{ margin: 0, fontSize: '1rem', fontWeight: 600, color: 'white' }}>+971 55 292 0583</p>
+            </div>
+          </div>
+        ) : (
+          <button onClick={handleClick} style={{ background: 'transparent', border: 'none', color: 'white', fontSize: '1.8rem', cursor: 'pointer' }}>
+            {clicked ? <IoCloseSharp /> : <GiHamburgerMenu />}
+          </button>
+        )}
       </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobile && clicked && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            style={{
+              background: 'rgba(15, 23, 42, 0.98)',
+              backdropFilter: 'blur(10px)',
+              position: 'absolute',
+              top: '80px',
+              left: 0,
+              width: '100%',
+              maxHeight: 'calc(100vh - 80px)',
+              overflowY: 'auto',
+              padding: '1.5rem',
+              boxShadow: '0 20px 40px rgba(0,0,0,0.5)',
+              borderBottom: '1px solid rgba(255,255,255,0.1)'
+            }}
+          >
+            <MobileAccordion title="About Us" mainLink="/about-us" items={aboutUs} isOpen={openMenus.about} toggle={() => toggleMenu('about')} />
+            <MobileAccordion title="Admission" mainLink="/apply-now" items={admissions} isOpen={openMenus.admission} toggle={() => toggleMenu('admission')} />
+            <MobileAccordion title="Academics" mainLink="/skills-development-courses" items={services} isOpen={openMenus.academics} toggle={() => toggleMenu('academics')} />
+            <MobileAccordion title="Locations" mainLink="/uae" items={locations} isOpen={openMenus.location} toggle={() => toggleMenu('location')} />
+            <MobileAccordion title="Contact Us" mainLink="/contact-us" items={contactUs} isOpen={openMenus.contact} toggle={() => toggleMenu('contact')} />
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#4f46e5', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '1.2rem' }}><MdOutlinePhoneInTalk /></div>
+                <div>
+                  <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8' }}>Call anytime</p>
+                  <p style={{ margin: 0, fontSize: '1rem', fontWeight: 600, color: 'white' }}>+971 55 292 0583</p>
+                </div>
+              </div>
+              <div style={{ display: 'flex', gap: '1.5rem', marginTop: '0.5rem', color: '#94a3b8', fontSize: '1.5rem' }}>
+                <a href={media.facebook} style={{ color: 'inherit' }}><RiFacebookCircleLine /></a>
+                <a href={media.linkedin} style={{ color: 'inherit' }}><TbBrandLinkedin /></a>
+                <a href={media.instagram} style={{ color: 'inherit' }}><FaInstagram /></a>
+                <a href={media.youtube} style={{ color: 'inherit' }}><CiYoutube /></a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
