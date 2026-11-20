@@ -85,7 +85,7 @@ const Subject = () => {
             </div>
 
             {/* ================= MAIN CONTENT ================= */}
-            <div style={{ position: 'relative', maxWidth: '1200px', margin: '-4rem auto 0 auto', padding: '0 1rem 5rem 1rem', zIndex: 20 }}>
+            <div style={{ position: 'relative', maxWidth: '1400px', margin: '-4rem auto 0 auto', padding: '0 1.5rem 5rem 1.5rem', zIndex: 20 }}>
               
               {/* Filter Buttons */}
               <div style={{ 
@@ -128,7 +128,7 @@ const Subject = () => {
               </div>
 
               {/* Subjects Grid */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '2rem', marginBottom: '3rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '2.5rem', marginBottom: '3rem' }}>
                 {grade && subjects && subjects.length > 0 ? (
                   subjects.map((subject) => (
                     <SubjectCard subject={subject} key={subject._id} />

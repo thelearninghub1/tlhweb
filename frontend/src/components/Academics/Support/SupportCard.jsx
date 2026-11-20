@@ -26,16 +26,19 @@ const SupportCard = ({ partner, index }) => {
       >
         {/* Image Side */}
         <div style={{ flex: '1 1 300px', width: '100%' }}>
+          {/* FIX: Added background and padding, and changed objectFit to 'contain' so the full image shows */}
           <div style={{ 
             borderRadius: '1.5rem', 
             overflow: 'hidden', 
             boxShadow: '0 10px 30px -10px rgba(0,0,0,0.15)',
-            position: 'relative'
+            position: 'relative',
+            background: '#f8fafc',
+            padding: '1rem'
           }}>
             <img 
               src={partner.avatar.url} 
               alt={partner.title} 
-              style={{ width: '100%', height: '300px', objectFit: 'cover', display: 'block' }} 
+              style={{ width: '100%', height: '300px', objectFit: 'contain', display: 'block' }} 
             />
             {/* Floating Number Accent */}
             <div style={{ 

@@ -88,54 +88,64 @@ const Affiliation = () => {
             </div>
 
             {/* ================= MAIN CONTENT ================= */}
-            <div style={{ position: 'relative', maxWidth: '1000px', margin: '-4rem auto 0 auto', padding: '0 1rem 5rem 1rem', zIndex: 20 }}>
+            {/* Increased maxWidth from 1000px to 1400px */}
+            <div style={{ position: 'relative', maxWidth: '1400px', margin: '-4rem auto 0 auto', padding: '0 1.5rem 5rem 1.5rem', zIndex: 20 }}>
               
-              {/* INTRODUCTION CARD */}
+              {/* INTRODUCTION CARD - REDESIGNED TO 2-COLUMN GRID */}
               <motion.div 
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
-                style={{ background: 'white', borderRadius: '1.5rem', padding: '2.5rem', boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.1)', border: '1px solid rgba(226, 232, 240, 0.8)', marginBottom: '3rem' }}
+                style={{ background: 'white', borderRadius: '1.5rem', padding: '3rem', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.15)', border: '1px solid rgba(226, 232, 240, 0.8)', marginBottom: '4rem' }}
               >
-                <h2 className="text-2xl font-bold text-slate-800 mb-6 border-b pb-4">Our Accreditations</h2>
+                <h2 className="text-3xl font-bold text-slate-900 mb-8 border-b pb-4">Our Accreditations</h2>
                 
-                <p style={{ fontSize: '1rem', color: '#475569', lineHeight: 1.8, marginBottom: '1.5rem' }}>
-                  The Learning Hub is a certified educational institution recognized by the <strong style={{ color: '#0f172a' }}>Federal Board of Intermediate and Secondary Education (FBISE), Islamabad</strong>. Our programs are aligned with international standards and offer globally accepted certifications.
-                </p>
+                {/* Grid to split text and list evenly, eliminating empty white space */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '3rem' }}>
+                  
+                  {/* Left Column: Paragraphs */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                    <p style={{ fontSize: '1.1rem', color: '#475569', lineHeight: 1.8, margin: 0 }}>
+                      The Learning Hub is a certified educational institution recognized by the <strong style={{ color: '#0f172a' }}>Federal Board of Intermediate and Secondary Education (FBISE), Islamabad</strong>. Our programs are aligned with international standards and offer globally accepted certifications.
+                    </p>
+                    <p style={{ fontSize: '1.1rem', color: '#475569', lineHeight: 1.8, margin: 0 }}>
+                      All academic stages, from Nursery to SSC-II, follow a structured study map designed to meet curriculum standards and promote STEAM learning across all levels.
+                    </p>
+                    <p style={{ fontSize: '1.1rem', color: '#475569', lineHeight: 1.8, margin: 0 }}>
+                      Our certifications, partnerships, and educational model ensure students receive a future-ready, credible, and globally accepted education.
+                    </p>
+                  </div>
 
-                <p style={{ fontSize: '1.1rem', fontWeight: 600, color: '#1e293b', marginBottom: '1rem' }}>
-                  We are proudly affiliated with:
-                </p>
+                  {/* Right Column: Affiliation List */}
+                  <div>
+                    <p style={{ fontSize: '1.2rem', fontWeight: 600, color: '#1e293b', marginBottom: '1.5rem' }}>
+                      We are proudly affiliated with:
+                    </p>
+                    <ul style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', paddingLeft: 0, listStyle: 'none', margin: 0 }}>
+                      {[
+                        { title: "FBISE Islamabad; Institution Code: 3124", desc: "Ensuring academic integrity and nationwide recognition." },
+                        { title: "Private Cambridge Setup", desc: "Offering customized Cambridge programs for families seeking flexibility with global standards." },
+                        { title: "The Education Consultancy (TEC)", desc: "Our academic partner committed to excellence in education across borders." },
+                        { title: "EDAP School Management System", desc: "A digital platform to manage and streamline academic, administrative, and communication processes." }
+                      ].map((item, i) => (
+                        <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                          <div style={{ flexShrink: 0, width: '1.5rem', height: '1.5rem', borderRadius: '50%', background: '#e0e7ff', color: '#4f46e5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.875rem', fontWeight: 'bold', marginTop: '0.2rem' }}>
+                            ✓
+                          </div>
+                          <div>
+                            <strong style={{ color: '#1e293b', display: 'block', fontSize: '1.05rem', marginBottom: '0.25rem' }}>{item.title}</strong>
+                            <span style={{ color: '#64748b', fontSize: '0.95rem', lineHeight: 1.6 }}>{item.desc}</span>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-                <ul style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1.5rem', paddingLeft: 0, listStyle: 'none' }}>
-                  {[
-                    { title: "FBISE Islamabad; Institution Code: 3124", desc: "Ensuring academic integrity and nationwide recognition." },
-                    { title: "Private Cambridge Setup", desc: "Offering customized Cambridge programs for families seeking flexibility with global standards." },
-                    { title: "The Education Consultancy (TEC)", desc: "Our academic partner committed to excellence in education across borders." },
-                    { title: "EDAP School Management System", desc: "A digital platform to manage and streamline academic, administrative, and communication processes." }
-                  ].map((item, i) => (
-                    <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                      <div style={{ flexShrink: 0, width: '1.5rem', height: '1.5rem', borderRadius: '50%', background: '#e0e7ff', color: '#4f46e5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.875rem', fontWeight: 'bold', marginTop: '0.15rem' }}>
-                        ✓
-                      </div>
-                      <div>
-                        <strong style={{ color: '#1e293b', display: 'block' }}>{item.title}</strong>
-                        <span style={{ color: '#64748b', fontSize: '0.95rem' }}>{item.desc}</span>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-
-                <p style={{ fontSize: '1rem', color: '#475569', lineHeight: 1.8, marginBottom: '1rem' }}>
-                  All academic stages, from Nursery to SSC-II, follow a structured study map designed to meet curriculum standards and promote STEAM learning across all levels.
-                </p>
-                <p style={{ fontSize: '1rem', color: '#475569', lineHeight: 1.8, margin: 0 }}>
-                  Our certifications, partnerships, and educational model ensure students receive a future-ready, credible, and globally accepted education.
-                </p>
+                </div>
               </motion.div>
 
               {/* ROADMAPS / PROGRAMS SECTION */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
                 {afiliations && afiliations.map((program, index) => (
                   <motion.div 
                     key={program._id}
@@ -143,6 +153,7 @@ const Affiliation = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
+                    whileHover={{ y: -5, boxShadow: '0 30px 60px -15px rgba(0, 0, 0, 0.1)' }}
                     style={{ 
                       background: 'white', 
                       borderRadius: '1.5rem', 
@@ -154,18 +165,18 @@ const Affiliation = () => {
                     }}
                   >
                     {/* Card Header */}
-                    <div style={{ padding: '2rem 2rem 1rem 2rem', borderBottom: '1px solid #f1f5f9' }}>
+                    <div style={{ padding: '2.5rem 2.5rem 1.5rem 2.5rem', borderBottom: '1px solid #f1f5f9' }}>
                       <h2 className="text-2xl font-bold text-slate-800" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                        <span style={{ display: 'inline-block', width: '8px', height: '24px', background: 'linear-gradient(to bottom, #4f46e5, #db2777)', borderRadius: '4px' }} />
+                        <span style={{ display: 'inline-block', width: '8px', height: '28px', background: 'linear-gradient(to bottom, #4f46e5, #db2777)', borderRadius: '4px' }} />
                         {program.title}
                       </h2>
-                      <p style={{ marginTop: '0.75rem', color: '#64748b', fontSize: '0.95rem', lineHeight: 1.6 }}>
+                      <p style={{ marginTop: '1rem', color: '#64748b', fontSize: '1.05rem', lineHeight: 1.7 }}>
                         {program.description}
                       </p>
                     </div>
 
                     {/* Roadmap Image Container */}
-                    <div style={{ padding: '2rem', background: '#f8fafc', display: 'flex', justifyContent: 'center' }}>
+                    <div style={{ padding: '2.5rem', background: '#f8fafc', display: 'flex', justifyContent: 'center' }}>
                       <img 
                         src={program.avatar.url} 
                         alt={`${program.title} Roadmap`} 
@@ -173,8 +184,9 @@ const Affiliation = () => {
                           maxWidth: '100%', 
                           height: 'auto', 
                           borderRadius: '1rem', 
-                          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-                          objectFit: 'contain'
+                          boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
+                          objectFit: 'contain',
+                          border: '4px solid white'
                         }} 
                       />
                     </div>

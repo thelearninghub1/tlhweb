@@ -90,7 +90,8 @@ const Instrumental = () => {
             </div>
 
             {/* ================= MAIN CONTENT ================= */}
-            <div style={{ position: 'relative', maxWidth: '1000px', margin: '-4rem auto 0 auto', padding: '0 1rem 5rem 1rem', zIndex: 20 }}>
+            {/* FIX: Changed maxWidth from 1000px to 1400px to remove the outer white space */}
+            <div style={{ position: 'relative', maxWidth: '1400px', margin: '-4rem auto 0 auto', padding: '0 2rem 5rem 2rem', zIndex: 20 }}>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
                 {afiliations && afiliations.map((service, index) => {
@@ -118,16 +119,19 @@ const Instrumental = () => {
                     >
                       {/* Image Side */}
                       <div style={{ flex: '1 1 300px', width: '100%' }}>
+                        {/* FIX: Added background and padding, and changed objectFit to 'contain' so the full image shows */}
                         <div style={{ 
                           borderRadius: '1.5rem', 
                           overflow: 'hidden', 
                           boxShadow: '0 10px 30px -10px rgba(0,0,0,0.15)',
-                          position: 'relative'
+                          position: 'relative',
+                          background: '#f8fafc', 
+                          padding: '1rem'
                         }}>
                           <img 
                             src={service.avatar.url} 
                             alt={service.title} 
-                            style={{ width: '100%', height: '300px', objectFit: 'cover', display: 'block' }} 
+                            style={{ width: '100%', height: '300px', objectFit: 'contain', display: 'block' }} 
                           />
                           {/* Floating Icon Accent */}
                           <div style={{ 

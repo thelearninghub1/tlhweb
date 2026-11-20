@@ -75,28 +75,32 @@ const AdmissionGuide = () => {
         </div>
 
         {/* ================= MAIN CONTENT ================= */}
-        <div style={{ position: 'relative', maxWidth: '1200px', margin: '-4rem auto 0 auto', padding: '0 1rem 5rem 1rem', zIndex: 20 }}>
+        {/* Increased width to 1400px and added side padding for a spacious premium look */}
+        <div style={{ position: 'relative', maxWidth: '1400px', margin: '-4rem auto 0 auto', padding: '0 1.5rem 5rem 1.5rem', zIndex: 20 }}>
           
-          {/* Using Flexbox with align-items: stretch to make both sides equal height */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '3rem', alignItems: 'stretch' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4rem', alignItems: 'stretch' }}>
             
             {/* --- LEFT SIDE: ADMISSION STEPS --- */}
-            <div style={{ flex: '1 1 500px', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              {/* FIXED: Changed to inline style for the heading color */}
-              <h2 style={{ fontSize: '1.75rem', fontWeight: 'bold', color: '#1e293b', marginBottom: '0.5rem', marginTop: 0 }}>The Admission Procedure</h2>
+            <div style={{ flex: '1 1 600px', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              <h2 style={{ fontSize: '2rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '0.5rem', marginTop: 0 }}>The Admission Procedure</h2>
               
               {steps.map((item, index) => (
                 <motion.div 
-                  key={index} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }}
-                  style={{ background: 'white', borderRadius: '1rem', padding: '1.5rem', display: 'flex', gap: '1.5rem', alignItems: 'flex-start', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)', border: '1px solid #f1f5f9', position: 'relative', overflow: 'hidden', flex: 1 }}
+                  key={index} 
+                  initial={{ opacity: 0, x: -20 }} 
+                  whileInView={{ opacity: 1, x: 0 }} 
+                  viewport={{ once: true }} 
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ y: -5, boxShadow: '0 20px 40px -10px rgba(0,0,0,0.1)' }}
+                  style={{ background: 'white', borderRadius: '1.5rem', padding: '2rem', display: 'flex', gap: '1.5rem', alignItems: 'flex-start', boxShadow: '0 10px 30px -10px rgba(0,0,0,0.05)', border: '1px solid #f1f5f9', position: 'relative', overflow: 'hidden', flex: 1 }}
                 >
-                  <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '4px', background: 'linear-gradient(to bottom, #4f46e5, #db2777)' }} />
-                  <div style={{ flexShrink: 0, width: '48px', height: '48px', borderRadius: '50%', background: '#e0e7ff', color: '#4f46e5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '1.125rem' }}>
+                  <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '6px', background: 'linear-gradient(to bottom, #4f46e5, #db2777)' }} />
+                  <div style={{ flexShrink: 0, width: '56px', height: '56px', borderRadius: '50%', background: '#e0e7ff', color: '#4f46e5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '1.25rem' }}>
                     {item.step}
                   </div>
                   <div>
-                    <h3 style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#0f172a', margin: '0 0 0.5rem 0' }}>{item.title}</h3>
-                    <p style={{ fontSize: '0.95rem', color: '#64748b', lineHeight: 1.6, margin: 0 }}>{item.desc}</p>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#0f172a', margin: '0 0 0.5rem 0' }}>{item.title}</h3>
+                    <p style={{ fontSize: '1rem', color: '#475569', lineHeight: 1.6, margin: 0 }}>{item.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -104,35 +108,36 @@ const AdmissionGuide = () => {
 
             {/* --- RIGHT SIDE: AGE CRITERIA & APPLY --- */}
             <motion.div 
-              initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
+              initial={{ opacity: 0, y: 30 }} 
+              whileInView={{ opacity: 1, y: 0 }} 
+              viewport={{ once: true }} 
+              transition={{ duration: 0.6 }}
               style={{ 
-                flex: '1 1 400px', 
+                flex: '1 1 450px', 
                 background: 'white', 
                 borderRadius: '1.5rem', 
-                padding: '2rem', 
-                boxShadow: '0 20px 40px -10px rgba(0,0,0,0.1)', 
+                padding: '2.5rem', 
+                boxShadow: '0 25px 50px -12px rgba(0,0,0,0.15)', 
                 border: '1px solid #e2e8f0',
                 display: 'flex',
                 flexDirection: 'column'
               }}
             >
-              {/* FIXED: Heading color */}
-              <h2 style={{ fontSize: '1.75rem', fontWeight: 'bold', color: '#1e293b', marginBottom: '1.5rem', textAlign: 'center', marginTop: 0 }}>Age Criteria</h2>
+              <h2 style={{ fontSize: '2rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '1.5rem', textAlign: 'center', marginTop: 0 }}>Age Criteria</h2>
               
-              {/* flex: 1 makes this table stretch to fill all remaining height so the button sticks to the bottom */}
-              <div style={{ flex: 1, overflowY: 'auto', borderRadius: '0.75rem', border: '1px solid #f1f5f9', maxHeight: '550px' }} className="custom-scrollbar">
+              <div style={{ flex: 1, overflowY: 'auto', borderRadius: '1rem', border: '1px solid #f1f5f9', maxHeight: '550px' }} className="custom-scrollbar">
                 <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
                   <thead style={{ position: 'sticky', top: 0, background: '#f8fafc', zIndex: 10 }}>
                     <tr>
-                      <th style={{ padding: '1rem', fontSize: '0.875rem', fontWeight: 600, color: '#475569', borderBottom: '2px solid #e2e8f0' }}>Age (Years)</th>
-                      <th style={{ padding: '1rem', fontSize: '0.875rem', fontWeight: 600, color: '#475569', borderBottom: '2px solid #e2e8f0' }}>Grade</th>
+                      <th style={{ padding: '1rem', fontSize: '1rem', fontWeight: 600, color: '#475569', borderBottom: '2px solid #e2e8f0' }}>Age (Years)</th>
+                      <th style={{ padding: '1rem', fontSize: '1rem', fontWeight: 600, color: '#475569', borderBottom: '2px solid #e2e8f0' }}>Grade</th>
                     </tr>
                   </thead>
                   <tbody>
                     {ageGroups.map((item, index) => (
-                      <tr key={index} style={{ borderBottom: '1px solid #f1f5f9', background: index % 2 === 0 ? 'white' : '#f8fafc' }}>
-                        <td style={{ padding: '0.875rem 1rem', color: '#334155', fontWeight: 500 }}>{item.age}</td>
-                        <td style={{ padding: '0.875rem 1rem', color: '#4f46e5', fontWeight: 600 }}>{item.grade}</td>
+                      <tr key={index} style={{ borderBottom: '1px solid #f1f5f9', background: index % 2 === 0 ? 'white' : '#f8fafc', transition: 'background 0.2s' }} className="hover:bg-gray-50">
+                        <td style={{ padding: '1rem', color: '#334155', fontWeight: 500 }}>{item.age}</td>
+                        <td style={{ padding: '1rem', color: '#4f46e5', fontWeight: 600 }}>{item.grade}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -140,7 +145,11 @@ const AdmissionGuide = () => {
               </div>
 
               <div style={{ marginTop: '2rem' }}>
-                <Link to={`/apply-now`} style={{ display: 'block', width: '100%', padding: '1rem', borderRadius: '0.75rem', color: 'white', fontWeight: 'bold', fontSize: '1.125rem', textAlign: 'center', background: 'linear-gradient(to right, #4f46e5, #db2777)', textDecoration: 'none', boxShadow: '0 10px 20px -5px rgba(79, 70, 229, 0.4)' }} className="hover:scale-105 transition-transform">
+                <Link 
+                  to={`/apply-now`} 
+                  style={{ display: 'block', width: '100%', padding: '1rem', borderRadius: '1rem', color: 'white', fontWeight: 'bold', fontSize: '1.125rem', textAlign: 'center', background: 'linear-gradient(to right, #4f46e5, #db2777)', textDecoration: 'none', boxShadow: '0 10px 20px -5px rgba(79, 70, 229, 0.4)' }} 
+                  className="hover:scale-105 transition-transform"
+                >
                   Apply Now
                 </Link>
               </div>

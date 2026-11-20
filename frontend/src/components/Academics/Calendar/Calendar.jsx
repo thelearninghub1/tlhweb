@@ -3,7 +3,7 @@ import { allCalenderAction, clearErrors } from '../../../actions/calenderAction'
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import Loader from '../../layout/Loader/Loader';
-import Metadata from '../../layout/Metadata/Metadata'; // Assuming you use this everywhere
+import Metadata from '../../layout/Metadata/Metadata';
 import { motion } from 'framer-motion';
 import { FaCalendarAlt } from 'react-icons/fa';
 
@@ -103,7 +103,8 @@ const Calendar = () => {
             </div>
 
             {/* ================= MAIN CONTENT ================= */}
-            <div style={{ position: 'relative', maxWidth: '900px', margin: '-4rem auto 0 auto', padding: '0 1rem 5rem 1rem', zIndex: 20 }}>
+            {/* Added back the left/right padding here so the card doesn't touch the screen edge, and set maxWidth to 1400px */}
+            <div style={{ position: 'relative', maxWidth: '1400px', margin: '-4rem auto 0 auto', padding: '0 1.5rem 5rem 1.5rem', zIndex: 20 }}>
               
               <motion.div 
                 initial={{ opacity: 0, y: 30 }}
@@ -114,7 +115,9 @@ const Calendar = () => {
                   borderRadius: '1.5rem', 
                   padding: '3rem', 
                   boxShadow: '0 20px 40px -10px rgba(0,0,0,0.1)', 
-                  border: '1px solid #e2e8f0'
+                  border: '1px solid #e2e8f0',
+                  width: '100%',          /* Changed from maxWidth: '900px' */
+                  margin: '0 auto'
                 }}
               >
                 <h2 className="text-2xl font-bold text-slate-800 mb-8 text-center border-b pb-4">Important Dates</h2>

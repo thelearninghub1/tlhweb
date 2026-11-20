@@ -153,16 +153,16 @@ const Career = () => {
             </div>
 
             {/* ================= MAIN CONTENT ================= */}
-            <div style={{ position: 'relative', maxWidth: '900px', margin: '-4rem auto 0 auto', padding: '0 1rem 4rem 1rem', zIndex: 20 }}>
+            {/* Changed maxWidth from 900px to 1200px to remove side white space and give the form breathing room */}
+            <div style={{ position: 'relative', maxWidth: '1200px', margin: '-4rem auto 0 auto', padding: '0 1.5rem 5rem 1.5rem', zIndex: 20 }}>
               
               <motion.div 
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
-                style={{ background: 'white', borderRadius: '1.5rem', padding: '2rem', boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.1)', border: '1px solid rgba(226, 232, 240, 0.8)' }}
-                className="md:p-10"
+                style={{ background: 'white', borderRadius: '1.5rem', padding: '3rem', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.15)', border: '1px solid rgba(226, 232, 240, 0.8)' }}
               >
-                <h2 className="text-2xl font-bold text-slate-800 mb-8 text-center">Application Form</h2>
+                <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">Application Form</h2>
 
                 <AnimatePresence>
                   {sent && (
@@ -177,9 +177,9 @@ const Career = () => {
                   )}
                 </AnimatePresence>
 
-                <form style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }} onSubmit={handleSubmit}>
+                <form style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }} onSubmit={handleSubmit}>
                   
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.25rem' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
                     <input
                       type="text"
                       name="name"
@@ -200,7 +200,7 @@ const Career = () => {
                     />
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.25rem' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
                     <input
                       type="text"
                       name="applyFor"
@@ -225,20 +225,26 @@ const Career = () => {
                     name="message"
                     placeholder="Additional Information / Cover Letter ..."
                     required
-                    rows={5}
+                    rows={6}
                     value={form.message}
                     onChange={handleChange}
                     className={inputClass + " resize-none"}
                   />
 
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.25rem', marginTop: '0.5rem' }}>
+                  {/* File Upload Zones */}
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', marginTop: '0.5rem' }}>
                     
-                    {/* CV Upload */}
-                    <div style={{ background: '#f8fafc', border: '2px dashed #cbd5e1', borderRadius: '1rem', padding: '1.5rem', textAlign: 'center', transition: 'all 0.2s', position: 'relative' }}>
-                      <FaFileUpload style={{ fontSize: '2rem', color: '#6366f1', margin: '0 auto 0.5rem auto' }} />
-                      <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 600, color: '#334155', marginBottom: '0.5rem' }}>
-                        Upload Your CV (PDF, DOC)
+                    {/* CV Upload Zone */}
+                    <div 
+                      onClick={() => cvInputRef.current.click()}
+                      style={{ background: '#f8fafc', border: '2px dashed #cbd5e1', borderRadius: '1rem', padding: '2rem 1.5rem', textAlign: 'center', cursor: 'pointer', transition: 'all 0.2s' }} 
+                      className="hover:border-indigo-400 hover:bg-indigo-50/30"
+                    >
+                      <FaFileUpload style={{ fontSize: '2.5rem', color: '#6366f1', margin: '0 auto 1rem auto' }} />
+                      <label style={{ display: 'block', fontSize: '1rem', fontWeight: 600, color: '#334155', marginBottom: '0.5rem' }}>
+                        Upload Your CV
                       </label>
+                      <p style={{ fontSize: '0.8rem', color: '#64748b' }}>PDF, DOC, DOCX (Max 5MB)</p>
                       <input
                         type="file"
                         name="cv"
@@ -246,17 +252,22 @@ const Career = () => {
                         onChange={handleFileChange}
                         ref={cvInputRef}
                         required
-                        style={{ display: 'block', width: '100%', fontSize: '0.875rem', color: '#64748b', cursor: 'pointer' }}
+                        style={{ display: 'none' }}
                       />
-                      {cv && <p style={{ fontSize: '0.75rem', color: '#6366f1', marginTop: '0.5rem', fontWeight: 600 }}>✓ {cv.name}</p>}
+                      {cv && <p style={{ fontSize: '0.85rem', color: '#4f46e5', marginTop: '1rem', fontWeight: 600 }}>✓ {cv.name}</p>}
                     </div>
 
-                    {/* Certificates Upload */}
-                    <div style={{ background: '#f8fafc', border: '2px dashed #cbd5e1', borderRadius: '1rem', padding: '1.5rem', textAlign: 'center', transition: 'all 0.2s', position: 'relative' }}>
-                      <FaFileUpload style={{ fontSize: '2rem', color: '#d946ef', margin: '0 auto 0.5rem auto' }} />
-                      <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 600, color: '#334155', marginBottom: '0.5rem' }}>
-                        Certificates / Testimonials
+                    {/* Certificates Upload Zone */}
+                    <div 
+                      onClick={() => certificatesInputRef.current.click()}
+                      style={{ background: '#f8fafc', border: '2px dashed #cbd5e1', borderRadius: '1rem', padding: '2rem 1.5rem', textAlign: 'center', cursor: 'pointer', transition: 'all 0.2s' }} 
+                      className="hover:border-pink-400 hover:bg-pink-50/30"
+                    >
+                      <FaFileUpload style={{ fontSize: '2.5rem', color: '#d946ef', margin: '0 auto 1rem auto' }} />
+                      <label style={{ display: 'block', fontSize: '1rem', fontWeight: 600, color: '#334155', marginBottom: '0.5rem' }}>
+                        Certificates
                       </label>
+                      <p style={{ fontSize: '0.8rem', color: '#64748b' }}>PDF, JPG, PNG</p>
                       <input
                         type="file"
                         name="certificates"
@@ -264,9 +275,9 @@ const Career = () => {
                         multiple
                         onChange={handleFileChange}
                         ref={certificatesInputRef}
-                        style={{ display: 'block', width: '100%', fontSize: '0.875rem', color: '#64748b', cursor: 'pointer' }}
+                        style={{ display: 'none' }}
                       />
-                      {certificates.length > 0 && <p style={{ fontSize: '0.75rem', color: '#d946ef', marginTop: '0.5rem', fontWeight: 600 }}>✓ {certificates.length} file(s) selected</p>}
+                      {certificates.length > 0 && <p style={{ fontSize: '0.85rem', color: '#d946ef', marginTop: '1rem', fontWeight: 600 }}>✓ {certificates.length} file(s) selected</p>}
                     </div>
 
                   </div>
@@ -275,7 +286,7 @@ const Career = () => {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     type="submit"
-                    style={{ width: '100%', padding: '1rem', borderRadius: '0.75rem', color: 'white', fontWeight: 'bold', fontSize: '1.125rem', cursor: 'pointer', border: 'none', background: 'linear-gradient(to right, #4f46e5, #db2777)', boxShadow: '0 10px 20px -5px rgba(79, 70, 229, 0.4)', marginTop: '1rem' }}
+                    style={{ width: '100%', padding: '1.2rem', borderRadius: '0.75rem', color: 'white', fontWeight: 'bold', fontSize: '1.125rem', cursor: 'pointer', border: 'none', background: 'linear-gradient(to right, #4f46e5, #db2777)', boxShadow: '0 10px 20px -5px rgba(79, 70, 229, 0.4)', marginTop: '1rem' }}
                     className="hover:shadow-lg transition-all"
                   >
                     Submit Application

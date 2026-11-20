@@ -94,25 +94,25 @@ const ContactPartnerWithUs = () => {
             <motion.div 
               animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }} 
               transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              style={{ position: 'absolute', top: '-10%', right: '-10%', width: '500px', height: '500px', background: 'rgba(168, 85, 247, 0.15)', borderRadius: '50%', filter: 'blur(100px)', pointerEvents: 'none' }} 
+              style={{ position: 'absolute', top: '-10%', right: '-10%', width: '500px', height: '500px', background: 'rgba(99, 102, 241, 0.15)', borderRadius: '50%', filter: 'blur(100px)', pointerEvents: 'none' }} 
             />
             <motion.div 
               animate={{ scale: [1, 1.5, 1], opacity: [0.2, 0.4, 0.2] }} 
               transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-              style={{ position: 'absolute', bottom: '10%', left: '-10%', width: '600px', height: '600px', background: 'rgba(99, 102, 241, 0.15)', borderRadius: '50%', filter: 'blur(100px)', pointerEvents: 'none' }} 
+              style={{ position: 'absolute', bottom: '10%', left: '-10%', width: '600px', height: '600px', background: 'rgba(236, 72, 153, 0.15)', borderRadius: '50%', filter: 'blur(100px)', pointerEvents: 'none' }} 
             />
 
-            {/* ================= HERO BANNER ================= */}
-            <div style={{ position: 'relative', background: 'linear-gradient(135deg, #1e1b4b 0%, #4c1d95 100%)', padding: '5rem 1rem 8rem 1rem', overflow: 'hidden' }}>
+            {/* ================= HERO BANNER (UPDATED COLOR) ================= */}
+            <div style={{ position: 'relative', background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)', padding: '5rem 1rem 8rem 1rem', overflow: 'hidden' }}>
               
               {/* Grid Pattern Overlay */}
               <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)', backgroundSize: '30px 30px', opacity: 0.8 }} />
               
               {/* Floating Icon Decor */}
-              <motion.div animate={{ y: [0, -20, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} style={{ position: 'absolute', top: '20%', left: '15%', opacity: 0.15 }} className="text-white text-7xl hidden md:block">
+              <motion.div animate={{ y: [0, -20, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} style={{ position: 'absolute', top: '20%', left: '15%', opacity: 0.1 }} className="text-white text-7xl hidden md:block">
                 <FaRegClock />
               </motion.div>
-              <motion.div animate={{ y: [0, 20, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} style={{ position: 'absolute', bottom: '30%', right: '15%', opacity: 0.15 }} className="text-white text-7xl hidden md:block">
+              <motion.div animate={{ y: [0, 20, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} style={{ position: 'absolute', bottom: '30%', right: '15%', opacity: 0.1 }} className="text-white text-7xl hidden md:block">
                 <CiMail />
               </motion.div>
 
@@ -122,7 +122,7 @@ const ContactPartnerWithUs = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
-                  style={{ display: 'inline-block', padding: '0.5rem 1.25rem', borderRadius: '50px', background: 'rgba(168, 85, 247, 0.2)', border: '1px solid rgba(216, 180, 254, 0.3)', color: '#f3e8ff', fontSize: '0.875rem', fontWeight: 600, letterSpacing: '1px', marginBottom: '1.5rem', backdropFilter: 'blur(10px)' }}
+                  style={{ display: 'inline-block', padding: '0.5rem 1.25rem', borderRadius: '50px', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: '#e0e7ff', fontSize: '0.875rem', fontWeight: 600, letterSpacing: '1px', marginBottom: '1.5rem', backdropFilter: 'blur(10px)' }}
                 >
                   BECOME A TLH PARTNER TODAY
                 </motion.div>
@@ -134,7 +134,7 @@ const ContactPartnerWithUs = () => {
                   className="text-5xl md:text-7xl font-extrabold text-white tracking-tight"
                 >
                   Let's Build the <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-pink-400 to-rose-400">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
                     Future Together
                   </span>
                 </motion.h1>
@@ -143,7 +143,7 @@ const ContactPartnerWithUs = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
-                  style={{ marginTop: '1.5rem', fontSize: '1.125rem', color: '#e9d5ff', maxWidth: '600px', margin: '1.5rem auto 0 auto', lineHeight: 1.6 }}
+                  style={{ marginTop: '1.5rem', fontSize: '1.125rem', color: '#cbd5e1', maxWidth: '600px', margin: '1.5rem auto 0 auto', lineHeight: 1.6 }}
                 >
                   Together, let's expand access to quality STEAM education worldwide. 
                   Fill out the form below to start a conversation.
@@ -159,19 +159,18 @@ const ContactPartnerWithUs = () => {
             </div>
 
             {/* ================= MAIN CONTENT (FORM + CARDS) ================= */}
-            <div style={{ position: 'relative', maxWidth: '1152px', margin: '-4rem auto 0 auto', padding: '0 1rem 4rem 1rem', zIndex: 20 }}>
+            <div style={{ position: 'relative', maxWidth: '1400px', margin: '-4rem auto 0 auto', padding: '0 1.5rem 5rem 1.5rem', zIndex: 20 }}>
               
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', alignItems: 'stretch' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '3rem', alignItems: 'stretch' }}>
                 
                 {/* --- FORM CARD --- */}
                 <motion.div 
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.6 }}
-                  style={{ background: 'white', borderRadius: '1.5rem', padding: '2rem', boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.1)', border: '1px solid rgba(226, 232, 240, 0.8)', display: 'flex', flexDirection: 'column' }}
-                  className="md:p-10"
+                  style={{ background: 'white', borderRadius: '1.5rem', padding: '2.5rem', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.15)', border: '1px solid rgba(226, 232, 240, 0.8)', display: 'flex', flexDirection: 'column' }}
                 >
-                  <h2 className="text-2xl font-bold text-slate-800 mb-6">Apply for Partnership</h2>
+                  <h2 className="text-2xl font-bold text-slate-900 mb-6">Apply for Partnership</h2>
 
                   <AnimatePresence>
                     {sent && (
@@ -249,43 +248,42 @@ const ContactPartnerWithUs = () => {
                 </motion.div>
 
                 {/* --- INFO CARDS --- */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', flex: 1 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem', width: '100%', flex: 1 }}>
                   {infoCards.map((card, index) => (
                     <motion.div
                       key={card.title}
-                      initial={{ opacity: 0, x: 30 }}
-                      animate={{ opacity: 1, x: 0 }}
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3 + (index * 0.1), duration: 0.5 }}
                       whileHover={{ y: -5, scale: 1.02 }}
-                      style={{ background: 'rgba(255, 255, 255, 0.9)', backdropFilter: 'blur(10px)', borderRadius: '1.25rem', padding: '1.5rem', display: 'flex', gap: '1.25rem', alignItems: 'center', boxShadow: '0 10px 30px -10px rgba(0, 0, 0, 0.08)', border: '1px solid rgba(255, 255, 255, 0.5)', cursor: 'default', flex: 1 }}
+                      style={{ background: 'white', borderRadius: '1.5rem', padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', boxShadow: '0 10px 30px -10px rgba(0, 0, 0, 0.08)', border: '1px solid #f1f5f9', cursor: 'default' }}
                     >
-                      <div style={{ flexShrink: 0, width: '3.5rem', height: '3.5rem', borderRadius: '1rem', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.75rem' }} className={`bg-gradient-to-br ${card.gradient} ${card.shadow} shadow-lg`}>
+                      <div style={{ width: '4rem', height: '4rem', borderRadius: '1rem', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem', marginBottom: '1.5rem' }} className={`bg-gradient-to-br ${card.gradient} ${card.shadow} shadow-lg`}>
                         {card.icon}
                       </div>
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <h3 style={{ fontWeight: 'bold', color: '#0f172a', fontSize: '1.125rem', margin: 0 }}>{card.title}</h3>
-                        <p style={{ fontSize: '0.875rem', color: '#64748b', marginTop: '0.25rem', margin: 0 }}>{card.subtitle}</p>
-                        
-                        {card.extra && (
-                          <p style={{ marginTop: '0.5rem', color: '#7c3aed', fontWeight: 700, fontSize: '1rem', wordBreak: 'break-all', margin: 0 }}>
-                            {card.extra}
-                          </p>
-                        )}
-                        {card.extra2 && (
-                          <p style={{ color: '#475569', fontSize: '0.875rem', wordBreak: 'break-all', marginTop: '0.25rem', margin: 0 }}>{card.extra2}</p>
-                        )}
-                        
-                        {card.link && (
-                          <Link
-                            to={card.link.to}
-                            style={{ marginTop: '0.75rem', display: 'inline-flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.875rem', fontWeight: 600, color: '#db2777', textDecoration: 'none' }}
-                            className="hover:text-pink-700 transition-colors"
-                          >
-                            {card.link.label} 
-                            <motion.span animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>→</motion.span>
-                          </Link>
-                        )}
-                      </div>
+                      
+                      <h3 style={{ fontWeight: 'bold', color: '#0f172a', fontSize: '1.25rem', marginBottom: '0.5rem' }}>{card.title}</h3>
+                      <p style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '1rem' }}>{card.subtitle}</p>
+                      
+                      {card.extra && (
+                        <p style={{ marginTop: '0.5rem', color: '#7c3aed', fontWeight: 700, fontSize: '1.1rem', wordBreak: 'break-all', margin: 0 }}>
+                          {card.extra}
+                        </p>
+                      )}
+                      {card.extra2 && (
+                        <p style={{ color: '#475569', fontSize: '0.9rem', wordBreak: 'break-all', marginTop: '0.5rem', margin: 0 }}>{card.extra2}</p>
+                      )}
+                      
+                      {card.link && (
+                        <Link
+                          to={card.link.to}
+                          style={{ marginTop: '1rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.95rem', fontWeight: 600, color: '#db2777', textDecoration: 'none' }}
+                          className="hover:text-pink-700 transition-colors"
+                        >
+                          {card.link.label} 
+                          <motion.span animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>→</motion.span>
+                        </Link>
+                      )}
                     </motion.div>
                   ))}
                 </div>

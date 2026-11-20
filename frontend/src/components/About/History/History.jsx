@@ -82,9 +82,10 @@ const History = () => {
         </div>
 
         {/* ================= MAIN CONTENT ================= */}
-        <div style={{ position: 'relative', maxWidth: '1200px', margin: '-4rem auto 0 auto', padding: '0 1rem 5rem 1rem', zIndex: 20 }}>
+        {/* Increased maxWidth to 1400px and adjusted padding */}
+        <div style={{ position: 'relative', maxWidth: '1400px', margin: '-4rem auto 0 auto', padding: '0 1.5rem 5rem 1.5rem', zIndex: 20 }}>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'center', marginBottom: '6rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '4rem', alignItems: 'center', marginBottom: '6rem' }}>
             
             {/* Left Side: Text Content */}
             <motion.div 
@@ -93,21 +94,22 @@ const History = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 style={{ fontSize: '2rem', fontWeight: 'bold', color: '#0f172a',margintop: '1.5rem', marginBottom: '1.5rem' }}>
+              {/* FIXED: Removed typo 'margintop' and used proper camelCase marginTop */}
+              <h2 style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#0f172a', marginTop: '1.5rem', marginBottom: '2rem' }}>
                 A Passion Turned <span style={{ color: '#4f46e5' }}>Purpose</span>
               </h2>
               
-              <div style={{ borderLeft: '4px solid #e0e7ff', paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                <p style={{ fontSize: '1.05rem', color: '#475569', lineHeight: 1.8, margin: 0 }}>
+              <div style={{ borderLeft: '4px solid #e0e7ff', paddingLeft: '2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <p style={{ fontSize: '1.1rem', color: '#475569', lineHeight: 1.8, margin: 0 }}>
                   <strong style={{ color: '#0f172a' }}>The Learning Hub (TLH)</strong> was founded in <strong style={{ color: '#0f172a' }}>2018</strong> by <strong style={{ color: '#0f172a' }}>Nida Iqbal Shah</strong>. 
                   An engineer by profession, a certified STEM teacher trainer, and a UK-licensed educator.
                 </p>
-                <p style={{ fontSize: '1.05rem', color: '#475569', lineHeight: 1.8, margin: 0 }}>
+                <p style={{ fontSize: '1.1rem', color: '#475569', lineHeight: 1.8, margin: 0 }}>
                   What began as a passion for meaningful, hands-on learning soon grew into a trusted platform 
                   serving students across the <strong style={{ color: '#0f172a' }}>MENA region and South Asia</strong>. We now reach families in the 
                   <strong style={{ color: '#0f172a' }}> UAE, Saudi Arabia, Qatar, Bahrain, Pakistan, India, Bangladesh,</strong> and beyond.
                 </p>
-                <p style={{ fontSize: '1.05rem', color: '#475569', lineHeight: 1.8, margin: 0 }}>
+                <p style={{ fontSize: '1.1rem', color: '#475569', lineHeight: 1.8, margin: 0 }}>
                   In the early days, TLH began by teaching science and technology on a small scale. 
                   A team of dedicated educators and engineers was brought together, all sharing the same vision. 
                   Together, they transformed a small idea into a powerful learning platform.
@@ -156,23 +158,23 @@ const History = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            style={{ background: 'white', borderRadius: '1.5rem', padding: '3rem', boxShadow: '0 10px 30px -10px rgba(0,0,0,0.05)', border: '1px solid #f1f5f9', marginBottom: '6rem' }}
+            style={{ background: 'white', borderRadius: '1.5rem', padding: '4rem 2rem', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.1)', border: '1px solid #f1f5f9', marginBottom: '6rem' }}
           >
-            <h2 style={{ fontSize: '2rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '1.5rem', textAlign: 'center' }}>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '2rem', textAlign: 'center' }}>
               A Community of <span style={{ color: '#db2777' }}>Future-Ready Learners</span>
             </h2>
             
             <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
-              <p style={{ fontSize: '1.1rem', color: '#475569', lineHeight: 1.8, marginBottom: '1.5rem' }}>
+              <p style={{ fontSize: '1.15rem', color: '#475569', lineHeight: 1.8, marginBottom: '1.5rem' }}>
                 We are preparing students for a world led by innovation. A world where we need scientists, 
                 engineers, coders, and creators. We believe every child can succeed at their own pace, 
                 with the right guidance and tools.
               </p>
-              <p style={{ fontSize: '1.1rem', color: '#475569', lineHeight: 1.8, marginBottom: '2rem' }}>
+              <p style={{ fontSize: '1.15rem', color: '#475569', lineHeight: 1.8, marginBottom: '2rem' }}>
                 Today, <strong style={{ color: '#0f172a' }}>TLH is more than a school.</strong> It’s a growing community of learners, families, and 
                 educators who believe in meaningful, modern education.
               </p>
-              <p style={{ fontSize: '1.1rem', fontWeight: 600, color: '#4f46e5', marginBottom: '2rem' }}>
+              <p style={{ fontSize: '1.2rem', fontWeight: 600, color: '#4f46e5', marginBottom: '2.5rem' }}>
                 Our story began with a single decision. Now, it’s a mission that reaches across borders 
                 and into the future.
               </p>
@@ -208,7 +210,7 @@ const History = () => {
                     hidden: { opacity: 0, y: 30 },
                     show: { opacity: 1, y: 0 }
                   }}
-                  whileHover={{ y: -5, scale: 1.02 }}
+                  whileHover={{ y: -8, boxShadow: '0 25px 50px -12px rgba(0,0,0,0.1)' }}
                   style={{ 
                     background: 'white', 
                     borderRadius: '1.5rem', 
@@ -216,7 +218,8 @@ const History = () => {
                     boxShadow: '0 10px 30px -10px rgba(0,0,0,0.05)', 
                     border: '1px solid #f1f5f9',
                     position: 'relative',
-                    overflow: 'hidden'
+                    overflow: 'hidden',
+                    transition: 'box-shadow 0.3s ease'
                   }}
                 >
                   <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>{feature.icon}</div>

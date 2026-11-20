@@ -49,10 +49,9 @@ const Teachers = () => {
               style={{ position: 'absolute', bottom: '10%', right: '-10%', width: '600px', height: '600px', background: 'rgba(236, 72, 153, 0.15)', borderRadius: '50%', filter: 'blur(100px)', pointerEvents: 'none' }} 
             />
 
-            {/* ================= HERO BANNER (No Video) ================= */}
+            {/* ================= HERO BANNER ================= */}
             <div style={{ position: 'relative', background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)', padding: '6rem 1rem 8rem 1rem', overflow: 'hidden' }}>
               
-              {/* Grid Pattern Overlay */}
               <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)', backgroundSize: '30px 30px', opacity: 0.8 }} />
 
               {/* Floating Decorative Elements */}
@@ -105,7 +104,8 @@ const Teachers = () => {
             </div>
 
             {/* ================= MAIN CONTENT ================= */}
-            <div style={{ position: 'relative', maxWidth: '1200px', margin: '-4rem auto 0 auto', padding: '0 1rem 5rem 1rem', zIndex: 20 }}>
+            {/* Increased maxWidth to 1400px to remove the excessive side white space */}
+            <div style={{ position: 'relative', maxWidth: '1400px', margin: '-4rem auto 0 auto', padding: '0 1.5rem 5rem 1.5rem', zIndex: 20 }}>
               
               {teachers && teachers.length > 0 ? (
                 <motion.div 
@@ -114,8 +114,8 @@ const Teachers = () => {
                   animate="show"
                   style={{ 
                     display: 'grid', 
-                    gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', 
-                    gap: '2rem', 
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', // Increased min width for larger cards
+                    gap: '2.5rem', 
                     alignItems: 'stretch' 
                   }}
                 >

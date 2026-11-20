@@ -171,20 +171,19 @@ const ContactUs = () => {
             </div>
 
             {/* ================= MAIN CONTENT ================= */}
-            <div style={{ position: 'relative', maxWidth: '1152px', margin: '-4rem auto 0 auto', padding: '0 1rem 4rem 1rem', zIndex: 20 }}>
+            {/* Increased maxWidth to 1400px and adjusted padding for a wider, more balanced look */}
+            <div style={{ position: 'relative', maxWidth: '1400px', margin: '-4rem auto 0 auto', padding: '0 1.5rem 5rem 1.5rem', zIndex: 20 }}>
               
-              {/* CHANGED: alignItems from 'start' to 'stretch' to make both columns equal height */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', alignItems: 'stretch' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '3rem', alignItems: 'stretch' }}>
                 
                 {/* --- FORM CARD --- */}
                 <motion.div 
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.6 }}
-                  style={{ background: 'white', borderRadius: '1.5rem', padding: '2rem', boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.1)', border: '1px solid rgba(226, 232, 240, 0.8)', display: 'flex', flexDirection: 'column' }}
-                  className="md:p-10"
+                  style={{ background: 'white', borderRadius: '1.5rem', padding: '2.5rem', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.15)', border: '1px solid rgba(226, 232, 240, 0.8)', display: 'flex', flexDirection: 'column' }}
                 >
-                  <h2 className="text-2xl font-bold text-slate-800 mb-6">Send us a Message</h2>
+                  <h2 className="text-2xl font-bold text-slate-900 mb-6">Send us a Message</h2>
 
                   <AnimatePresence>
                     {sent && (
@@ -199,7 +198,6 @@ const ContactUs = () => {
                     )}
                   </AnimatePresence>
 
-                  {/* flex: 1 allows the form to stretch and fill the card */}
                   <form style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', flex: 1 }} onSubmit={contactSubmitHandler}>
                     
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
@@ -237,7 +235,6 @@ const ContactUs = () => {
                       />
                     </div>
 
-                    {/* flex: 1 allows the textarea to grow and fill empty space */}
                     <textarea
                       placeholder="How can we help you?"
                       required
@@ -270,44 +267,43 @@ const ContactUs = () => {
                 </motion.div>
 
                 {/* --- INFO CARDS --- */}
-                {/* Changed to flex: 1 so the cards stretch to fill the height of the grid */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%', flex: 1 }}>
+                {/* Changed to a 2x2 grid layout for a better fill and less awkward gaps */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', alignItems: 'stretch' }}>
                   {infoCards.map((card, index) => (
                     <motion.div
                       key={card.title}
-                      initial={{ opacity: 0, x: 30 }}
-                      animate={{ opacity: 1, x: 0 }}
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3 + (index * 0.1), duration: 0.5 }}
-                      whileHover={{ y: -3, scale: 1.01 }}
-                      style={{ background: 'rgba(255, 255, 255, 0.9)', backdropFilter: 'blur(10px)', borderRadius: '1.25rem', padding: '1.25rem 1.5rem', display: 'flex', gap: '1.25rem', alignItems: 'center', boxShadow: '0 10px 30px -10px rgba(0, 0, 0, 0.08)', border: '1px solid rgba(255, 255, 255, 0.5)', cursor: 'default', flex: 1 }}
+                      whileHover={{ y: -5, scale: 1.02 }}
+                      style={{ background: 'white', borderRadius: '1.5rem', padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', boxShadow: '0 10px 30px -10px rgba(0, 0, 0, 0.08)', border: '1px solid #f1f5f9', cursor: 'default' }}
                     >
-                      <div style={{ flexShrink: 0, width: '3.5rem', height: '3.5rem', borderRadius: '1rem', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.75rem' }} className={`bg-gradient-to-br ${card.gradient} ${card.shadow} shadow-lg`}>
+                      <div style={{ width: '4rem', height: '4rem', borderRadius: '1rem', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem', marginBottom: '1.5rem' }} className={`bg-gradient-to-br ${card.gradient} ${card.shadow} shadow-lg`}>
                         {card.icon}
                       </div>
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <h3 style={{ fontWeight: 'bold', color: '#0f172a', fontSize: '1.125rem', margin: 0 }}>{card.title}</h3>
-                        <p style={{ fontSize: '0.875rem', color: '#64748b', marginTop: '0.25rem', margin: 0 }}>{card.subtitle}</p>
-                        
-                        {card.extra && (
-                          <p style={{ marginTop: '0.5rem', color: '#4f46e5', fontWeight: 700, fontSize: '1rem', wordBreak: 'break-all', margin: 0 }}>
-                            {card.extra}
-                          </p>
-                        )}
-                        {card.extra2 && (
-                          <p style={{ color: '#475569', fontSize: '0.875rem', wordBreak: 'break-all', marginTop: '0.25rem', margin: 0 }}>{card.extra2}</p>
-                        )}
-                        
-                        {card.link && (
-                          <Link
-                            to={card.link.to}
-                            style={{ marginTop: '0.75rem', display: 'inline-flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.875rem', fontWeight: 600, color: '#db2777', textDecoration: 'none' }}
-                            className="hover:text-pink-700 transition-colors"
-                          >
-                            {card.link.label} 
-                            <motion.span animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>→</motion.span>
-                          </Link>
-                        )}
-                      </div>
+                      
+                      <h3 style={{ fontWeight: 'bold', color: '#0f172a', fontSize: '1.25rem', marginBottom: '0.5rem' }}>{card.title}</h3>
+                      <p style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '1rem' }}>{card.subtitle}</p>
+                      
+                      {card.extra && (
+                        <p style={{ color: '#4f46e5', fontWeight: 700, fontSize: '1.1rem', wordBreak: 'break-all', margin: 0 }}>
+                          {card.extra}
+                        </p>
+                      )}
+                      {card.extra2 && (
+                        <p style={{ color: '#475569', fontSize: '0.9rem', wordBreak: 'break-all', marginTop: '0.5rem', margin: 0 }}>{card.extra2}</p>
+                      )}
+                      
+                      {card.link && (
+                        <Link
+                          to={card.link.to}
+                          style={{ marginTop: '1rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.95rem', fontWeight: 600, color: '#db2777', textDecoration: 'none' }}
+                          className="hover:text-pink-700 transition-colors"
+                        >
+                          {card.link.label} 
+                          <motion.span animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>→</motion.span>
+                        </Link>
+                      )}
                     </motion.div>
                   ))}
                 </div>

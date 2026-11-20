@@ -91,7 +91,8 @@ const Support = () => {
             </div>
 
             {/* ================= MAIN CONTENT ================= */}
-            <div style={{ position: 'relative', maxWidth: '1000px', margin: '-4rem auto 0 auto', padding: '0 1rem 5rem 1rem', zIndex: 20 }}>
+            {/* FIX: Changed maxWidth from 1000px to 1400px to remove the outer white space */}
+            <div style={{ position: 'relative', maxWidth: '1400px', margin: '-4rem auto 0 auto', padding: '0 2rem 5rem 2rem', zIndex: 20 }}>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
                 {afiliations && afiliations.map((partner, index) => (

@@ -14,7 +14,7 @@ import { allFeatureAction } from '../../actions/affilationAction';
 import { createCallBackAction } from '../../actions/contactUsAction';
 import { CONTACT_US_RESET } from '../../constants/contactUsContants';
 import Metadata from '../layout/Metadata/Metadata.jsx';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { matchSorter } from "match-sorter";
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -29,15 +29,17 @@ const Apply = () => {
   const programs = ["Online schooling", "One to One tutoring", "O/A levels tuitions", "Grade 9 and 10 Federal Board", "Coding", "Abacus Mathematics"];
 
   const navigate = useNavigate();
+  
+  // Form States
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [country, setCountry] = useState(null);
   const [program, setProgram] = useState("");
   const [phoneNo, setPhoneNo] = useState("");
   const [WhatsAppNo, setWhatsAppNo] = useState("");
-  const [companyName, setCompanyName] = useState("");
-  const [message, setMessage] = useState("");
-  const [parentName, setParentName] = useState("");
+  const [companyName, setCompanyName] = useState(""); // Student Age
+  const [message, setMessage] = useState(""); // Student Grade
+  const [parentName, setParentName] = useState(""); // Student Name
   const [feedbackIndex, setFeedbackIndex] = useState(0);
 
   const [isInsightHovering, setIsInsightHovering] = useState(false);
@@ -101,10 +103,13 @@ const Apply = () => {
     myForm.set("program", program);
     myForm.set("phoneNo", phoneNo);
     myForm.set("WhatsAppNo", WhatsAppNo);
-    myForm.set("message", message);
-    myForm.set("companyName", companyName);
-    myForm.set("parentName", parentName);
+    
+    // Mapped to backend fields correctly
+    myForm.set("message", message); // Student Grade
+    myForm.set("companyName", companyName); // Student Age
+    myForm.set("parentName", parentName); // Student Name
     myForm.set("country", country?.label ?? "");
+    
     dispatch(createCallBackAction(myForm));
   };
 
@@ -150,9 +155,13 @@ const Apply = () => {
               
               <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)', backgroundSize: '30px 30px', opacity: 0.8 }} />
 
+              {/* Floating Icons */}
+              <motion.div animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} style={{ position: 'absolute', top: '20%', left: '10%', opacity: 0.1 }} className="text-white text-8xl hidden md:block">🎓</motion.div>
+              <motion.div animate={{ y: [0, 20, 0], rotate: [0, -10, 0] }} transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }} style={{ position: 'absolute', bottom: '20%', right: '10%', opacity: 0.1 }} className="text-white text-8xl hidden md:block">📚</motion.div>
+
               <div style={{ position: 'relative', maxWidth: '800px', margin: '0 auto', textAlign: 'center', zIndex: 10 }}>
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} style={{ display: 'inline-block', padding: '0.5rem 1.25rem', borderRadius: '50px', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: '#e0e7ff', fontSize: '0.875rem', fontWeight: 600, letterSpacing: '1px', marginBottom: '1.5rem', backdropFilter: 'blur(10px)' }}>
-                  ADMISSIONS OPEN
+                  ADMISSIONS OPEN FOR 2026-27
                 </motion.div>
                 <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="text-5xl md:text-7xl font-extrabold text-white tracking-tight">
                   Start Your <br />
@@ -171,16 +180,17 @@ const Apply = () => {
             </div>
 
             {/* ================= MAIN CONTENT ================= */}
-            <div style={{ position: 'relative', maxWidth: '1200px', margin: '-4rem auto 0 auto', padding: '0 1rem 5rem 1rem', zIndex: 20 }}>
+            {/* Increased maxWidth to 1400px and adjusted padding */}
+            <div style={{ position: 'relative', maxWidth: '1400px', margin: '-4rem auto 0 auto', padding: '0 1.5rem 5rem 1.5rem', zIndex: 20 }}>
               
-              {/* TOP SECTION: INFO & FORM (EQUAL HEIGHTS) */}
+              {/* TOP SECTION: INFO & FORM */}
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4rem', alignItems: 'stretch', marginBottom: '6rem' }}>
                 
                 {/* Left: Video & Text */}
                 <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ flex: '1 1 500px', display: 'flex', flexDirection: 'column' }}>
                   <h2 className="text-3xl font-bold text-slate-900 mb-6">Learning That Inspires</h2>
                   <p style={{ fontSize: '1.05rem', color: '#475569', lineHeight: 1.8, marginBottom: '1.5rem' }}>
-                    At TLH, we believe that learning should feel like an adventure. It should spark curiosity and build confidence. That’s why our programs are designed to be interactive, creative, and future-focused.
+                    At TLH, we believe that learning should feel like an adventure. It should spark curiosity and build confidence. That's why our programs are designed to be interactive, creative, and future-focused.
                   </p>
                   
                   <h3 className="text-xl font-bold text-slate-800 mb-4">We offer:</h3>
@@ -193,7 +203,6 @@ const Apply = () => {
                     ))}
                   </ul>
 
-                  {/* flex: 1 makes the iframe stretch to fill the remaining space */}
                   <div style={{ flex: 1, borderRadius: '1.5rem', overflow: 'hidden', boxShadow: '0 20px 40px -10px rgba(0,0,0,0.1)', border: '6px solid white', background: '#0f172a', minHeight: '280px' }}>
                     <iframe src="https://youtube.com/embed/MqJJiP_x1IE" title="YouTube video player" style={{ width: '100%', height: '100%', border: 0, display: 'block' }} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                   </div>
@@ -262,13 +271,23 @@ const Apply = () => {
                   <h2 className="text-3xl font-bold text-slate-900">Explore Our Programs</h2>
                   <p style={{ color: '#64748b', marginTop: '0.5rem' }}>Tailored educational paths for every learner</p>
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+                {/* Adjusted Grid to max 3 columns on desktop for larger, more beautiful cards */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2.5rem' }}>
                   {afiliations && afiliations.map((feature) => (
-                    <motion.div key={feature.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} whileHover={{ y: -8, scale: 1.02 }} style={{ background: 'white', borderRadius: '1.5rem', overflow: 'hidden', boxShadow: '0 10px 30px -10px rgba(0,0,0,0.05)', border: '1px solid #f1f5f9' }}>
-                      <img src={feature.avatar.url} alt={feature.title} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-                      <div style={{ padding: '1.5rem' }}>
-                        <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '0.75rem' }}>{feature.title}</h3>
-                        <p style={{ fontSize: '0.95rem', color: '#64748b', lineHeight: 1.6 }}>{feature.description}</p>
+                    <motion.div 
+                      key={feature.id} 
+                      initial={{ opacity: 0, y: 20 }} 
+                      whileInView={{ opacity: 1, y: 0 }} 
+                      viewport={{ once: true }} 
+                      whileHover={{ y: -8, boxShadow: '0 25px 50px -12px rgba(0,0,0,0.15)' }} 
+                      style={{ background: 'white', borderRadius: '1.5rem', overflow: 'hidden', boxShadow: '0 10px 30px -10px rgba(0,0,0,0.05)', border: '1px solid #f1f5f9' }}
+                    >
+                      <div style={{ height: '240px', overflow: 'hidden' }}>
+                        <img src={feature.avatar.url} alt={feature.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.3s' }} className="hover:scale-105" />
+                      </div>
+                      <div style={{ padding: '2rem' }}>
+                        <h3 style={{ fontSize: '1.4rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '1rem' }}>{feature.title}</h3>
+                        <p style={{ fontSize: '1rem', color: '#475569', lineHeight: 1.7 }}>{feature.description}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -279,29 +298,27 @@ const Apply = () => {
               <div style={{ marginBottom: '6rem' }}>
                 <h2 className="text-2xl font-bold text-slate-900 text-center mb-8">School Insights</h2>
                 <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
-                  <button onClick={() => scrollLeft(insightScrollRef)} style={{ position: 'absolute', left: -20, zIndex: 10, width: '48px', height: '48px', borderRadius: '50%', background: 'white', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.25rem' }} className="hover:bg-indigo-50">
+                  <button onClick={() => scrollLeft(insightScrollRef)} style={{ position: 'absolute', left: '-15px', zIndex: 10, width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(255, 255, 255, 0.9)', border: '1px solid #e2e8f0', boxShadow: '0 10px 25px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', color: '#4f46e5', backdropFilter: 'blur(8px)', transition: 'all 0.2s' }}>
                     ◀
                   </button>
-                  <div ref={insightScrollRef} onMouseEnter={() => setIsInsightHovering(true)} onMouseLeave={() => setIsInsightHovering(false)} style={{ display: 'flex', gap: '1.5rem', overflowX: 'auto', padding: '1rem 0', scrollBehavior: 'smooth', msOverflowStyle: 'none', scrollbarWidth: 'none' }} className="hide-scrollbar">
+                  <div ref={insightScrollRef} onMouseEnter={() => setIsInsightHovering(true)} onMouseLeave={() => setIsInsightHovering(false)} style={{ display: 'flex', gap: '1.5rem', overflowX: 'auto', padding: '1.5rem 0.5rem', scrollBehavior: 'smooth', msOverflowStyle: 'none', scrollbarWidth: 'none' }} className="hide-scrollbar">
                     {allStudentFeedbacks && allStudentFeedbacks.map((vid) => (
                       <iframe key={vid._id} src={vid.ytLink} title="Student Insight" style={{ width: '350px', height: '220px', borderRadius: '1rem', border: '4px solid white', boxShadow: '0 10px 20px -5px rgba(0,0,0,0.1)', flexShrink: 0 }} allowFullScreen></iframe>
                     ))}
                   </div>
-                  <button onClick={() => scrollRight(insightScrollRef)} style={{ position: 'absolute', right: -20, zIndex: 10, width: '48px', height: '48px', borderRadius: '50%', background: 'white', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.25rem' }} className="hover:bg-indigo-50">
+                  <button onClick={() => scrollRight(insightScrollRef)} style={{ position: 'absolute', right: '-15px', zIndex: 10, width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(255, 255, 255, 0.9)', border: '1px solid #e2e8f0', boxShadow: '0 10px 25px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', color: '#4f46e5', backdropFilter: 'blur(8px)', transition: 'all 0.2s' }}>
                     ▶
                   </button>
                 </div>
               </div>
 
-              {/* SECTION: TESTIMONIALS & STATS (REDESIGNED) */}
+              {/* SECTION: TESTIMONIALS & STATS */}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '4rem', alignItems: 'center', marginBottom: '6rem' }}>
                 
-                {/* Left: Testimonial Box */}
                 <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
                   <h2 className="text-3xl font-bold text-slate-900 mb-8">What Parents Say</h2>
                   
                   <div style={{ position: 'relative', background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)', padding: '3rem', borderRadius: '1.5rem', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)', overflow: 'hidden' }}>
-                    {/* Decorative Quote Mark */}
                     <div style={{ position: 'absolute', top: '10px', right: '20px', fontSize: '120px', color: 'rgba(255,255,255,0.05)', fontFamily: 'serif', lineHeight: 1 }}>"</div>
 
                     <AnimatePresence mode="wait">
@@ -325,7 +342,6 @@ const Apply = () => {
                   </div>
                 </motion.div>
 
-                {/* Right: Stats Cards & Video */}
                 <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2rem' }}>
                     {cards && cards.map((card) => (<ClientCard card={card} key={card._id} />))}
@@ -341,19 +357,20 @@ const Apply = () => {
               <div style={{ marginBottom: '6rem' }}>
                 <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
                   <h2 className="text-2xl font-bold text-slate-900">Technology Partners</h2>
+                  <p style={{ color: '#64748b', marginTop: '0.5rem' }}>Collaborating with industry leaders to empower our students</p>
                 </div>
                 <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
-                  <button onClick={() => scrollLeft(partnerScrollRef)} style={{ position: 'absolute', left: -20, zIndex: 10, width: '48px', height: '48px', borderRadius: '50%', background: 'white', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.25rem' }} className="hover:bg-indigo-50">
+                  <button onClick={() => scrollLeft(partnerScrollRef)} style={{ position: 'absolute', left: '-15px', zIndex: 10, width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(255, 255, 255, 0.9)', border: '1px solid #e2e8f0', boxShadow: '0 10px 25px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', color: '#4f46e5', backdropFilter: 'blur(8px)', transition: 'all 0.2s' }}>
                     ◀
                   </button>
-                  <div ref={partnerScrollRef} onMouseEnter={() => setIsPartnerHovering(true)} onMouseLeave={() => setIsPartnerHovering(false)} style={{ display: 'flex', gap: '2rem', overflowX: 'auto', padding: '1rem 0', scrollBehavior: 'smooth', msOverflowStyle: 'none', scrollbarWidth: 'none' }} className="hide-scrollbar">
+                  <div ref={partnerScrollRef} onMouseEnter={() => setIsPartnerHovering(true)} onMouseLeave={() => setIsPartnerHovering(false)} style={{ display: 'flex', gap: '2rem', overflowX: 'auto', padding: '1.5rem 0.5rem', scrollBehavior: 'smooth', msOverflowStyle: 'none', scrollbarWidth: 'none' }} className="hide-scrollbar">
                     {partners && partners.map((member) => (
-                      <div key={member._id} style={{ minWidth: '250px', flexShrink: 0 }}>
+                      <div key={member._id} style={{ width: '280px', height: '160px', flexShrink: 0, background: 'white', borderRadius: '1.25rem', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 20px -5px rgba(0,0,0,0.05)', border: '1px solid #f1f5f9', padding: '1.5rem', transition: 'transform 0.3s' }}>
                         <PartnerCard member={member} />
                       </div>
                     ))}
                   </div>
-                  <button onClick={() => scrollRight(partnerScrollRef)} style={{ position: 'absolute', right: -20, zIndex: 10, width: '48px', height: '48px', borderRadius: '50%', background: 'white', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.25rem' }} className="hover:bg-indigo-50">
+                  <button onClick={() => scrollRight(partnerScrollRef)} style={{ position: 'absolute', right: '-15px', zIndex: 10, width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(255, 255, 255, 0.9)', border: '1px solid #e2e8f0', boxShadow: '0 10px 25px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', color: '#4f46e5', backdropFilter: 'blur(8px)', transition: 'all 0.2s' }}>
                     ▶
                   </button>
                 </div>
@@ -364,7 +381,7 @@ const Apply = () => {
                 <h2 className="text-3xl font-bold text-slate-900 text-center mb-10">Why The Learning Hub?</h2>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}>
                   {featured.map((feature) => (
-                    <motion.div key={feature.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} whileHover={{ y: -5 }} style={{ background: 'white', padding: '2rem', borderRadius: '1.5rem', boxShadow: '0 10px 30px -10px rgba(0,0,0,0.05)', border: '1px solid #f1f5f9' }}>
+                    <motion.div key={feature.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} whileHover={{ y: -8, boxShadow: '0 25px 50px -12px rgba(0,0,0,0.1)' }} style={{ background: 'white', padding: '2rem', borderRadius: '1.5rem', boxShadow: '0 10px 30px -10px rgba(0,0,0,0.05)', border: '1px solid #f1f5f9' }}>
                       <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>{feature.icon}</div>
                       <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '0.75rem' }}>{feature.title}</h3>
                       <p style={{ color: '#64748b', lineHeight: 1.6, fontSize: '0.95rem', margin: 0 }}>{feature.description}</p>

@@ -98,7 +98,8 @@ const TechPartners = () => {
             </div>
 
             {/* ================= MAIN CONTENT ================= */}
-            <div style={{ position: 'relative', maxWidth: '1200px', margin: '-4rem auto 0 auto', padding: '0 1rem 5rem 1rem', zIndex: 20 }}>
+            {/* Increased maxWidth to 1400px to remove excessive side white space */}
+            <div style={{ position: 'relative', maxWidth: '1400px', margin: '-4rem auto 0 auto', padding: '0 1.5rem 5rem 1.5rem', zIndex: 20 }}>
               
               {partners && partners.length > 0 ? (
                 <motion.div 
@@ -107,8 +108,8 @@ const TechPartners = () => {
                   animate="show"
                   style={{ 
                     display: 'grid', 
-                    gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', 
-                    gap: '2rem', 
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', // Increased min-width for larger cards
+                    gap: '2.5rem', // Increased gap for better spacing
                     alignItems: 'stretch' 
                   }}
                 >

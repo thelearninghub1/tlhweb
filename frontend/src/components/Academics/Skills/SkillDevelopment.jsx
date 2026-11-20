@@ -181,7 +181,8 @@ const SkillDevelopment = () => {
             </div>
 
             {/* ================= MAIN CONTENT ================= */}
-            <div style={{ position: 'relative', maxWidth: '1200px', margin: '-4rem auto 0 auto', padding: '0 1rem 5rem 1rem', zIndex: 20 }}>
+            {/* FIX: Changed maxWidth from 1200px to 1400px to remove outer white space */}
+            <div style={{ position: 'relative', maxWidth: '1400px', margin: '-4rem auto 0 auto', padding: '0 2rem 5rem 2rem', zIndex: 20 }}>
               
               {/* TOP SECTION: FORM & CONTENT */}
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4rem', alignItems: 'stretch', marginBottom: '6rem' }}>
@@ -272,7 +273,10 @@ const SkillDevelopment = () => {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
                   {afiliations && afiliations.map((feature) => (
                     <motion.div key={feature.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} whileHover={{ y: -8, scale: 1.02 }} style={{ background: 'white', borderRadius: '1.5rem', overflow: 'hidden', boxShadow: '0 10px 30px -10px rgba(0,0,0,0.05)', border: '1px solid #f1f5f9' }}>
-                      <img src={feature.avatar.url} alt={feature.title} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+                      {/* FIX: Added background and padding, and changed objectFit to 'contain' so the full image shows */}
+                      <div style={{ background: '#f8fafc', padding: '1rem' }}>
+                        <img src={feature.avatar.url} alt={feature.title} style={{ width: '100%', height: '200px', objectFit: 'contain', display: 'block' }} />
+                      </div>
                       <div style={{ padding: '1.5rem' }}>
                         <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '0.75rem' }}>{feature.title}</h3>
                         <p style={{ fontSize: '0.95rem', color: '#64748b', lineHeight: 1.6 }}>{feature.description}</p>

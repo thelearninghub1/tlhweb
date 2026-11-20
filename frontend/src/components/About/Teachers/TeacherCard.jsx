@@ -9,6 +9,10 @@ const TeacherCard = ({ member }) => {
     setOpen(!open);
   };
 
+  // Safely check if avatar exists
+  const avatarUrl = member?.avatar?.url;
+  const initial = member?.name ? member.name.charAt(0) : "?";
+
   return (
     <Fragment>
       <motion.div
@@ -30,23 +34,34 @@ const TeacherCard = ({ member }) => {
         }}
         className="transition-shadow hover:shadow-xl group"
       >
-        {/* Profile Image */}
-        <div style={{ height: '280px', width: '100%', overflow: 'hidden', background: '#f1f5f9' }}>
-          <img 
-            src={member.avatar.url} 
-            alt={member.name} 
-            style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} 
-            className="group-hover:scale-110"
-          />
+        {/* Profile Image / Fallback */}
+        <div style={{ height: '320px', width: '100%', overflow: 'hidden', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          {avatarUrl ? (
+            <img 
+              src={avatarUrl} 
+              alt={member.name} 
+              style={{ 
+                width: '100%', 
+                height: '100%', 
+                objectFit: 'contain', 
+                transition: 'transform 0.5s ease' 
+              }} 
+              className="group-hover:scale-105"
+            />
+          ) : (
+            <div style={{ width: '120px', height: '120px', borderRadius: '50%', background: '#e0e7ff', color: '#4f46e5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3rem', fontWeight: 'bold' }}>
+              {initial}
+            </div>
+          )}
         </div>
 
         {/* Content */}
-        <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flex: 1, alignItems: 'center', textAlign: 'center' }}>
+        <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flex: 1, alignItems: 'center', textAlign: 'center', borderTop: '1px solid #f1f5f9' }}>
           <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#0f172a', margin: '0 0 0.25rem 0' }}>
-            {member.name}
+            {member?.name || "Unknown Teacher"}
           </h3>
           <p style={{ fontSize: '0.875rem', color: '#6366f1', fontWeight: 600, margin: '0 0 1.5rem 0' }}>
-            {member.title}
+            {member?.title || "Educator"}
           </p>
           
           <motion.button
@@ -92,19 +107,25 @@ const TeacherCard = ({ member }) => {
           <div style={{ position: 'relative' }}>
             {/* Modal Header with Gradient */}
             <div style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)', padding: '3rem 2rem 2rem 2rem', textAlign: 'center' }}>
-              <img 
-                src={member.avatar.url} 
-                alt={member.name} 
-                style={{ width: '100px', height: '100px', borderRadius: '50%', objectFit: 'cover', border: '4px solid rgba(255,255,255,0.2)', margin: '0 auto 1rem auto' }}
-              />
-              <h2 className="text-2xl font-bold text-white">{member.name}</h2>
-              <p style={{ color: '#a5b4fc', fontSize: '0.875rem', fontWeight: 600, marginTop: '0.25rem' }}>{member.title}</p>
+              {avatarUrl ? (
+                <img 
+                  src={avatarUrl} 
+                  alt={member.name} 
+                  style={{ width: '100px', height: '100px', borderRadius: '50%', objectFit: 'cover', border: '4px solid rgba(255,255,255,0.2)', margin: '0 auto 1rem auto' }}
+                />
+              ) : (
+                <div style={{ width: '100px', height: '100px', borderRadius: '50%', background: '#4f46e5', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.5rem', fontWeight: 'bold', margin: '0 auto 1rem auto', border: '4px solid rgba(255,255,255,0.2)' }}>
+                  {initial}
+                </div>
+              )}
+              <h2 className="text-2xl font-bold text-white">{member?.name || "Unknown Teacher"}</h2>
+              <p style={{ color: '#a5b4fc', fontSize: '0.875rem', fontWeight: 600, marginTop: '0.25rem' }}>{member?.title || "Educator"}</p>
             </div>
             
             {/* Modal Body */}
             <div style={{ padding: '2rem', maxHeight: '50vh', overflowY: 'auto' }}>
               <p style={{ color: '#475569', lineHeight: 1.8, fontSize: '0.95rem', whiteSpace: 'pre-line' }}>
-                {member.description}
+                {member?.description || "No description available."}
               </p>
             </div>
           </div>

@@ -34,8 +34,8 @@ const SubjectDetails = () => {
         <Loader />
       ) : (
         <Fragment>
-          <div style={{ minHeight: '100vh', background: '#f8fafc', padding: '4rem 1rem' }}>
-            <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <div style={{ minHeight: '100vh', background: '#f8fafc', padding: '4rem 1.5rem' }}>
+            <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
               
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -45,30 +45,30 @@ const SubjectDetails = () => {
                   background: 'white',
                   borderRadius: '2rem',
                   overflow: 'hidden',
-                  boxShadow: '0 25px 50px -12px rgba(0,0,0,0.1)',
+                  boxShadow: '0 25px 50px -12px rgba(0,0,0,0.15)',
                   border: '1px solid #e2e8f0',
                   display: 'flex',
                   flexWrap: 'wrap'
                 }}
               >
                 {/* Image Carousel Side */}
-                <div style={{ flex: '1 1 500px', background: '#0f172a' }}>
-                  <Carousel showThumbs={false} infiniteLoop showStatus={false} autoPlay interval={4000} className="subjectCarousel">
+                <div style={{ flex: '1 1 500px', background: '#0f172a', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Carousel showThumbs={false} infiniteLoop showStatus={false} autoPlay interval={4000} className="subjectCarousel" style={{ width: '100%' }}>
                     {subject?.images && subject.images.map((img, index) => (
-                      <div key={index}>
-                        <img src={img.url} alt={img.alt || `Subject ${index + 1}`} style={{ height: '400px', objectFit: 'cover' }} />
+                      <div key={index} style={{ height: '100%' }}>
+                        <img src={img.url} alt={img.alt || `Subject ${index + 1}`} style={{ height: '450px', width: '100%', objectFit: 'cover' }} />
                       </div>
                     ))}
                   </Carousel>
                 </div>
 
                 {/* Text Side */}
-                <div style={{ flex: '1 1 400px', padding: '3rem' }}>
-                  <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '1rem', lineHeight: 1.2 }}>
+                <div style={{ flex: '1 1 450px', padding: '3.5rem' }}>
+                  <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '1.5rem', lineHeight: 1.2 }}>
                     {subject?.name}
                   </h1>
                   
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', marginBottom: '2.5rem' }}>
                     {infoItems.map((item, i) => (
                       <div key={i} style={{ display: 'flex', borderBottom: '1px solid #f1f5f9', paddingBottom: '0.75rem' }}>
                         <span style={{ width: '180px', color: '#64748b', fontWeight: 600, fontSize: '0.95rem' }}>{item.label}</span>
@@ -77,8 +77,8 @@ const SubjectDetails = () => {
                     ))}
                   </div>
 
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '0.75rem' }}>Description</h3>
-                  <p style={{ color: '#475569', lineHeight: 1.8, fontSize: '1rem' }}>{subject?.description}</p>
+                  <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '1rem' }}>Description</h3>
+                  <p style={{ color: '#475569', lineHeight: 1.8, fontSize: '1.05rem' }}>{subject?.description}</p>
                 </div>
               </motion.div>
 
