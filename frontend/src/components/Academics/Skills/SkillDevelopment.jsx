@@ -188,20 +188,35 @@ const SkillDevelopment = () => {
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4rem', alignItems: 'stretch', marginBottom: '6rem' }}>
                 
                 <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ flex: '1 1 500px', display: 'flex', flexDirection: 'column' }}>
-                  <h2 className="text-3xl font-bold text-slate-900 mb-6">Learning That Inspires</h2>
-                  <p style={{ fontSize: '1.05rem', color: '#475569', lineHeight: 1.8, marginBottom: '1.5rem' }}>
-                    At TLH, we believe that learning should feel like an adventure. It should spark curiosity and build confidence. That’s why our programs are designed to be interactive, creative, and future-focused.
-                  </p>
-                  
-                  <h3 className="text-xl font-bold text-slate-800 mb-4">We offer:</h3>
-                  <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem', paddingLeft: 0, listStyle: 'none' }}>
-                    {["Certified online schooling", "Personalized tutoring", "Live study support and exam preparation", "Hands-on STEAM programs"].map((item, i) => (
-                      <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                        <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: '#e0e7ff', color: '#4f46e5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.875rem', fontWeight: 'bold' }}>✓</div>
-                        <span style={{ color: '#334155', fontWeight: 500 }}>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <h2 style={{
+  fontSize: '2.1rem',
+  fontWeight: 900,
+  marginBottom: '1.5rem',
+  marginTop: 0,
+  background: 'linear-gradient(to right, rgba(79, 70, 229, 1) 0%, rgba(147, 51, 234, 1) 55%, rgba(219, 39, 119, 1) 100%)',
+  WebkitBackgroundClip: 'text',
+  backgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  color: 'rgba(79, 70, 229, 1)',
+  letterSpacing: '-0.5px'
+}}>
+  Learning That Inspires
+</h2>
+
+<p style={{ fontSize: '1.1rem', color: '#1e293b', lineHeight: 1.8, marginBottom: '1.5rem', fontWeight: 700 }}>
+  At TLH, we believe that learning should feel like an adventure. It should spark curiosity and build confidence. That's why our programs are designed to be interactive, creative, and future-focused.
+</p>
+
+<h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#0f172a', marginBottom: '1.25rem' }}>We offer:</h3>
+
+<ul style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2.5rem', paddingLeft: 0, listStyle: 'none' }}>
+  {["Certified online schooling", "Personalized tutoring", "Live study support and exam preparation", "Hands-on STEAM programs"].map((item, i) => (
+    <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+      <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: '#e0e7ff', color: '#4f46e5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1rem', fontWeight: 'bold', flexShrink: 0 }}>✓</div>
+      <span style={{ color: '#0f172a', fontWeight: 700, fontSize: '1.1rem' }}>{item}</span>
+    </li>
+  ))}
+</ul>
 
                   <div style={{ flex: 1, borderRadius: '1.5rem', overflow: 'hidden', boxShadow: '0 20px 40px -10px rgba(0,0,0,0.1)', border: '6px solid white', background: '#0f172a', minHeight: '280px' }}>
                     <iframe src="https://youtube.com/embed/MqJJiP_x1IE" title="YouTube video player" style={{ width: '100%', height: '100%', border: 0, display: 'block' }} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>

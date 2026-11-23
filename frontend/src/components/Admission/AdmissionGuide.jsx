@@ -82,8 +82,20 @@ const AdmissionGuide = () => {
             
             {/* --- LEFT SIDE: ADMISSION STEPS --- */}
             <div style={{ flex: '1 1 600px', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              <h2 style={{ fontSize: '2rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '0.5rem', marginTop: 0 }}>The Admission Procedure</h2>
-              
+<h2 style={{
+  fontSize: '2rem',
+  fontWeight: 'bold',
+  marginBottom: '0.5rem',
+  marginTop: 0,
+  background: 'linear-gradient(to right, rgba(79, 70, 229, 1) 0%, rgba(147, 51, 234, 1) 55%, rgba(219, 39, 119, 1) 100%)',
+  WebkitBackgroundClip: 'text',
+  backgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  color: 'rgba(79, 70, 229, 1)', // fallback
+  letterSpacing: '-0.5px'
+}}>
+  The Admission Procedure
+</h2>              
               {steps.map((item, index) => (
                 <motion.div 
                   key={index} 

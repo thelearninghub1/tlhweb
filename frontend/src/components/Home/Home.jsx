@@ -168,23 +168,37 @@ const Home = () => {
             {/* ================= MAIN CONTENT ================= */}
             <div style={{ position: 'relative', maxWidth: '1400px', margin: '-4rem auto 0 auto', padding: '0 1.5rem 5rem 1.5rem', zIndex: 20 }}>
               
-              {/* WHY CHOOSE US */}
-              <section style={{ marginBottom: '6rem' }}>
-                <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-                  <h2 className="text-3xl font-bold text-slate-900 mb-2">Why The Learning Hub?</h2>
-                  <p className="text-slate-500">Discover what makes us different.</p>
-                </div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}>
-                  {featured.map((feature, i) => (
-                    <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} whileHover={{ y: -8, boxShadow: '0 25px 50px -12px rgba(0,0,0,0.1)' }} style={{ background: 'white', padding: '2rem', borderRadius: '1.5rem', boxShadow: '0 10px 30px -10px rgba(0,0,0,0.05)', border: '1px solid #f1f5f9' }}>
-                      <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>{feature.icon}</div>
-                      <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '0.75rem' }}>{feature.title}</h3>
-                      <p style={{ color: '#64748b', lineHeight: 1.6, fontSize: '0.95rem', margin: 0 }}>{feature.description}</p>
-                    </motion.div>
-                  ))}
-                </div>
-              </section>
-
+             {/* WHY CHOOSE US */}
+<section style={{ marginBottom: '6rem' }}>
+  <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+    <h2 style={{
+      fontSize: '2.25rem',
+      fontWeight: 900,
+      marginBottom: '0.75rem',
+      marginTop: 0,
+      background: 'linear-gradient(to right, rgba(79, 70, 229, 1) 0%, rgba(147, 51, 234, 1) 55%, rgba(219, 39, 119, 1) 100%)',
+      WebkitBackgroundClip: 'text',
+      backgroundClip: 'text',
+      WebkitTextFillColor: 'transparent',
+      color: 'rgba(79, 70, 229, 1)',
+      letterSpacing: '-0.5px'
+    }}>
+      Why The Learning Hub?
+    </h2>
+    <p style={{ color: '#334155', fontSize: '1.05rem', fontWeight: 600, margin: 0 }}>
+      Discover what makes us different.
+    </p>
+  </div>
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}>
+    {featured.map((feature, i) => (
+      <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} whileHover={{ y: -8, boxShadow: '0 25px 50px -12px rgba(0,0,0,0.1)' }} style={{ background: 'white', padding: '2rem', borderRadius: '1.5rem', boxShadow: '0 10px 30px -10px rgba(0,0,0,0.05)', border: '1px solid #f1f5f9' }}>
+        <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>{feature.icon}</div>
+        <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.75rem' }}>{feature.title}</h3>
+        <p style={{ color: '#334155', lineHeight: 1.7, fontSize: '0.98rem', fontWeight: 600, margin: 0 }}>{feature.description}</p>
+      </motion.div>
+    ))}
+  </div>
+</section>
               {/* PROGRAMS SECTION */}
               <div id="programs-section" style={{ marginBottom: '6rem' }}>
                 <div style={{ textAlign: 'center', marginBottom: '3rem' }}>

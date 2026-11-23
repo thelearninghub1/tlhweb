@@ -117,11 +117,16 @@ const DesktopDropdown = ({ title, mainLink, items }) => {
   );
 };
 
-const MobileAccordion = ({ title, mainLink, items, isOpen, toggle }) => {
+// ✅ FIX: accept closeMenu prop; call it on every link click
+const MobileAccordion = ({ title, mainLink, items, isOpen, toggle, closeMenu }) => {
   return (
     <div style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem', marginBottom: '0.5rem' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Link to={mainLink} style={{ color: 'white', textDecoration: 'none', fontWeight: 600, fontSize: '1.1rem', padding: '0.5rem 0', flex: 1 }}>
+        <Link
+          to={mainLink}
+          onClick={closeMenu}
+          style={{ color: 'white', textDecoration: 'none', fontWeight: 600, fontSize: '1.1rem', padding: '0.5rem 0', flex: 1 }}
+        >
           {title}
         </Link>
         <button 
@@ -145,6 +150,7 @@ const MobileAccordion = ({ title, mainLink, items, isOpen, toggle }) => {
                 <Link 
                   key={item.name} 
                   to={`/${item.nameLink}`}
+                  onClick={closeMenu}
                   style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.95rem', padding: '0.5rem 0' }}
                 >
                   {item.name}
@@ -171,6 +177,9 @@ const Header = () => {
   });
 
   const handleClick = () => setClicked(!clicked);
+
+  // ✅ FIX: call this on any mobile nav link click
+  const closeMobileMenu = () => setClicked(false);
 
   const toggleMenu = (menuName) => {
     setOpenMenus(prev => ({
@@ -213,7 +222,7 @@ const Header = () => {
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '80px', overflow: 'visible' }}>
         
         {/* Logo */}
-        <Link to={`/`} style={{ display: 'flex', alignItems: 'center' }}>
+        <Link to={`/`} style={{ display: 'flex', alignItems: 'center' }} onClick={closeMobileMenu}>
           <img src={logo} alt="logo" style={{ height: '60px', width: 'auto', objectFit: 'contain' }} />
         </Link>
 
@@ -270,11 +279,46 @@ const Header = () => {
               borderBottom: '1px solid rgba(255,255,255,0.1)'
             }}
           >
-            <MobileAccordion title="About Us" mainLink="/about-us" items={aboutUs} isOpen={openMenus.about} toggle={() => toggleMenu('about')} />
-            <MobileAccordion title="Admission" mainLink="/apply-now" items={admissions} isOpen={openMenus.admission} toggle={() => toggleMenu('admission')} />
-            <MobileAccordion title="Academics" mainLink="/skills-development-courses" items={services} isOpen={openMenus.academics} toggle={() => toggleMenu('academics')} />
-            <MobileAccordion title="Locations" mainLink="/uae" items={locations} isOpen={openMenus.location} toggle={() => toggleMenu('location')} />
-            <MobileAccordion title="Contact Us" mainLink="/contact-us" items={contactUs} isOpen={openMenus.contact} toggle={() => toggleMenu('contact')} />
+            <MobileAccordion
+              title="About Us"
+              mainLink="/about-us"
+              items={aboutUs}
+              isOpen={openMenus.about}
+              toggle={() => toggleMenu('about')}
+              closeMenu={closeMobileMenu}
+            />
+            <MobileAccordion
+              title="Admission"
+              mainLink="/apply-now"
+              items={admissions}
+              isOpen={openMenus.admission}
+              toggle={() => toggleMenu('admission')}
+              closeMenu={closeMobileMenu}
+            />
+            <MobileAccordion
+              title="Academics"
+              mainLink="/skills-development-courses"
+              items={services}
+              isOpen={openMenus.academics}
+              toggle={() => toggleMenu('academics')}
+              closeMenu={closeMobileMenu}
+            />
+            <MobileAccordion
+              title="Locations"
+              mainLink="/uae"
+              items={locations}
+              isOpen={openMenus.location}
+              toggle={() => toggleMenu('location')}
+              closeMenu={closeMobileMenu}
+            />
+            <MobileAccordion
+              title="Contact Us"
+              mainLink="/contact-us"
+              items={contactUs}
+              isOpen={openMenus.contact}
+              toggle={() => toggleMenu('contact')}
+              closeMenu={closeMobileMenu}
+            />
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>

@@ -31,7 +31,6 @@ const Uae = () => {
   
   const navigate = useNavigate();
   
-  // Form States
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [country, setCountry] = useState(null);
@@ -57,7 +56,6 @@ const Uae = () => {
   const { error: partnerError, partners } = useSelector((state) => state.allPartners);
   const { error: featureError, afiliations } = useSelector((state) => state.allAffiliation);
 
-  // Auto Scroll Hook
   const useAutoScroll = (ref, isHovering) => {
     useEffect(() => {
       const container = ref.current;
@@ -88,7 +86,6 @@ const Uae = () => {
   const scrollLeft = (ref) => ref.current?.scrollBy({ left: -320, behavior: "smooth" });
   const scrollRight = (ref) => ref.current?.scrollBy({ left: 320, behavior: "smooth" });
 
-  // Feedback Auto-Rotate
   useEffect(() => {
     const interval = setInterval(() => {
       setFeedbackIndex((prev) => allFeedbacks?.length ? (prev + 1) % allFeedbacks.length : 0);
@@ -104,12 +101,10 @@ const Uae = () => {
     myForm.set("program", program);
     myForm.set("phoneNo", phoneNo);
     myForm.set("WhatsAppNo", WhatsAppNo);
-    
     myForm.set("parentName", name); 
     myForm.set("message", studentGrade); 
     myForm.set("companyName", studentAge); 
     myForm.set("country", country?.label ?? "");
-    
     dispatch(createCallBackAction(myForm));
   };
 
@@ -158,7 +153,8 @@ const Uae = () => {
             <motion.div animate={{ scale: [1, 1.5, 1], opacity: [0.2, 0.4, 0.2] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }} style={{ position: 'absolute', bottom: '10%', right: '-10%', width: '600px', height: '600px', background: 'rgba(236, 72, 153, 0.15)', borderRadius: '50%', filter: 'blur(100px)', pointerEvents: 'none' }} />
 
             {/* ================= HERO BANNER ================= */}
-            <div style={{ position: 'relative', background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)', padding: '6rem 1rem 8rem 1rem', overflow: 'hidden' }}>
+            {/* Added paddingTop: '8rem' to give flag breathing room */}
+            <div style={{ position: 'relative', background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)', padding: '8rem 1rem 6rem 1rem', overflow: 'hidden' }}>
               <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)', backgroundSize: '30px 30px', opacity: 0.8 }} />
 
               {/* Floating Flags around the banner */}
@@ -200,28 +196,27 @@ const Uae = () => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
-                  style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'center' }}
+                  style={{ marginBottom: '1.5rem', display: 'flex', justifyContent: 'center' }}
                 >
                   <div style={{ position: 'relative' }}>
                     <div style={{ position: 'absolute', inset: -20, background: 'linear-gradient(to right, #ef4444, #22c55e, #ffffff, #000000)', filter: 'blur(40px)', opacity: 0.5, borderRadius: '50%' }} />
                     <img 
                       src="https://flagcdn.com/w320/ae.png" 
                       alt="UAE Flag" 
-                      style={{ width: '100%', maxWidth: '400px', borderRadius: '1rem', boxShadow: '0 20px 50px rgba(0,0,0,0.5)', border: '4px solid rgba(255,255,255,0.1)', position: 'relative', zIndex: 2 }} 
+                      style={{ width: '100%', maxWidth: '300px', borderRadius: '1rem', boxShadow: '0 20px 50px rgba(0,0,0,0.5)', border: '4px solid rgba(255,255,255,0.1)', position: 'relative', zIndex: 2 }} 
                     />
                   </div>
                 </motion.div>
 
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} style={{ display: 'inline-block', padding: '0.5rem 1.25rem', borderRadius: '50px', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: '#e0e7ff', fontSize: '0.875rem', fontWeight: 600, letterSpacing: '1px', marginBottom: '1.5rem', backdropFilter: 'blur(10px)' }}>
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} style={{ display: 'inline-block', padding: '0.4rem 1rem', borderRadius: '50px', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: '#e0e7ff', fontSize: '0.8rem', fontWeight: 600, letterSpacing: '1px', marginBottom: '1rem', backdropFilter: 'blur(10px)' }}>
                   GLOBAL LEARNING
                 </motion.div>
 
-                <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="text-5xl md:text-7xl font-extrabold text-white tracking-tight">
-                  Learning in <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">UAE</span>
+                <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="text-4xl md:text-6xl font-extrabold text-white tracking-tight" style={{ whiteSpace: 'nowrap' }}>
+                  Learning in <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">UAE</span>
                 </motion.h1>
 
-                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} style={{ marginTop: '1.5rem', fontSize: '1.125rem', color: '#cbd5e1', maxWidth: '600px', margin: '1.5rem auto 0 auto', lineHeight: 1.6 }}>
+                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} style={{ marginTop: '1rem', fontSize: '1rem', color: '#cbd5e1', maxWidth: '600px', margin: '1rem auto 0 auto', lineHeight: 1.6 }}>
                   Enroll your child for Session 2026-27 and become part of The Learning Hub community in the United Arab Emirates.
                 </motion.p>
               </div>
@@ -241,21 +236,34 @@ const Uae = () => {
                 
                 <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ flex: '1 1 500px', display: 'flex', flexDirection: 'column' }}>
                   
+                  {/* UPDATED: Heading in UAE Flag Colors (Removed Black) */}
                   <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
                     <img src="https://flagcdn.com/w80/ae.png" alt="UAE" width="40" style={{ borderRadius: '4px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }} />
-                    <h2 style={{ fontSize: '2rem', fontWeight: 700, color: '#0f172a', margin: 0 }}>Learning That Inspires</h2>
+                    <h2 style={{ 
+                      fontSize: '2.2rem', 
+                      fontWeight: 900, 
+                      margin: 0,
+                      // CHANGED: Removed black (#000000) and replaced with pink/rose (#db2777) for visibility
+                      background: 'linear-gradient(to right, #ef4444 33%, #22c55e 33% 66%, #db2777 66%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      letterSpacing: '-0.5px'
+                    }}>
+                      Learning That Inspires
+                    </h2>
                   </div>
 
-                  <p style={{ fontSize: '1.05rem', color: '#475569', lineHeight: 1.8, marginBottom: '1.5rem' }}>
+                  <p style={{ fontSize: '1.1rem', color: '#1e293b', lineHeight: 1.8, marginBottom: '1.5rem', fontWeight: 600 }}>
                     At TLH, we believe that learning should feel like an adventure. It should spark curiosity and build confidence. That's why our programs are designed to be interactive, creative, and future-focused.
                   </p>
                   
-                  <h3 className="text-xl font-bold text-slate-800 mb-4">We offer:</h3>
-                  <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem', paddingLeft: 0, listStyle: 'none' }}>
+                  <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#0f172a', marginBottom: '1.25rem' }}>We offer:</h3>
+                  
+                  <ul style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2.5rem', paddingLeft: 0, listStyle: 'none' }}>
                     {["Certified online schooling", "Personalized tutoring", "Live study support and exam preparation", "Hands-on STEAM programs"].map((item, i) => (
                       <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                        <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: '#e0e7ff', color: '#4f46e5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.875rem', fontWeight: 'bold' }}>✓</div>
-                        <span style={{ color: '#334155', fontWeight: 500 }}>{item}</span>
+                        <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: '#e0e7ff', color: '#4f46e5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1rem', fontWeight: 'bold' }}>✓</div>
+                        <span style={{ color: '#0f172a', fontWeight: 700, fontSize: '1.1rem' }}>{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -400,59 +408,22 @@ const Uae = () => {
                 </motion.div>
               </div>
 
-              {/* SECTION: PARTNERS (UPDATED FOR BETTER DESIGN) */}
+              {/* SECTION: PARTNERS */}
               <div style={{ marginBottom: '6rem' }}>
                 <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
                   <h2 className="text-2xl font-bold text-slate-900">Our Technology Partners</h2>
                   <p style={{ color: '#64748b', marginTop: '0.5rem' }}>Collaborating with industry leaders to empower our students</p>
                 </div>
                 <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
-                  
-                  {/* Left Button (Sleek & Modern) */}
-                  <button 
-                    onClick={() => scrollLeft(partnerScrollRef)} 
-                    style={{ position: 'absolute', left: '-15px', zIndex: 10, width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(255, 255, 255, 0.9)', border: '1px solid #e2e8f0', boxShadow: '0 10px 25px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', color: '#4f46e5', backdropFilter: 'blur(8px)', transition: 'all 0.2s' }} 
-                  >
-                    ◀
-                  </button>
-
-                  <div 
-                    ref={partnerScrollRef} 
-                    onMouseEnter={() => setIsPartnerHovering(true)} 
-                    onMouseLeave={() => setIsPartnerHovering(false)} 
-                    style={{ display: 'flex', gap: '2rem', overflowX: 'auto', padding: '1.5rem 0.5rem', scrollBehavior: 'smooth', msOverflowStyle: 'none', scrollbarWidth: 'none' }} 
-                    className="hide-scrollbar"
-                  >
+                  <button onClick={() => scrollLeft(partnerScrollRef)} style={{ position: 'absolute', left: '-15px', zIndex: 10, width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(255, 255, 255, 0.9)', border: '1px solid #e2e8f0', boxShadow: '0 10px 25px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', color: '#4f46e5', backdropFilter: 'blur(8px)', transition: 'all 0.2s' }}>◀</button>
+                  <div ref={partnerScrollRef} onMouseEnter={() => setIsPartnerHovering(true)} onMouseLeave={() => setIsPartnerHovering(false)} style={{ display: 'flex', gap: '2rem', overflowX: 'auto', padding: '1.5rem 0.5rem', scrollBehavior: 'smooth', msOverflowStyle: 'none', scrollbarWidth: 'none' }} className="hide-scrollbar">
                     {partners && partners.map((member) => (
-                      <div 
-                        key={member._id} 
-                        style={{ 
-                          width: '280px', 
-                          height: '160px', 
-                          flexShrink: 0,
-                          background: 'white',
-                          borderRadius: '1.25rem',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          boxShadow: '0 8px 20px -5px rgba(0,0,0,0.05)',
-                          border: '1px solid #f1f5f9',
-                          padding: '1.5rem',
-                          transition: 'transform 0.3s'
-                        }}
-                      >
+                      <div key={member._id} style={{ width: '280px', height: '160px', flexShrink: 0, background: 'white', borderRadius: '1.25rem', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 20px -5px rgba(0,0,0,0.05)', border: '1px solid #f1f5f9', padding: '1.5rem', transition: 'transform 0.3s' }}>
                         <PartnerCard member={member} />
                       </div>
                     ))}
                   </div>
-
-                  {/* Right Button (Sleek & Modern) */}
-                  <button 
-                    onClick={() => scrollRight(partnerScrollRef)} 
-                    style={{ position: 'absolute', right: '-15px', zIndex: 10, width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(255, 255, 255, 0.9)', border: '1px solid #e2e8f0', boxShadow: '0 10px 25px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', color: '#4f46e5', backdropFilter: 'blur(8px)', transition: 'all 0.2s' }} 
-                  >
-                    ▶
-                  </button>
+                  <button onClick={() => scrollRight(partnerScrollRef)} style={{ position: 'absolute', right: '-15px', zIndex: 10, width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(255, 255, 255, 0.9)', border: '1px solid #e2e8f0', boxShadow: '0 10px 25px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', color: '#4f46e5', backdropFilter: 'blur(8px)', transition: 'all 0.2s' }}>▶</button>
                 </div>
               </div>
 

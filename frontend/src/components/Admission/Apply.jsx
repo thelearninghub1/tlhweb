@@ -29,7 +29,7 @@ const Apply = () => {
   const programs = ["Online schooling", "One to One tutoring", "O/A levels tuitions", "Grade 9 and 10 Federal Board", "Coding", "Abacus Mathematics"];
 
   const navigate = useNavigate();
-  
+
   // Form States
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -44,7 +44,7 @@ const Apply = () => {
 
   const [isInsightHovering, setIsInsightHovering] = useState(false);
   const [isPartnerHovering, setIsPartnerHovering] = useState(false);
-  
+
   const insightScrollRef = useRef();
   const partnerScrollRef = useRef();
 
@@ -103,13 +103,13 @@ const Apply = () => {
     myForm.set("program", program);
     myForm.set("phoneNo", phoneNo);
     myForm.set("WhatsAppNo", WhatsAppNo);
-    
+
     // Mapped to backend fields correctly
     myForm.set("message", message); // Student Grade
     myForm.set("companyName", companyName); // Student Age
     myForm.set("parentName", parentName); // Student Name
     myForm.set("country", country?.label ?? "");
-    
+
     dispatch(createCallBackAction(myForm));
   };
 
@@ -147,12 +147,12 @@ const Apply = () => {
       ) : (
         <Fragment>
           <Metadata title="Apply Now - The Learning Hub" />
-          
+
           <div style={{ minHeight: '100vh', background: '#f8fafc', position: 'relative', overflow: 'hidden' }}>
-            
+
             {/* ================= HERO BANNER (NO VIDEO) ================= */}
             <div style={{ position: 'relative', background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)', padding: '6rem 1rem 8rem 1rem', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              
+
               <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)', backgroundSize: '30px 30px', opacity: 0.8 }} />
 
               {/* Floating Icons */}
@@ -180,25 +180,39 @@ const Apply = () => {
             </div>
 
             {/* ================= MAIN CONTENT ================= */}
-            {/* Increased maxWidth to 1400px and adjusted padding */}
             <div style={{ position: 'relative', maxWidth: '1400px', margin: '-4rem auto 0 auto', padding: '0 1.5rem 5rem 1.5rem', zIndex: 20 }}>
-              
+
               {/* TOP SECTION: INFO & FORM */}
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4rem', alignItems: 'stretch', marginBottom: '6rem' }}>
-                
+
                 {/* Left: Video & Text */}
                 <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ flex: '1 1 500px', display: 'flex', flexDirection: 'column' }}>
-                  <h2 className="text-3xl font-bold text-slate-900 mb-6">Learning That Inspires</h2>
-                  <p style={{ fontSize: '1.05rem', color: '#475569', lineHeight: 1.8, marginBottom: '1.5rem' }}>
+                  <h2 style={{
+                    fontSize: '2.1rem',
+                    fontWeight: 900,
+                    marginBottom: '1.5rem',
+                    marginTop: 0,
+                    background: 'linear-gradient(to right, rgba(79, 70, 229, 1) 0%, rgba(147, 51, 234, 1) 55%, rgba(219, 39, 119, 1) 100%)',
+                    WebkitBackgroundClip: 'text',
+                    backgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    color: 'rgba(79, 70, 229, 1)',
+                    letterSpacing: '-0.5px'
+                  }}>
+                    Learning That Inspires
+                  </h2>
+
+                  <p style={{ fontSize: '1.1rem', color: '#1e293b', lineHeight: 1.8, marginBottom: '1.5rem', fontWeight: 600 }}>
                     At TLH, we believe that learning should feel like an adventure. It should spark curiosity and build confidence. That's why our programs are designed to be interactive, creative, and future-focused.
                   </p>
-                  
-                  <h3 className="text-xl font-bold text-slate-800 mb-4">We offer:</h3>
-                  <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem', paddingLeft: 0, listStyle: 'none' }}>
+
+                  <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#0f172a', marginBottom: '1.25rem' }}>We offer:</h3>
+
+                  <ul style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2.5rem', paddingLeft: 0, listStyle: 'none' }}>
                     {["Certified online schooling", "Personalized tutoring", "Live study support and exam preparation", "Hands-on STEAM programs"].map((item, i) => (
                       <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                        <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: '#e0e7ff', color: '#4f46e5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.875rem', fontWeight: 'bold' }}>✓</div>
-                        <span style={{ color: '#334155', fontWeight: 500 }}>{item}</span>
+                        <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: '#e0e7ff', color: '#4f46e5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1rem', fontWeight: 'bold' }}>✓</div>
+                        <span style={{ color: '#0f172a', fontWeight: 700, fontSize: '1.1rem' }}>{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -220,12 +234,12 @@ const Apply = () => {
                     <input type="email" placeholder="Email *" required value={email} onChange={(e) => setEmail(e.target.value)} className={inputClass} />
                     <input type="tel" placeholder="Phone *" required value={phoneNo} onChange={(e) => setPhoneNo(e.target.value)} className={inputClass} />
                     <input type="text" placeholder="WhatsApp Number" value={WhatsAppNo} onChange={(e) => setWhatsAppNo(e.target.value)} className={inputClass} />
-                    
+
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                       <input type="text" placeholder="Student Name *" required value={parentName} onChange={(e) => setParentName(e.target.value)} className={inputClass} />
                       <input type="text" placeholder="Student Age" value={companyName} onChange={(e) => setCompanyName(e.target.value)} className={inputClass} />
                     </div>
-                    
+
                     <input type="text" placeholder="Student Grade" value={message} onChange={(e) => setMessage(e.target.value)} className={inputClass} />
 
                     <select value={program} onChange={(e) => setProgram(e.target.value)} required className={inputClass}>
@@ -271,15 +285,14 @@ const Apply = () => {
                   <h2 className="text-3xl font-bold text-slate-900">Explore Our Programs</h2>
                   <p style={{ color: '#64748b', marginTop: '0.5rem' }}>Tailored educational paths for every learner</p>
                 </div>
-                {/* Adjusted Grid to max 3 columns on desktop for larger, more beautiful cards */}
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2.5rem' }}>
                   {afiliations && afiliations.map((feature) => (
-                    <motion.div 
-                      key={feature.id} 
-                      initial={{ opacity: 0, y: 20 }} 
-                      whileInView={{ opacity: 1, y: 0 }} 
-                      viewport={{ once: true }} 
-                      whileHover={{ y: -8, boxShadow: '0 25px 50px -12px rgba(0,0,0,0.15)' }} 
+                    <motion.div
+                      key={feature.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      whileHover={{ y: -8, boxShadow: '0 25px 50px -12px rgba(0,0,0,0.15)' }}
                       style={{ background: 'white', borderRadius: '1.5rem', overflow: 'hidden', boxShadow: '0 10px 30px -10px rgba(0,0,0,0.05)', border: '1px solid #f1f5f9' }}
                     >
                       <div style={{ height: '240px', overflow: 'hidden' }}>
@@ -314,10 +327,10 @@ const Apply = () => {
 
               {/* SECTION: TESTIMONIALS & STATS */}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '4rem', alignItems: 'center', marginBottom: '6rem' }}>
-                
+
                 <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
                   <h2 className="text-3xl font-bold text-slate-900 mb-8">What Parents Say</h2>
-                  
+
                   <div style={{ position: 'relative', background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)', padding: '3rem', borderRadius: '1.5rem', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)', overflow: 'hidden' }}>
                     <div style={{ position: 'absolute', top: '10px', right: '20px', fontSize: '120px', color: 'rgba(255,255,255,0.05)', fontFamily: 'serif', lineHeight: 1 }}>"</div>
 
@@ -346,7 +359,7 @@ const Apply = () => {
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2rem' }}>
                     {cards && cards.map((card) => (<ClientCard card={card} key={card._id} />))}
                   </div>
-                  
+
                   <div style={{ borderRadius: '1.5rem', overflow: 'hidden', boxShadow: '0 20px 40px -10px rgba(0,0,0,0.1)', border: '4px solid white', background: '#0f172a' }}>
                     <iframe width="100%" height="250" src="https://www.youtube.com/embed/q8NjbC4uGW4?si=IXLXpGdfxXw6Tfa4" title="YouTube video player" style={{ border: 0, display: 'block' }} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                   </div>

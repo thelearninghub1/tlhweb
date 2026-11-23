@@ -28,24 +28,23 @@ const formattedCountries = countries.map((country) => ({
 
 const Ksa = () => {
   const programs = ["Online schooling", "One to One tutoring", "O/A levels tuitions", "Grade 9 and 10 Federal Board", "Coding", "Abacus Mathematics"];
-  
+
   const navigate = useNavigate();
-  
-  // Form States
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [country, setCountry] = useState(null);
   const [program, setProgram] = useState("");
   const [phoneNo, setPhoneNo] = useState("");
   const [WhatsAppNo, setWhatsAppNo] = useState("");
-  const [studentName, setStudentName] = useState(""); 
-  const [studentAge, setStudentAge] = useState(""); 
-  const [studentGrade, setStudentGrade] = useState(""); 
+  const [studentName, setStudentName] = useState("");
+  const [studentAge, setStudentAge] = useState("");
+  const [studentGrade, setStudentGrade] = useState("");
   const [feedbackIndex, setFeedbackIndex] = useState(0);
 
   const [isInsightHovering, setIsInsightHovering] = useState(false);
   const [isPartnerHovering, setIsPartnerHovering] = useState(false);
-  
+
   const insightScrollRef = useRef();
   const partnerScrollRef = useRef();
 
@@ -57,7 +56,6 @@ const Ksa = () => {
   const { error: partnerError, partners } = useSelector((state) => state.allPartners);
   const { error: featureError, afiliations } = useSelector((state) => state.allAffiliation);
 
-  // Auto Scroll Hook
   const useAutoScroll = (ref, isHovering) => {
     useEffect(() => {
       const container = ref.current;
@@ -88,7 +86,6 @@ const Ksa = () => {
   const scrollLeft = (ref) => ref.current?.scrollBy({ left: -320, behavior: "smooth" });
   const scrollRight = (ref) => ref.current?.scrollBy({ left: 320, behavior: "smooth" });
 
-  // Feedback Auto-Rotate
   useEffect(() => {
     const interval = setInterval(() => {
       setFeedbackIndex((prev) => allFeedbacks?.length ? (prev + 1) % allFeedbacks.length : 0);
@@ -104,12 +101,10 @@ const Ksa = () => {
     myForm.set("program", program);
     myForm.set("phoneNo", phoneNo);
     myForm.set("WhatsAppNo", WhatsAppNo);
-    
-    myForm.set("parentName", name); 
-    myForm.set("message", studentGrade); 
-    myForm.set("companyName", studentAge); 
+    myForm.set("parentName", name);
+    myForm.set("message", studentGrade);
+    myForm.set("companyName", studentAge);
     myForm.set("country", country?.label ?? "");
-    
     dispatch(createCallBackAction(myForm));
   };
 
@@ -132,14 +127,20 @@ const Ksa = () => {
     dispatch(allPartnerAction());
   }, [error, FormError, success, dispatch, FeedError, cardError, partnerError, featureError, navigate]);
 
-  const inputClass = "w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-slate-800 placeholder-gray-400 outline-none transition-all focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100/50 text-sm";
+  const inputClass = "w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-slate-800 placeholder-gray-400 outline-none transition-all focus:bg-white focus:border-green-600 focus:ring-4 focus:ring-green-100/50 text-sm";
 
   const featured = [
-    { id: 1, title: "No Physical Barriers", description: "Learn from anywhere with fully online classes — quality education delivered right to your home.", icon: "🌍" },
+    { id: 1, title: "No Physical Barriers", description: "Learn from anywhere in the Kingdom with fully online classes — quality education delivered right to your home.", icon: "🌍" },
     { id: 2, title: "Modern STEAM Curriculum", description: "Cutting-edge syllabus integrating Science, Technology, Engineering, Arts, and Mathematics to equip students for the future.", icon: "🚀" },
     { id: 3, title: "Continuous Assessment", description: "Structured evaluations to monitor student growth, ensuring steady academic improvement at every stage.", icon: "📈" },
     { id: 4, title: "Parent-Teacher Collaboration", description: "Parents stay informed through regular updates, progress tracking, and direct communication with instructors.", icon: "🤝" }
   ];
+
+  // MUTED Saudi flag greens (soft, desaturated — not bright)
+  const saGreenDeep = "#1B3A2A";   // muted deep forest
+  const saGreenMid = "#2E5D45";    // muted mid green
+  const saGreenSoft = "#4A7A5F";   // muted soft sage
+  const saCream = "#E8F0E9";       // off-white cream (echo of flag white, softened)
 
   return (
     <Fragment>
@@ -152,25 +153,34 @@ const Ksa = () => {
           <Metadata title="KSA - The Learning Hub" />
 
           <div style={{ minHeight: '100vh', background: '#f8fafc', position: 'relative', overflow: 'hidden' }}>
-            
-            {/* ================= BACKGROUND ANIMATED ORBS ================= */}
-            <motion.div animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} style={{ position: 'absolute', top: '-10%', left: '-10%', width: '500px', height: '500px', background: 'rgba(34, 197, 94, 0.15)', borderRadius: '50%', filter: 'blur(100px)', pointerEvents: 'none' }} />
-            <motion.div animate={{ scale: [1, 1.5, 1], opacity: [0.2, 0.4, 0.2] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }} style={{ position: 'absolute', bottom: '10%', right: '-10%', width: '600px', height: '600px', background: 'rgba(16, 185, 129, 0.15)', borderRadius: '50%', filter: 'blur(100px)', pointerEvents: 'none' }} />
 
-            {/* ================= HERO BANNER ================= */}
-            <div style={{ position: 'relative', background: 'linear-gradient(135deg, #022c22 0%, #064e3b 100%)', padding: '6rem 1rem 8rem 1rem', overflow: 'hidden' }}>
-              <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)', backgroundSize: '30px 30px', opacity: 0.8 }} />
+            {/* ================= BACKGROUND ANIMATED ORBS (MUTED SAUDI GREENS) ================= */}
+            <motion.div animate={{ scale: [1, 1.15, 1], opacity: [0.18, 0.28, 0.18] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }} style={{ position: 'absolute', top: '-10%', left: '-10%', width: '500px', height: '500px', background: 'rgba(46, 93, 69, 0.18)', borderRadius: '50%', filter: 'blur(110px)', pointerEvents: 'none' }} />
+            <motion.div animate={{ scale: [1, 1.35, 1], opacity: [0.14, 0.24, 0.14] }} transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 2 }} style={{ position: 'absolute', bottom: '10%', right: '-10%', width: '600px', height: '600px', background: 'rgba(27, 58, 42, 0.16)', borderRadius: '50%', filter: 'blur(110px)', pointerEvents: 'none' }} />
 
-              {/* Floating Flags around the banner - SAUDI ARABIA FLAG (sa) */}
+            {/* ================= HERO BANNER (MUTED SAUDI GREEN) ================= */}
+            <div style={{ position: 'relative', background: 'linear-gradient(135deg, #1B3A2A 0%, #2E5D45 55%, #3D6B52 100%)', padding: '8rem 1rem 6rem 1rem', overflow: 'hidden' }}>
+
+              {/* Subtle grid overlay */}
+              <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)', backgroundSize: '32px 32px', opacity: 0.7 }} />
+
+              {/* Soft white diagonal glow — echo of the flag's white stripe, muted */}
+              <motion.div
+                animate={{ opacity: [0.08, 0.16, 0.08] }}
+                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                style={{ position: 'absolute', top: 0, bottom: 0, left: '14%', width: '110px', background: 'linear-gradient(to bottom, transparent, rgba(232, 240, 233, 0.22), transparent)', transform: 'skewX(-12deg)', pointerEvents: 'none' }}
+              />
+
+              {/* Floating Saudi Flags (muted opacity) */}
               {[...Array(6)].map((_, i) => (
                 <motion.div
                   key={i}
-                  animate={{ 
-                    y: [0, -20, 0], 
-                    rotate: [0, (i % 2 === 0 ? 10 : -10), 0],
-                    opacity: [0.15, 0.3, 0.15]
+                  animate={{
+                    y: [0, -18, 0],
+                    rotate: [0, (i % 2 === 0 ? 8 : -8), 0],
+                    opacity: [0.08, 0.18, 0.08]
                   }}
-                  transition={{ duration: 4 + i, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }}
+                  transition={{ duration: 5 + i, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }}
                   style={{
                     position: 'absolute',
                     top: `${15 + (i * 12)}%`,
@@ -180,49 +190,76 @@ const Ksa = () => {
                     pointerEvents: 'none'
                   }}
                 >
-                  <img 
-                    src="https://flagcdn.com/w160/sa.png" 
-                    alt="KSA Flag" 
-                    style={{ 
-                      width: '80px', 
-                      borderRadius: '4px', 
-                      boxShadow: '0 10px 20px rgba(0,0,0,0.3)',
+                  <img
+                    src="https://flagcdn.com/w160/sa.png"
+                    alt="KSA Flag"
+                    style={{
+                      width: '80px',
+                      borderRadius: '4px',
+                      boxShadow: '0 10px 20px rgba(0,0,0,0.25)',
                       transform: 'perspective(500px) rotateY(-15deg)'
-                    }} 
+                    }}
                   />
                 </motion.div>
               ))}
 
               <div style={{ position: 'relative', maxWidth: '800px', margin: '0 auto', textAlign: 'center', zIndex: 10 }}>
-                
-                {/* MASSIVE KSA FLAG CENTERED */}
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.8 }}
+
+                {/* MASSIVE KSA FLAG CENTERED — muted glow */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.85 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
-                  style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'center' }}
+                  transition={{ duration: 0.8, type: "spring", bounce: 0.35 }}
+                  style={{ marginBottom: '1.5rem', display: 'flex', justifyContent: 'center' }}
                 >
                   <div style={{ position: 'relative' }}>
-                    {/* Glow effect matching KSA's Green theme */}
-                    <div style={{ position: 'absolute', inset: -20, background: 'linear-gradient(to right, #059669, #ffffff)', filter: 'blur(40px)', opacity: 0.5, borderRadius: '50%' }} />
-                    <img 
-                      src="https://flagcdn.com/w320/sa.png" 
-                      alt="KSA Flag" 
-                      style={{ width: '100%', maxWidth: '400px', borderRadius: '1rem', boxShadow: '0 20px 50px rgba(0,0,0,0.5)', border: '4px solid rgba(255,255,255,0.1)', position: 'relative', zIndex: 2 }} 
+                    <div style={{ position: 'absolute', inset: -20, background: 'linear-gradient(to right, #2E5D45, #E8F0E9)', filter: 'blur(45px)', opacity: 0.28, borderRadius: '50%' }} />
+                    <img
+                      src="https://flagcdn.com/w320/sa.png"
+                      alt="KSA Flag"
+                      style={{ width: '100%', maxWidth: '300px', borderRadius: '1rem', boxShadow: '0 20px 45px rgba(0,0,0,0.35)', border: '3px solid rgba(232, 240, 233, 0.15)', position: 'relative', zIndex: 2 }}
                     />
                   </div>
                 </motion.div>
 
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} style={{ display: 'inline-block', padding: '0.5rem 1.25rem', borderRadius: '50px', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: '#e0e7ff', fontSize: '0.875rem', fontWeight: 600, letterSpacing: '1px', marginBottom: '1.5rem', backdropFilter: 'blur(10px)' }}>
+                {/* Badge — muted cream */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  style={{
+                    display: 'inline-block',
+                    padding: '0.4rem 1rem',
+                    borderRadius: '50px',
+                    background: 'rgba(232, 240, 233, 0.08)',
+                    border: '1px solid rgba(232, 240, 233, 0.2)',
+                    color: '#C9D9CE',
+                    fontSize: '0.78rem',
+                    fontWeight: 600,
+                    letterSpacing: '1.2px',
+                    marginBottom: '1.25rem',
+                    backdropFilter: 'blur(10px)'
+                  }}
+                >
                   GLOBAL LEARNING
                 </motion.div>
 
-                <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="text-5xl md:text-7xl font-extrabold text-white tracking-tight">
-                  Learning in <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-green-400 to-teal-400">KSA</span>
+                <motion.h1
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="text-4xl md:text-6xl font-extrabold text-white tracking-tight"
+                  style={{ whiteSpace: 'nowrap' }}
+                >
+                  Learning in <span style={{ color: '#C9D9CE' }}>KSA</span>
                 </motion.h1>
 
-                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} style={{ marginTop: '1.5rem', fontSize: '1.125rem', color: '#cbd5e1', maxWidth: '600px', margin: '1.5rem auto 0 auto', lineHeight: 1.6 }}>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3 }}
+                  style={{ marginTop: '1rem', fontSize: '1rem', color: '#C9D9CE', maxWidth: '600px', margin: '1rem auto 0 auto', lineHeight: 1.65 }}
+                >
                   Enroll your child for Session 2026-27 and become part of The Learning Hub community in the Kingdom of Saudi Arabia.
                 </motion.p>
               </div>
@@ -236,27 +273,37 @@ const Ksa = () => {
 
             {/* ================= MAIN CONTENT ================= */}
             <div style={{ position: 'relative', maxWidth: '1400px', margin: '-4rem auto 0 auto', padding: '0 1.5rem 5rem 1.5rem', zIndex: 20 }}>
-              
+
               {/* TOP SECTION: FORM & CONTENT */}
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4rem', alignItems: 'stretch', marginBottom: '6rem' }}>
-                
-                <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ flex: '1 1 500px', display: 'flex', flexDirection: 'column' }}>
-                  
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
-                    <img src="https://flagcdn.com/w80/sa.png" alt="KSA" width="40" style={{ borderRadius: '4px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }} />
-                    <h2 style={{ fontSize: '2rem', fontWeight: 700, color: '#0f172a', margin: 0 }}>Learning That Inspires</h2>
-                  </div>
 
-                  <p style={{ fontSize: '1.05rem', color: '#475569', lineHeight: 1.8, marginBottom: '1.5rem' }}>
+                <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ flex: '1 1 500px', display: 'flex', flexDirection: 'column' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
+  <img src="https://flagcdn.com/w80/sa.png" alt="KSA" width="40" style={{ borderRadius: '4px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }} />
+  <h2 style={{
+    fontSize: '2.1rem',
+    fontWeight: 900,
+    margin: 0,
+    background: 'linear-gradient(to right, #1E3A8A 0%, #2563EB 55%, #0EA5E9 100%)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    color: '#1E3A8A', // fallback
+    letterSpacing: '-0.5px'
+  }}>
+    Learning That Inspires
+  </h2>
+</div>
+                  <p style={{ fontSize: '1.05rem', color: '#334155', lineHeight: 1.8, marginBottom: '1.5rem', fontWeight: 500 }}>
                     At TLH, we believe that learning should feel like an adventure. It should spark curiosity and build confidence. That's why our programs are designed to be interactive, creative, and future-focused.
                   </p>
-                  
+
                   <h3 className="text-xl font-bold text-slate-800 mb-4">We offer:</h3>
-                  <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem', paddingLeft: 0, listStyle: 'none' }}>
+                  <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginBottom: '2rem', paddingLeft: 0, listStyle: 'none' }}>
                     {["Certified online schooling", "Personalized tutoring", "Live study support and exam preparation", "Hands-on STEAM programs"].map((item, i) => (
                       <li key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                        <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: '#dcfce7', color: '#16a34a', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.875rem', fontWeight: 'bold' }}>✓</div>
-                        <span style={{ color: '#334155', fontWeight: 500 }}>{item}</span>
+                        <div style={{ width: '26px', height: '26px', borderRadius: '50%', background: '#E8F0E9', color: saGreenMid, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem', fontWeight: 'bold' }}>✓</div>
+                        <span style={{ color: '#334155', fontWeight: 600 }}>{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -270,7 +317,7 @@ const Ksa = () => {
                   <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
                       <img src="https://flagcdn.com/w40/sa.png" alt="KSA" width="24" style={{ borderRadius: '2px' }} />
-                      <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#16a34a', letterSpacing: '1px' }}>KSA OFFICE</span>
+                      <span style={{ fontSize: '0.8rem', fontWeight: 700, color: saGreenMid, letterSpacing: '1px' }}>KSA OFFICE</span>
                     </div>
                     <h3 className="text-2xl font-bold text-slate-900 mb-2">We are here to help</h3>
                     <p style={{ color: '#64748b', fontSize: '0.95rem' }}>Speak with an Admission Counselor</p>
@@ -281,12 +328,12 @@ const Ksa = () => {
                     <input type="email" placeholder="Email *" required value={email} onChange={(e) => setEmail(e.target.value)} className={inputClass} />
                     <input type="tel" placeholder="Phone *" required value={phoneNo} onChange={(e) => setPhoneNo(e.target.value)} className={inputClass} />
                     <input type="text" placeholder="WhatsApp Number" value={WhatsAppNo} onChange={(e) => setWhatsAppNo(e.target.value)} className={inputClass} />
-                    
+
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                       <input type="text" placeholder="Student Name *" required value={studentName} onChange={(e) => setStudentName(e.target.value)} className={inputClass} />
                       <input type="text" placeholder="Student Age" value={studentAge} onChange={(e) => setStudentAge(e.target.value)} className={inputClass} />
                     </div>
-                    
+
                     <input type="text" placeholder="Student Grade" value={studentGrade} onChange={(e) => setStudentGrade(e.target.value)} className={inputClass} />
 
                     <select value={program} onChange={(e) => setProgram(e.target.value)} required className={inputClass}>
@@ -319,7 +366,7 @@ const Ksa = () => {
                       }}
                     />
 
-                    <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit" style={{ width: '100%', padding: '1rem', borderRadius: '0.75rem', color: 'white', fontWeight: 'bold', fontSize: '1rem', background: 'linear-gradient(to right, #059669, #10b981)', border: 'none', cursor: 'pointer', marginTop: '0.5rem', boxShadow: '0 10px 20px -5px rgba(5, 150, 105, 0.4)' }}>
+                    <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit" style={{ width: '100%', padding: '1rem', borderRadius: '0.75rem', color: 'white', fontWeight: 'bold', fontSize: '1rem', background: `linear-gradient(to right, ${saGreenMid}, ${saGreenDeep})`, border: 'none', cursor: 'pointer', marginTop: '0.5rem', boxShadow: '0 10px 20px -5px rgba(46, 93, 69, 0.35)' }}>
                       REQUEST A CALL BACK
                     </motion.button>
                   </form>
@@ -334,12 +381,12 @@ const Ksa = () => {
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2.5rem' }}>
                   {afiliations && afiliations.map((feature) => (
-                    <motion.div 
-                      key={feature.id} 
-                      initial={{ opacity: 0, y: 20 }} 
-                      whileInView={{ opacity: 1, y: 0 }} 
-                      viewport={{ once: true }} 
-                      whileHover={{ y: -8, boxShadow: '0 25px 50px -12px rgba(0,0,0,0.15)' }} 
+                    <motion.div
+                      key={feature.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      whileHover={{ y: -8, boxShadow: '0 25px 50px -12px rgba(0,0,0,0.15)' }}
                       style={{ background: 'white', borderRadius: '1.5rem', overflow: 'hidden', boxShadow: '0 10px 30px -10px rgba(0,0,0,0.05)', border: '1px solid #f1f5f9' }}
                     >
                       <div style={{ height: '240px', overflow: 'hidden' }}>
@@ -372,17 +419,17 @@ const Ksa = () => {
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '4rem', alignItems: 'center', marginBottom: '6rem' }}>
                 <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
                   <h2 className="text-3xl font-bold text-slate-900 mb-8">What Parents Say</h2>
-                  <div style={{ position: 'relative', background: 'linear-gradient(135deg, #022c22 0%, #064e3b 100%)', padding: '3rem', borderRadius: '1.5rem', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)', overflow: 'hidden' }}>
-                    <div style={{ position: 'absolute', top: '10px', right: '20px', fontSize: '120px', color: 'rgba(255,255,255,0.05)', fontFamily: 'serif', lineHeight: 1 }}>"</div>
+                  <div style={{ position: 'relative', background: 'linear-gradient(135deg, #1B3A2A 0%, #2E5D45 100%)', padding: '3rem', borderRadius: '1.5rem', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)', overflow: 'hidden' }}>
+                    <div style={{ position: 'absolute', top: '10px', right: '20px', fontSize: '120px', color: 'rgba(232,240,233,0.06)', fontFamily: 'serif', lineHeight: 1 }}>"</div>
                     <AnimatePresence mode="wait">
                       {allFeedbacks && allFeedbacks.length > 0 && (
                         <motion.div key={feedbackIndex} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.5 }} style={{ position: 'relative', zIndex: 10 }}>
-                          <p style={{ fontSize: '1.15rem', fontStyle: 'italic', color: '#f8fafc', lineHeight: 1.8, marginBottom: '2rem' }}>"{allFeedbacks[feedbackIndex].description}"</p>
+                          <p style={{ fontSize: '1.15rem', fontStyle: 'italic', color: '#E8F0E9', lineHeight: 1.8, marginBottom: '2rem' }}>"{allFeedbacks[feedbackIndex].description}"</p>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                            <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'linear-gradient(to bottom right, #10b981, #059669)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', color: 'white', fontSize: '1.25rem' }}>{allFeedbacks[feedbackIndex].name.charAt(0)}</div>
+                            <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: `linear-gradient(to bottom right, ${saGreenSoft}, ${saGreenDeep})`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', color: '#E8F0E9', fontSize: '1.25rem' }}>{allFeedbacks[feedbackIndex].name.charAt(0)}</div>
                             <div>
                               <h4 style={{ fontWeight: 'bold', color: 'white', margin: 0, fontSize: '1.1rem' }}>{allFeedbacks[feedbackIndex].name}</h4>
-                              <p style={{ color: '#6ee7b7', fontSize: '0.9rem', margin: 0 }}>{allFeedbacks[feedbackIndex].title}</p>
+                              <p style={{ color: '#A9BFAF', fontSize: '0.9rem', margin: 0 }}>{allFeedbacks[feedbackIndex].title}</p>
                             </div>
                           </div>
                         </motion.div>
@@ -408,52 +455,15 @@ const Ksa = () => {
                   <p style={{ color: '#64748b', marginTop: '0.5rem' }}>Collaborating with industry leaders to empower our students</p>
                 </div>
                 <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
-                  
-                  {/* Left Button */}
-                  <button 
-                    onClick={() => scrollLeft(partnerScrollRef)} 
-                    style={{ position: 'absolute', left: '-15px', zIndex: 10, width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(255, 255, 255, 0.9)', border: '1px solid #e2e8f0', boxShadow: '0 10px 25px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', color: '#16a34a', backdropFilter: 'blur(8px)', transition: 'all 0.2s' }} 
-                  >
-                    ◀
-                  </button>
-
-                  <div 
-                    ref={partnerScrollRef} 
-                    onMouseEnter={() => setIsPartnerHovering(true)} 
-                    onMouseLeave={() => setIsPartnerHovering(false)} 
-                    style={{ display: 'flex', gap: '2rem', overflowX: 'auto', padding: '1.5rem 0.5rem', scrollBehavior: 'smooth', msOverflowStyle: 'none', scrollbarWidth: 'none' }} 
-                    className="hide-scrollbar"
-                  >
+                  <button onClick={() => scrollLeft(partnerScrollRef)} style={{ position: 'absolute', left: '-15px', zIndex: 10, width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(255, 255, 255, 0.9)', border: '1px solid #e2e8f0', boxShadow: '0 10px 25px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', color: saGreenMid, backdropFilter: 'blur(8px)', transition: 'all 0.2s' }}>◀</button>
+                  <div ref={partnerScrollRef} onMouseEnter={() => setIsPartnerHovering(true)} onMouseLeave={() => setIsPartnerHovering(false)} style={{ display: 'flex', gap: '2rem', overflowX: 'auto', padding: '1.5rem 0.5rem', scrollBehavior: 'smooth', msOverflowStyle: 'none', scrollbarWidth: 'none' }} className="hide-scrollbar">
                     {partners && partners.map((member) => (
-                      <div 
-                        key={member._id} 
-                        style={{ 
-                          width: '280px', 
-                          height: '160px', 
-                          flexShrink: 0,
-                          background: 'white',
-                          borderRadius: '1.25rem',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          boxShadow: '0 8px 20px -5px rgba(0,0,0,0.05)',
-                          border: '1px solid #f1f5f9',
-                          padding: '1.5rem',
-                          transition: 'transform 0.3s'
-                        }}
-                      >
+                      <div key={member._id} style={{ width: '280px', height: '160px', flexShrink: 0, background: 'white', borderRadius: '1.25rem', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 20px -5px rgba(0,0,0,0.05)', border: '1px solid #f1f5f9', padding: '1.5rem', transition: 'transform 0.3s' }}>
                         <PartnerCard member={member} />
                       </div>
                     ))}
                   </div>
-
-                  {/* Right Button */}
-                  <button 
-                    onClick={() => scrollRight(partnerScrollRef)} 
-                    style={{ position: 'absolute', right: '-15px', zIndex: 10, width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(255, 255, 255, 0.9)', border: '1px solid #e2e8f0', boxShadow: '0 10px 25px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', color: '#16a34a', backdropFilter: 'blur(8px)', transition: 'all 0.2s' }} 
-                  >
-                    ▶
-                  </button>
+                  <button onClick={() => scrollRight(partnerScrollRef)} style={{ position: 'absolute', right: '-15px', zIndex: 10, width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(255, 255, 255, 0.9)', border: '1px solid #e2e8f0', boxShadow: '0 10px 25px rgba(0,0,0,0.1)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', color: saGreenMid, backdropFilter: 'blur(8px)', transition: 'all 0.2s' }}>▶</button>
                 </div>
               </div>
 
